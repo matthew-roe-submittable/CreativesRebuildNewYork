@@ -1,6 +1,6 @@
 from lib.submittable import *
 from lib.model import *
-import datetime
+from datetime import datetime
 import config
 import logging
 
@@ -26,14 +26,14 @@ logger.setLevel(logging.DEBUG)
 class CreativesRebuildController:
 
     def __init__(self):
-        self.submittable =  Submittable(config.submittable_token)
+        self.submittable  = Submittable(config.submittable_token)
         self.model        = Creative(config.mysql_conn)
         self.project_id_1 = "47b5697e-a7bb-4096-a708-b576cb218bc5"
         self.project_id_2 = "40a9c8f7-7254-48d1-aa08-bbb90c9984da"
+        self.label_id_1   = "317974"
+        self.label_id_2   = "317973"
+        self.label_id_3   = "317972"
 
-        self.label_id_1 = "123"
-        self.label_id_2 = "456"
-        self.label_id_3 = "789"
 
     #
     # update the creative's and/or submission model/table
@@ -76,26 +76,25 @@ class CreativesRebuildController:
         # build up submission id list for project 2
         submission_list = self.submittable.getListOfSubmissions()
         unique_id_list_project_2 = []
+
         # loop through submissions from project 2 get UID
         for sub_item in submission_list:
             print("sub item:", sub_item)
-            if sub_item.getProjectId() == self.project_id_2:
-                submission_id = sub_item.getSubmissionId()
-                submission    = self.submittable.getSubmission(submission_id)
-                submitter_id  = submission.getSubmitterId()
-                last_name     = submission.getLastName()
-                first_name    = submission.getFistName()
 
-                form_responses  = submission.getFormResponses()
+            if sub_item.getProjectId() == self.project_id_2:
+                submission_id  = sub_item.getSubmissionId()
+                submission     = self.submittable.getSubmission(submission_id)
+                submitter_id   = submission.getSubmitterId()
+                form_responses = submission.getFormResponses()
+
                 for response in form_responses:
                     for resp in response:
+                        last_name      = resp.getLastName()
                         dob            = resp.getFirstName
-                        address        = resp.getFirstName
                         zipcode        = resp.getFirstName
-                        last4SNN       = resp.getFirstName
 
                 # Set the unique id
-                unique_id_project_2 = last_name + zipcode + last4SNN
+                unique_id_project_2 = dob + last_name + zipcode
                 unique_id_list_project_2.append(unique_id_project_2)
 
 
@@ -123,33 +122,45 @@ class CreativesRebuildController:
         submission_response = self.submittable.getListOfSubmissions()
         for sub_item in submission_response:
             print("sub item:", sub_item)
+
+            model = Creative(config.mysql_conn)
+
             if sub_item.getProjectId() == self.project_id_2:
-                print("project 1")
-                self.model.submission_id    = sub_item.getSubmissionId()
-                submission                  = self.submittable.getSubmission(self.model.submission_id)
-                print("submission:", submission)
-                self.model.submitter_id     = submission.getSubmitterId()
-                self.model.last_name        = submission.getLastName()
-                self.model.first_name       = submission.getFirstName()
+                print("project 1", self.project_id_2)
+                model.submission_id  = sub_item.getSubmissionId()
+                sub_response         = self.submittable.getSubmission(model.submission_id)
+                model.submitter_id   = sub_response.getSubmitterId()
+                form_responses       = sub_response.getFormResponses()
 
-                form_responses = submission.getFormResponses()
+                # get each submission form responses
+                for form_response in form_responses:
+                    form_id    = form_response.getFormId()
+                    responses  = sub_response.getFormResponse(form_id)
+                    field_data = responses.getFieldData()
 
-
-                for response in form_responses:
-                    field_data = response.getFieldData()
                     for data in field_data:
-                        print(data)
-                        self.model.form_response_id  = response.getFormResponseId()
-                        self.model.dob               = "123" # data.getValue()
-                        self.model.address           = "123" # data.getAddress1()
-                        self.model.zipcode           = "123" # data.getPostalCode()
-                        self.model.last4SNN          = "123" # data.getValue()
-                        self.model.phone             = "123"
-                        self.model.date_last_checked = datetime.datetime.now()
-                        # Set the unique id
-                        self.model.unique_id = str(self.model.last_name) + str(self.model.zipcode) + str(self.model.last4SNN)
-                        self.model.save()
+                        print("data in field_data", data)
+                        field_id    = data.getFormFieldId()
+                        field_value = responses.getFieldResponse(field_id)
+                        field_id    = field_value.getFormFieldId()
 
+                        model.form_response_id = form_response.getFormResponseId()
+
+                        if field_id == "dca6592c-dd72-4996-b718-8c7773341e11":
+                            model.last_name = data.getFieldValue("NAME")
+                        if field_id == "969d426a-14bd-4e4e-9110-2c9e0bb69276":
+                            date_string = data.getFieldValue("SHORT_ANSWER")
+                            model.dob = date_string[0:10]
+                        if field_id == "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824":
+                            model.zipcode = data.getFieldValue("ADDRESS")
+
+                model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
+                model.unique_id = str(model.dob) + str(model.last_name) + str(model.zipcode)
+                print("save")
+                try:
+                    model.save()
+                except:
+                    self.createLabel("in_progress", model.submission_id)
             else:
                 # No Match continue to next submitter
                 continue

@@ -137,7 +137,7 @@ class Creative:
             self.conn.commit()
         except:
             print("error")
-            # raise mysql.connector.IntegrityError
+            raise mysql.connector.IntegrityError
 
         if self.new():
             self.id = cur.lastrowid

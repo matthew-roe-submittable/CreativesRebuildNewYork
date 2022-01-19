@@ -3,9 +3,9 @@ CREATE DATABASE test;
 CREATE TABLE test.creatives(
     id                    INT            NOT NULL AUTO_INCREMENT,
 	unique_id             VARCHAR(50)    NOT NULL UNIQUE,
-	submission_id         VARCHAR(50)    NOT NULL UNIQUE,
-	submitter_id          VARCHAR(50)    NOT NULL UNIQUE,
-	form_response_id      VARCHAR(50)    UNIQUE,
+	submission_id         VARCHAR(50)    NOT NULL,
+	submitter_id          VARCHAR(50)    NOT NULL,
+	form_response_id      VARCHAR(50),
     first_name            VARCHAR(50),
     last_name             VARCHAR(50),
     zipcode               VARCHAR(50),

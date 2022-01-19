@@ -838,7 +838,7 @@ class SubmittableFieldData:
 
     def getFieldValue(self, response_field_type):
         if response_field_type == "NAME":
-            value = self.getFirstName() + self.getLastName()
+            value = self.getLastName()
         elif response_field_type == "PHONE":
             value = self.getValue()
         elif response_field_type == "EMAIL":
@@ -846,7 +846,9 @@ class SubmittableFieldData:
         elif response_field_type == "BANK_DETAILS":
             value = {self.getAccountNumber(), self.getRoutingNumber()}
         elif response_field_type == "ADDRESS":
-            value = {self.getAddress1(), self.getAddress2(), self.getCity(), self.getRegion(), self.getPostalCode(), self.getCountry()}
+            value = self.getPostalCode()
+        elif response_field_type == "SHORT_ANSWER":
+            value = self.getValue()
         return value
 
 
