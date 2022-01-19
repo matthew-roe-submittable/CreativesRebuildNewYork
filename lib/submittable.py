@@ -4,6 +4,7 @@ import requests
 import json
 from ratelimit import limits, sleep_and_retry
 import logging
+import config
 
 logger = logging.getLogger("logfile")
 
@@ -13,8 +14,8 @@ logger = logging.getLogger("logfile")
 #
 class Submittable:
 
-    def __init__(self, api_key):
-        self.api_key  = api_key
+    def __init__(self):
+        self.api_key  = config.submittable_token
         self.baseURL  = "https://svcs.submittable.com/v3"
 
 
@@ -58,139 +59,41 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getInternalFormRequestId(self, subId):
+    def getInitialFormRequestId(self, subId):
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
-        payload = {"formType": "internal",
+        payload = {"formType": "initial",
                    "submissionId": subId}
         payload = json.dumps(payload)
         response = requests.post(endpoint, auth=(":", self.api_key), headers=headers, data=payload)
         if response.status_code != 201:
-            print("internal from request id failed")
+            print("initial from request id failed")
         else:
-            print("internal form request id successful")
+            print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def submitInternalFormResponse(self, submissionId, descendant_name, maiden_name, address, address2, address3, city,
-                                   state, country, zipcode, routing_number, account_number, account_type):
-        endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
+    def updateInitialFormResponse(self, request_id, submission_id, unique_id):
+        endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
         headers = {'Content-type': 'application/json'}
-        payload = {"submissionId": submissionId,
+        payload = {"submissionId": submission_id,
                    "fieldData": [
                        {
-                           "fieldType": "name",
+                           "fieldType":   "text_only",
                            "formFieldId": "d9a318f9-ce64-4014-ac96-2b0825862227",
-                           "firstName": descendant_name,
-                           "lastName": maiden_name
-                       },
-                       {
-                           "fieldType": "address",
-                           "formFieldId": "aa424c9b-3b43-4a7d-adc3-30e1e86b3429",
-                           "address1": address,
-                           "address2": address2 + " " + address3,
-                           "city": city,
-                           "region": state,
-                           "postalCode": zipcode,
-                           "country": country,
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "593b7bb1-c41b-4f09-a9c0-f8fc5e79abd9",
-                           "value": account_type
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "ab221ced-299b-431d-baf2-abdfc0506b8c",
-                           "value": routing_number
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "75c4aa70-f385-4d8a-8227-da8b0618f552",
-                           "value": account_number
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "1d46d751-78c9-4e80-a5fa-91927391e624",
-                           "value": str(datetime.datetime.now())
-                       },
-                       {
-                           "fieldType": "date",
-                           "formFieldId": "39708357-b6e2-4f8d-b296-9b3056dfae8d",
-                           "value": ""
-                       }
-                   ]
-                   }
-        payload = json.dumps(payload)
-        response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
-        if response.status_code != 201:
-            print(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-            raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-        else:
-            print("submit internal form response successful")
-        return response.json()["entryId"]
-
-    @sleep_and_retry
-    @limits(calls=10, period=1)
-    def updateInternalForm(self, formResponseId, descendant_name, maiden_name, address, address2, address3, city, state,
-                           country, zipcode, routing_number, account_number, account_type):
-        # db formResponseId maps to entryId of the create internal form call
-        endpoint = f'https://submittable-api.submittable.com/beta/entries/{formResponseId}'
-        headers  = {'Content-type': 'application/json'}
-        payload  = {"formType": "internal",
-                   "fieldData": [
-                       {
-                           "fieldType": "name",
-                           "formFieldId": "d9a318f9-ce64-4014-ac96-2b0825862227",
-                           "firstName": descendant_name,
-                           "lastName": maiden_name
-                       },
-                       {
-                           "fieldType": "address",
-                           "formFieldId": "aa424c9b-3b43-4a7d-adc3-30e1e86b3429",
-                           "address1": address,
-                           "address2": address2 + " " + address3,
-                           "city": city,
-                           "region": state,
-                           "postalCode": zipcode,
-                           "country": country,
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "593b7bb1-c41b-4f09-a9c0-f8fc5e79abd9",
-                           "value": account_type
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "ab221ced-299b-431d-baf2-abdfc0506b8c",
-                           "value": routing_number
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "75c4aa70-f385-4d8a-8227-da8b0618f552",
-                           "value": account_number
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": "1d46d751-78c9-4e80-a5fa-91927391e624",
-                           "value": str(datetime.datetime.now())
-                       },
-                       {
-                           "fieldType": "date",
-                           "formFieldId": "39708357-b6e2-4f8d-b296-9b3056dfae8d",
-                           "value": ""
+                           "value":       unique_id,
                        }
                    ]
                    }
         payload  = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         if response.status_code != 200:
-            print(f"update internal form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
-            raise ValueError(f"update internal form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            print(f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
+            raise ValueError(f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         else:
-            print("update internal form successful")
+            print("update initial form successful")
         return response
 
     # get an individual submission
@@ -200,12 +103,12 @@ class Submittable:
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        print("get sub", response.json())
         if response.status_code != 200:
             print(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
         else:
             print("get submission successful")
-        print(response.json())
         return SubmittableSubmission(response.json())
 
     # get an individual submission

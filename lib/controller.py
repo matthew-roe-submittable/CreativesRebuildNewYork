@@ -3,6 +3,7 @@ from lib.model import *
 from datetime import datetime
 import config
 import logging
+import sys
 
 file_formatter    = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
@@ -125,8 +126,9 @@ class CreativesRebuildController:
 
             model = Creative(config.mysql_conn)
 
-            if sub_item.getProjectId() == self.project_id_2:
-                print("project 1", self.project_id_2)
+            # load database from project 1
+            if sub_item.getProjectId() == self.project_id_1:
+                print("project 1", self.project_id_1)
                 model.submission_id  = sub_item.getSubmissionId()
                 sub_response         = self.submittable.getSubmission(model.submission_id)
                 model.submitter_id   = sub_response.getSubmitterId()
@@ -160,7 +162,57 @@ class CreativesRebuildController:
                 try:
                     model.save()
                 except:
-                    self.createLabel("in_progress", model.submission_id)
+                    try:
+                        response = self.createLabel(sub_response.getSubmissionStatus(), model.submission_id)
+                        logger.info(
+                            f"duplicate unique id {model.unique_id} in the database already for submission {model.submission_id}")
+                    except ValueError:
+                        logger.info(
+                            f"failed to create duplicate label fro unique id {model.unique_id} status code: {response.status_code}")
+            # load database from project 2
+            elif sub_item.getProjectId() == self.project_id_2:
+                print("project 2", self.project_id_2)
+                model.submission_id = sub_item.getSubmissionId()
+                sub_response        = self.submittable.getSubmission(model.submission_id)
+                model.submitter_id  = sub_response.getSubmitterId()
+                form_responses      = sub_response.getFormResponses()
+
+                # get each submission form responses
+                for form_response in form_responses:
+                    form_id    = form_response.getFormId()
+                    responses  = sub_response.getFormResponse(form_id)
+                    field_data = responses.getFieldData()
+
+                    for data in field_data:
+                        print("data in field_data", data)
+                        field_id    = data.getFormFieldId()
+                        field_value = responses.getFieldResponse(field_id)
+                        field_id    = field_value.getFormFieldId()
+
+                        model.form_response_id = form_response.getFormResponseId()
+
+                        if field_id == "dca6592c-dd72-4996-b718-8c7773341e11":
+                            model.last_name = data.getFieldValue("NAME")
+                        if field_id == "969d426a-14bd-4e4e-9110-2c9e0bb69276":
+                            date_string = data.getFieldValue("SHORT_ANSWER")
+                            model.dob = date_string[0:10]
+                        if field_id == "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824":
+                            model.zipcode = data.getFieldValue("ADDRESS")
+
+                model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
+                model.unique_id = str(model.dob) + str(model.last_name) + str(model.zipcode)
+                request_id = self.submittable.getInitialFormRequestId(model.submission_id)
+                self.submittable.updateInitialFormResponse(request_id, model.submission_id, model.unique_id)
+                print("save")
+                try:
+                    model.save()
+                except:
+                    try:
+                        response = self.createLabel(sub_response.getSubmissionStatus(), model.submission_id)
+                        logger.info(f"duplicate unique id {model.unique_id} in the database already for submission {model.submission_id}")
+                    except ValueError:
+                        logger.info(f"failed to create duplicate label fro unique id {model.unique_id} status code: {response.status_code}")
+
             else:
                 # No Match continue to next submitter
                 continue
