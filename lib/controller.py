@@ -1,6 +1,5 @@
-import mysql.connector
-from submittable import *
-from model import *
+from lib.submittable import *
+from lib.model import *
 import datetime
 import config
 import logging
@@ -8,7 +7,7 @@ import logging
 file_formatter    = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -24,109 +23,134 @@ logger.setLevel(logging.DEBUG)
 #
 # Verify Unique Identifier
 #
-
-
 class CreativesRebuildController:
 
     def __init__(self):
-        self.submittable = Submittable(config.submittable_token)
-        self.model = self.model(config.mysql_conn)
+        self.submittable =  Submittable(config.submittable_token)
+        self.model        = Creative(config.mysql_conn)
+        self.project_id_1 = "47b5697e-a7bb-4096-a708-b576cb218bc5"
+        self.project_id_2 = "40a9c8f7-7254-48d1-aa08-bbb90c9984da"
 
-    def checkUniqueIdentifier(self):
-        return
+        self.label_id_1 = "123"
+        self.label_id_2 = "456"
+        self.label_id_3 = "789"
 
-    # update the submitters status in database
+    #
+    # update the creative's and/or submission model/table
+    #
     def updateDatabase(self):
         return
 
-    def updateSubmissionLabels(self, subId):
-        # call submittable API - get submission
-        # check the project id
-        # call submittable API - add label "Verification Complete"
-        # return true if submission label was added successfully
-        return True
 
+    #
+    # If submission is in the Accepted or Completed status, a ‘Awarded Duplicate’ label will be applied.
+    # If submission is in the Withdrawn or Decline status, a ‘Not Awarded Duplicate’ label will be applied.
+    # If submission is in the New or In Progress status, a ‘Pending Duplicate’ label will be applied.
+    # submissionStatus	(string)
+    # Enum: "new" "in_progress" "accepted" "declined" "withdrawn" "completed" "editable" "viewed" "received" "published"
+    #
+    def createLabel(self, stat, subId):
+        submission_id = subId
+        status        = stat
+        if status == "accepted" or status == "completed":
+            self.submittable.addLabel(submission_id, self.label_id_1)
+            return True
+        elif status == "withdrawn" or status == "declined":
+            self.submittable.addLabel(submission_id, self.label_id_2)
+            return True
+        else:
+            # status = "editable" "viewed" "received" "published" "new" "in_progress"
+            self.submittable.addLabel(submission_id, self.label_id_3)
+            return True
+
+
+    #
     # Compare the UID value to the value in the CSV file
     # update the database ID verification status
     # update the Org. back end verification status by adding a label
     # ONLY verified submitters can receive payment
+    #
+    def uidDuplicateCheck(self):
+        logger.info("start UID Duplicate check")
 
-    def idVerification(self, koniagfile):
-        print("idVerification called")
-        logger.info("start id verification")
+        # build up submission id list for project 2
+        submission_list = self.submittable.getListOfSubmissions()
+        unique_id_list_project_2 = []
+        # loop through submissions from project 2 get UID
+        for sub_item in submission_list:
+            print("sub item:", sub_item)
+            if sub_item.getProjectId() == self.project_id_2:
+                submission_id = sub_item.getSubmissionId()
+                submission    = self.submittable.getSubmission(submission_id)
+                submitter_id  = submission.getSubmitterId()
+                last_name     = submission.getLastName()
+                first_name    = submission.getFistName()
+
+                form_responses  = submission.getFormResponses()
+                for response in form_responses:
+                    for resp in response:
+                        dob            = resp.getFirstName
+                        address        = resp.getFirstName
+                        zipcode        = resp.getFirstName
+                        last4SNN       = resp.getFirstName
+
+                # Set the unique id
+                unique_id_project_2 = last_name + zipcode + last4SNN
+                unique_id_list_project_2.append(unique_id_project_2)
+
+
         # load all submitters in database
+        creatives = self.model.all()
+        for creative in creatives:
+            for id in unique_id_list_project_2:
+                if creative.unique_id == id:
+                    status = None
+                    if self.createLabel(status, creative.submission_id):
+                        logger.info(f"created duplicate label status: {status} for submission: {creative.submission_id}")
 
+
+
+    #
     # get all submissions
     # get submission id
     # get form id
     # get field values
-    # check for duplicate submitter id
     # save into database
-    # repeat for all new submissions
-    @staticmethod
-    def loadDatabaseFromSubmittable():
+    #
+    def loadDatabase(self):
         logger.info(f"load the database")
-        # call to submittable API to get submitter_id, get list of submission ids
-        submittable = Submittable(config.submittable_token)
-        submission_response = submittable.getListOfSubmissions()
-        submissions = []
-        # build up submission id list
+        # build up submission id list for project 1
+        submission_response = self.submittable.getListOfSubmissions()
         for sub_item in submission_response:
-            sub_id = sub_item.getSubmissionId()
-            submissions.append(sub_id)
+            print("sub item:", sub_item)
+            if sub_item.getProjectId() == self.project_id_2:
+                print("project 1")
+                self.model.submission_id    = sub_item.getSubmissionId()
+                submission                  = self.submittable.getSubmission(self.model.submission_id)
+                print("submission:", submission)
+                self.model.submitter_id     = submission.getSubmitterId()
+                self.model.last_name        = submission.getLastName()
+                self.model.first_name       = submission.getFirstName()
 
-        # get form filed value for submitter id
-        for sub in submissions:
-            # create submitter object for submission
-            submitter = Submitter(config.mysql_conn)
+                form_responses = submission.getFormResponses()
 
-            # check the submission is in project
-            try:
-                sub_response = submittable.getSubmission(sub)
-                form_responses = sub_response.getFormResponses()
-                # CreativesRebuildNewYork
-                if sub_response.getProjectId() != 'replace_with_project_id':
-                    # continue to next submitter submission not in project
-                    print("submission not in project skip to next submission")
-                    continue
-            except:
-                print("failed")
 
-            # check database for submission by submission id
-            # load the submitter if the exist in database
-            submitter.load_by_submission_id(sub)
+                for response in form_responses:
+                    field_data = response.getFieldData()
+                    for data in field_data:
+                        print(data)
+                        self.model.form_response_id  = response.getFormResponseId()
+                        self.model.dob               = "123" # data.getValue()
+                        self.model.address           = "123" # data.getAddress1()
+                        self.model.zipcode           = "123" # data.getPostalCode()
+                        self.model.last4SNN          = "123" # data.getValue()
+                        self.model.phone             = "123"
+                        self.model.date_last_checked = datetime.datetime.now()
+                        # Set the unique id
+                        self.model.unique_id = str(self.model.last_name) + str(self.model.zipcode) + str(self.model.last4SNN)
+                        self.model.save()
 
-            # print("get submission and from responses")
-            sub_response = submittable.getSubmission(sub)
-            if sub_response == "get submission failed":
+            else:
+                # No Match continue to next submitter
                 continue
-            form_responses = sub_response.getFormResponses()
-
-            # get each submission form responses
-            for form_response in form_responses:
-                form_id = form_response.getFormId()
-                form_response_by_id = sub_response.getFormResponse(form_id)
-                field_data = form_response_by_id.getFieldData()
-
-                for data in field_data:
-                    field_id = data.getFormFieldId()
-                    field_value = form_response_by_id.getFieldResponse(field_id)
-                    field_id = field_value.getFormFieldId()
-
-                    # TODO update field ids
-                    if field_id == "583e24e6-1fc5-420f-9447-9cf68d05ca7b":
-                        submitter.descendent_name = field_value.getValue()
-
-                    if field_id == "73dbdceb-fe26-494d-99db-e6c9affd0fae":
-                        submitter.maiden_name = field_value.getValue()
-
-                    if field_id == "4704c397-8e28-479b-957c-2c4dfc22b12b":
-                        print("submitter_id field_value: %s" % str(field_value))
-                        submitter.unique_id = field_value.getValue()
-
-            # set the submitter information and save to database
-            submitter.submission_id = sub
-            # save the submitters to the database
-            submitter.save()
-
-        print("finished loading database")
+    print("finished loading database")

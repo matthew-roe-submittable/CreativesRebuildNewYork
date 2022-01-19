@@ -16,7 +16,7 @@ class Submittable:
     def __init__(self, api_key):
         self.api_key  = api_key
         self.baseURL  = "https://svcs.submittable.com/v3"
-        self.event    = threading.Event()
+
 
     @sleep_and_retry
     @limits(calls=10, period=1)
@@ -28,11 +28,11 @@ class Submittable:
             print("get label ids failed")
         else:
             print("get label ids successful")
-        self.event.wait(0.25)
         return response.json()
 
+    @sleep_and_retry
+    @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
-        self.event.wait(0.2)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
         response = requests.delete(endpoint, auth=("", self.api_key), headers=headers)
@@ -41,13 +41,12 @@ class Submittable:
             raise ValueError(f"delete label failed {response.status_code}. Response payload: {response.content}")
         else:
             print("delete label successful")
-        self.event.wait(0.25)
         return response
+
 
     @sleep_and_retry
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
-        self.event.wait(0.2)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
@@ -56,6 +55,9 @@ class Submittable:
             raise ValueError(f"add label failed {response.status_code}. Response payload: {response.content}")
         return response
 
+
+    @sleep_and_retry
+    @limits(calls=10, period=1)
     def getInternalFormRequestId(self, subId):
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
@@ -69,9 +71,11 @@ class Submittable:
             print("internal form request id successful")
         return SubmittableFormRequestId(response.json())
 
+
+    @sleep_and_retry
+    @limits(calls=10, period=1)
     def submitInternalFormResponse(self, submissionId, descendant_name, maiden_name, address, address2, address3, city,
                                    state, country, zipcode, routing_number, account_number, account_type):
-        self.event.wait(0.2)
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submissionId,
@@ -132,7 +136,6 @@ class Submittable:
     @limits(calls=10, period=1)
     def updateInternalForm(self, formResponseId, descendant_name, maiden_name, address, address2, address3, city, state,
                            country, zipcode, routing_number, account_number, account_type):
-        self.event.wait(0.25)
         # db formResponseId maps to entryId of the create internal form call
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{formResponseId}'
         headers  = {'Content-type': 'application/json'}
@@ -194,7 +197,6 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
-        self.event.wait(0.25)
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -203,13 +205,13 @@ class Submittable:
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
         else:
             print("get submission successful")
+        print(response.json())
         return SubmittableSubmission(response.json())
 
     # get an individual submission
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
-        self.event.wait(0.25)
         endpoint       = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -249,7 +251,6 @@ class Submittable:
             endpoint = f'{self.baseURL}/submissions?page={nextPage}&pageSize=50'
             headers  = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-            self.event.wait(0.5)
             if response.status_code != 200:
                 raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
             json_response = response.json()
@@ -587,6 +588,7 @@ class SubmittableSubmission:
         return self.payload["submitterId"]
 
     def getFirstName(self):
+        print(self.payload)
         return self.payload["submitterFirstName"]
 
     def getLastName(self):

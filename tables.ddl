@@ -8,8 +8,12 @@ CREATE TABLE test.creatives(
 	form_response_id      VARCHAR(50)    UNIQUE,
     first_name            VARCHAR(50),
     last_name             VARCHAR(50),
-    date_verified         DATETIME,
-    verified              BOOLEAN,
+    zipcode               VARCHAR(50),
+    address               VARCHAR(50),
+    dob                   VARCHAR(50),
+    last4SNN              VARCHAR(50),
+    phone                 VARCHAR(50),
+    date_last_checked     DATETIME,
 	PRIMARY KEY (id)
 );
 
