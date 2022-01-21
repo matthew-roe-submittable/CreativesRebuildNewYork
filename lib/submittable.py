@@ -56,6 +56,19 @@ class Submittable:
             raise ValueError(f"add label failed {response.status_code}. Response payload: {response.content}")
         return response
 
+    @sleep_and_retry
+    @limits(calls=10, period=1)
+    def getEntry(self, entry_id):
+        endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
+        headers  = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
+        print(response.status_code)
+        if response.status_code != 201:
+            print("get entry failed")
+        else:
+            print("get entry successful")
+        return SubmittableBetaResponseEntry(response.json())
+
 
     @sleep_and_retry
     @limits(calls=10, period=1)
@@ -72,29 +85,51 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-
-    @sleep_and_retry
-    @limits(calls=10, period=1)
-    def updateInitialFormResponse(self, request_id, submission_id, unique_id):
-        endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
+    def submitInternalFormResponse(self, submission_id, form_field_id, unique_id):
+        endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
                    "fieldData": [
                        {
+                           "fieldType":   "short_answer",
+                           "formFieldId": form_field_id,
+                           "value":       unique_id
+                       }
+                   ]
+                   }
+        payload  = json.dumps(payload)
+        response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
+        if response.status_code != 201:
+            print(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+        else:
+            print("submit internal form response successful")
+        return response.json()["entryId"]
+
+
+    @sleep_and_retry
+    @limits(calls=10, period=1)
+    def updateInternalFormResponse(self, request_id, form_field_id, unique_id):
+        endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
+        headers = {'Content-type': 'application/json'}
+        payload = {"formType": "internal",
+                   "fieldData": [
+                       {
                            "fieldType":   "text_only",
-                           "formFieldId": "d9a318f9-ce64-4014-ac96-2b0825862227",
-                           "value":       unique_id,
+                           "formFieldId": form_field_id,
+                           "value":       unique_id
                        }
                    ]
                    }
         payload  = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
+        # print(response.json())
         if response.status_code != 200:
             print(f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
             raise ValueError(f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         else:
             print("update initial form successful")
-        return response
+        return response.json()
 
     # get an individual submission
     @sleep_and_retry
@@ -103,7 +138,7 @@ class Submittable:
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        print("get sub", response.json())
+        # print("get sub", response.json())
         if response.status_code != 200:
             print(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
@@ -118,10 +153,11 @@ class Submittable:
         endpoint       = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        # print(response.json())
         if response.status_code != 200:
             print(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
-        return response.json()
+        return SubmittableBetaSubmission(response.json())
 
 
     # get an list of submissions
@@ -174,8 +210,40 @@ class SubmittableFormRequestId:
         return self.payload["requestId"]
 
 
-class SubmittableForm:
+class SubmittableBetaResponseEntry:
+    def __init__(self, payload):
+        self.payload = payload
 
+    def getEntry(self):
+        print("getEntry", self.payload)
+        return self.payload["entry"]
+
+    def getFieldData(self):
+        entry = self.getEntry()
+        field_data = []
+        for data in entry['fieldData']:
+            field_data.append(SubmittableFieldData(data))
+        return field_data
+
+    def getFormResponseId(self):
+        payload = self.payload["entry"]
+        print(payload)
+        return payload["formResponseId"]
+
+
+class SubmittableBetaFieldData:
+
+    def __init__(self, payload):
+        self.payload = payload
+
+    def getFormFieldId(self):
+        return self.payload["formFieldId"]
+
+    def getFieldType(self):
+        return self.payload["fieldType"]
+
+
+class SubmittableForm:
     def __init__(self, payload):
         self.payload = payload
 
@@ -412,8 +480,8 @@ class SubmittableFormOption:
 
 
 class SubmittableTransaction:
-    status_awarded = "awarded"
-    status_paid = "paid"
+    status_awarded    = "awarded"
+    status_paid       = "paid"
     status_processing = "processing"
 
     def __init__(self, payload):
@@ -476,6 +544,41 @@ class SubmittableSubmissionList:
         return labels
 
 
+class SubmittableBetaSubmission:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def getFormType(self):
+        return self.payload["formType"]
+
+    def getSubmissionId(self):
+        return self.payload["submissionId"]
+
+    def getProjectId(self):
+        return self.payload["projectId"]
+
+    def getSubmitterId(self):
+        return self.payload["submitterId"]
+
+    def getFirstName(self):
+        return self.payload["submitterFirstName"]
+
+    def getLastName(self):
+        return self.payload["submitterLastName"]
+
+    def getEmail(self):
+        return self.payload["submitterEmail"]
+
+    def getSubmissionStatus(self):
+        return self.payload["submissionStatus"]
+
+    def getFormEntries(self):
+        form_responses = []
+        for response in self.payload["formEntries"]:
+            form_responses.append(SubmittableBetaFormEntry(response))
+        return form_responses
+
+
 class SubmittableSubmission:
 
     def __init__(self, payload):
@@ -491,7 +594,6 @@ class SubmittableSubmission:
         return self.payload["submitterId"]
 
     def getFirstName(self):
-        print(self.payload)
         return self.payload["submitterFirstName"]
 
     def getLastName(self):
@@ -535,6 +637,40 @@ class SubmittableSubmission:
             if response.getFormId() == form_id:
                 return response
         return None
+
+
+class SubmittableBetaFormEntry:
+
+    def __init__(self, payload):
+        self.payload = payload
+
+    def getFormType(self):
+        return self.payload["formType"]
+
+    def getEntry(self):
+        print(self.payload)
+        return SubmittableBetaEntry(self.payload["entry"])
+
+
+class SubmittableBetaEntry:
+
+    def __init__(self, payload):
+        self.payload = payload
+
+    def getProjectId(self):
+        return self.payload["projectId"]
+
+    def getSubmissionId(self):
+        return self.payload["formId"]
+
+    def getFormId(self):
+        return self.payload["formId"]
+
+    def getEntryId(self):
+        return self.payload["entryId"]
+
+    def getStatus(self):
+        return self.payload["status"]
 
 
 class SubmittableFormResponse:
@@ -629,6 +765,7 @@ class SubmittableFieldData:
         return self.payload["fieldType"]
 
     def getFormFieldId(self):
+        print("getFormFieldId", self.payload)
         return self.payload["formFieldId"]
 
     def getValue(self):
@@ -750,6 +887,8 @@ class SubmittableFieldData:
             value = {self.getAccountNumber(), self.getRoutingNumber()}
         elif response_field_type == "ADDRESS":
             value = self.getPostalCode()
+        elif response_field_type == "DATE":
+            value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
             value = self.getValue()
         return value

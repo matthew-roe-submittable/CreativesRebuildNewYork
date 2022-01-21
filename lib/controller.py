@@ -27,13 +27,13 @@ logger.setLevel(logging.DEBUG)
 class CreativesRebuildController:
 
     def __init__(self):
-        self.submittable  = Submittable(config.submittable_token)
+        self.submittable  = Submittable()
         self.model        = Creative(config.mysql_conn)
-        self.project_id_1 = "47b5697e-a7bb-4096-a708-b576cb218bc5"
-        self.project_id_2 = "40a9c8f7-7254-48d1-aa08-bbb90c9984da"
-        self.label_id_1   = "317974"
-        self.label_id_2   = "317973"
-        self.label_id_3   = "317972"
+        self.project_id_1 = config.project_id_1
+        self.project_id_2 = config.project_id_2
+        self.label_id_1   = config.label_id_1
+        self.label_id_2   = config.label_id_2
+        self.label_id_3   = config.label_id_3
 
 
     #
@@ -130,45 +130,46 @@ class CreativesRebuildController:
             if sub_item.getProjectId() == self.project_id_1:
                 print("project 1", self.project_id_1)
                 model.submission_id  = sub_item.getSubmissionId()
-                sub_response         = self.submittable.getSubmission(model.submission_id)
+                sub_response         = self.submittable.getSubmissionBeta(model.submission_id)
                 model.submitter_id   = sub_response.getSubmitterId()
-                form_responses       = sub_response.getFormResponses()
+                entries_list         = sub_response.getFormEntries()
 
                 # get each submission form responses
-                for form_response in form_responses:
-                    form_id    = form_response.getFormId()
-                    responses  = sub_response.getFormResponse(form_id)
-                    field_data = responses.getFieldData()
+                for form_entry in entries_list:
+                    print(form_entry)
+                    if form_entry.getFormType() == 'initial':
+                        entry                   = form_entry.getEntry()
+                        entry_id                = entry.getEntryId()
+                        entry                   = self.submittable.getEntry(entry_id)
+                        model.form_response_id  = entry_id
+                        field_data              = entry.getFieldData()
 
-                    for data in field_data:
-                        print("data in field_data", data)
-                        field_id    = data.getFormFieldId()
-                        field_value = responses.getFieldResponse(field_id)
-                        field_id    = field_value.getFormFieldId()
+                        for data in field_data:
+                            print("data in field_data", data)
+                            field_id = data.getFormFieldId()
 
-                        model.form_response_id = form_response.getFormResponseId()
+                            if field_id == config.project_1_name_field_id:
+                                model.last_name = data.getFieldValue("NAME")
+                            if field_id == config.project_1_date_field_id:
+                                date_string = data.getFieldValue("DATE")
+                                model.dob = date_string[0:10]
+                            if field_id == config.project_1_address_field_id:
+                                model.zipcode = data.getFieldValue("ADDRESS")
 
-                        if field_id == "dca6592c-dd72-4996-b718-8c7773341e11":
-                            model.last_name = data.getFieldValue("NAME")
-                        if field_id == "969d426a-14bd-4e4e-9110-2c9e0bb69276":
-                            date_string = data.getFieldValue("SHORT_ANSWER")
-                            model.dob = date_string[0:10]
-                        if field_id == "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824":
-                            model.zipcode = data.getFieldValue("ADDRESS")
+                        model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
+                        model.unique_id = str(model.dob) + str(model.last_name) + str(model.zipcode)
 
-                model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
-                model.unique_id = str(model.dob) + str(model.last_name) + str(model.zipcode)
-                print("save")
+                        # update internal form using beta endpoint - Work In Progress
+                        # entry_id = self.submittable.submitInternalFormResponse(model.submission_id, config.internal_form_field_id_1, model.unique_id)
+                        # self.submittable.updateInternalFormResponse(entry_id, config.internal_form_field_id_1, model.unique_id)
                 try:
                     model.save()
                 except:
                     try:
-                        response = self.createLabel(sub_response.getSubmissionStatus(), model.submission_id)
-                        logger.info(
-                            f"duplicate unique id {model.unique_id} in the database already for submission {model.submission_id}")
+                        self.createLabel(sub_response.getSubmissionStatus(), model.submission_id)
+                        logger.info(f"duplicate unique id {model.unique_id} in the database already for submission {model.submission_id}")
                     except ValueError:
-                        logger.info(
-                            f"failed to create duplicate label fro unique id {model.unique_id} status code: {response.status_code}")
+                        logger.info(f"failed to create duplicate label fro unique id {model.unique_id}")
             # load database from project 2
             elif sub_item.getProjectId() == self.project_id_2:
                 print("project 2", self.project_id_2)
@@ -191,19 +192,21 @@ class CreativesRebuildController:
 
                         model.form_response_id = form_response.getFormResponseId()
 
-                        if field_id == "dca6592c-dd72-4996-b718-8c7773341e11":
+                        if field_id == config.project_2_name_field_id:
                             model.last_name = data.getFieldValue("NAME")
-                        if field_id == "969d426a-14bd-4e4e-9110-2c9e0bb69276":
-                            date_string = data.getFieldValue("SHORT_ANSWER")
+                        if field_id == config.project_2_date_field_id:
+                            date_string = data.getFieldValue("DATE")
                             model.dob = date_string[0:10]
-                        if field_id == "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824":
+                        if field_id == config.project_2_address_field_id:
                             model.zipcode = data.getFieldValue("ADDRESS")
 
                 model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
                 model.unique_id = str(model.dob) + str(model.last_name) + str(model.zipcode)
-                request_id = self.submittable.getInitialFormRequestId(model.submission_id)
-                self.submittable.updateInitialFormResponse(request_id, model.submission_id, model.unique_id)
-                print("save")
+
+                # update internal form using beta endpoint - Work In Progress
+                # entry_id = self.submittable.submitInternalFormResponse(model.submission_id, config.internal_form_field_id_1, model.unique_id)
+                # self.submittable.updateInternalFormResponse(entry_id, config.internal_form_field_id_1, model.unique_id)
+
                 try:
                     model.save()
                 except:
@@ -211,7 +214,7 @@ class CreativesRebuildController:
                         response = self.createLabel(sub_response.getSubmissionStatus(), model.submission_id)
                         logger.info(f"duplicate unique id {model.unique_id} in the database already for submission {model.submission_id}")
                     except ValueError:
-                        logger.info(f"failed to create duplicate label fro unique id {model.unique_id} status code: {response.status_code}")
+                        logger.info(f"failed to create duplicate label fro unique id {model.unique_id}")
 
             else:
                 # No Match continue to next submitter
