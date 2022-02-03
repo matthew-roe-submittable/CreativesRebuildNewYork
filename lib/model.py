@@ -88,7 +88,7 @@ class Creative:
         self.id = id
         cur = self.conn.cursor()
         sql = """select unique_id, submission_id, submitter_id, form_response_id, first_name, last_name, address,
-        zipcode, dob, last4SNN, phone, date_last_checked from creatvies where id=%s""" % id
+        zipcode, dob, last4SNN, phone, date_last_checked from creatives where id=%s""" % id
 
         cur.execute(sql)
         res = cur.fetchall()
