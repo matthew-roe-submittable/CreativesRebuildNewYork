@@ -85,16 +85,62 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, form_field_id, unique_id):
+    def submitInternalFormResponse(self, submission_id, unique_id):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
                    "fieldData": [
                        {
                            "fieldType":   "short_answer",
-                           "formFieldId": form_field_id,
+                           "formFieldId": config.internal_form_field_id_1,
                            "value":       unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_2,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_3,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_4,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType":   "short_answer",
+                           "formFieldId": config.internal_form_field_id_5,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_6,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_7,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_8,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_9,
+                           "value": unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_10,
+                           "value": unique_id
                        }
+
                    ]
                    }
         payload  = json.dumps(payload)
@@ -198,6 +244,69 @@ class Submittable:
                 submissions.append(SubmittableSubmissionList(item))
         return submissions
 
+    @sleep_and_retry
+    @limits(calls=10, period=1)
+    def getReferenceResponses(self):
+        submissions = []
+        nextPage = None
+
+        endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?pageSize=50'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        if response.status_code != 200:
+            print(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            raise ValueError(
+                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+
+        endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?pageSize=50'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        json_response = response.json()
+        total_pages = json_response["totalPages"]
+        print("total pages", total_pages)
+
+        # loop through pages
+        for page in range(0, total_pages):
+            # break out of last loop
+            if nextPage == total_pages:
+                break
+            nextPage = page + 1
+            endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?page={nextPage}&pageSize=50'
+            headers = {'Content-type': 'application/json'}
+            response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+            if response.status_code != 200:
+                raise ValueError(
+                    f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            json_response = response.json()
+            submissions_list = json_response["items"]
+            for item in submissions_list:
+                submissions.append(SubmittableResponseList(item))
+        return submissions
+
+
+class SubmittableResponseList:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def getFormFieldId(self):
+        return self.payload["fieldId"]
+
+    def getFormResponseId(self):
+        return self.payload["formResponseId"]
+
+    def getFormType(self):
+        return self.payload["formType"]
+
+    def getFormId(self):
+        return self.payload["formId"]
+
+
+    def getFieldData(self):
+        field_data = []
+        for data in self.payload['fieldData']:
+            field_data.append(SubmittableFieldData(data))
+        return field_data
+
 
 #
 # json Response wrapper classes
@@ -215,7 +324,7 @@ class SubmittableBetaResponseEntry:
         self.payload = payload
 
     def getEntry(self):
-        print("getEntry", self.payload)
+        # print("getEntry", self.payload)
         return self.payload["entry"]
 
     def getFieldData(self):
@@ -227,7 +336,7 @@ class SubmittableBetaResponseEntry:
 
     def getFormResponseId(self):
         payload = self.payload["entry"]
-        print(payload)
+        # print(payload)
         return payload["formResponseId"]
 
 
@@ -648,7 +757,7 @@ class SubmittableBetaFormEntry:
         return self.payload["formType"]
 
     def getEntry(self):
-        print(self.payload)
+        # print(self.payload)
         return SubmittableBetaEntry(self.payload["entry"])
 
 
@@ -688,12 +797,15 @@ class SubmittableFormResponse:
         return self.payload["projectId"]
 
     def getFormResponseId(self):
+        # print(self.payload)
         return self.payload["formResponseId"]
 
     def getFormId(self):
         return self.payload["formId"]
 
     def getFieldData(self):
+        print("get field data payload", self.payload)
+        # field_data = self.payload["fieldData"]
         field_data = []
         for data in self.payload['fieldData']:
             field_data.append(SubmittableFieldData(data))
@@ -765,7 +877,7 @@ class SubmittableFieldData:
         return self.payload["fieldType"]
 
     def getFormFieldId(self):
-        print("getFormFieldId", self.payload)
+        # print("getFormFieldId", self.payload)
         return self.payload["formFieldId"]
 
     def getValue(self):
@@ -877,6 +989,7 @@ class SubmittableFieldData:
         return self.payload["rulingMonth"]
 
     def getFieldValue(self, response_field_type):
+        print("get field value")
         if response_field_type == "NAME":
             value = self.getLastName()
         elif response_field_type == "PHONE":
@@ -890,7 +1003,9 @@ class SubmittableFieldData:
         elif response_field_type == "DATE":
             value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
+            # print('short answer', self.payload)
             value = self.getValue()
+        print(value)
         return value
 
 

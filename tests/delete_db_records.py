@@ -14,5 +14,12 @@ class db_interface():
         conn.commit()
         print(cur.rowcount, "record(s) deleted")
 
+        sql = """delete from collaborators where id>0"""
+        cur.execute(sql)
+        conn.commit()
+        print(cur.rowcount, "record(s) deleted")
+
+
+
 
 db_interface.deleteCreativesTableData()
