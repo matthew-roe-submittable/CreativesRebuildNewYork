@@ -85,7 +85,9 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, unique_id):
+    def submitInternalFormResponse(self, submission_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
+                                   collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
+                                   collab_unique_id_7=None, collab_unique_id_8=None,collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -93,52 +95,52 @@ class Submittable:
                        {
                            "fieldType":   "short_answer",
                            "formFieldId": config.internal_form_field_id_1,
-                           "value":       unique_id
+                           "value":       primary_unique_id
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_2,
-                           "value": unique_id
+                           "value": collab_unique_id_1
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_3,
-                           "value": unique_id
+                           "value": collab_unique_id_2
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_4,
-                           "value": unique_id
+                           "value": collab_unique_id_3
                        },
                        {
                            "fieldType":   "short_answer",
                            "formFieldId": config.internal_form_field_id_5,
-                           "value": unique_id
+                           "value": collab_unique_id_4
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_6,
-                           "value": unique_id
+                           "value": collab_unique_id_5
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_7,
-                           "value": unique_id
+                           "value": collab_unique_id_6
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_8,
-                           "value": unique_id
+                           "value": collab_unique_id_7
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_9,
-                           "value": unique_id
+                           "value": collab_unique_id_8
                        },
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_10,
-                           "value": unique_id
+                           "value": collab_unique_id_9
                        }
 
                    ]
@@ -155,18 +157,65 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def updateInternalFormResponse(self, request_id, form_field_id, unique_id):
+    def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
+        collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
+        collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "internal",
                    "fieldData": [
-                       {
-                           "fieldType":   "text_only",
-                           "formFieldId": form_field_id,
-                           "value":       unique_id
-                       }
-                   ]
-                   }
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_1,
+                            "value": primary_unique_id
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_2,
+                            "value": collab_unique_id_1
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_3,
+                            "value": collab_unique_id_2
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_4,
+                            "value": collab_unique_id_3
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_5,
+                            "value": collab_unique_id_4
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_6,
+                            "value": collab_unique_id_5
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_7,
+                            "value": collab_unique_id_6
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_8,
+                            "value": collab_unique_id_7
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_9,
+                            "value": collab_unique_id_8
+                        },
+                        {
+                            "fieldType": "short_answer",
+                            "formFieldId": config.internal_form_field_id_10,
+                            "value": collab_unique_id_9
+                        }
+                    ]
+                }
         payload  = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         # print(response.json())
@@ -211,26 +260,9 @@ class Submittable:
     @limits(calls=10, period=1)
     def getListOfSubmissions(self):
         submissions = []
-        nextPage    = None
-
-        endpoint    = f'{self.baseURL}/submissions?pageSize=50'
-        headers     = {'Content-type': 'application/json'}
-        response    = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        if response.status_code != 200:
-            print(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
-            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
-
-        endpoint = f'{self.baseURL}/submissions?pageSize=50'
-        headers = {'Content-type': 'application/json'}
-        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        json_response = response.json()
-        total_pages = json_response["totalPages"]
-        print("total pages", total_pages)
-
-        # loop through pages
+        total_pages = 1
         for page in range(0, total_pages):
-            # break out of last loop
-            if nextPage == total_pages:
+            if page == total_pages:
                 break
             nextPage = page + 1
             endpoint = f'{self.baseURL}/submissions?page={nextPage}&pageSize=50'
@@ -238,7 +270,8 @@ class Submittable:
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
                 raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
-            json_response = response.json()
+            json_response    = response.json()
+            total_pages      = response.json()["totalPages"]
             submissions_list = json_response["items"]
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
@@ -247,41 +280,25 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
-        submissions = []
-        nextPage = None
-
-        endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?pageSize=50'
-        headers = {'Content-type': 'application/json'}
-        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        if response.status_code != 200:
-            print(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
-            raise ValueError(
-                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
-
-        endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?pageSize=50'
-        headers = {'Content-type': 'application/json'}
-        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        json_response = response.json()
-        total_pages = json_response["totalPages"]
-        print("total pages", total_pages)
-
-        # loop through pages
+        ref_responses = []
+        total_pages   = 2
         for page in range(0, total_pages):
-            # break out of last loop
-            if nextPage == total_pages:
+            if page == 0:
+                continue
+            if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?page={nextPage}&pageSize=50'
+            endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?page={nextPage}&pageSize=20'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                raise ValueError(
-                    f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
-            json_response = response.json()
-            submissions_list = json_response["items"]
-            for item in submissions_list:
-                submissions.append(SubmittableResponseList(item))
-        return submissions
+                raise ValueError(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            json_response     = response.json()
+            ref_response_list = json_response["items"]
+            total_pages       = response.json()["totalPages"]
+            for item in ref_response_list:
+                ref_responses.append(SubmittableResponseList(item))
+        return ref_responses
 
 
 class SubmittableResponseList:
@@ -797,7 +814,7 @@ class SubmittableFormResponse:
         return self.payload["projectId"]
 
     def getFormResponseId(self):
-        # print(self.payload)
+        print("getFormResponseId", self.payload)
         return self.payload["formResponseId"]
 
     def getFormId(self):

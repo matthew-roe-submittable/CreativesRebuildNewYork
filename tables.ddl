@@ -7,23 +7,16 @@ CREATE TABLE test.creatives(
 	submitter_id          VARCHAR(50)    NOT NULL,
 	form_response_id      VARCHAR(50),
 	entry_id              VARCHAR(50),
-    primary_last_name     VARCHAR(50),
-    primary_zipcode       VARCHAR(50),
-    primary_dob           VARCHAR(50),
+    collab_unique_id_1    VARCHAR(50)  UNIQUE,
+    collab_unique_id_2    VARCHAR(50)  UNIQUE,
+    collab_unique_id_3    VARCHAR(50)  UNIQUE,
+    collab_unique_id_4    VARCHAR(50)  UNIQUE,
+    collab_unique_id_5    VARCHAR(50)  UNIQUE,
+    collab_unique_id_6    VARCHAR(50)  UNIQUE,
+    collab_unique_id_7    VARCHAR(50)  UNIQUE,
+    collab_unique_id_8    VARCHAR(50)  UNIQUE,
+    collab_unique_id_9    VARCHAR(50)  UNIQUE,
     date_last_checked     DATETIME,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE test.collaborators(
-   id                  INT          NOT NULL AUTO_INCREMENT,
-   creatives_id        INT          NOT NULL UNIQUE,
-   collab_unique_id    VARCHAR(50)  NOT NULL UNIQUE,
-   submission_id       VARCHAR(50)  NOT NULL,
-   form_response_id    VARCHAR(50)  NOT NULL,
-   collab_last_name    VARCHAR(50),
-   collab_zipcode      VARCHAR(50),
-   collab_dob          VARCHAR(50),
-   form_id             VARCHAR(300) NOT NULL,
-   PRIMARY KEY (id),
-   CONSTRAINT fk_collaborators_creatives FOREIGN KEY (creatives_id) REFERENCES creatives(id)
-);

@@ -104,6 +104,101 @@ class CreativesRebuildController:
                         logger.info(f"created duplicate label status: {status} for submission: {creative.submission_id}")
 
 
+    def load_ref_forms_data(self, model_id, creatives_model, sub_response):
+        # create collaborators model
+        creatives_model = Collaborators(config.mysql_conn)
+        ref_responses      = self.submittable.getReferenceResponses()
+        # field_id         = ref_responses.getFormFieldId()
+
+        # Reference from UIDs
+        # if field_id == config.reference_form_field_id_1:
+        # print("reference form id", field_id)
+        for resp in ref_responses:
+            print("resp")
+            ref_field_data = resp.getFieldData()
+            creatives_model.form_response_id = resp.getFormResponseId()
+            for ref_data in ref_field_data:
+                print("ref_data", ref_data)
+                item_id = ref_data.getFormFieldId()
+                if item_id == config.reference_form_name_id:
+                    creatives_model.collab_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                if item_id == config.reference_form_dob_id:
+                    date_string = ref_data.getFieldValue("DATE")
+                    creatives_model.collab_dob = date_string[0:10]
+                if item_id == config.reference_form_zipcode_id:
+                    creatives_model.collab_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+
+            creatives_model.submission_id    = creatives_model.submission_id
+            creatives_model.collab_unique_id = str(creatives_model.collab_dob) + str(creatives_model.collab_last_name) + str(creatives_model.collab_zipcode)
+            creatives_model.creatives_id     = model_id
+
+            try:
+                if creatives_model.collab_last_name is not None and creatives_model.collab_dob is not None and creatives_model.collab_zipcode is not None:
+                    print("collab save to db")
+                    creatives_model.save()
+                else:
+                    logger.info(f"collaborator UID field Null for submission {creatives_model.submission_id}")
+                    # move to next response
+                    continue
+            except:
+                try:
+                    self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                    logger.info(f"duplicate unique id {creatives_model.collab_unique_id} in the database already for submission {creatives_model.submission_id}")
+                except ValueError:
+                    logger.info(f"failed to create duplicate label for unique id {creatives_model.collab_unique_id}")
+
+        # update the internal form with collaborator ids
+        # self.updateInternalForm()
+
+    def updateInternalForm(self):
+        print("********** here 1")
+        # get creatives primary
+        creatives_model = Collaborators(config.mysql_conn)
+        all_creatives      = Creative.all(config.mysql_conn)
+        for creative in all_creatives:
+            try:
+                collaborators = creatives_model.load_all_collabs_by_creative_id(config.mysql_conn, creative.id)
+            except:
+                continue
+
+            count = 0
+            for collaborator in collaborators:
+                if count == 0:
+                    collab_unique_id_1 = collaborator
+                    count = count + 1
+                if count == 2:
+                    collab_unique_id_2 = collaborator
+                    count = count + 1
+                if count == 3:
+                    collab_unique_id_3 = collaborator
+                    count = count + 1
+                if count == 4:
+                    collab_unique_id_4 = collaborator
+                    count = count + 1
+                if count == 5:
+                    collab_unique_id_5 = collaborator
+                    count = count + 1
+                if count == 6:
+                    collab_unique_id_6 = collaborator
+                    count = count + 1
+                if count == 7:
+                    collab_unique_id_7 = collaborator
+                    count = count + 1
+                if count == 8:
+                    collab_unique_id_8 = collaborator
+                    count = count + 1
+                if count == 9:
+                    collab_unique_id_9 = collaborator
+                    count = count + 1
+            print("********** here 2", collab_unique_id_1, collab_unique_id_2, collab_unique_id_3, collab_unique_id_4, collab_unique_id_5, collab_unique_id_6,
+                  collab_unique_id_7, collab_unique_id_8, collab_unique_id_9)
+            # create internal entry using beta endpoint - Work In Progress
+            self.submittable.updateInternalFormResponse(creative.entry_id, creative.primary_unique_id,
+                                                        collab_unique_id_1, collab_unique_id_2,
+                                                        collab_unique_id_3, collab_unique_id_4,
+                                                        collab_unique_id_5, collab_unique_id_6,
+                                                        collab_unique_id_7, collab_unique_id_8,
+                                                        collab_unique_id_9)
 
     #
     # get all submissions
@@ -112,14 +207,13 @@ class CreativesRebuildController:
     # get field values
     # save into database
     #
-    def loadDatabase(self):
+    def loadArtistsToDatabase(self):
         logger.info(f"load the database")
+
         # build up submission id list
         submission_response = self.submittable.getListOfSubmissions()
 
         for sub_item in submission_response:
-            # print("sub item:", sub_item)
-
             # Create model obj interface to database
             creatives_model = Creative(config.mysql_conn)
 
@@ -138,221 +232,296 @@ class CreativesRebuildController:
                     # go to next submission
                     continue
 
+                print("response list length:", len(response_list))
+
                 # get each submission form responses
                 for response in response_list:
-                    print("response:", response)
-                    # if config == response.getFormId() and config.reference_form_id_2 != response.getFormId():
-                    # model.form_response_id  = response.getFormResponseId()
+                    # if response.getFormType() == 'initial':
+                    # print("response:", response)
+                    # if config.reference_form_id_1 != response.getFormId() and config.reference_form_id_2 != response.getFormId():
+                    # creatives_model.form_response_id  = response.getFormResponseId()
                     field_data = response.getFieldData()
-                    form_type = response.getFormType()
-                    print("form_type", form_type)
+                    # form_type  = response.getFormType()
+
+                    print("creatives_model.form_response_id", creatives_model.form_response_id)
+                    # check for deleted response
+                    # if creatives_model.form_response_id == "48d8bd08-3b2e-4240-a044-5e145419d98f":
+                    # continue
+
+                    # create local variables
+                    # create local variables
+                    primary_last_name   = None
+                    primary_dob         = None
+                    primary_zip         = None
+                    collab_last_name_1  = None
+                    collab_dob_1        = None
+                    collab_zip_1        = None
+
+                    collab_last_name_2  = None
+                    collab_dob_2        = None
+                    collab_zip_2        = None
+
+                    collab_last_name_3  = None
+                    collab_dob_3        = None
+                    collab_zip_3        = None
+
+                    collab_last_name_4  = None
+                    collab_dob_4        = None
+                    collab_zip_4        = None
+
+                    collab_last_name_5  = None
+                    collab_dob_5        = None
+                    collab_zip_5        = None
+
+                    collab_last_name_6  = None
+                    collab_dob_6        = None
+                    collab_zip_6        = None
+
+                    collab_last_name_7  = None
+                    collab_dob_7        = None
+                    collab_zip_7        = None
+
+                    collab_last_name_8  = None
+                    collab_dob_8        = None
+                    collab_zip_8        = None
+
+                    collab_last_name_9  = None
+                    collab_dob_9        = None
+                    collab_zip_9        = None
+
 
                     # Get the primary artist UID fields
                     for data in field_data:
                         print("project 1 - data in field_data", data)
                         field_id = data.getFormFieldId()
-                        # create collaborators model
-                        collaborator_model = Collaborators(config.mysql_conn)
+
                         # Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
-                            creatives_model.primary_last_name = data.getFieldValue("SHORT_ANSWER")
-                            print("creatives_model.primary_last_name", creatives_model.primary_last_name)
+                            primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         if field_id == config.project_1_artist_dob:
                             date_string = data.getFieldValue("DATE")
-                            creatives_model.primary_dob = date_string[0:10]
-                            print("creatives_model.primary_dob", creatives_model.primary_dob)
+                            primary_dob = date_string[0:10]
                         if field_id == config.project_1_artist_zipcode:
-                            creatives_model.primary_zipcode = data.getFieldValue("SHORT_ANSWER")
-                            print("creatives_model.primary_zipcod", creatives_model.primary_zipcode)
+                            primary_zip = data.getFieldValue("SHORT_ANSWER")
+
                         # Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
                                 ref_field_data = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 1", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_1 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
+                                print("creatives_model.collab_unique_id_1", creatives_model.collab_unique_id_1)
+
                         if field_id == config.reference_form_field_id_2:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 2", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_2 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
+                                print("creatives_model.collab_unique_id_2", creatives_model.collab_unique_id_2)
+                        
                         if field_id == config.reference_form_field_id_3:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 3", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_3 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
+                                print("creatives_model.collab_unique_id_3", creatives_model.collab_unique_id_3)
+                                
                         if field_id == config.reference_form_field_id_4:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 4", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_4 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
+                                print("creatives_model.collab_unique_id_4", creatives_model.collab_unique_id_4)
+                                
                         if field_id == config.reference_form_field_id_5:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 5", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_5 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
+                                print("creatives_model.collab_unique_id_5", creatives_model.collab_unique_id_5)
+
                         if field_id == config.reference_form_field_id_6:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 6", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_6 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_6 = str(collab_dob_6) + str(collab_last_name_6) + str(collab_zip_6)
+                                print("creatives_model.collab_unique_id_6", creatives_model.collab_unique_id_6)
+
                         if field_id == config.reference_form_field_id_7:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 7", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_7 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_7 = str(collab_dob_7)+str(collab_last_name_7)+str(collab_zip_7)
+                                print("creatives_model.collab_unique_id_7", creatives_model.collab_unique_id_7)
+
                         if field_id == config.reference_form_field_id_8:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 8", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_8 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
+                                print("creatives_model.collab_unique_id_8", creatives_model.collab_unique_id_8)
+
                         if field_id == config.reference_form_field_id_9:
                             print("reference form id", field_id)
                             ref_responses = self.submittable.getReferenceResponses()
                             for resp in ref_responses:
-                                ref_field_data         = resp.getFieldData()
-                                collaborator_model.form_response_id = resp.getFormResponseId()
+                                ref_field_data = resp.getFieldData()
+                                creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
                                     print("ref_data 9", ref_data)
                                     item_id = ref_data.getFormFieldId()
                                     if item_id == config.reference_form_name_id:
-                                        collaborator_model.primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
                                     if item_id == config.reference_form_dob_id:
                                         date_string = ref_data.getFieldValue("DATE")
-                                        collaborator_model.primary_dob = date_string[0:10]
+                                        collab_dob_9 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
-                                        collaborator_model.primary_zipcode = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                creatives_model.collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
+                                print("creatives_model.collab_unique_id_9", creatives_model.collab_unique_id_9)
 
-                        collaborator_model.submission_id = creatives_model.submission_id
-                        print("collab dob:" + str(collaborator_model.collab_dob) + " collab lastname:" + str(collaborator_model.collab_last_name) + " collab zip:" + str(collaborator_model.collab_zipcode))
-                        collaborator_model.collab_unique_id = str(collaborator_model.collab_dob) + str(collaborator_model.collab_last_name) + str(collaborator_model.collab_zipcode)
+                    creatives_model.submission_id     = creatives_model.submission_id
+                    creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
+                    creatives_model.primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
 
-                        try:
-                            if collaborator_model.collab_last_name is not None and collaborator_model.collab_dob is not None and collaborator_model.collab_zipcode is not None:
-                                print("save to collab table")
-                                collaborator_model.save()
-                            else:
-                                logger.info(f"collaborator UID field Null for submission {creatives_model.submission_id}")
-                                # move to next response
-                                continue
-                        except:
-                            try:
-                                self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
-                                logger.info( f"duplicate unique id {collaborator_model.collab_unique_id} in the database already for submission {collaborator_model.submission_id}")
-                            except ValueError:
-                                logger.info(f"failed to create duplicate label for unique id {collaborator_model.collab_unique_id}")
+                    print("creatives_model.primary_unique_id", creatives_model.primary_unique_id)
 
-                creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
-                print("project 1 UID -", str(creatives_model.primary_dob) + str(creatives_model.primary_last_name) + str(creatives_model.primary_zipcode))
-
-                creatives_model.primary_unique_id = str(creatives_model.primary_dob) + str(creatives_model.primary_last_name) + str(creatives_model.primary_zipcode)
-                print("project 1 UID -", creatives_model.primary_unique_id)
-
-                try:
-                    print("primary:", creatives_model.primary_last_name, creatives_model.primary_dob, creatives_model.primary_zipcode)
-                    if creatives_model.primary_last_name is not None and creatives_model.primary_dob is not None and creatives_model.primary_zipcode is not None:
-                        print("project 1 - save db")
-                        creatives_model.save()
-                        # create internal entry using beta endpoint - Work In Progress
-                        creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id, creatives_model.unique_id)
-                        # self.submittable.updateInternalFormResponse(entry_id, config.internal_form_field_id_1, model.unique_id)
-                    else:
-                        logger.info(f"primary UID field Null for submission {creatives_model.submission_id}")
-                        # skip submission missing UID field(s)
-                        continue
-                except:
                     try:
-                        self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
-                        logger.info(f"duplicate unique id {creatives_model.unique_id} in the database already for submission {creatives_model.submission_id}")
-                    except ValueError:
-                        logger.info(f"failed to create duplicate label for unique id {creatives_model.unique_id}")
+                        if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
+                            print("project 1 - save db")
+
+                            creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id,
+                                                                                                   creatives_model.primary_unique_id,
+                                                                                                   creatives_model.collab_unique_id_1,
+                                                                                                   creatives_model.collab_unique_id_2,
+                                                                                                   creatives_model.collab_unique_id_3,
+                                                                                                   creatives_model.collab_unique_id_4,
+                                                                                                   creatives_model.collab_unique_id_5,
+                                                                                                   creatives_model.collab_unique_id_6,
+                                                                                                   creatives_model.collab_unique_id_7,
+                                                                                                   creatives_model.collab_unique_id_8,
+                                                                                                   creatives_model.collab_unique_id_9)
+
+
+                            creatives_model.save()
+
+                            self.submittable.updateInternalFormResponse(creatives_model.entry_id,
+                                                                        creatives_model.primary_unique_id,
+                                                                        creatives_model.collab_unique_id_1,
+                                                                        creatives_model.collab_unique_id_2,
+                                                                        creatives_model.collab_unique_id_3,
+                                                                        creatives_model.collab_unique_id_4,
+                                                                        creatives_model.collab_unique_id_5,
+                                                                        creatives_model.collab_unique_id_6,
+                                                                        creatives_model.collab_unique_id_7,
+                                                                        creatives_model.collab_unique_id_8,
+                                                                        creatives_model.collab_unique_id_9)
+                        else:
+                            logger.info(f"collaborator UID field Null for submission {creatives_model.submission_id}")
+                            # move to next response
+                            continue
+                    except:
+                        try:
+                            self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                            logger.info(f"duplicate unique id {creatives_model.collab_unique_id_1} in the database already for submission {creatives_model.submission_id}")
+                        except ValueError:
+                            logger.info(f"failed to create duplicate label for unique id {creatives_model.collab_unique_id_1}")
 
             # load database from project 2
             elif sub_item.getProjectId() == self.project_id_2:
@@ -370,6 +539,11 @@ class CreativesRebuildController:
 
                 # get each submission form responses
                 for form_response in form_responses:
+                    # create local variables
+                    primary_last_name = None
+                    primary_dob       = None
+                    primary_zip       = None
+
                     form_id    = form_response.getFormId()
                     responses  = sub_response.getFormResponse(form_id)
                     field_data = responses.getFieldData()
@@ -383,31 +557,29 @@ class CreativesRebuildController:
                         creatives_model.form_response_id = form_response.getFormResponseId()
 
                         if field_id == config.project_2_name_field_id:
-                            creatives_model.primary_last_name = data.getFieldValue("SHORT_ANSWER")
+                            primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         if field_id == config.project_2_dob_field_id:
                             date_string = data.getFieldValue("DATE")
-                            creatives_model.primary_dob = date_string[0:10]
+                            primary_dob = date_string[0:10]
                         if field_id == config.project_2_zipcode_field_id:
-                            creatives_model.primary_zipcode = data.getFieldValue("SHORT_ANSWER")
+                            primary_zip = data.getFieldValue("SHORT_ANSWER")
 
-                creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
-                print("project 2 UID -", str(creatives_model.primary_dob) + str(creatives_model.primary_last_name) + str(creatives_model.primary_zipcode))
-                creatives_model.primary_unique_id = str(creatives_model.primary_dob) + str(creatives_model.primary_last_name) + str(creatives_model.primary_zipcode)
-                print("project 2 UID -", creatives_model.primary_unique_id)
-                try:
-                    if creatives_model.primary_last_name is not None and creatives_model.primary_dob is not None and creatives_model.primary_zipcode is not None:
-                        print("project 2 - save db")
-                        creatives_model.save()
-                        # create internal entry using beta endpoint - Work In Progress
-                        creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id, creatives_model.primary_unique_id)
-                        # self.submittable.updateInternalFormResponse(entry_id, config.internal_form_field_id_1, model.unique_id)
-                    else:
-                        # skip submission missing UID field(s)
-                        continue
-                except:
+                    creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%SZ")
+                    creatives_model.primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+
                     try:
-                        self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
-                        logger.info(f"duplicate unique id {creatives_model.primary_unique_id} in the database already for submission {creatives_model.submission_id}")
-                    except ValueError:
-                        logger.info(f"failed to create duplicate label for unique id {creatives_model.primary_unique_id}")
+                        if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
+                            # create internal entry using beta endpoint - Work In Progress
+                            creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id, creatives_model.primary_unique_id)
+                            print("project 2 - save db")
+                            creatives_model.save()
+                        else:
+                            # skip submission missing UID field(s)
+                            continue
+                    except:
+                        try:
+                            self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                            logger.info(f"duplicate unique id {creatives_model.primary_unique_id} in the database already for submission {creatives_model.submission_id}")
+                        except ValueError:
+                            logger.info(f"failed to create duplicate label for unique id {creatives_model.primary_unique_id}")
     print("finished loading database")

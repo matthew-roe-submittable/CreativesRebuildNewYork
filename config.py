@@ -24,13 +24,14 @@ project_1_artist_options_id       = "a36e0dc6-a3d4-451d-8f41-713def6da95f"
 project_1_org_options_id          = "e3327582-06b5-40e4-8684-4e484ba1e793"
 
 # Initial Form Artist UID fields
-project_1_artist_last_name  = "dca6592c-dd72-4996-b718-8c7773341e11"
-project_1_artist_zipcode    = "969d426a-14bd-4e4e-9110-2c9e0bb69276"
-project_1_artist_dob        = "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824"
+project_1_artist_last_name  = "edfb62ed-9f31-49d6-bcf6-dce8ec0589b6"
+project_1_artist_zipcode    = "254429d2-640b-4c8b-9839-73c3e5ba12a7"
+project_1_artist_dob        = "a3c4efb3-c45b-4efc-bee5-6b5c94ed2592"
 
 # Reference form to hold up to 9 UID per submission
 reference_form_id_1         = "8990f98a-7f90-49e8-819e-ef100781e11c"
 reference_form_id_2         = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
+
 # Form field id of the reference form in the internal form
 reference_form_field_id_1   = "2f5df106-e782-422b-9c39-a3345788b715"
 reference_form_field_id_2   = "da35f4fc-3219-4731-91ed-3e5a46ddc4ef"
@@ -42,9 +43,9 @@ reference_form_field_id_7   = "53497706-6517-439c-83fd-430df1b8efac"
 reference_form_field_id_8   = "6290ab16-2344-4fcd-b794-bedc3b576903"
 reference_form_field_id_9   = "12b3eda5-25e6-45d8-bbee-4a8a37118ad9"
 
-reference_form_name_id    = "2434c406-1ea5-48e0-935a-51e65f7c179b"
-reference_form_dob_id     = "186190bc-113d-4490-a751-218314bdba29"
-reference_form_zipcode_id = "0e846040-cf76-4609-a107-be4b911ab18e"
+reference_form_name_id      = "2434c406-1ea5-48e0-935a-51e65f7c179b"
+reference_form_dob_id       = "186190bc-113d-4490-a751-218314bdba29"
+reference_form_zipcode_id   = "0e846040-cf76-4609-a107-be4b911ab18e"
 
 # Project: GI
 project_id_2                = "a29ca1b8-2121-446e-aa93-e6739e77f09c"
