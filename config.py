@@ -10,6 +10,8 @@ mysql_conn = mysql.connector.connect(user=mysql_user,
                                      host=mysql_host,
                                      database=mysql_db)
 
+# ------------------------------ LIVE ACCOUNT SETTINGS ------------------------------ #
+'''
 # live account API key
 submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
 
@@ -73,6 +75,7 @@ label_id_1 = "320527"
 label_id_2 = ""
 # label "Pending Duplicate"
 label_id_3 = ""
+'''
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 # demo account
@@ -80,32 +83,25 @@ label_id_3 = ""
 
 # Demo Account
 # Project: Oct 6 US Bank Test Project
-"""
 project_id_1                = "47b5697e-a7bb-4096-a708-b576cb218bc5"
 project_1_formId            = "f2e0743c-ffde-4ad7-8407-c1b4c8ee220e"
 project_1_name_field_id     = "dca6592c-dd72-4996-b718-8c7773341e11"
 project_1_date_field_id     = "969d426a-14bd-4e4e-9110-2c9e0bb69276"
 project_1_address_field_id  = "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824"
 project_1_text_only_field_id = "91abd27e-d69b-41f2-acdd-b640c52968d0"
-"""
 
 # Project: Demo1
-"""
 project_id_2                 = "d6be950d-9c18-436f-883a-d560a12226dd"
 project_2_formId             = "c8175a1b-4b98-4bdb-9237-23cfec4543f3"
 project_2_name_field_id      = "1ea7418a-976c-4096-b9d0-709925604fa9"
 project_2_date_field_id      = "a19c5c72-93cc-441d-aea6-7e9c5b6c4736"
 project_2_address_field_id   = "f6f2c7a6-0d97-4a5e-869d-51b6e885aa11"
 project_2_text_only_field_id = "38d80d28-33e5-4827-961e-7e0aa949530c"
-"""
 
 # internal form to hold up to 10 UID per submission
-"""
 internal_form_id          = "d051aa12-614b-4f30-a9eb-db9f934a317a"
-"""
 
 # 10 UID fields
-"""
 internal_form_field_id_1  = "b8f1e240-3b57-4c05-8acb-566c79ac5d95"
 internal_form_field_id_2  = "3357efb7-9412-42f0-9109-ddb3b1decff7"
 internal_form_field_id_3  = "d339ff5b-f35c-4e1c-8cc3-8868a5fc99d6"
@@ -116,18 +112,13 @@ internal_form_field_id_7  = "59a845ff-83ab-4ffd-a204-d8247335bb73"
 internal_form_field_id_8  = "bf13719d-85da-4acc-83dd-fd16cb196ee5"
 internal_form_field_id_9  = "05bc0950-98c1-4822-bcd8-dc35e3fd4ca9"
 internal_form_field_id_10 = "f7f704be-5ea5-4a68-8f0b-9e4cb5bdd0ab"
-"""
 
 
 # label "Awarded Duplicate"
-"""
 label_id_1 = "317974"
-"""
+
 # label "Not Awarded Duplicate"
-"""
 label_id_2 = "317973"
-"""
+
 # label "P"ending Duplicate"
-"""
 label_id_3 = "317972"
-"""
