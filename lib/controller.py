@@ -290,6 +290,8 @@ class CreativesRebuildController:
                     collab_dob_9        = None
                     collab_zip_9        = None
 
+                    dup_found           = False
+
                     # Pull the forms response data
                     field_data = response.getFieldData()
                     # Get the primary artist UID fields
@@ -309,8 +311,8 @@ class CreativesRebuildController:
                         # Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -323,14 +325,15 @@ class CreativesRebuildController:
                                         collab_dob_1 = date_string[0:10]
                                     if item_id == config.reference_form_zipcode_id:
                                         collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+
                                 creatives_model.collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
                                 creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace(" ", "")
                                 print("creatives_model.collab_unique_id_1", creatives_model.collab_unique_id_1)
 
                         if field_id == config.reference_form_field_id_2:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -349,8 +352,8 @@ class CreativesRebuildController:
                         
                         if field_id == config.reference_form_field_id_3:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -369,8 +372,8 @@ class CreativesRebuildController:
                                 
                         if field_id == config.reference_form_field_id_4:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -389,8 +392,8 @@ class CreativesRebuildController:
                                 
                         if field_id == config.reference_form_field_id_5:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -409,8 +412,8 @@ class CreativesRebuildController:
 
                         if field_id == config.reference_form_field_id_6:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -429,8 +432,8 @@ class CreativesRebuildController:
 
                         if field_id == config.reference_form_field_id_7:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -449,8 +452,8 @@ class CreativesRebuildController:
 
                         if field_id == config.reference_form_field_id_8:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -469,8 +472,8 @@ class CreativesRebuildController:
 
                         if field_id == config.reference_form_field_id_9:
                             # print("reference form id", field_id)
-                            ref_responses = self.submittable.getReferenceResponses()
-                            for resp in ref_responses:
+                            reference_responses = self.submittable.getReferenceResponses()
+                            for resp in reference_responses:
                                 ref_field_data = resp.getFieldData()
                                 creatives_model.form_response_id = resp.getFormResponseId()
                                 for ref_data in ref_field_data:
@@ -508,9 +511,10 @@ class CreativesRebuildController:
                                     # add dup label to this submission (single form dup)
                                     self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
                                     logger.info(f"project 1 - duplicate unique id project 1 {creatives_model.primary_unique_id} in the database already for submission {creatives_model.submission_id}")
+                                    dup_found = True
                                     break
                                 except ValueError:
-                                    logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id}")
+                                    logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id} - top try")
                                     break
                             else:
                                 # id is either none or not a match keep looking
@@ -518,7 +522,7 @@ class CreativesRebuildController:
 
                     # save to database only if all UID fields have been pulled from form
                     try:
-                        if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
+                        if primary_last_name is not None and primary_dob is not None and primary_zip is not None and not dup_found:
                             try:
                                 print("project 1 - successfully to create internal form, try to update")
                                 creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id,
@@ -559,7 +563,7 @@ class CreativesRebuildController:
                                     logger.info(f"project 1 - duplicate unique id project 1 {creatives_model.primary_unique_id} submission: {creatives_model.submission_id} "
                                                 f"in the database already for submission {sub_id}")
                         except ValueError:
-                            logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id}")
+                            logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id} - bottom try")
 
             # load database from project 2
             elif sub_item.getProjectId() == self.project_id_2:
