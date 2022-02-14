@@ -79,40 +79,58 @@ label_id_3 = ""
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 # demo account
-# submittable_token = "700b04eccae244679785a0e8f13c786e"
-
+submittable_token           = "700b04eccae244679785a0e8f13c786e"
 # Demo Account
-# Project: Oct 6 US Bank Test Project
-project_id_1                = "47b5697e-a7bb-4096-a708-b576cb218bc5"
-project_1_formId            = "f2e0743c-ffde-4ad7-8407-c1b4c8ee220e"
-project_1_name_field_id     = "dca6592c-dd72-4996-b718-8c7773341e11"
-project_1_date_field_id     = "969d426a-14bd-4e4e-9110-2c9e0bb69276"
-project_1_address_field_id  = "6a5f815a-3ef4-4a31-912b-3d9ad3bc2824"
-project_1_text_only_field_id = "91abd27e-d69b-41f2-acdd-b640c52968d0"
+# Project: AEP demo project
+project_id_1                = "1903ba4a-2cd2-4b55-9caa-b2ec58237955"
+project_1_formId            = "f2ee04a8-8238-401d-863f-8783305b9897"
+project_1_artist_lastname   = "9097486a-79ad-4b50-935d-8008f12b6cf1"
+project_1_artist_dob        = "7cb13021-332e-4278-a98b-4a69ca96ec45"
+project_1_artist_zipcode    = "2d27064a-a57a-4f2e-847e-dee5f5876a43"
 
-# Project: Demo1
+# Reference form to hold up to 9 UID per submission
+artist_collab_reference_form = "ad9a40c6-4152-4d21-a16c-9a885b1f2a41"
+
+# Form field id of the reference form in the internal form
+org_reference_form_field_id = "6d3bf23a-df28-4eca-b1fe-ff8504cd6a4a"
+
+# collaborative artist 2-10
+reference_form_field_id_1   = "7a96a260-af5f-4c43-b28c-b53ecf0f0080"
+reference_form_field_id_2   = "b2aa5c71-e99a-4067-a3ea-2d70b442a286"
+reference_form_field_id_3   = "9fe11e07-2caf-4e46-8634-f982c8e02dc2"
+reference_form_field_id_4   = "d1905211-47ea-4095-9e7d-78c08337d5bc"
+reference_form_field_id_5   = "9aeba1ce6-ae4f-4095-9679-c366185b3f97"
+reference_form_field_id_6   = "eb5ed7be-9954-400a-b891-4ad48fa98fc3"
+reference_form_field_id_7   = "97ccc2c5-050e-4959-b2e5-add05ed27366"
+reference_form_field_id_8   = "438071ae-e69d-4604-adc6-669d221fe844"
+reference_form_field_id_9   = "bb7d5454-d7c5-4e40-9699-900d4eca770c"
+
+# ref form fields
+reference_form_name_id      = "0182623d-9114-4304-95ed-b2f9abd0ee6b"
+reference_form_dob_id       = "a6c73923-316c-4e50-8b5a-379bc9225111"
+reference_form_zipcode_id   = "a0936d07-ecc6-4031-ba5a-fc7da24f0526"
+
+# Project: GI demo project
 project_id_2                 = "d6be950d-9c18-436f-883a-d560a12226dd"
-project_2_formId             = "c8175a1b-4b98-4bdb-9237-23cfec4543f3"
-project_2_name_field_id      = "1ea7418a-976c-4096-b9d0-709925604fa9"
-project_2_date_field_id      = "a19c5c72-93cc-441d-aea6-7e9c5b6c4736"
-project_2_address_field_id   = "f6f2c7a6-0d97-4a5e-869d-51b6e885aa11"
-project_2_text_only_field_id = "38d80d28-33e5-4827-961e-7e0aa949530c"
+project_2_formId             = "167be692-282c-46c4-baa7-0e8645fdfd89"
+project_2_name_field_id      = "83f4d296-5aaf-428d-be76-905b240be153"
+project_2_dob_field_id       = "3af16b68-d0a8-4dff-9bdb-dbb6bcae5b70"
+project_2_zipcode_field_id   = "b18620bf-ba42-4293-879a-e27286a376df"
 
 # internal form to hold up to 10 UID per submission
-internal_form_id          = "d051aa12-614b-4f30-a9eb-db9f934a317a"
+internal_form_id             = "d051aa12-614b-4f30-a9eb-db9f934a317a"
 
 # 10 UID fields
-internal_form_field_id_1  = "b8f1e240-3b57-4c05-8acb-566c79ac5d95"
-internal_form_field_id_2  = "3357efb7-9412-42f0-9109-ddb3b1decff7"
-internal_form_field_id_3  = "d339ff5b-f35c-4e1c-8cc3-8868a5fc99d6"
-internal_form_field_id_4  = "530eff6b-d74e-4c84-9e1c-967fd1d25ae4"
-internal_form_field_id_5  = "29dbacf9-01f0-4213-92bc-b4ea018bcae5"
-internal_form_field_id_6  = "a66b68f9-448c-4e8a-8521-5c824aea10e1"
-internal_form_field_id_7  = "59a845ff-83ab-4ffd-a204-d8247335bb73"
-internal_form_field_id_8  = "bf13719d-85da-4acc-83dd-fd16cb196ee5"
-internal_form_field_id_9  = "05bc0950-98c1-4822-bcd8-dc35e3fd4ca9"
-internal_form_field_id_10 = "f7f704be-5ea5-4a68-8f0b-9e4cb5bdd0ab"
-
+internal_form_field_id_1     = "b8f1e240-3b57-4c05-8acb-566c79ac5d95"
+internal_form_field_id_2     = "3357efb7-9412-42f0-9109-ddb3b1decff7"
+internal_form_field_id_3     = "d339ff5b-f35c-4e1c-8cc3-8868a5fc99d6"
+internal_form_field_id_4     = "530eff6b-d74e-4c84-9e1c-967fd1d25ae4"
+internal_form_field_id_5     = "29dbacf9-01f0-4213-92bc-b4ea018bcae5"
+internal_form_field_id_6     = "a66b68f9-448c-4e8a-8521-5c824aea10e1"
+internal_form_field_id_7     = "59a845ff-83ab-4ffd-a204-d8247335bb73"
+internal_form_field_id_8     = "bf13719d-85da-4acc-83dd-fd16cb196ee5"
+internal_form_field_id_9     = "05bc0950-98c1-4822-bcd8-dc35e3fd4ca9"
+internal_form_field_id_10    = "f7f704be-5ea5-4a68-8f0b-9e4cb5bdd0ab"
 
 # label "Awarded Duplicate"
 label_id_1 = "317974"
