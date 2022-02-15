@@ -20,7 +20,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getLabelIds(self):
         endpoint = f'{self.baseURL}/labels/list'
         headers = {'Content-type': 'application/json'}
@@ -32,7 +32,7 @@ class Submittable:
         return response.json()
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def deleteLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
@@ -46,7 +46,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def addLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
@@ -57,7 +57,7 @@ class Submittable:
         return response
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getEntry(self, entry_id):
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
         headers  = {'Content-type': 'application/json'}
@@ -71,7 +71,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getInitialFormRequestId(self, subId):
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
@@ -157,7 +157,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
         collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
         collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
@@ -229,7 +229,7 @@ class Submittable:
 
     # get an individual submission
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getSubmission(self, submission_id):
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
@@ -244,7 +244,7 @@ class Submittable:
 
     # get an individual submission
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getSubmissionBeta(self, submission_id):
         endpoint       = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
@@ -258,7 +258,7 @@ class Submittable:
 
     # get an list of submissions
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getListOfSubmissions(self):
         submissions = []
         total_pages = 1
@@ -279,15 +279,15 @@ class Submittable:
         return submissions
 
     @sleep_and_retry
-    @limits(calls=10, period=1)
+    @limits(calls=10, period=0.25)
     def getReferenceResponses(self):
         ref_responses = []
-        total_pages   = 2
+        total_pages   = 10
         for page in range(0, total_pages):
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize=20'
+            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize=50'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             print("ref form resp", response.json())
@@ -295,6 +295,7 @@ class Submittable:
                 raise ValueError(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
             json_response     = response.json()
             ref_response_list = json_response["items"]
+            print(ref_response_list)
             total_pages       = response.json()["totalPages"]
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
