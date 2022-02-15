@@ -87,7 +87,7 @@ class Submittable:
 
     def submitInternalFormResponse(self, submission_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
                                    collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-                                   collab_unique_id_7=None, collab_unique_id_8=None,collab_unique_id_9=None):
+                                   collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -147,6 +147,7 @@ class Submittable:
                    }
         payload  = json.dumps(payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
+        print("response:", response)
         if response.status_code != 201:
             print(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
             raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
@@ -283,14 +284,13 @@ class Submittable:
         ref_responses = []
         total_pages   = 2
         for page in range(0, total_pages):
-            if page == 0:
-                continue
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.reference_form_id_2}?page={nextPage}&pageSize=20'
+            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize=20'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+            print("ref form resp", response.json())
             if response.status_code != 200:
                 raise ValueError(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
             json_response     = response.json()

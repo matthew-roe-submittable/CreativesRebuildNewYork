@@ -141,9 +141,9 @@ class Creative:
                       self.collab_unique_id_5, self.collab_unique_id_6, self.collab_unique_id_7, self.collab_unique_id_8,
                       self.collab_unique_id_9, self.date_last_checked)
         else:
-            sql = """update creatives set primary_unique_id=%s, submission_id=%s, submitter_id=%, form_response_id=%s, entry_id=%s,
+            sql = """update creatives set primary_unique_id=%s, submission_id=%s, submitter_id=%s, form_response_id=%s, entry_id=%s,
             collab_unique_id_1=%s, collab_unique_id_2=%s, collab_unique_id_3=%s, collab_unique_id_4=%s, collab_unique_id_5=%s,
-            collab_unique_id_6=%s, collab_unique_id_7=%s, collab_unique_id_8=%s, collab_unique_id_9=%s, date_last_checkeds=%s where id=%s"""
+            collab_unique_id_6=%s, collab_unique_id_7=%s, collab_unique_id_8=%s, collab_unique_id_9=%s, date_last_checked=%s where id=%s"""
 
             params = (self.primary_unique_id, self.submission_id, self.submitter_id, self.form_response_id, self.entry_id,
                       self.collab_unique_id_1, self.collab_unique_id_2, self.collab_unique_id_3, self.collab_unique_id_4,
