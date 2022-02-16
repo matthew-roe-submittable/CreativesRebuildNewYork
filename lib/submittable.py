@@ -318,6 +318,8 @@ class SubmittableResponseList:
     def getFormId(self):
         return self.payload["formId"]
 
+    def getRefEmail(self):
+        return self.payload["refereeEmail"]
 
     def getFieldData(self):
         field_data = []
@@ -893,6 +895,10 @@ class SubmittableFieldData:
 
     def getFieldType(self):
         return self.payload["fieldType"]
+
+    def getRefEmail(self):
+        print(self.payload)
+        return self.payload['refereeEmail']
 
     def getFormFieldId(self):
         # print("getFormFieldId", self.payload)
