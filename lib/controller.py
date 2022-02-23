@@ -173,9 +173,6 @@ class CreativesRebuildController:
                         # Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
                             print("reference form id 1", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             count = 0
                             for resp in reference_responses:
                                 count = count + 1
@@ -202,51 +199,49 @@ class CreativesRebuildController:
 
                         if field_id == config.reference_form_field_id_2:
                             print("reference form id 2", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 print("resp 2")
                                 if field_id == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 2", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_2 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
-                                    creatives_model.collab_unique_id_2 = creatives_model.collab_unique_id_2.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_2.replace("-", "")
-                                    print("creatives_model.collab_unique_id_2", creatives_model.collab_unique_id_2)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 2", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_2 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
+                                        creatives_model.collab_unique_id_2 = creatives_model.collab_unique_id_2.replace(" ", "")
+                                        creatives_model.collab_unique_id_2 = creatives_model.collab_unique_id_2.replace("-", "")
+                                        print("creatives_model.collab_unique_id_2", creatives_model.collab_unique_id_2)
 
                         if field_id == config.reference_form_field_id_3:
                             print("reference form id 3", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 print("resp 3")
                                 if field_id == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 3", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_3 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
-                                    creatives_model.collab_unique_id_3 = creatives_model.collab_unique_id_3.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_3.replace("-", "")
-                                    print("creatives_model.collab_unique_id_3", creatives_model.collab_unique_id_3)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 3", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_3 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
+                                        creatives_model.collab_unique_id_3 = creatives_model.collab_unique_id_3.replace(" ", "")
+                                        creatives_model.collab_unique_id_3 = creatives_model.collab_unique_id_3.replace("-", "")
+                                        print("creatives_model.collab_unique_id_3", creatives_model.collab_unique_id_3)
 
                         if field_id == config.reference_form_field_id_4:
                             print("reference form id 4", field_id)
@@ -255,137 +250,134 @@ class CreativesRebuildController:
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 4", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_4 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
-                                    creatives_model.collab_unique_id_4 = creatives_model.collab_unique_id_4.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_4.replace("-", "")
-                                    print("creatives_model.collab_unique_id_4", creatives_model.collab_unique_id_4)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 4", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_4 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
+                                        creatives_model.collab_unique_id_4 = creatives_model.collab_unique_id_4.replace(" ", "")
+                                        creatives_model.collab_unique_id_4 = creatives_model.collab_unique_id_4.replace("-", "")
+                                        print("creatives_model.collab_unique_id_4", creatives_model.collab_unique_id_4)
 
                         if field_id == config.reference_form_field_id_5:
                             print("reference form id 5", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 5", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_5 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
-                                    creatives_model.collab_unique_id_5 = creatives_model.collab_unique_id_5.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_5.replace("-", "")
-                                    print("creatives_model.collab_unique_id_5", creatives_model.collab_unique_id_5)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 5", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_5 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
+                                        creatives_model.collab_unique_id_5 = creatives_model.collab_unique_id_5.replace(" ", "")
+                                        creatives_model.collab_unique_id_5 = creatives_model.collab_unique_id_5.replace("-", "")
+                                        print("creatives_model.collab_unique_id_5", creatives_model.collab_unique_id_5)
 
                         if field_id == config.reference_form_field_id_6:
                             print("reference form id 6", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 6", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_6 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_6 = str(collab_dob_6) + str(
-                                        collab_last_name_6) + str(collab_zip_6)
-                                    creatives_model.collab_unique_id_6 = creatives_model.collab_unique_id_6.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_6.replace("-", "")
-                                    print("creatives_model.collab_unique_id_6", creatives_model.collab_unique_id_6)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 6", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_6 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_6 = str(collab_dob_6) + str(
+                                            collab_last_name_6) + str(collab_zip_6)
+                                        creatives_model.collab_unique_id_6 = creatives_model.collab_unique_id_6.replace(" ", "")
+                                        creatives_model.collab_unique_id_6 = creatives_model.collab_unique_id_6.replace("-", "")
+                                        print("creatives_model.collab_unique_id_6", creatives_model.collab_unique_id_6)
 
                         if field_id == config.reference_form_field_id_7:
                             print("reference form id 7", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 7", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_7 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
-                                    creatives_model.collab_unique_id_7 = creatives_model.collab_unique_id_7.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_7.replace("-", "")
-                                    print("creatives_model.collab_unique_id_7", creatives_model.collab_unique_id_7)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 7", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_7 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
+                                        creatives_model.collab_unique_id_7 = creatives_model.collab_unique_id_7.replace(" ", "")
+                                        creatives_model.collab_unique_id_7 = creatives_model.collab_unique_id_7.replace("-", "")
+                                        print("creatives_model.collab_unique_id_7", creatives_model.collab_unique_id_7)
 
                         if field_id == config.reference_form_field_id_8:
                             print("reference form id 8", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 8", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_8 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
-                                    creatives_model.collab_unique_id_8 = creatives_model.collab_unique_id_8.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_8.replace("-", "")
-                                    print("creatives_model.collab_unique_id_8", creatives_model.collab_unique_id_8)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 8", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_8 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
+                                        creatives_model.collab_unique_id_8 = creatives_model.collab_unique_id_8.replace(" ", "")
+                                        creatives_model.collab_unique_id_8 = creatives_model.collab_unique_id_8.replace("-", "")
+                                        print("creatives_model.collab_unique_id_8", creatives_model.collab_unique_id_8)
 
                         if field_id == config.reference_form_field_id_9:
                             print("reference form id 9", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 9", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_9 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
-                                    creatives_model.collab_unique_id_9 = creatives_model.collab_unique_id_9.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_9.replace("-", "")
-                                    print("creatives_model.collab_unique_id_9", creatives_model.collab_unique_id_9)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 9", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_9 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
+                                        creatives_model.collab_unique_id_9 = creatives_model.collab_unique_id_9.replace(" ", "")
+                                        creatives_model.collab_unique_id_9 = creatives_model.collab_unique_id_9.replace("-", "")
+                                        print("creatives_model.collab_unique_id_9", creatives_model.collab_unique_id_9)
 
                     # create the primary UID
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
@@ -531,6 +523,7 @@ class CreativesRebuildController:
                     creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     creatives_model.primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                     creatives_model.primary_unique_id = creatives_model.primary_unique_id.replace(" ", "")
+                    creatives_model.primary_unique_id = creatives_model.primary_unique_id.replace("-", "")
 
                     try:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
