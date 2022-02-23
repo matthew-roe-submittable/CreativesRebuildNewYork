@@ -145,15 +145,13 @@ label_id_3 = "317972"
 # Data structure to replace Database
 # volatile memory used and thrown away
 # list of dicts
-uid_data_struct = [{}]
+uid_data_struct = []
 
 # dict structure
 """
-{'primary_unique_id':  None,
+{
  'submission_id':      None,
- 'submitter_id':       None,
- 'form_response_id':   None,
- 'entry_id':           None,
+ 'primary_unique_id':  None,
  'collab_unique_id_1': None,
  'collab_unique_id_2': None,
  'collab_unique_id_3': None,
@@ -162,7 +160,6 @@ uid_data_struct = [{}]
  'collab_unique_id_6': None,
  'collab_unique_id_7': None,
  'collab_unique_id_8': None,
- 'collab_unique_id_9': None,
- 'date_last_checked':  None
+ 'collab_unique_id_9': None
  }
 """

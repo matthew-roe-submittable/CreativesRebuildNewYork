@@ -51,6 +51,29 @@ class CreativesRebuildController:
         else:
             return False
 
+    def uid_chcek(self, uid_to_check):
+        print("uid check run")
+        if next((item for item in config.uid_data_struct if item["primary_unique_id"]    == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_1"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_2"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_3"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_4"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_5"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_6"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_7"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_8"] == uid_to_check), True):
+            return True
+        elif next((item for item in config.uid_data_struct if item["collab_unique_id_9"] == uid_to_check), True):
+            return True
+
     #
     # get all submissions
     # get submission id
@@ -66,12 +89,12 @@ class CreativesRebuildController:
 
         for sub_item in list_of_submissions:
             # Create model obj interface to database
-            creatives_model = Creative(config.mysql_conn)
-
+            # creatives_model = Creative(config.mysql_conn)
+            submission_id = None
             # try to load model
             try:
-                creatives_model.load_by_submission_id(sub_item.getSubmissionId())
-                print("model id", creatives_model.id)
+                # creatives_model.load_by_submission_id(sub_item.getSubmissionId())
+                print("model id")  # , creatives_model.id)
             except:
                 print("submission not in database")
 
@@ -79,26 +102,27 @@ class CreativesRebuildController:
             if sub_item.getProjectId() == self.project_id_1:
                 print("project 1 - Submission")
 
-                creatives_model.submission_id = sub_item.getSubmissionId()
-                sub_response                  = self.submittable.getSubmission(creatives_model.submission_id)
-                creatives_model.submitter_id  = sub_response.getSubmitterId()
+                submission_id = sub_item.getSubmissionId()
+                sub_response  = self.submittable.getSubmission(submission_id)
+                # creatives_model.submitter_id  = sub_response.getSubmitterId()
 
                 # get submission form responses (initial)
                 response_list = sub_response.getFormResponses()
                 print("project 1 - response list length:", len(response_list))
 
-                # Skip submission if not in "new" or "in_progress" state
+                # get submissions status
                 status = sub_response.getSubmissionStatus()
 
-                # check the status of submission
+                # Skip submission if not in "new" or "in_progress" state
                 if status != "new" and status != "in_progress":
                     print(f"project 1 - skip sub in project 1 {status}")
                     # go to next submission
                     continue
 
+                # get list of reference form responses
                 reference_responses = self.submittable.getReferenceResponses()
 
-                # go through response list
+                # go through initial form response list
                 for response in response_list:
                     # create local variables
                     primary_last_name  = None
@@ -108,53 +132,64 @@ class CreativesRebuildController:
                     collab_last_name_1 = None
                     collab_dob_1       = None
                     collab_zip_1       = None
+                    collab_unique_id_1 = None
 
                     collab_last_name_2 = None
                     collab_dob_2       = None
                     collab_zip_2       = None
+                    collab_unique_id_2 = None
 
                     collab_last_name_3 = None
                     collab_dob_3       = None
                     collab_zip_3       = None
+                    collab_unique_id_3 = None
 
                     collab_last_name_4 = None
                     collab_dob_4       = None
                     collab_zip_4       = None
+                    collab_unique_id_4 = None
 
                     collab_last_name_5 = None
                     collab_dob_5       = None
                     collab_zip_5       = None
+                    collab_unique_id_5 = None
 
                     collab_last_name_6 = None
                     collab_dob_6       = None
                     collab_zip_6       = None
+                    collab_unique_id_6 = None
 
                     collab_last_name_7 = None
                     collab_dob_7       = None
                     collab_zip_7       = None
+                    collab_unique_id_7 = None
 
                     collab_last_name_8 = None
                     collab_dob_8       = None
                     collab_zip_8       = None
+                    collab_unique_id_8 = None
 
                     collab_last_name_9 = None
                     collab_dob_9       = None
                     collab_zip_9       = None
+                    collab_unique_id_9 = None
+
+                    # submitter_id       = None
+                    # form_response_id   = None
+                    # entry_id           = None
 
                     ref_email          = None
                     dup_found          = False
 
-                    # Pull the forms response data
+                    # Pull the initial forms response data
                     field_data = response.getFieldData()
-                    # store the formResponseId
-                    creatives_model.form_response_id = response.getFormResponseId()
 
                     # Get the primary artist UID fields
                     for data in field_data:
-                        # print("project 1 - data in field_data", data)
                         field_id = data.getFormFieldId()
                         print("field_id", field_id)
 
+                        # gets primary artist ref email used to send out ref forms
                         if field_id == "6b955b10-0632-4d36-96be-bae29e7a59db":
                             ref_email = data.getRefEmail()
                             print("ref_email", ref_email)
@@ -168,6 +203,7 @@ class CreativesRebuildController:
                         elif field_id == config.project_1_artist_zipcode:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
+                        # local variable used to pull latest reference response data
                         date_1 = None
 
                         # Reference from UIDs
@@ -192,10 +228,10 @@ class CreativesRebuildController:
                                                 collab_dob_1 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
-                                        creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace(" ", "")
-                                        creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace("-", "")
-                                        print("creatives_model.collab_unique_id_1", creatives_model.collab_unique_id_1)
+                                        collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
+                                        collab_unique_id_1 = collab_unique_id_1.replace(" ", "")
+                                        collab_unique_id_1 = collab_unique_id_1.replace("-", "")
+                                        print("collab_unique_id_1", collab_unique_id_1)
 
                         if field_id == config.reference_form_field_id_2:
                             print("reference form id 2", field_id)
@@ -215,10 +251,10 @@ class CreativesRebuildController:
                                                 collab_dob_2 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
-                                        creatives_model.collab_unique_id_2 = creatives_model.collab_unique_id_2.replace(" ", "")
-                                        creatives_model.collab_unique_id_2 = creatives_model.collab_unique_id_2.replace("-", "")
-                                        print("creatives_model.collab_unique_id_2", creatives_model.collab_unique_id_2)
+                                        collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
+                                        collab_unique_id_2 = collab_unique_id_2.replace(" ", "")
+                                        collab_unique_id_2 = collab_unique_id_2.replace("-", "")
+                                        print("collab_unique_id_2", collab_unique_id_2)
 
                         if field_id == config.reference_form_field_id_3:
                             print("reference form id 3", field_id)
@@ -238,16 +274,14 @@ class CreativesRebuildController:
                                                 collab_dob_3 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
-                                        creatives_model.collab_unique_id_3 = creatives_model.collab_unique_id_3.replace(" ", "")
-                                        creatives_model.collab_unique_id_3 = creatives_model.collab_unique_id_3.replace("-", "")
-                                        print("creatives_model.collab_unique_id_3", creatives_model.collab_unique_id_3)
+                                        collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
+                                        collab_unique_id_3 = collab_unique_id_3.replace(" ", "")
+                                        collab_unique_id_3 = collab_unique_id_3.replace("-", "")
+                                        print("collab_unique_id_3", collab_unique_id_3)
+
 
                         if field_id == config.reference_form_field_id_4:
                             print("reference form id 4", field_id)
-                            # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()
-                            # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
@@ -263,10 +297,10 @@ class CreativesRebuildController:
                                                 collab_dob_4 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
-                                        creatives_model.collab_unique_id_4 = creatives_model.collab_unique_id_4.replace(" ", "")
-                                        creatives_model.collab_unique_id_4 = creatives_model.collab_unique_id_4.replace("-", "")
-                                        print("creatives_model.collab_unique_id_4", creatives_model.collab_unique_id_4)
+                                        collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
+                                        collab_unique_id_4 = collab_unique_id_4.replace(" ", "")
+                                        collab_unique_id_4 = collab_unique_id_4.replace("-", "")
+                                        print("collab_unique_id_4", collab_unique_id_4)
 
                         if field_id == config.reference_form_field_id_5:
                             print("reference form id 5", field_id)
@@ -285,10 +319,10 @@ class CreativesRebuildController:
                                                 collab_dob_5 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
-                                        creatives_model.collab_unique_id_5 = creatives_model.collab_unique_id_5.replace(" ", "")
-                                        creatives_model.collab_unique_id_5 = creatives_model.collab_unique_id_5.replace("-", "")
-                                        print("creatives_model.collab_unique_id_5", creatives_model.collab_unique_id_5)
+                                        collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
+                                        collab_unique_id_5 = collab_unique_id_5.replace(" ", "")
+                                        collab_unique_id_5 = collab_unique_id_5.replace("-", "")
+                                        print("collab_unique_id_5", collab_unique_id_5)
 
                         if field_id == config.reference_form_field_id_6:
                             print("reference form id 6", field_id)
@@ -307,11 +341,11 @@ class CreativesRebuildController:
                                                 collab_dob_6 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_6 = str(collab_dob_6) + str(
-                                            collab_last_name_6) + str(collab_zip_6)
-                                        creatives_model.collab_unique_id_6 = creatives_model.collab_unique_id_6.replace(" ", "")
-                                        creatives_model.collab_unique_id_6 = creatives_model.collab_unique_id_6.replace("-", "")
-                                        print("creatives_model.collab_unique_id_6", creatives_model.collab_unique_id_6)
+
+                                        collab_unique_id_6 = str(collab_dob_6) + str(collab_last_name_6) + str(collab_zip_6)
+                                        collab_unique_id_6 = collab_unique_id_6.replace(" ", "")
+                                        collab_unique_id_6 = collab_unique_id_6.replace("-", "")
+                                        print("collab_unique_id_6", collab_unique_id_6)
 
                         if field_id == config.reference_form_field_id_7:
                             print("reference form id 7", field_id)
@@ -330,10 +364,10 @@ class CreativesRebuildController:
                                                 collab_dob_7 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
-                                        creatives_model.collab_unique_id_7 = creatives_model.collab_unique_id_7.replace(" ", "")
-                                        creatives_model.collab_unique_id_7 = creatives_model.collab_unique_id_7.replace("-", "")
-                                        print("creatives_model.collab_unique_id_7", creatives_model.collab_unique_id_7)
+                                        collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
+                                        collab_unique_id_7 = collab_unique_id_7.replace(" ", "")
+                                        collab_unique_id_7 = collab_unique_id_7.replace("-", "")
+                                        print("collab_unique_id_7", collab_unique_id_7)
 
                         if field_id == config.reference_form_field_id_8:
                             print("reference form id 8", field_id)
@@ -352,10 +386,10 @@ class CreativesRebuildController:
                                                 collab_dob_8 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
-                                        creatives_model.collab_unique_id_8 = creatives_model.collab_unique_id_8.replace(" ", "")
-                                        creatives_model.collab_unique_id_8 = creatives_model.collab_unique_id_8.replace("-", "")
-                                        print("creatives_model.collab_unique_id_8", creatives_model.collab_unique_id_8)
+                                        collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
+                                        collab_unique_id_8 = collab_unique_id_8.replace(" ", "")
+                                        collab_unique_id_8 = collab_unique_id_8.replace("-", "")
+                                        print("collab_unique_id_8", collab_unique_id_8)
 
                         if field_id == config.reference_form_field_id_9:
                             print("reference form id 9", field_id)
@@ -374,49 +408,61 @@ class CreativesRebuildController:
                                                 collab_dob_9 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        creatives_model.collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
-                                        creatives_model.collab_unique_id_9 = creatives_model.collab_unique_id_9.replace(" ", "")
-                                        creatives_model.collab_unique_id_9 = creatives_model.collab_unique_id_9.replace("-", "")
-                                        print("creatives_model.collab_unique_id_9", creatives_model.collab_unique_id_9)
+                                        collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
+                                        collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
+                                        collab_unique_id_9 = collab_unique_id_9.replace("-", "")
+                                        print("collab_unique_id_9", collab_unique_id_9)
 
                     # create the primary UID
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
-                        creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                        creatives_model.primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
-                        creatives_model.primary_unique_id = creatives_model.primary_unique_id.replace(" ", "")
-                        print("creatives_model primary_unique_id", creatives_model.primary_unique_id, creatives_model.submission_id)
+                        primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+                        primary_unique_id = primary_unique_id.replace(" ", "")
+                        primary_unique_id = primary_unique_id.replace("-", "")
+                        print("primary_unique_id", primary_unique_id)
 
                     # check for duplicate collaborator ids
-                    id_list_check = [creatives_model.primary_unique_id, creatives_model.collab_unique_id_1,
-                                     creatives_model.collab_unique_id_2, creatives_model.collab_unique_id_3,
-                                     creatives_model.collab_unique_id_4, creatives_model.collab_unique_id_5,
-                                     creatives_model.collab_unique_id_6, creatives_model.collab_unique_id_7,
-                                     creatives_model.collab_unique_id_8, creatives_model.collab_unique_id_9]
+                    id_list_check = [primary_unique_id,  collab_unique_id_1,
+                                     collab_unique_id_2, collab_unique_id_3,
+                                     collab_unique_id_4, collab_unique_id_5,
+                                     collab_unique_id_6, collab_unique_id_7,
+                                     collab_unique_id_8, collab_unique_id_9]
 
                     print("collaborator artist UID list", id_list_check)
 
                     # pull id out then loop through the list to check for dup
+                    # check the uids in the form for dups
                     for elem in id_list_check:
                         if id_list_check.count(elem) > 1 and elem is not None:
                             dup_found = True
-                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {creatives_model.primary_unique_id} "
-                                        f"for submission {creatives_model.submission_id}")
+                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {primary_unique_id} "
+                                        f"for submission {submission_id}")
 
                             try:
                                 # add dup label to this submission (single form dup)
-                                self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                                logger.info(f"project 1 - try to create label")
+                                self.createLabel(sub_response.getSubmissionStatus(), submission_id)
                                 break
                             except ValueError:
-                                logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id} - top try")
+                                logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - top try")
 
                             # see if you UID exist in database
                             if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                                 try:
-                                    print("project 1 - save to db - top")
-                                    creatives_model.save()
+                                    print("project 1 - save to dict - top")
+                                    config.uid_data_struct.append({'submission_id':     submission_id,
+                                                                   'primary_unique_id': primary_unique_id,
+                                                                   'collab_unique_id_1': collab_unique_id_1,
+                                                                   'collab_unique_id_2': collab_unique_id_2,
+                                                                   'collab_unique_id_3': collab_unique_id_3,
+                                                                   'collab_unique_id_4': collab_unique_id_4,
+                                                                   'collab_unique_id_5': collab_unique_id_5,
+                                                                   'collab_unique_id_6': collab_unique_id_6,
+                                                                   'collab_unique_id_7': collab_unique_id_7,
+                                                                   'collab_unique_id_8': collab_unique_id_8,
+                                                                   'collab_unique_id_9': collab_unique_id_9})
                                     break
                                 except:
-                                    print("project 1 - not able to save to db")
+                                    print("project 1 - not able to save to dict")
 
                         else:
                             continue
@@ -424,41 +470,46 @@ class CreativesRebuildController:
                     # save to database only if all UID fields have been pulled from form
                     try:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None and not dup_found:
-                            print("project 1 - creatives_model.primary_unique_id", creatives_model.primary_unique_id)
+                            print("project 1 - primary_unique_id", primary_unique_id)
                             try:
-                                creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id,
-                                                                                                       creatives_model.primary_unique_id,
-                                                                                                       creatives_model.collab_unique_id_1,
-                                                                                                       creatives_model.collab_unique_id_2,
-                                                                                                       creatives_model.collab_unique_id_3,
-                                                                                                       creatives_model.collab_unique_id_4,
-                                                                                                       creatives_model.collab_unique_id_5,
-                                                                                                       creatives_model.collab_unique_id_6,
-                                                                                                       creatives_model.collab_unique_id_7,
-                                                                                                       creatives_model.collab_unique_id_8,
-                                                                                                       creatives_model.collab_unique_id_9)
+                                self.submittable.submitInternalFormResponse(submission_id,
+                                                                            primary_unique_id,
+                                                                            collab_unique_id_1,
+                                                                            collab_unique_id_2,
+                                                                            collab_unique_id_3,
+                                                                            collab_unique_id_4,
+                                                                            collab_unique_id_5,
+                                                                            collab_unique_id_6,
+                                                                            collab_unique_id_7,
+                                                                            collab_unique_id_8,
+                                                                            collab_unique_id_9)
                                 logger.info("project 1 - successfully to create internal form")
                             except:
-                                try:
-                                    self.submittable.updateInternalFormResponse(creatives_model.entry_id,
-                                                                                creatives_model.primary_unique_id,
-                                                                                creatives_model.collab_unique_id_1,
-                                                                                creatives_model.collab_unique_id_2,
-                                                                                creatives_model.collab_unique_id_3,
-                                                                                creatives_model.collab_unique_id_4,
-                                                                                creatives_model.collab_unique_id_5,
-                                                                                creatives_model.collab_unique_id_6,
-                                                                                creatives_model.collab_unique_id_7,
-                                                                                creatives_model.collab_unique_id_8,
-                                                                                creatives_model.collab_unique_id_9)
-                                except:
-                                    logger.info(f"project 1 - failed to create/update internal form for submission {creatives_model.submission_id}")
-                            print("project 1 - save to db")
-                            creatives_model.save()
+                                logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
+
+                            # check if primary uid already exist in list of dicts
+                            if self.uid_chcek(primary_unique_id):
+                                print("project 1 - dup found")
+                                # got to next response
+                                break
+
+                            print("project 1 - save to dict")
+                            config.uid_data_struct.append({'submission_id':      submission_id,
+                                                           'primary_unique_id':  primary_unique_id,
+                                                           'collab_unique_id_1': collab_unique_id_1,
+                                                           'collab_unique_id_2': collab_unique_id_2,
+                                                           'collab_unique_id_3': collab_unique_id_3,
+                                                           'collab_unique_id_4': collab_unique_id_4,
+                                                           'collab_unique_id_5': collab_unique_id_5,
+                                                           'collab_unique_id_6': collab_unique_id_6,
+                                                           'collab_unique_id_7': collab_unique_id_7,
+                                                           'collab_unique_id_8': collab_unique_id_8,
+                                                           'collab_unique_id_9': collab_unique_id_9})
+
                             # go to next response
                             break
                         else:
-                            logger.info(f"project 1 - collaborator UID field Null for submission {creatives_model.submission_id}")
+                            logger.info(f"project 1 - collaborator UID field Null for submission {submission_id}")
                             # move to next response
                             continue
                     except:
@@ -467,51 +518,48 @@ class CreativesRebuildController:
                             list_of_submissions = self.submittable.getListOfSubmissions()
                             for sub in list_of_submissions:
                                 sub_id = sub.getSubmissionId()
-                                if creatives_model.submission_id == sub_id:
+                                if submission_id == sub_id:
                                     # add dup label to new sub
-                                    self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                                    self.createLabel(sub_response.getSubmissionStatus(), submission_id)
                                     # label original sub with dup label
                                     self.createLabel(sub_response.getSubmissionStatus(), sub_id)
-                                    logger.info(f"project 1 - duplicate unique id project 1 {creatives_model.primary_unique_id} submission: {creatives_model.submission_id} "
+                                    logger.info(f"project 1 - duplicate unique id project 1 {primary_unique_id} submission: {submission_id} "
                                                 f"in the database already for submission {sub_id}")
                         except ValueError:
-                            logger.info(f"project 1 - failed to create duplicate label for submission id {creatives_model.submission_id} - bottom try")
+                            logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - bottom try")
 
             # load database from project 2
             elif sub_item.getProjectId() == self.project_id_2:
                 print("project 2 - Submission")
-                creatives_model.submission_id = sub_item.getSubmissionId()
-                sub_response = self.submittable.getSubmission(creatives_model.submission_id)
-                creatives_model.submitter_id = sub_response.getSubmitterId()
+                submission_id = sub_item.getSubmissionId()
+                sub_response  = self.submittable.getSubmission(submission_id)
                 response_list = sub_response.getFormResponses()
+                print("project 2 - response list length:", len(response_list))
 
                 # Skip submission if not in "new" or "in_progress" state
                 status = sub_response.getSubmissionStatus()
                 if status != "new" and status != "in_progress":
-                    print(f"project 2 - skip sub in project 2 {status} submission {creatives_model.submission_id}")
+                    print(f"project 2 - skip sub in project 2 {status} submission {submission_id}")
                     continue
-
-                print("project 2 - response list length:", len(response_list))
 
                 # get each submission form responses
                 for form_response in response_list:
                     # create local variables
                     primary_last_name = None
-                    primary_dob = None
-                    primary_zip = None
+                    primary_dob       = None
+                    primary_zip       = None
 
-                    form_id = form_response.getFormId()
-                    responses = sub_response.getFormResponse(form_id)
+                    form_id    = form_response.getFormId()
+                    responses  = sub_response.getFormResponse(form_id)
                     field_data = responses.getFieldData()
 
                     for data in field_data:
                         print("project 2 - data in field_data", data)
-                        field_id = data.getFormFieldId()
+                        field_id    = data.getFormFieldId()
                         field_value = responses.getFieldResponse(field_id)
-                        field_id = field_value.getFormFieldId()
+                        field_id    = field_value.getFormFieldId()
 
-                        creatives_model.form_response_id = form_response.getFormResponseId()
-
+                        # Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_2_name_field_id:
                             primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         if field_id == config.project_2_dob_field_id:
@@ -520,24 +568,39 @@ class CreativesRebuildController:
                         if field_id == config.project_2_zipcode_field_id:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
-                    creatives_model.date_last_checked = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    creatives_model.primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
-                    creatives_model.primary_unique_id = creatives_model.primary_unique_id.replace(" ", "")
-                    creatives_model.primary_unique_id = creatives_model.primary_unique_id.replace("-", "")
+                    # create the primary UID
+                    primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+                    primary_unique_id = primary_unique_id.replace(" ", "")
+                    primary_unique_id = primary_unique_id.replace("-", "")
 
                     try:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                             # create internal entry using beta endpoint - Work In Progress
                             try:
-                                creatives_model.entry_id = self.submittable.submitInternalFormResponse(creatives_model.submission_id, creatives_model.primary_unique_id)
+                                self.submittable.submitInternalFormResponse(submission_id, primary_unique_id)
+                                print("made it here 1")
                             except:
-                                print("project 2 - failed to create internal form, try to update")
-                                try:
-                                    self.submittable.updateInternalFormResponse(creatives_model.entry_id, creatives_model.primary_unique_id)
-                                except:
-                                    logger.info(f"project 2 - failed to create/update internal form for submission {creatives_model.submission_id}")
-                            print("project 2 - save to db")
-                            creatives_model.save()
+                                logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
+
+                            print("made it here 2")
+                            # check if primary uid already exist in list of dicts
+                            if self.uid_chcek(primary_unique_id):
+                                print("project 2 - dup found")
+
+
+                            print("made it here 3")
+                            print("project 2 - save to dict")
+                            config.uid_data_struct.append({'submission_id':      submission_id,
+                                                           'primary_unique_id':  primary_unique_id,
+                                                           'collab_unique_id_1': None,
+                                                           'collab_unique_id_2': None,
+                                                           'collab_unique_id_3': None,
+                                                           'collab_unique_id_4': None,
+                                                           'collab_unique_id_5': None,
+                                                           'collab_unique_id_6': None,
+                                                           'collab_unique_id_7': None,
+                                                           'collab_unique_id_8': None,
+                                                           'collab_unique_id_9': None})
                             break
                         else:
                             # skip submission missing UID field(s)
@@ -547,14 +610,15 @@ class CreativesRebuildController:
                             list_of_submissions = self.submittable.getListOfSubmissions()
                             for sub in list_of_submissions:
                                 sub_id = sub.getSubmissionId()
-                                if creatives_model.submission_id == sub_id:
+                                if submission_id == sub_id:
                                     # add dup label to new sub
-                                    self.createLabel(sub_response.getSubmissionStatus(), creatives_model.submission_id)
+                                    self.createLabel(sub_response.getSubmissionStatus(), submission_id)
                                     # label original sub with dup label
                                     self.createLabel(sub_response.getSubmissionStatus(), sub_id)
-                                    logger.info(f"project 2 - duplicate unique id project 2 {creatives_model.primary_unique_id} submission: {creatives_model.submission_id} "
+                                    logger.info(f"project 2 - duplicate unique id project 2 {primary_unique_id} submission: {submission_id} "
                                                 f"in the database already for submission {sub_id}")
                         except ValueError:
-                            logger.info(f"project 2 - failed to create duplicate label for unique id {creatives_model.primary_unique_id}")
+                            logger.info(f"project 2 - failed to create duplicate label for unique id {primary_unique_id}")
 
-    print("finished loading database")
+        print("config struct", config.uid_data_struct)
+        print("finished loading database")
