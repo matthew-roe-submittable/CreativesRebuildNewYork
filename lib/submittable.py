@@ -318,6 +318,9 @@ class SubmittableResponseList:
     def getFormId(self):
         return self.payload["formId"]
 
+    def getCreatedAt(self):
+        return self.payload["createdAt"]
+
     def getRefEmail(self):
         return self.payload["refereeEmail"]
 

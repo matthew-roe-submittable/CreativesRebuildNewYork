@@ -96,6 +96,8 @@ class CreativesRebuildController:
                     # go to next submission
                     continue
 
+                reference_responses = self.submittable.getReferenceResponses()
+
                 # go through response list
                 for response in response_list:
                     # create local variables
@@ -146,7 +148,7 @@ class CreativesRebuildController:
                     field_data = response.getFieldData()
                     # store the formResponseId
                     creatives_model.form_response_id = response.getFormResponseId()
-                    reference_responses = self.submittable.getReferenceResponses()()
+
                     # Get the primary artist UID fields
                     for data in field_data:
                         # print("project 1 - data in field_data", data)
@@ -166,37 +168,42 @@ class CreativesRebuildController:
                         elif field_id == config.project_1_artist_zipcode:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
+                        date_1 = None
+
                         # Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
                             print("reference form id 1", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             count = 0
                             for resp in reference_responses:
                                 count = count + 1
                                 print("resp 1", count)
+                                print("response refEmail", resp.getRefEmail(), "ref_email", ref_email)
                                 if field_id == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
-                                    ref_field_data = resp.getFieldData()
-                                    for ref_data in ref_field_data:
-                                        print("ref_data 1", ref_data)
-                                        item_id = ref_data.getFormFieldId()
-                                        if item_id == config.reference_form_name_id:
-                                            collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        elif item_id == config.reference_form_dob_id:
-                                            date_string = ref_data.getFieldValue("DATE")
-                                            collab_dob_1 = date_string[0:10]
-                                        elif item_id == config.reference_form_zipcode_id:
-                                            collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
-                                    creatives_model.collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace(" ", "")
-                                    creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace("-", "")
-                                    print("creatives_model.collab_unique_id_1", creatives_model.collab_unique_id_1)
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            print("ref_data 1", ref_data)
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_1 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        creatives_model.collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
+                                        creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace(" ", "")
+                                        creatives_model.collab_unique_id_1 = creatives_model.collab_unique_id_1.replace("-", "")
+                                        print("creatives_model.collab_unique_id_1", creatives_model.collab_unique_id_1)
 
                         if field_id == config.reference_form_field_id_2:
                             print("reference form id 2", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 print("resp 2")
@@ -220,7 +227,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_3:
                             print("reference form id 3", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 print("resp 3")
@@ -244,7 +251,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_4:
                             print("reference form id 4", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
@@ -267,7 +274,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_5:
                             print("reference form id 5", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
@@ -290,7 +297,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_6:
                             print("reference form id 6", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
@@ -314,7 +321,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_7:
                             print("reference form id 7", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
@@ -337,7 +344,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_8:
                             print("reference form id 8", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
@@ -360,7 +367,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_9:
                             print("reference form id 9", field_id)
                             # get reference form responses (collaborator artist form only)
-                            # reference_responses = self.submittable.getReferenceResponses()()
+                            # reference_responses = self.submittable.getReferenceResponses()
                             # print("response len", len(reference_responses))
                             for resp in reference_responses:
                                 if field_id == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
@@ -413,6 +420,7 @@ class CreativesRebuildController:
                             # see if you UID exist in database
                             if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                                 try:
+                                    print("project 1 - save to db - top")
                                     creatives_model.save()
                                     break
                                 except:
