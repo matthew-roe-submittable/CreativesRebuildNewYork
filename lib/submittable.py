@@ -261,7 +261,7 @@ class Submittable:
     @limits(calls=10, period=0.25)
     def getListOfSubmissions(self):
         submissions = []
-        total_pages = 1
+        total_pages = 10
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -715,6 +715,9 @@ class SubmittableSubmission:
 
     def __init__(self, payload):
         self.payload = payload
+
+    def getSubmitterEmail(self):
+        return self.payload["submitterEmail"]
 
     def getSubmissionId(self):
         return self.payload["submissionId"]

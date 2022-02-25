@@ -35,44 +35,62 @@ class CreativesRebuildController:
         self.label_id_2   = config.label_id_2
         self.label_id_3   = config.label_id_3
 
-    #
-    # If submission is in the Accepted or Completed status, a ‘Awarded Duplicate’ label will be applied.
-    # If submission is in the Withdrawn or Decline status, a ‘Not Awarded Duplicate’ label will be applied.
-    # If submission is in the New or In Progress status, a ‘Pending Duplicate’ label will be applied.
-    # submissionStatus	(string)
-    # Enum: "new" "in_progress" "accepted" "declined" "withdrawn" "completed" "editable" "viewed" "received" "published"
-    #
-    def createLabel(self, stat, subId):
-        submission_id = subId
-        status = stat
-        if status == "new" or status == "in_progress":
-            self.submittable.addLabel(submission_id, self.label_id_1)
-            return True
-        else:
-            return False
+
+    def createLabel(self, submission_id):
+        self.submittable.addLabel(submission_id, self.label_id_1)
+
+
+    def label_dups(self, submission_id, sub_id):
+        print("label dups", submission_id, sub_id)
+        # add dup label to original and new submission
+        try:
+            # add dup label to new sub
+            self.createLabel(submission_id)
+            # label original sub with dup label
+            self.createLabel(sub_id)
+            logger.info(f"project 1 - duplicate unique id project 1 submission: {submission_id} in the database already for submission {sub_id}")
+        except ValueError:
+            logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - bottom try")
 
     def uid_chcek(self, uid_to_check):
-        print("uid check run")
-        if next((item for item in config.uid_data_struct if item["primary_unique_id"]    == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_1"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_2"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_3"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_4"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_5"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_6"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_7"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_8"] == uid_to_check), True):
-            return True
-        elif next((item for item in config.uid_data_struct if item["collab_unique_id_9"] == uid_to_check), True):
-            return True
+        print("uid check run", uid_to_check, config.uid_data_struct)
+
+        if uid_to_check is not None and config.uid_data_struct != []:
+            for item in config.uid_data_struct:
+                if item["primary_unique_id"]   == uid_to_check:
+                    print(1, item["submission_id"])
+                    return item["submission_id"]
+                elif item["collab_unique_id_1"] == uid_to_check:
+                    print(2)
+                    return item["submission_id"]
+                elif item["collab_unique_id_2"] == uid_to_check:
+                    print(3)
+                    return item["submission_id"]
+                elif item["collab_unique_id_3"] == uid_to_check:
+                    print(4)
+                    return item["submission_id"]
+                elif item["collab_unique_id_4"] == uid_to_check:
+                    print(5)
+                    return item["submission_id"]
+                elif item["collab_unique_id_5"] == uid_to_check:
+                    print(6)
+                    return item["submission_id"]
+                elif item["collab_unique_id_6"] == uid_to_check:
+                    print(7)
+                    return item["submission_id"]
+                elif item["collab_unique_id_7"] == uid_to_check:
+                    print(8)
+                    return item["submission_id"]
+                elif item["collab_unique_id_8"] == uid_to_check:
+                    print(9)
+                    return item["submission_id"]
+                elif item["collab_unique_id_9"] == uid_to_check:
+                    print(10)
+                    return item["submission_id"]
+        else:
+            print("empty")
+            return None
+
 
     #
     # get all submissions
@@ -91,20 +109,14 @@ class CreativesRebuildController:
             # Create model obj interface to database
             # creatives_model = Creative(config.mysql_conn)
             submission_id = None
-            # try to load model
-            try:
-                # creatives_model.load_by_submission_id(sub_item.getSubmissionId())
-                print("model id")  # , creatives_model.id)
-            except:
-                print("submission not in database")
 
             # load database from project 1
             if sub_item.getProjectId() == self.project_id_1:
                 print("project 1 - Submission")
-
                 submission_id = sub_item.getSubmissionId()
                 sub_response  = self.submittable.getSubmission(submission_id)
-                # creatives_model.submitter_id  = sub_response.getSubmitterId()
+                ref_email     = sub_response.getSubmitterEmail()
+                print("ref email is", ref_email)
 
                 # get submission form responses (initial)
                 response_list = sub_response.getFormResponses()
@@ -115,7 +127,7 @@ class CreativesRebuildController:
 
                 # Skip submission if not in "new" or "in_progress" state
                 if status != "new" and status != "in_progress":
-                    print(f"project 1 - skip sub in project 1 {status}")
+                    print(f"project 1 - skip sub in project 1 {status} submission id: {submission_id}")
                     # go to next submission
                     continue
 
@@ -128,6 +140,7 @@ class CreativesRebuildController:
                     primary_last_name  = None
                     primary_dob        = None
                     primary_zip        = None
+                    primary_unique_id  = None
 
                     collab_last_name_1 = None
                     collab_dob_1       = None
@@ -174,28 +187,27 @@ class CreativesRebuildController:
                     collab_zip_9       = None
                     collab_unique_id_9 = None
 
-                    # submitter_id       = None
-                    # form_response_id   = None
-                    # entry_id           = None
-
-                    ref_email          = None
-                    dup_found          = False
+                    id_list_check      = None
 
                     # Pull the initial forms response data
                     field_data = response.getFieldData()
+                    # get the response email
+                    # ref_email  = response.getSubmitterEmail()
+                    # print("ref_email", ref_email)
 
                     # Get the primary artist UID fields
                     for data in field_data:
                         field_id = data.getFormFieldId()
-                        print("field_id", field_id)
+                        logger.info(f"field_id {field_id}")
 
                         # gets primary artist ref email used to send out ref forms
-                        if field_id == "6b955b10-0632-4d36-96be-bae29e7a59db":
-                            ref_email = data.getRefEmail()
-                            print("ref_email", ref_email)
+                        # pull the current collab email
+                        # if field_id == config.reference_form_field_id_1:
+                        # ref_email = data.getRefEmail()
+                        # print("ref_email", ref_email)
 
                         # Primary Artist UID | DOB-LastName-Zipcode
-                        elif field_id == config.project_1_artist_last_name:
+                        if field_id == config.project_1_artist_last_name:
                             primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         elif field_id == config.project_1_artist_dob:
                             date_string = data.getFieldValue("DATE")
@@ -278,7 +290,6 @@ class CreativesRebuildController:
                                         collab_unique_id_3 = collab_unique_id_3.replace(" ", "")
                                         collab_unique_id_3 = collab_unique_id_3.replace("-", "")
                                         print("collab_unique_id_3", collab_unique_id_3)
-
 
                         if field_id == config.reference_form_field_id_4:
                             print("reference form id 4", field_id)
@@ -418,128 +429,90 @@ class CreativesRebuildController:
                         primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                         primary_unique_id = primary_unique_id.replace(" ", "")
                         primary_unique_id = primary_unique_id.replace("-", "")
-                        print("primary_unique_id", primary_unique_id)
+                        logger.info(f"project 1 - primary_unique_id", primary_unique_id)
 
-                    # check for duplicate collaborator ids
-                    id_list_check = [primary_unique_id,  collab_unique_id_1,
-                                     collab_unique_id_2, collab_unique_id_3,
-                                     collab_unique_id_4, collab_unique_id_5,
-                                     collab_unique_id_6, collab_unique_id_7,
-                                     collab_unique_id_8, collab_unique_id_9]
 
-                    print("collaborator artist UID list", id_list_check)
-
-                    # pull id out then loop through the list to check for dup
-                    # check the uids in the form for dups
-                    for elem in id_list_check:
-                        if id_list_check.count(elem) > 1 and elem is not None:
-                            dup_found = True
-                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {primary_unique_id} "
-                                        f"for submission {submission_id}")
-
-                            try:
-                                # add dup label to this submission (single form dup)
-                                logger.info(f"project 1 - try to create label")
-                                self.createLabel(sub_response.getSubmissionStatus(), submission_id)
-                                break
-                            except ValueError:
-                                logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - top try")
-
-                            # see if you UID exist in database
-                            if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
-                                try:
-                                    print("project 1 - save to dict - top")
-                                    config.uid_data_struct.append({'submission_id':     submission_id,
-                                                                   'primary_unique_id': primary_unique_id,
-                                                                   'collab_unique_id_1': collab_unique_id_1,
-                                                                   'collab_unique_id_2': collab_unique_id_2,
-                                                                   'collab_unique_id_3': collab_unique_id_3,
-                                                                   'collab_unique_id_4': collab_unique_id_4,
-                                                                   'collab_unique_id_5': collab_unique_id_5,
-                                                                   'collab_unique_id_6': collab_unique_id_6,
-                                                                   'collab_unique_id_7': collab_unique_id_7,
-                                                                   'collab_unique_id_8': collab_unique_id_8,
-                                                                   'collab_unique_id_9': collab_unique_id_9})
-                                    break
-                                except:
-                                    print("project 1 - not able to save to dict")
-
-                        else:
-                            continue
-
-                    # save to database only if all UID fields have been pulled from form
-                    try:
-                        if primary_last_name is not None and primary_dob is not None and primary_zip is not None and not dup_found:
-                            print("project 1 - primary_unique_id", primary_unique_id)
-                            try:
-                                self.submittable.submitInternalFormResponse(submission_id,
-                                                                            primary_unique_id,
-                                                                            collab_unique_id_1,
-                                                                            collab_unique_id_2,
-                                                                            collab_unique_id_3,
-                                                                            collab_unique_id_4,
-                                                                            collab_unique_id_5,
-                                                                            collab_unique_id_6,
-                                                                            collab_unique_id_7,
-                                                                            collab_unique_id_8,
-                                                                            collab_unique_id_9)
-                                logger.info("project 1 - successfully to create internal form")
-                            except:
-                                logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
-
-                            # check if primary uid already exist in list of dicts
-                            if self.uid_chcek(primary_unique_id):
-                                print("project 1 - dup found")
-                                # got to next response
-                                break
-
-                            print("project 1 - save to dict")
-                            config.uid_data_struct.append({'submission_id':      submission_id,
-                                                           'primary_unique_id':  primary_unique_id,
-                                                           'collab_unique_id_1': collab_unique_id_1,
-                                                           'collab_unique_id_2': collab_unique_id_2,
-                                                           'collab_unique_id_3': collab_unique_id_3,
-                                                           'collab_unique_id_4': collab_unique_id_4,
-                                                           'collab_unique_id_5': collab_unique_id_5,
-                                                           'collab_unique_id_6': collab_unique_id_6,
-                                                           'collab_unique_id_7': collab_unique_id_7,
-                                                           'collab_unique_id_8': collab_unique_id_8,
-                                                           'collab_unique_id_9': collab_unique_id_9})
-
-                            # go to next response
-                            break
-                        else:
-                            logger.info(f"project 1 - collaborator UID field Null for submission {submission_id}")
-                            # move to next response
-                            continue
-                    except:
-                        # add dup label to original and new submission
+                    if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         try:
-                            list_of_submissions = self.submittable.getListOfSubmissions()
-                            for sub in list_of_submissions:
-                                sub_id = sub.getSubmissionId()
-                                if submission_id == sub_id:
-                                    # add dup label to new sub
-                                    self.createLabel(sub_response.getSubmissionStatus(), submission_id)
-                                    # label original sub with dup label
-                                    self.createLabel(sub_response.getSubmissionStatus(), sub_id)
-                                    logger.info(f"project 1 - duplicate unique id project 1 {primary_unique_id} submission: {submission_id} "
-                                                f"in the database already for submission {sub_id}")
-                        except ValueError:
-                            logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - bottom try")
+                            self.submittable.submitInternalFormResponse(submission_id, primary_unique_id, collab_unique_id_1,
+                                                                        collab_unique_id_2, collab_unique_id_3, collab_unique_id_4,
+                                                                        collab_unique_id_5, collab_unique_id_6, collab_unique_id_7,
+                                                                        collab_unique_id_8, collab_unique_id_9)
 
-            # load database from project 2
+                        except:
+                            logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
+
+                        # check if uid already exist in list of dicts
+                        uid_check_sub_id_1  = self.uid_chcek(primary_unique_id)
+                        uid_check_sub_id_2  = self.uid_chcek(collab_unique_id_1)
+                        uid_check_sub_id_3  = self.uid_chcek(collab_unique_id_2)
+                        uid_check_sub_id_4  = self.uid_chcek(collab_unique_id_3)
+                        uid_check_sub_id_5  = self.uid_chcek(collab_unique_id_4)
+                        uid_check_sub_id_6  = self.uid_chcek(collab_unique_id_5)
+                        uid_check_sub_id_7  = self.uid_chcek(collab_unique_id_6)
+                        uid_check_sub_id_8  = self.uid_chcek(collab_unique_id_7)
+                        uid_check_sub_id_9  = self.uid_chcek(collab_unique_id_8)
+                        uid_check_sub_id_10 = self.uid_chcek(collab_unique_id_9)
+
+                        if uid_check_sub_id_1 is not None:
+                            print("project 1 - dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_1)
+                        elif uid_check_sub_id_2 is not None:
+                            print("project 1 - collab_unique_id_2 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_2)
+                        elif uid_check_sub_id_3 is not None:
+                            print("project 1 - collab_unique_id_3 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_3)
+                        elif uid_check_sub_id_4 is not None:
+                            print("project 1 - collab_unique_id_4 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_4)
+                        elif uid_check_sub_id_5 is not None:
+                            print("project 1 - collab_unique_id_5 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_5)
+                        elif uid_check_sub_id_6 is not None:
+                            print("project 1 - collab_unique_id_6 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_6)
+                        elif uid_check_sub_id_7 is not None:
+                            print("project 1 - collab_unique_id_7 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_7)
+                        elif uid_check_sub_id_8 is not None:
+                            print("project 1 - collab_unique_id_7 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_8)
+                        elif uid_check_sub_id_9 is not None:
+                            print("project 1 - collab_unique_id_8 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_9)
+                        elif uid_check_sub_id_10 is not None:
+                            print("project 1 - collab_unique_id_9 dup found")
+                            self.label_dups(submission_id, uid_check_sub_id_10)
+
+                        logger.info(f"project 1 - save to dict")
+                        config.uid_data_struct.append({'submission_id':      submission_id,      'primary_unique_id':  primary_unique_id,
+                                                       'collab_unique_id_1': collab_unique_id_1, 'collab_unique_id_2': collab_unique_id_2,
+                                                       'collab_unique_id_3': collab_unique_id_3, 'collab_unique_id_4': collab_unique_id_4,
+                                                       'collab_unique_id_5': collab_unique_id_5, 'collab_unique_id_6': collab_unique_id_6,
+                                                       'collab_unique_id_7': collab_unique_id_7, 'collab_unique_id_8': collab_unique_id_8,
+                                                       'collab_unique_id_9': collab_unique_id_9})
+
+
+                        # go to next response
+                        break
+                    else:
+                        logger.info(f"project 1 - collaborator UID field Null for submission {submission_id}")
+                        # skip submission missing primary UID field(s)
+                        continue
+
+            # check project 2
             elif sub_item.getProjectId() == self.project_id_2:
-                print("project 2 - Submission")
+                logger.info(f"project 2 - Submission")
                 submission_id = sub_item.getSubmissionId()
                 sub_response  = self.submittable.getSubmission(submission_id)
                 response_list = sub_response.getFormResponses()
-                print("project 2 - response list length:", len(response_list))
+                logger.info(f"project 2 - response list length:", len(response_list))
 
                 # Skip submission if not in "new" or "in_progress" state
                 status = sub_response.getSubmissionStatus()
                 if status != "new" and status != "in_progress":
-                    print(f"project 2 - skip sub in project 2 {status} submission {submission_id}")
+                    logger.info(f"project 2 - skip sub in project 2 {status}  submission id: {submission_id}")
                     continue
 
                 # get each submission form responses
@@ -554,7 +527,7 @@ class CreativesRebuildController:
                     field_data = responses.getFieldData()
 
                     for data in field_data:
-                        print("project 2 - data in field_data", data)
+                        logger.info(f"project 2 - data in field_data", data)
                         field_id    = data.getFormFieldId()
                         field_value = responses.getFieldResponse(field_id)
                         field_id    = field_value.getFormFieldId()
@@ -578,28 +551,20 @@ class CreativesRebuildController:
                             # create internal entry using beta endpoint - Work In Progress
                             try:
                                 self.submittable.submitInternalFormResponse(submission_id, primary_unique_id)
-                                print("made it here 1")
                             except:
                                 logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
 
-                            print("made it here 2")
                             # check if primary uid already exist in list of dicts
                             if self.uid_chcek(primary_unique_id):
-                                print("project 2 - dup found")
+                                logger.info(f"project 2 - dup found")
+                                self.label_dups(submission_id, sub_response)
 
-
-                            print("made it here 3")
-                            print("project 2 - save to dict")
-                            config.uid_data_struct.append({'submission_id':      submission_id,
-                                                           'primary_unique_id':  primary_unique_id,
-                                                           'collab_unique_id_1': None,
-                                                           'collab_unique_id_2': None,
-                                                           'collab_unique_id_3': None,
-                                                           'collab_unique_id_4': None,
-                                                           'collab_unique_id_5': None,
-                                                           'collab_unique_id_6': None,
-                                                           'collab_unique_id_7': None,
-                                                           'collab_unique_id_8': None,
+                            logger.info(f"project 2 - save to dict")
+                            config.uid_data_struct.append({'submission_id': submission_id, 'primary_unique_id':  primary_unique_id,
+                                                           'collab_unique_id_1': None,     'collab_unique_id_2': None,
+                                                           'collab_unique_id_3': None,     'collab_unique_id_4': None,
+                                                           'collab_unique_id_5': None,     'collab_unique_id_6': None,
+                                                           'collab_unique_id_7': None,     'collab_unique_id_8': None,
                                                            'collab_unique_id_9': None})
                             break
                         else:
@@ -615,10 +580,8 @@ class CreativesRebuildController:
                                     self.createLabel(sub_response.getSubmissionStatus(), submission_id)
                                     # label original sub with dup label
                                     self.createLabel(sub_response.getSubmissionStatus(), sub_id)
-                                    logger.info(f"project 2 - duplicate unique id project 2 {primary_unique_id} submission: {submission_id} "
-                                                f"in the database already for submission {sub_id}")
+                                    logger.info(f"project 2 - duplicate unique id project 2 {primary_unique_id} submission: {submission_id} in the database already for submission {sub_id}")
                         except ValueError:
                             logger.info(f"project 2 - failed to create duplicate label for unique id {primary_unique_id}")
 
-        print("config struct", config.uid_data_struct)
-        print("finished loading database")
+        logger.info(f"config struct {config.uid_data_struct}")
