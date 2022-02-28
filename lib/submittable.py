@@ -266,7 +266,7 @@ class Submittable:
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/submissions?page={nextPage}&pageSize=50'
+            endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&page={nextPage}&pageSize=50'
             headers  = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:

@@ -46,19 +46,24 @@ class CreativesRebuildController:
         try:
             # add dup label to new sub
             self.createLabel(submission_id)
+            logger.info(f"duplicate unique id project 1 submission: {submission_id} in the database already for submission {sub_id}")
+        except ValueError:
+            logger.info(f"failed to create duplicate label for submission id {submission_id}")
+        try:
             # label original sub with dup label
             self.createLabel(sub_id)
-            logger.info(f"project 1 - duplicate unique id project 1 submission: {submission_id} in the database already for submission {sub_id}")
+            logger.info(f"duplicate unique id project 1 submission: {submission_id} in the database already for submission {sub_id}")
         except ValueError:
-            logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id} - bottom try")
+            logger.info(f"failed to create duplicate label for submission id {submission_id}")
 
+    # UID - DOB-LASTNAME-ZIP
     def uid_chcek(self, uid_to_check):
         print("uid check run", uid_to_check, config.uid_data_struct)
 
         if uid_to_check is not None and config.uid_data_struct != []:
             for item in config.uid_data_struct:
                 if item["primary_unique_id"]   == uid_to_check:
-                    print(1, item["submission_id"])
+                    print(1)
                     return item["submission_id"]
                 elif item["collab_unique_id_1"] == uid_to_check:
                     print(2)
@@ -103,33 +108,22 @@ class CreativesRebuildController:
         logger.info(f"loading artists into database")
 
         # build up submission id list
+        # get all submission for project 1 & project 2 in "new" and "in_progress" states
         list_of_submissions = self.submittable.getListOfSubmissions()
 
         for sub_item in list_of_submissions:
-            # Create model obj interface to database
-            # creatives_model = Creative(config.mysql_conn)
-            submission_id = None
+            project_id    = sub_item.getProjectId()
+            submission_id = sub_item.getSubmissionId()
+            sub_response  = self.submittable.getSubmission(submission_id)
+            # get submission form responses (initial)
+            response_list = sub_response.getFormResponses()
+            logger.info(f"response list length: {len(response_list)}")
 
-            # load database from project 1
-            if sub_item.getProjectId() == self.project_id_1:
+            # load database from project 1 (AEP)
+            if project_id == self.project_id_1:
                 print("project 1 - Submission")
-                submission_id = sub_item.getSubmissionId()
-                sub_response  = self.submittable.getSubmission(submission_id)
-                ref_email     = sub_response.getSubmitterEmail()
+                ref_email = sub_response.getSubmitterEmail()
                 print("ref email is", ref_email)
-
-                # get submission form responses (initial)
-                response_list = sub_response.getFormResponses()
-                print("project 1 - response list length:", len(response_list))
-
-                # get submissions status
-                status = sub_response.getSubmissionStatus()
-
-                # Skip submission if not in "new" or "in_progress" state
-                if status != "new" and status != "in_progress":
-                    print(f"project 1 - skip sub in project 1 {status} submission id: {submission_id}")
-                    # go to next submission
-                    continue
 
                 # get list of reference form responses
                 reference_responses = self.submittable.getReferenceResponses()
@@ -191,20 +185,11 @@ class CreativesRebuildController:
 
                     # Pull the initial forms response data
                     field_data = response.getFieldData()
-                    # get the response email
-                    # ref_email  = response.getSubmitterEmail()
-                    # print("ref_email", ref_email)
 
                     # Get the primary artist UID fields
                     for data in field_data:
                         field_id = data.getFormFieldId()
                         logger.info(f"field_id {field_id}")
-
-                        # gets primary artist ref email used to send out ref forms
-                        # pull the current collab email
-                        # if field_id == config.reference_form_field_id_1:
-                        # ref_email = data.getRefEmail()
-                        # print("ref_email", ref_email)
 
                         # Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
@@ -227,6 +212,7 @@ class CreativesRebuildController:
                                 print("resp 1", count)
                                 print("response refEmail", resp.getRefEmail(), "ref_email", ref_email)
                                 if field_id == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
+                                    # TODO look into date complete and not created (?)
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -425,12 +411,39 @@ class CreativesRebuildController:
                                         print("collab_unique_id_9", collab_unique_id_9)
 
                     # create the primary UID
+                    # TODO maybe consider adding createdAt()/CompletedAt() date to UID or submission id
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                         primary_unique_id = primary_unique_id.replace(" ", "")
                         primary_unique_id = primary_unique_id.replace("-", "")
-                        logger.info(f"project 1 - primary_unique_id", primary_unique_id)
+                        logger.info(f"project 1 - primary_unique_id: {primary_unique_id}")
 
+                    print("id list", id_list_check)
+
+                    # check for duplicate collaborator ids internal to the submission
+                    id_list_check = [primary_unique_id, collab_unique_id_1,
+                                     collab_unique_id_2, collab_unique_id_3,
+                                     collab_unique_id_4, collab_unique_id_5,
+                                     collab_unique_id_6, collab_unique_id_7,
+                                     collab_unique_id_8, collab_unique_id_9]
+
+                    print("collaborator artist UID list", id_list_check)
+
+                    # pull id out then loop through the list to check for dup
+                    # check the uids in the form for dups
+                    for elem in id_list_check:
+                        if id_list_check.count(elem) > 1 and elem is not None:
+                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {primary_unique_id} for submission {submission_id}")
+                            try:
+                                # add dup label to this submission (single form dup)
+                                logger.info(f"project 1 - try to create label")
+                                self.createLabel(submission_id)
+                                break
+                            except ValueError:
+                                logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id}")
+                                break
+                        else:
+                            continue
 
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         try:
@@ -458,7 +471,7 @@ class CreativesRebuildController:
                             print("project 1 - dup found")
                             self.label_dups(submission_id, uid_check_sub_id_1)
                         elif uid_check_sub_id_2 is not None:
-                            print("project 1 - collab_unique_id_2 dup found")
+                            print(f"project 1 - collab_unique_id_2 dup found")
                             self.label_dups(submission_id, uid_check_sub_id_2)
                         elif uid_check_sub_id_3 is not None:
                             print("project 1 - collab_unique_id_3 dup found")
@@ -502,13 +515,8 @@ class CreativesRebuildController:
                         continue
 
             # check project 2
-            elif sub_item.getProjectId() == self.project_id_2:
+            elif project_id == self.project_id_2:
                 logger.info(f"project 2 - Submission")
-                submission_id = sub_item.getSubmissionId()
-                sub_response  = self.submittable.getSubmission(submission_id)
-                response_list = sub_response.getFormResponses()
-                logger.info(f"project 2 - response list length:", len(response_list))
-
                 # Skip submission if not in "new" or "in_progress" state
                 status = sub_response.getSubmissionStatus()
                 if status != "new" and status != "in_progress":
@@ -527,7 +535,7 @@ class CreativesRebuildController:
                     field_data = responses.getFieldData()
 
                     for data in field_data:
-                        logger.info(f"project 2 - data in field_data", data)
+                        logger.info(f"project 2 - data in field_data {data}")
                         field_id    = data.getFormFieldId()
                         field_value = responses.getFieldResponse(field_id)
                         field_id    = field_value.getFormFieldId()
@@ -554,10 +562,11 @@ class CreativesRebuildController:
                             except:
                                 logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
 
-                            # check if primary uid already exist in list of dicts
-                            if self.uid_chcek(primary_unique_id):
-                                logger.info(f"project 2 - dup found")
-                                self.label_dups(submission_id, sub_response)
+                            # check if uid already exist in list of dicts
+                            uid_check_sub_id_1 = self.uid_chcek(primary_unique_id)
+                            if uid_check_sub_id_1 is not None:
+                                print("project 2 - dup found")
+                                self.label_dups(submission_id, uid_check_sub_id_1)
 
                             logger.info(f"project 2 - save to dict")
                             config.uid_data_struct.append({'submission_id': submission_id, 'primary_unique_id':  primary_unique_id,
@@ -577,9 +586,9 @@ class CreativesRebuildController:
                                 sub_id = sub.getSubmissionId()
                                 if submission_id == sub_id:
                                     # add dup label to new sub
-                                    self.createLabel(sub_response.getSubmissionStatus(), submission_id)
+                                    self.createLabel(submission_id)
                                     # label original sub with dup label
-                                    self.createLabel(sub_response.getSubmissionStatus(), sub_id)
+                                    self.createLabel(sub_id)
                                     logger.info(f"project 2 - duplicate unique id project 2 {primary_unique_id} submission: {submission_id} in the database already for submission {sub_id}")
                         except ValueError:
                             logger.info(f"project 2 - failed to create duplicate label for unique id {primary_unique_id}")

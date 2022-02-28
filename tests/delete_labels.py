@@ -11,6 +11,6 @@ for sub_item in submission_response:
     label_ids     = sub_response.getLabels()
     if len(label_ids) > 0:
         for id in label_ids:
-            if id.getLabelId() == 317974:
+            if id.getLabelId() == 317972:
                 print("id", id.getLabelId())
                 submittable.deleteLabel(submission_id, id.getLabelId())

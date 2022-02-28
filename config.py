@@ -133,7 +133,7 @@ internal_form_field_id_9     = "05bc0950-98c1-4822-bcd8-dc35e3fd4ca9"
 internal_form_field_id_10    = "f7f704be-5ea5-4a68-8f0b-9e4cb5bdd0ab"
 
 # label "Awarded Duplicate"
-label_id_1 = "317974"
+label_id_1 = "317972"
 
 # label "Not Awarded Duplicate"
 label_id_2 = "317973"
