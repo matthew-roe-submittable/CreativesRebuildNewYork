@@ -15,7 +15,7 @@ def main():
     # create controller obj
     controller = CreativesRebuildController()
     # load the database with submittable form information
-    controller.loadArtistsToDatabase()
+    controller.checkForDupUID()
     # validate unique identifier
     # controller.uidDuplicateCheck()
 

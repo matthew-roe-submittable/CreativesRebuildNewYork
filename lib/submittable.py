@@ -56,6 +56,17 @@ class Submittable:
             raise ValueError(f"add label failed {response.status_code}. Response payload: {response.content}")
         return response
 
+    def createNewLabel(self, submission_id):
+        endpoint = f'{self.baseURL}/labels'
+        headers = {'Content-type': 'application/json'}
+        payload  = {'name': submission_id}
+        payload = json.dumps(payload)
+        response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
+        if response.status_code != 201:
+            print(f"create new label failed {response.status_code}. Response payload: {response.content}")
+            raise ValueError(f"create new label failed {response.status_code}. Response payload: {response.content}")
+        return response.json()['labelId']
+
     @sleep_and_retry
     @limits(calls=10, period=0.25)
     def getEntry(self, entry_id):
