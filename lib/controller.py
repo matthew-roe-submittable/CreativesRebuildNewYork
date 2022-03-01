@@ -127,7 +127,7 @@ class CreativesRebuildController:
             if project_id == self.project_id_1:
                 logger.info("project 1 - Submission")
                 ref_email = sub_response.getSubmitterEmail()
-                logger.info("ref email is: {ref_email}")
+                logger.info(f"ref email is: {ref_email}")
 
                 # get list of reference form responses
                 reference_responses = self.submittable.getReferenceResponses()
@@ -365,7 +365,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_8:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
+                                if field_id == config.reference_form_field_id_8 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -576,6 +576,6 @@ class CreativesRebuildController:
                     except:
                         # log the failure
                         logger.info(f"project 2 - failed to check unique id: {primary_unique_id} submission: {submission_id}")
-                        
+
         # log the completed list of UIDs
         logger.info(f"config struct {config.uid_data_struct}")

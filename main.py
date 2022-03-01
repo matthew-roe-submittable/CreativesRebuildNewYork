@@ -11,16 +11,11 @@ logger = logging.getLogger("logfile")
 def main():
     print("start", datetime.now())
     logger.info(f"start Creatives Rebuild New York app")
-
     # create controller obj
     controller = CreativesRebuildController()
-    # load the database with submittable form information
+    # check for dup UIDs
     controller.checkForDupUID()
-    # validate unique identifier
-    # controller.uidDuplicateCheck()
-
     print("finished", datetime.now())
-
 
 
 if __name__ == "__main__":
