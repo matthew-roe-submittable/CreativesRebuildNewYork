@@ -46,7 +46,7 @@ class CreativesRebuildController:
 
 
     def label_dups(self, submission_id, sub_id):
-        print("label dups", submission_id, sub_id)
+        logger.info(f"label dups new: {submission_id} old: {sub_id}")
         label_id = None
         # add dup label to original and new submission
         try:
@@ -59,8 +59,7 @@ class CreativesRebuildController:
         try:
             # label submission id of original sub to new submission with dup label
             label_id = self.createNewLabel(sub_id)
-            print("label id", label_id)
-            logger.info(f"duplicate UID submission: {submission_id} with submission {sub_id}")
+            logger.info(f"duplicate UID new submission: {submission_id} with old submission: {sub_id}")
         except ValueError:
             logger.info(f"failed to create new submission id duplicate label for submission id {submission_id}")
 
@@ -74,42 +73,31 @@ class CreativesRebuildController:
 
     # UID - DOB-LASTNAME-ZIP
     def uid_chcek(self, uid_to_check):
-        print("uid check run", uid_to_check, config.uid_data_struct)
+        logger.info(f"uid check run {uid_to_check}, list: {config.uid_data_struct}")
 
         if uid_to_check is not None and config.uid_data_struct != []:
             for item in config.uid_data_struct:
                 if item["primary_unique_id"]   == uid_to_check:
-                    print(1)
                     return item["submission_id"]
                 elif item["collab_unique_id_1"] == uid_to_check:
-                    print(2)
                     return item["submission_id"]
                 elif item["collab_unique_id_2"] == uid_to_check:
-                    print(3)
                     return item["submission_id"]
                 elif item["collab_unique_id_3"] == uid_to_check:
-                    print(4)
                     return item["submission_id"]
                 elif item["collab_unique_id_4"] == uid_to_check:
-                    print(5)
                     return item["submission_id"]
                 elif item["collab_unique_id_5"] == uid_to_check:
-                    print(6)
                     return item["submission_id"]
                 elif item["collab_unique_id_6"] == uid_to_check:
-                    print(7)
                     return item["submission_id"]
                 elif item["collab_unique_id_7"] == uid_to_check:
-                    print(8)
                     return item["submission_id"]
                 elif item["collab_unique_id_8"] == uid_to_check:
-                    print(9)
                     return item["submission_id"]
                 elif item["collab_unique_id_9"] == uid_to_check:
-                    print(10)
                     return item["submission_id"]
         else:
-            print("empty")
             return None
 
 
@@ -137,9 +125,9 @@ class CreativesRebuildController:
 
             # load database from project 1 (AEP)
             if project_id == self.project_id_1:
-                print("project 1 - Submission")
+                logger.info("project 1 - Submission")
                 ref_email = sub_response.getSubmitterEmail()
-                print("ref email is", ref_email)
+                logger.info("ref email is: {ref_email}")
 
                 # get list of reference form responses
                 reference_responses = self.submittable.getReferenceResponses()
@@ -205,7 +193,7 @@ class CreativesRebuildController:
                     # Get the primary artist UID fields
                     for data in field_data:
                         field_id = data.getFormFieldId()
-                        logger.info(f"field_id {field_id}")
+                        logger.info(f"field_id: {field_id}")
 
                         # Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
@@ -221,18 +209,14 @@ class CreativesRebuildController:
 
                         # Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
-                            print("reference form id 1", field_id)
-                            count = 0
                             for resp in reference_responses:
-                                count = count + 1
-                                print("resp 1", count)
-                                print("response refEmail", resp.getRefEmail(), "ref_email", ref_email)
+                                logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 1", ref_data)
+                                            logger.info(f"ref form data 1: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -244,18 +228,17 @@ class CreativesRebuildController:
                                         collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
                                         collab_unique_id_1 = collab_unique_id_1.replace(" ", "")
                                         collab_unique_id_1 = collab_unique_id_1.replace("-", "")
-                                        print("collab_unique_id_1", collab_unique_id_1)
+                                        logger.info(f"collab_unique_id_1: {collab_unique_id_1}")
 
                         if field_id == config.reference_form_field_id_2:
-                            print("reference form id 2", field_id)
                             for resp in reference_responses:
-                                print("resp 2")
+                                logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 2", ref_data)
+                                            logger.info(f"ref form data 2: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -267,18 +250,17 @@ class CreativesRebuildController:
                                         collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
                                         collab_unique_id_2 = collab_unique_id_2.replace(" ", "")
                                         collab_unique_id_2 = collab_unique_id_2.replace("-", "")
-                                        print("collab_unique_id_2", collab_unique_id_2)
+                                        logger.info(f"collab_unique_id_2: {collab_unique_id_2}")
 
                         if field_id == config.reference_form_field_id_3:
-                            print("reference form id 3", field_id)
                             for resp in reference_responses:
-                                print("resp 3")
+                                logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 3", ref_data)
+                                            logger.info(f"ref form data 3: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -290,17 +272,17 @@ class CreativesRebuildController:
                                         collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
                                         collab_unique_id_3 = collab_unique_id_3.replace(" ", "")
                                         collab_unique_id_3 = collab_unique_id_3.replace("-", "")
-                                        print("collab_unique_id_3", collab_unique_id_3)
+                                        logger.info(f"collab_unique_id_3: {collab_unique_id_3}")
 
                         if field_id == config.reference_form_field_id_4:
-                            print("reference form id 4", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 4", ref_data)
+                                            logger.info(f"ref form data 4: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -312,17 +294,17 @@ class CreativesRebuildController:
                                         collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
                                         collab_unique_id_4 = collab_unique_id_4.replace(" ", "")
                                         collab_unique_id_4 = collab_unique_id_4.replace("-", "")
-                                        print("collab_unique_id_4", collab_unique_id_4)
+                                        logger.info(f"collab_unique_id_4: {collab_unique_id_4}")
 
                         if field_id == config.reference_form_field_id_5:
-                            print("reference form id 5", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 5", ref_data)
+                                            logger.info(f"ref form data 5: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -334,17 +316,17 @@ class CreativesRebuildController:
                                         collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
                                         collab_unique_id_5 = collab_unique_id_5.replace(" ", "")
                                         collab_unique_id_5 = collab_unique_id_5.replace("-", "")
-                                        print("collab_unique_id_5", collab_unique_id_5)
+                                        logger.info("collab_unique_id_5: {collab_unique_id_5}")
 
                         if field_id == config.reference_form_field_id_6:
-                            print("reference form id 6", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 6", ref_data)
+                                            logger.info(f"ref form data 6: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -353,21 +335,20 @@ class CreativesRebuildController:
                                                 collab_dob_6 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
                                                 collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
-
                                         collab_unique_id_6 = str(collab_dob_6) + str(collab_last_name_6) + str(collab_zip_6)
                                         collab_unique_id_6 = collab_unique_id_6.replace(" ", "")
                                         collab_unique_id_6 = collab_unique_id_6.replace("-", "")
-                                        print("collab_unique_id_6", collab_unique_id_6)
+                                        logger.info(f"collab_unique_id_6: {collab_unique_id_6}")
 
                         if field_id == config.reference_form_field_id_7:
-                            print("reference form id 7", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 7", ref_data)
+                                            logger.info(f"ref form data 7: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -379,17 +360,17 @@ class CreativesRebuildController:
                                         collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
                                         collab_unique_id_7 = collab_unique_id_7.replace(" ", "")
                                         collab_unique_id_7 = collab_unique_id_7.replace("-", "")
-                                        print("collab_unique_id_7", collab_unique_id_7)
+                                        logger.info(f"collab_unique_id_7: {collab_unique_id_7}")
 
                         if field_id == config.reference_form_field_id_8:
-                            print("reference form id 8", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 8", ref_data)
+                                            logger.info(f"ref form data 8: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -401,17 +382,17 @@ class CreativesRebuildController:
                                         collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
                                         collab_unique_id_8 = collab_unique_id_8.replace(" ", "")
                                         collab_unique_id_8 = collab_unique_id_8.replace("-", "")
-                                        print("collab_unique_id_8", collab_unique_id_8)
+                                        logger.info(f"collab_unique_id_8: {collab_unique_id_8}")
 
                         if field_id == config.reference_form_field_id_9:
-                            print("reference form id 9", field_id)
                             for resp in reference_responses:
+                                logger.info(f"ref response refEmail 9: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if field_id == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            print("ref_data 9", ref_data)
+                                            logger.info(f"ref form data 9: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -423,17 +404,14 @@ class CreativesRebuildController:
                                         collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
                                         collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
                                         collab_unique_id_9 = collab_unique_id_9.replace("-", "")
-                                        print("collab_unique_id_9", collab_unique_id_9)
+                                        logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
 
                     # create the primary UID
-                    # TODO maybe consider adding createdAt()/CompletedAt() date to UID or submission id
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                         primary_unique_id = primary_unique_id.replace(" ", "")
                         primary_unique_id = primary_unique_id.replace("-", "")
                         logger.info(f"project 1 - primary_unique_id: {primary_unique_id}")
-
-                    print("id list", id_list_check)
 
                     # check for duplicate collaborator ids internal to the submission
                     id_list_check = [primary_unique_id, collab_unique_id_1,
@@ -442,7 +420,7 @@ class CreativesRebuildController:
                                      collab_unique_id_6, collab_unique_id_7,
                                      collab_unique_id_8, collab_unique_id_9]
 
-                    print("collaborator artist UID list", id_list_check)
+                    logger.info(f"id list: {id_list_check}")
 
                     # pull id out then loop through the list to check for dup
                     # check the uids in the form for dups
@@ -451,7 +429,6 @@ class CreativesRebuildController:
                             logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {primary_unique_id} for submission {submission_id}")
                             try:
                                 # add dup label to this submission (single form dup)
-                                # TODO add sub id label to label
                                 logger.info(f"project 1 - try to create label")
                                 self.label_dups(submission_id, submission_id)
                                 break
@@ -569,6 +546,7 @@ class CreativesRebuildController:
                     primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                     primary_unique_id = primary_unique_id.replace(" ", "")
                     primary_unique_id = primary_unique_id.replace("-", "")
+                    logger.info(f"project 2 - primary_unique_id: {primary_unique_id}")
 
                     try:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
@@ -581,7 +559,7 @@ class CreativesRebuildController:
                             # check if uid already exist in list of dicts
                             uid_check_sub_id_1 = self.uid_chcek(primary_unique_id)
                             if uid_check_sub_id_1 is not None:
-                                print("project 2 - dup found")
+                                logger.info(f"project 2 - dup found")
                                 self.label_dups(submission_id, uid_check_sub_id_1)
 
                             logger.info(f"project 2 - save to dict")
@@ -598,5 +576,6 @@ class CreativesRebuildController:
                     except:
                         # log the failure
                         logger.info(f"project 2 - failed to check unique id: {primary_unique_id} submission: {submission_id}")
-
+                        
+        # log the completed list of UIDs
         logger.info(f"config struct {config.uid_data_struct}")
