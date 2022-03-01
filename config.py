@@ -13,7 +13,7 @@ mysql_conn = mysql.connector.connect(user=mysql_user,
 # ------------------------------ LIVE ACCOUNT SETTINGS ------------------------------ #
 '''
 # live account API key
-submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
+# submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
 
 # Project: AEP
 project_id_1                      = "f5b5299e-149b-40fe-9764-f41fa3c57330"

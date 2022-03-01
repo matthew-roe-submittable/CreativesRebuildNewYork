@@ -44,7 +44,6 @@ class Submittable:
             print("delete label successful")
         return response
 
-
     @sleep_and_retry
     @limits(calls=10, period=0.25)
     def addLabel(self, submissionId, labelId):
@@ -272,18 +271,27 @@ class Submittable:
     @limits(calls=10, period=0.25)
     def getListOfSubmissions(self):
         submissions = []
-        total_pages = 10
+        page_size   = 1
+        # get page size
+        endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        if response.status_code != 200:
+            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+        total_pages = response.json()["totalPages"]
+        print("total pages", total_pages)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&page={nextPage}&pageSize=50'
+            endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&page={nextPage}&pageSize={page_size}'
             headers  = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+                logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
+                # skip over do not add to list
+                continue
             json_response    = response.json()
-            total_pages      = response.json()["totalPages"]
             submissions_list = json_response["items"]
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
@@ -293,17 +301,23 @@ class Submittable:
     @limits(calls=10, period=0.25)
     def getReferenceResponses(self):
         ref_responses = []
-        total_pages   = 10
+        page_size     = 1
+        endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page=1&pageSize={page_size}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        total_pages = response.json()["totalPages"]
         for page in range(0, total_pages):
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize=50'
+            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             print("ref form resp", response.json())
             if response.status_code != 200:
-                raise ValueError(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+                logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
+                # skip over go to next response
+                continue
             json_response     = response.json()
             ref_response_list = json_response["items"]
             print(ref_response_list)

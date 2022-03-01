@@ -228,7 +228,6 @@ class CreativesRebuildController:
                                 print("resp 1", count)
                                 print("response refEmail", resp.getRefEmail(), "ref_email", ref_email)
                                 if field_id == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
-                                    # TODO look into date complete and not created (?)
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -472,7 +471,7 @@ class CreativesRebuildController:
                         except:
                             logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
 
-                        # check if uid already exist in list of dicts
+                        # check if UID already exist in list of dicts
                         uid_check_sub_id_1  = self.uid_chcek(primary_unique_id)
                         uid_check_sub_id_2  = self.uid_chcek(collab_unique_id_1)
                         uid_check_sub_id_3  = self.uid_chcek(collab_unique_id_2)
@@ -484,7 +483,6 @@ class CreativesRebuildController:
                         uid_check_sub_id_9  = self.uid_chcek(collab_unique_id_8)
                         uid_check_sub_id_10 = self.uid_chcek(collab_unique_id_9)
 
-                        # TODO add sub id label to label
                         if uid_check_sub_id_1 is not None:
                             print("project 1 - dup found")
                             self.label_dups(submission_id, uid_check_sub_id_1)
@@ -581,7 +579,6 @@ class CreativesRebuildController:
                                 logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
 
                             # check if uid already exist in list of dicts
-                            # TODO add sub id label to label
                             uid_check_sub_id_1 = self.uid_chcek(primary_unique_id)
                             if uid_check_sub_id_1 is not None:
                                 print("project 2 - dup found")
@@ -599,15 +596,7 @@ class CreativesRebuildController:
                             # skip submission missing UID field(s)
                             continue
                     except:
-                        try:
-                            list_of_submissions = self.submittable.getListOfSubmissions()
-                            for sub in list_of_submissions:
-                                sub_id = sub.getSubmissionId()
-                                if submission_id == sub_id:
-                                    # label dups
-                                    self.label_dups(submission_id, sub_id)
-                                    logger.info(f"project 2 - duplicate unique id project 2 {primary_unique_id} submission: {submission_id} in the database already for submission {sub_id}")
-                        except ValueError:
-                            logger.info(f"project 2 - failed to create duplicate label for unique id {primary_unique_id}")
+                        # log the failure
+                        logger.info(f"project 2 - failed to check unique id: {primary_unique_id} submission: {submission_id}")
 
         logger.info(f"config struct {config.uid_data_struct}")
