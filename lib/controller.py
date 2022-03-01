@@ -453,7 +453,7 @@ class CreativesRebuildController:
                                 # add dup label to this submission (single form dup)
                                 # TODO add sub id label to label
                                 logger.info(f"project 1 - try to create label")
-                                self.addLabel(submission_id, self.label_id_1)
+                                self.label_dups(submission_id, submission_id)
                                 break
                             except ValueError:
                                 logger.info(f"project 1 - failed to create duplicate label for submission id {submission_id}")
