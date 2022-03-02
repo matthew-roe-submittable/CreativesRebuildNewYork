@@ -44,7 +44,6 @@ class CreativesRebuildController:
         except:
             return None
 
-
     def label_dups(self, submission_id, sub_id):
         logger.info(f"label dups new: {submission_id} old: {sub_id}")
         label_id = None
@@ -58,9 +57,20 @@ class CreativesRebuildController:
 
         try:
             # label submission id of original sub to new submission with dup label
-            label_id = self.createNewLabel(sub_id)
+            label_id = self.submittable.createNewLabel(sub_id)
             logger.info(f"duplicate UID new submission: {submission_id} with old submission: {sub_id}")
         except ValueError:
+            print("******%%%%*****%%%%%%****")
+            label_id_list = self.submittable.getLabelIds()
+            for id in label_id_list:
+                print(str(id.getName()), str(sub_id))
+                if str(id.getName()) == str(sub_id):
+                    print("******%%%%*****%%%%%%****")
+                    print("******%%%%*****%%%%%%****")
+                    print("******%%%%*****%%%%%%****")
+                    print("******%%%%*****%%%%%%****")
+                    print("******%%%%*****%%%%%%****")
+                    label_id = id.getLabelId()
             logger.info(f"failed to create new submission id duplicate label for submission id {submission_id}")
 
         if label_id is not None:
@@ -211,7 +221,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_1:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -233,7 +243,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_2:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -255,7 +265,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_3:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -277,7 +287,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_4:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -299,7 +309,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_5:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -321,7 +331,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_6:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -343,7 +353,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_7:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -365,7 +375,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_8:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_8 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_8 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
@@ -387,7 +397,7 @@ class CreativesRebuildController:
                         if field_id == config.reference_form_field_id_9:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 9: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if field_id == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
+                                if resp.getFormFieldId() == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()

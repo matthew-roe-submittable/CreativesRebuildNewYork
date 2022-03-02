@@ -20,19 +20,36 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getLabelIds(self):
-        endpoint = f'{self.baseURL}/labels/list'
+        page_size = 50
+        label_ids = []
+        endpoint = f'{self.baseURL}/labels?pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
-        response = requests.post(endpoint, auth=("", self.api_key), headers=headers)
-        if response.status_code != 201:
-            print("get label ids failed")
-        else:
-            print("get label ids successful")
-        return response.json()
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        if response.status_code != 200:
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+        total_pages = response.json()["totalPages"]
+
+        print("get label ids", response)
+        for page in range(0, total_pages):
+            if page == total_pages:
+                break
+            nextPage = page + 1
+            endpoint = f'{self.baseURL}/labels?page={nextPage}&pageSize={page_size}'
+            response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+            if response.status_code != 200:
+                print(f"get label ids failed {response.status_code}. Response payload: {response.content}")
+            else:
+                print("get label ids successful")
+            response_list = response.json()["items"]
+            for item in response_list:
+                label_ids.append(SubmittableLabel(item))
+
+        return label_ids
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
@@ -45,7 +62,7 @@ class Submittable:
         return response
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
@@ -67,7 +84,7 @@ class Submittable:
         return response.json()['labelId']
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getEntry(self, entry_id):
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
         headers  = {'Content-type': 'application/json'}
@@ -81,7 +98,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getInitialFormRequestId(self, subId):
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
@@ -167,7 +184,7 @@ class Submittable:
 
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
         collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
         collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
@@ -239,7 +256,7 @@ class Submittable:
 
     # get an individual submission
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
@@ -254,7 +271,7 @@ class Submittable:
 
     # get an individual submission
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
         endpoint       = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
@@ -268,7 +285,7 @@ class Submittable:
 
     # get an list of submissions
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getListOfSubmissions(self):
         submissions = []
         page_size   = 1
@@ -298,13 +315,15 @@ class Submittable:
         return submissions
 
     @sleep_and_retry
-    @limits(calls=10, period=0.25)
+    @limits(calls=10, period=1)
     def getReferenceResponses(self):
         ref_responses = []
         page_size     = 1
         endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        if response.status_code != 200:
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         total_pages = response.json()["totalPages"]
         for page in range(0, total_pages):
             if page == total_pages:
