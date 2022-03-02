@@ -31,7 +31,6 @@ class Submittable:
             logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         total_pages = response.json()["totalPages"]
 
-        print("get label ids", response)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -45,7 +44,6 @@ class Submittable:
             response_list = response.json()["items"]
             for item in response_list:
                 label_ids.append(SubmittableLabel(item))
-
         return label_ids
 
     @sleep_and_retry

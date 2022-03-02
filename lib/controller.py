@@ -60,16 +60,9 @@ class CreativesRebuildController:
             label_id = self.submittable.createNewLabel(sub_id)
             logger.info(f"duplicate UID new submission: {submission_id} with old submission: {sub_id}")
         except ValueError:
-            print("******%%%%*****%%%%%%****")
             label_id_list = self.submittable.getLabelIds()
             for id in label_id_list:
-                print(str(id.getName()), str(sub_id))
                 if str(id.getName()) == str(sub_id):
-                    print("******%%%%*****%%%%%%****")
-                    print("******%%%%*****%%%%%%****")
-                    print("******%%%%*****%%%%%%****")
-                    print("******%%%%*****%%%%%%****")
-                    print("******%%%%*****%%%%%%****")
                     label_id = id.getLabelId()
             logger.info(f"failed to create new submission id duplicate label for submission id {submission_id}")
 
