@@ -82,23 +82,40 @@ class CreativesRebuildController:
             for item in config.uid_data_struct:
                 if item["primary_unique_id"]   == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_1"] == uid_to_check:
+                elif item["collab_artist_unique_id_1"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_2"] == uid_to_check:
+                elif item["collab_artist_unique_id_2"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_3"] == uid_to_check:
+                elif item["collab_artist_unique_id_3"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_4"] == uid_to_check:
+                elif item["collab_artist_unique_id_4"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_5"] == uid_to_check:
+                elif item["collab_artist_unique_id_5"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_6"] == uid_to_check:
+                elif item["collab_artist_unique_id_6"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_7"] == uid_to_check:
+                elif item["collab_artist_unique_id_7"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_8"] == uid_to_check:
+                elif item["collab_artist_unique_id_8"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_9"] == uid_to_check:
+                elif item["collab_artist_unique_id_9"] == uid_to_check:
+                    return item["submission_id"]
+
+                elif item["collab_org_unique_id_1"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_2"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_3"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_4"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_5"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_6"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_7"] == uid_to_check:
+                    return item["submission_id"]
+                elif item["collab_org_unique_id_8"] == uid_to_check:
                     return item["submission_id"]
         else:
             return None
@@ -118,8 +135,9 @@ class CreativesRebuildController:
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
         list_of_submissions = self.submittable.getListOfSubmissions()
 
-        # get list of reference form responses
-        reference_responses = self.submittable.getReferenceResponses()
+        # get list of artist and organization reference form responses
+        artist_reference_responses = self.submittable.getReferenceResponses(config.artist_reference_form_id)
+        org_reference_responses    = self.submittable.getReferenceResponses(config.org_reference_form_id)
 
         for sub_item in list_of_submissions:
             project_id    = sub_item.getProjectId()
@@ -143,52 +161,92 @@ class CreativesRebuildController:
                     primary_zip        = None
                     primary_unique_id  = None
 
-                    collab_last_name_1 = None
-                    collab_dob_1       = None
-                    collab_zip_1       = None
-                    collab_unique_id_1 = None
+                    collab_artist_last_name_1 = None
+                    collab_artist_dob_1       = None
+                    collab_artist_zip_1       = None
+                    collab_artist_unique_id_1 = None
 
-                    collab_last_name_2 = None
-                    collab_dob_2       = None
-                    collab_zip_2       = None
-                    collab_unique_id_2 = None
+                    collab_artist_last_name_2 = None
+                    collab_artist_dob_2       = None
+                    collab_artist_zip_2       = None
+                    collab_artist_unique_id_2 = None
 
-                    collab_last_name_3 = None
-                    collab_dob_3       = None
-                    collab_zip_3       = None
-                    collab_unique_id_3 = None
+                    collab_artist_last_name_3 = None
+                    collab_artist_dob_3       = None
+                    collab_artist_zip_3       = None
+                    collab_artist_unique_id_3 = None
 
-                    collab_last_name_4 = None
-                    collab_dob_4       = None
-                    collab_zip_4       = None
-                    collab_unique_id_4 = None
+                    collab_artist_last_name_4 = None
+                    collab_artist_dob_4       = None
+                    collab_artist_zip_4       = None
+                    collab_artist_unique_id_4 = None
 
-                    collab_last_name_5 = None
-                    collab_dob_5       = None
-                    collab_zip_5       = None
-                    collab_unique_id_5 = None
+                    collab_artist_last_name_5 = None
+                    collab_artist_dob_5       = None
+                    collab_artist_zip_5       = None
+                    collab_artist_unique_id_5 = None
 
-                    collab_last_name_6 = None
-                    collab_dob_6       = None
-                    collab_zip_6       = None
-                    collab_unique_id_6 = None
+                    collab_artist_last_name_6 = None
+                    collab_artist_dob_6       = None
+                    collab_artist_zip_6       = None
+                    collab_artist_unique_id_6 = None
 
-                    collab_last_name_7 = None
-                    collab_dob_7       = None
-                    collab_zip_7       = None
-                    collab_unique_id_7 = None
+                    collab_artist_last_name_7 = None
+                    collab_artist_dob_7       = None
+                    collab_artist_zip_7       = None
+                    collab_artist_unique_id_7 = None
 
-                    collab_last_name_8 = None
-                    collab_dob_8       = None
-                    collab_zip_8       = None
-                    collab_unique_id_8 = None
+                    collab_artist_last_name_8 = None
+                    collab_artist_dob_8       = None
+                    collab_artist_zip_8       = None
+                    collab_artist_unique_id_8 = None
 
-                    collab_last_name_9 = None
-                    collab_dob_9       = None
-                    collab_zip_9       = None
-                    collab_unique_id_9 = None
+                    collab_artist_last_name_9 = None
+                    collab_artist_dob_9       = None
+                    collab_artist_zip_9       = None
+                    collab_artist_unique_id_9 = None
 
-                    id_list_check      = None
+                    # Organization Collaborators
+                    collab_org_last_name_1 = None
+                    collab_org_dob_1       = None
+                    collab_org_zip_1       = None
+                    collab_org_unique_id_1 = None
+
+                    collab_org_last_name_2 = None
+                    collab_org_dob_2       = None
+                    collab_org_zip_2       = None
+                    collab_org_unique_id_2 = None
+
+                    collab_org_last_name_3 = None
+                    collab_org_dob_3       = None
+                    collab_org_zip_3       = None
+                    collab_org_unique_id_3 = None
+
+                    collab_org_last_name_4 = None
+                    collab_org_dob_4       = None
+                    collab_org_zip_4       = None
+                    collab_org_unique_id_4 = None
+
+                    collab_org_last_name_5 = None
+                    collab_org_dob_5       = None
+                    collab_org_zip_5       = None
+                    collab_org_unique_id_5 = None
+
+                    collab_org_last_name_6 = None
+                    collab_org_dob_6       = None
+                    collab_org_zip_6       = None
+                    collab_org_unique_id_6 = None
+
+                    collab_org_last_name_7 = None
+                    collab_org_dob_7       = None
+                    collab_org_zip_7       = None
+                    collab_org_unique_id_7 = None
+
+                    collab_org_last_name_8 = None
+                    collab_org_dob_8       = None
+                    collab_org_zip_8       = None
+                    collab_org_unique_id_8 = None
+
 
                     # Pull the initial forms response data
                     field_data = response.getFieldData()
@@ -208,206 +266,383 @@ class CreativesRebuildController:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
                         # local variable used to pull latest reference response data
-                        date_1 = None
+                        date_ref_form_created = None
 
-                        # Reference from UIDs
-                        if field_id == config.reference_form_field_id_1:
-                            for resp in reference_responses:
+                        # Artist Reference from UIDs
+                        if field_id == config.artist_reference_form_field_id_1:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_1 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 1: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_1 = date_string[0:10]
+                                                collab_artist_dob_1 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
-                                        collab_unique_id_1 = collab_unique_id_1.replace(" ", "")
-                                        collab_unique_id_1 = collab_unique_id_1.replace("-", "")
-                                        logger.info(f"collab_unique_id_1: {collab_unique_id_1}")
+                                                collab_artist_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_1 = str(collab_artist_dob_1) + str(collab_artist_last_name_1) + str(collab_artist_zip_1)
+                                        collab_artist_unique_id_1 = collab_artist_unique_id_1.replace(" ", "")
+                                        collab_artist_unique_id_1 = collab_artist_unique_id_1.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_1: {collab_artist_unique_id_1}")
 
-                        if field_id == config.reference_form_field_id_2:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_2:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_2 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 2: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_2 = date_string[0:10]
+                                                collab_artist_dob_2 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
-                                        collab_unique_id_2 = collab_unique_id_2.replace(" ", "")
-                                        collab_unique_id_2 = collab_unique_id_2.replace("-", "")
-                                        logger.info(f"collab_unique_id_2: {collab_unique_id_2}")
+                                                collab_artist_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_2 = str(collab_artist_dob_2) + str(collab_artist_last_name_2) + str(collab_artist_zip_2)
+                                        collab_artist_unique_id_2 = collab_artist_unique_id_2.replace(" ", "")
+                                        collab_artist_unique_id_2 = collab_artist_unique_id_2.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_2: {collab_artist_unique_id_2}")
 
-                        if field_id == config.reference_form_field_id_3:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_3:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_3 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 3: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_3 = date_string[0:10]
+                                                collab_artist_dob_3 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
-                                        collab_unique_id_3 = collab_unique_id_3.replace(" ", "")
-                                        collab_unique_id_3 = collab_unique_id_3.replace("-", "")
-                                        logger.info(f"collab_unique_id_3: {collab_unique_id_3}")
+                                                collab_artist_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_3 = str(collab_artist_dob_3) + str(collab_artist_last_name_3) + str(collab_artist_zip_3)
+                                        collab_artist_unique_id_3 = collab_artist_unique_id_3.replace(" ", "")
+                                        collab_artist_unique_id_3 = collab_artist_unique_id_3.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_3: {collab_artist_unique_id_3}")
 
-                        if field_id == config.reference_form_field_id_4:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_4:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_4 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 4: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_4 = date_string[0:10]
+                                                collab_artist_dob_4 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
-                                        collab_unique_id_4 = collab_unique_id_4.replace(" ", "")
-                                        collab_unique_id_4 = collab_unique_id_4.replace("-", "")
-                                        logger.info(f"collab_unique_id_4: {collab_unique_id_4}")
+                                                collab_artist_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_4 = str(collab_artist_dob_4) + str(collab_artist_last_name_4) + str(collab_artist_zip_4)
+                                        collab_artist_unique_id_4 = collab_artist_unique_id_4.replace(" ", "")
+                                        collab_artist_unique_id_4 = collab_artist_unique_id_4.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_4: {collab_artist_unique_id_4}")
 
-                        if field_id == config.reference_form_field_id_5:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_5:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_5 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 5: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_5 = date_string[0:10]
+                                                collab_artist_dob_5 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
-                                        collab_unique_id_5 = collab_unique_id_5.replace(" ", "")
-                                        collab_unique_id_5 = collab_unique_id_5.replace("-", "")
-                                        logger.info("collab_unique_id_5: {collab_unique_id_5}")
+                                                collab_artist_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_5 = str(collab_artist_dob_5) + str(collab_artist_last_name_5) + str(collab_artist_zip_5)
+                                        collab_artist_unique_id_5 = collab_artist_unique_id_5.replace(" ", "")
+                                        collab_artist_unique_id_5 = collab_artist_unique_id_5.replace("-", "")
+                                        logger.info("collab_artist_unique_id_5: {collab_artist_unique_id_5}")
 
-                        if field_id == config.reference_form_field_id_6:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_6:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_6 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 6: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_6 = date_string[0:10]
+                                                collab_artist_dob_6 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_6 = str(collab_dob_6) + str(collab_last_name_6) + str(collab_zip_6)
-                                        collab_unique_id_6 = collab_unique_id_6.replace(" ", "")
-                                        collab_unique_id_6 = collab_unique_id_6.replace("-", "")
-                                        logger.info(f"collab_unique_id_6: {collab_unique_id_6}")
+                                                collab_artist_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_6 = str(collab_artist_dob_6) + str(collab_artist_last_name_6) + str(collab_artist_zip_6)
+                                        collab_artist_unique_id_6 = collab_artist_unique_id_6.replace(" ", "")
+                                        collab_artist_unique_id_6 = collab_artist_unique_id_6.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_6: {collab_artist_unique_id_6}")
 
-                        if field_id == config.reference_form_field_id_7:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_7:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_7 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 7: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_7 = date_string[0:10]
+                                                collab_artist_dob_7 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
-                                        collab_unique_id_7 = collab_unique_id_7.replace(" ", "")
-                                        collab_unique_id_7 = collab_unique_id_7.replace("-", "")
-                                        logger.info(f"collab_unique_id_7: {collab_unique_id_7}")
+                                                collab_artist_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_7 = str(collab_artist_dob_7) + str(collab_artist_last_name_7) + str(collab_artist_zip_7)
+                                        collab_artist_unique_id_7 = collab_artist_unique_id_7.replace(" ", "")
+                                        collab_artist_unique_id_7 = collab_artist_unique_id_7.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_7: {collab_artist_unique_id_7}")
 
-                        if field_id == config.reference_form_field_id_8:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_8:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_8 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_8 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 8: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_8 = date_string[0:10]
+                                                collab_artist_dob_8 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
-                                        collab_unique_id_8 = collab_unique_id_8.replace(" ", "")
-                                        collab_unique_id_8 = collab_unique_id_8.replace("-", "")
-                                        logger.info(f"collab_unique_id_8: {collab_unique_id_8}")
+                                                collab_artist_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_8 = str(collab_artist_dob_8) + str(collab_artist_last_name_8) + str(collab_artist_zip_8)
+                                        collab_artist_unique_id_8 = collab_artist_unique_id_8.replace(" ", "")
+                                        collab_artist_unique_id_8 = collab_artist_unique_id_8.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_8: {collab_artist_unique_id_8}")
 
-                        if field_id == config.reference_form_field_id_9:
-                            for resp in reference_responses:
+                        if field_id == config.artist_reference_form_field_id_9:
+                            for resp in artist_reference_responses:
                                 logger.info(f"ref response refEmail 9: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
+                                if resp.getFormFieldId() == config.artist_reference_form_field_id_9 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
                                             logger.info(f"ref form data 9: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
-                                                collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                                collab_artist_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
                                             elif item_id == config.reference_form_dob_id:
                                                 date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_9 = date_string[0:10]
+                                                collab_artist_dob_9 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
-                                        collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
-                                        collab_unique_id_9 = collab_unique_id_9.replace("-", "")
-                                        logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
+                                                collab_artist_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_artist_unique_id_9 = str(collab_artist_dob_9) + str(collab_artist_last_name_9) + str(collab_artist_zip_9)
+                                        collab_artist_unique_id_9 = collab_artist_unique_id_9.replace(" ", "")
+                                        collab_artist_unique_id_9 = collab_artist_unique_id_9.replace("-", "")
+                                        logger.info(f"collab_artist_unique_id_9: {collab_artist_unique_id_9}")
+
+                        # Organization Reference from UIDs
+                        if field_id == config.org_reference_form_field_id_1:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_1 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 1: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_1 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_1 = str(collab_org_dob_1) + str(collab_org_last_name_1) + str(collab_org_zip_1)
+                                        collab_org_unique_id_1 = collab_org_unique_id_1.replace(" ", "")
+                                        collab_org_unique_id_1 = collab_org_unique_id_1.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_1: {collab_org_unique_id_1}")
+
+                        if field_id == config.org_reference_form_field_id_2:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_2 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 2: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_2 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_2 = str(collab_org_dob_2) + str(collab_org_last_name_2) + str(collab_org_zip_2)
+                                        collab_org_unique_id_2 = collab_org_unique_id_2.replace(" ", "")
+                                        collab_org_unique_id_2 = collab_org_unique_id_2.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_2: {collab_org_unique_id_2}")
+
+                        if field_id == config.org_reference_form_field_id_3:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_3 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 3: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_3 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_3 = str(collab_org_dob_3) + str(collab_org_last_name_3) + str(collab_org_zip_3)
+                                        collab_org_unique_id_3 = collab_org_unique_id_3.replace(" ", "")
+                                        collab_org_unique_id_3 = collab_org_unique_id_3.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_3: {collab_org_unique_id_3}")
+
+                        if field_id == config.org_reference_form_field_id_4:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_4 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 4: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_4 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_4 = str(collab_org_dob_4) + str(collab_org_last_name_4) + str(collab_org_zip_4)
+                                        collab_org_unique_id_4 = collab_org_unique_id_4.replace(" ", "")
+                                        collab_org_unique_id_4 = collab_org_unique_id_4.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_4: {collab_org_unique_id_4}")
+
+                        if field_id == config.org_reference_form_field_id_5:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_5 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 5: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_5 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_5 = str(collab_org_dob_5) + str(collab_org_last_name_5) + str(collab_org_zip_5)
+                                        collab_org_unique_id_5 = collab_org_unique_id_5.replace(" ", "")
+                                        collab_org_unique_id_5 = collab_org_unique_id_5.replace("-", "")
+                                        logger.info("collab_org_unique_id_5: {collab_org_unique_id_5}")
+
+                        if field_id == config.org_reference_form_field_id_6:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_6 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 6: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_6 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_6 = str(collab_org_dob_6) + str(collab_org_last_name_6) + str(collab_org_zip_6)
+                                        collab_org_unique_id_6 = collab_org_unique_id_6.replace(" ", "")
+                                        collab_org_unique_id_6 = collab_org_unique_id_6.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_6: {collab_org_unique_id_6}")
+
+                        if field_id == config.org_reference_form_field_id_7:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_7 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 7: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_7 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_7 = str(collab_org_dob_7) + str(collab_org_last_name_7) + str(collab_org_zip_7)
+                                        collab_org_unique_id_7 = collab_org_unique_id_7.replace(" ", "")
+                                        collab_org_unique_id_7 = collab_org_unique_id_7.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_7: {collab_org_unique_id_7}")
+
+                        if field_id == config.org_reference_form_field_id_8:
+                            for resp in org_reference_responses:
+                                logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id_8 and ref_email == resp.getRefEmail():
+                                    if date_ref_form_created is None or date_ref_form_created < resp.getCreatedAt():
+                                        date_ref_form_created = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"ref form data 8: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                collab_org_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_org_dob_8 = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                collab_org_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_org_unique_id_8 = str(collab_org_dob_8) + str(collab_org_last_name_8) + str(collab_org_zip_8)
+                                        collab_org_unique_id_8 = collab_org_unique_id_8.replace(" ", "")
+                                        collab_org_unique_id_8 = collab_org_unique_id_8.replace("-", "")
+                                        logger.info(f"collab_org_unique_id_8: {collab_org_unique_id_8}")
 
                     # create the primary UID
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
@@ -417,11 +652,12 @@ class CreativesRebuildController:
                         logger.info(f"project 1 - primary_unique_id: {primary_unique_id}")
 
                     # check for duplicate collaborator ids internal to the submission
-                    id_list_check = [primary_unique_id, collab_unique_id_1,
-                                     collab_unique_id_2, collab_unique_id_3,
-                                     collab_unique_id_4, collab_unique_id_5,
-                                     collab_unique_id_6, collab_unique_id_7,
-                                     collab_unique_id_8, collab_unique_id_9]
+                    id_list_check = [primary_unique_id,         collab_artist_unique_id_1, collab_artist_unique_id_2,
+                                     collab_artist_unique_id_3, collab_artist_unique_id_4, collab_artist_unique_id_5,
+                                     collab_artist_unique_id_6, collab_artist_unique_id_7, collab_artist_unique_id_8,
+                                     collab_artist_unique_id_9, collab_org_unique_id_1,    collab_org_unique_id_2,
+                                     collab_org_unique_id_3,    collab_org_unique_id_4,    collab_org_unique_id_5,
+                                     collab_org_unique_id_6,    collab_org_unique_id_7,    collab_org_unique_id_8]
 
                     logger.info(f"id list: {id_list_check}")
 
@@ -443,64 +679,106 @@ class CreativesRebuildController:
 
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         try:
-                            self.submittable.submitInternalFormResponse(submission_id, primary_unique_id, collab_unique_id_1,
-                                                                        collab_unique_id_2, collab_unique_id_3, collab_unique_id_4,
-                                                                        collab_unique_id_5, collab_unique_id_6, collab_unique_id_7,
-                                                                        collab_unique_id_8, collab_unique_id_9)
+                            self.submittable.submitInternalFormResponse(submission_id, primary_unique_id, collab_artist_unique_id_1,
+                                                                        collab_artist_unique_id_2, collab_artist_unique_id_3, collab_artist_unique_id_4,
+                                                                        collab_artist_unique_id_5, collab_artist_unique_id_6, collab_artist_unique_id_7,
+                                                                        collab_artist_unique_id_8, collab_artist_unique_id_9, collab_org_unique_id_1,
+                                                                        collab_org_unique_id_2, collab_org_unique_id_3, collab_org_unique_id_4,
+                                                                        collab_org_unique_id_5, collab_org_unique_id_6, collab_org_unique_id_7,
+                                                                        collab_org_unique_id_8)
 
                         except:
                             logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
 
                         # check if UID already exist in list of dicts
-                        uid_check_sub_id_1  = self.uid_chcek(primary_unique_id)
-                        uid_check_sub_id_2  = self.uid_chcek(collab_unique_id_1)
-                        uid_check_sub_id_3  = self.uid_chcek(collab_unique_id_2)
-                        uid_check_sub_id_4  = self.uid_chcek(collab_unique_id_3)
-                        uid_check_sub_id_5  = self.uid_chcek(collab_unique_id_4)
-                        uid_check_sub_id_6  = self.uid_chcek(collab_unique_id_5)
-                        uid_check_sub_id_7  = self.uid_chcek(collab_unique_id_6)
-                        uid_check_sub_id_8  = self.uid_chcek(collab_unique_id_7)
-                        uid_check_sub_id_9  = self.uid_chcek(collab_unique_id_8)
-                        uid_check_sub_id_10 = self.uid_chcek(collab_unique_id_9)
+                        artist_uid_check_sub_id_1  = self.uid_chcek(primary_unique_id)
+                        artist_uid_check_sub_id_2  = self.uid_chcek(collab_artist_unique_id_1)
+                        artist_uid_check_sub_id_3  = self.uid_chcek(collab_artist_unique_id_2)
+                        artist_uid_check_sub_id_4  = self.uid_chcek(collab_artist_unique_id_3)
+                        artist_uid_check_sub_id_5  = self.uid_chcek(collab_artist_unique_id_4)
+                        artist_uid_check_sub_id_6  = self.uid_chcek(collab_artist_unique_id_5)
+                        artist_uid_check_sub_id_7  = self.uid_chcek(collab_artist_unique_id_6)
+                        artist_uid_check_sub_id_8  = self.uid_chcek(collab_artist_unique_id_7)
+                        artist_uid_check_sub_id_9  = self.uid_chcek(collab_artist_unique_id_8)
+                        artist_uid_check_sub_id_10 = self.uid_chcek(collab_artist_unique_id_9)
 
-                        if uid_check_sub_id_1 is not None:
+
+                        org_uid_check_sub_id_1 = self.uid_chcek(collab_org_unique_id_1)
+                        org_uid_check_sub_id_2 = self.uid_chcek(collab_org_unique_id_2)
+                        org_uid_check_sub_id_3 = self.uid_chcek(collab_org_unique_id_3)
+                        org_uid_check_sub_id_4 = self.uid_chcek(collab_org_unique_id_4)
+                        org_uid_check_sub_id_5 = self.uid_chcek(collab_org_unique_id_5)
+                        org_uid_check_sub_id_6 = self.uid_chcek(collab_org_unique_id_6)
+                        org_uid_check_sub_id_7 = self.uid_chcek(collab_org_unique_id_7)
+                        org_uid_check_sub_id_8 = self.uid_chcek(collab_org_unique_id_8)
+
+                        if artist_uid_check_sub_id_1 is not None:
                             print("project 1 - dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_1)
-                        elif uid_check_sub_id_2 is not None:
-                            print(f"project 1 - collab_unique_id_2 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_2)
-                        elif uid_check_sub_id_3 is not None:
-                            print("project 1 - collab_unique_id_3 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_3)
-                        elif uid_check_sub_id_4 is not None:
-                            print("project 1 - collab_unique_id_4 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_4)
-                        elif uid_check_sub_id_5 is not None:
-                            print("project 1 - collab_unique_id_5 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_5)
-                        elif uid_check_sub_id_6 is not None:
-                            print("project 1 - collab_unique_id_6 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_6)
-                        elif uid_check_sub_id_7 is not None:
-                            print("project 1 - collab_unique_id_7 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_7)
-                        elif uid_check_sub_id_8 is not None:
-                            print("project 1 - collab_unique_id_7 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_8)
-                        elif uid_check_sub_id_9 is not None:
-                            print("project 1 - collab_unique_id_8 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_9)
-                        elif uid_check_sub_id_10 is not None:
-                            print("project 1 - collab_unique_id_9 dup found")
-                            self.label_dups(submission_id, uid_check_sub_id_10)
+                            self.label_dups(submission_id, artist_uid_check_sub_id_1)
+                        elif artist_uid_check_sub_id_2 is not None:
+                            print(f"project 1 - collab_artist_unique_id_2 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_2)
+                        elif artist_uid_check_sub_id_3 is not None:
+                            print("project 1 - collab_artist_unique_id_3 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_3)
+                        elif artist_uid_check_sub_id_4 is not None:
+                            print("project 1 - collab_artist_unique_id_4 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_4)
+                        elif artist_uid_check_sub_id_5 is not None:
+                            print("project 1 - collab_artist_unique_id_5 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_5)
+                        elif artist_uid_check_sub_id_6 is not None:
+                            print("project 1 - collab_artist_unique_id_6 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_6)
+                        elif artist_uid_check_sub_id_7 is not None:
+                            print("project 1 - collab_artist_unique_id_7 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_7)
+                        elif artist_uid_check_sub_id_8 is not None:
+                            print("project 1 - collab_artist_unique_id_7 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_8)
+                        elif artist_uid_check_sub_id_9 is not None:
+                            print("project 1 - collab_artist_unique_id_8 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_9)
+                        elif artist_uid_check_sub_id_10 is not None:
+                            print("project 1 - collab_artist_unique_id_9 dup found")
+                            self.label_dups(submission_id, artist_uid_check_sub_id_10)
+                        elif org_uid_check_sub_id_1 is not None:
+                            print("project 1 - dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_1)
+                        elif org_uid_check_sub_id_2 is not None:
+                            print(f"project 1 - collab_org_unique_id_2 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_2)
+                        elif org_uid_check_sub_id_3 is not None:
+                            print("project 1 - collab_org_unique_id_3 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_3)
+                        elif org_uid_check_sub_id_4 is not None:
+                            print("project 1 - collab_org_unique_id_4 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_4)
+                        elif org_uid_check_sub_id_5 is not None:
+                            print("project 1 - collab_org_unique_id_5 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_5)
+                        elif org_uid_check_sub_id_6 is not None:
+                            print("project 1 - collab_org_unique_id_6 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_6)
+                        elif org_uid_check_sub_id_7 is not None:
+                            print("project 1 - collab_org_unique_id_7 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_7)
+                        elif org_uid_check_sub_id_8 is not None:
+                            print("project 1 - collab_org_unique_id_7 dup found")
+                            self.label_dups(submission_id, org_uid_check_sub_id_8)
 
                         logger.info(f"project 1 - save to dict")
                         config.uid_data_struct.append({'submission_id':      submission_id,      'primary_unique_id':  primary_unique_id,
-                                                       'collab_unique_id_1': collab_unique_id_1, 'collab_unique_id_2': collab_unique_id_2,
-                                                       'collab_unique_id_3': collab_unique_id_3, 'collab_unique_id_4': collab_unique_id_4,
-                                                       'collab_unique_id_5': collab_unique_id_5, 'collab_unique_id_6': collab_unique_id_6,
-                                                       'collab_unique_id_7': collab_unique_id_7, 'collab_unique_id_8': collab_unique_id_8,
-                                                       'collab_unique_id_9': collab_unique_id_9})
+                                                       'collab_artist_unique_id_1': collab_artist_unique_id_1, 'collab_artist_unique_id_2': collab_artist_unique_id_2,
+                                                       'collab_artist_unique_id_3': collab_artist_unique_id_3, 'collab_artist_unique_id_4': collab_artist_unique_id_4,
+                                                       'collab_artist_unique_id_5': collab_artist_unique_id_5, 'collab_artist_unique_id_6': collab_artist_unique_id_6,
+                                                       'collab_artist_unique_id_7': collab_artist_unique_id_7, 'collab_artist_unique_id_8': collab_artist_unique_id_8,
+                                                       'collab_artist_unique_id_9': collab_artist_unique_id_9, 'collab_org_unique_id_1':    collab_org_unique_id_1,
+                                                       'collab_org_unique_id_2':    collab_org_unique_id_2,    'collab_org_unique_id_3':    collab_org_unique_id_3,
+                                                       'collab_org_unique_id_4':    collab_org_unique_id_4,    'collab_org_unique_id_5':    collab_org_unique_id_5,
+                                                       'collab_org_unique_id_6':    collab_org_unique_id_6,    'collab_org_unique_id_7':    collab_org_unique_id_7,
+                                                       'collab_org_unique_id_8':    collab_org_unique_id_8,
+                                                       })
 
 
                         # go to next response
@@ -560,18 +838,22 @@ class CreativesRebuildController:
                                 logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
 
                             # check if uid already exist in list of dicts
-                            uid_check_sub_id_1 = self.uid_chcek(primary_unique_id)
-                            if uid_check_sub_id_1 is not None:
+                            uid_check_sub_id = self.uid_chcek(primary_unique_id)
+                            if uid_check_sub_id is not None:
                                 logger.info(f"project 2 - dup found")
-                                self.label_dups(submission_id, uid_check_sub_id_1)
+                                self.label_dups(submission_id, uid_check_sub_id)
 
                             logger.info(f"project 2 - save to dict")
                             config.uid_data_struct.append({'submission_id': submission_id, 'primary_unique_id':  primary_unique_id,
-                                                           'collab_unique_id_1': None,     'collab_unique_id_2': None,
-                                                           'collab_unique_id_3': None,     'collab_unique_id_4': None,
-                                                           'collab_unique_id_5': None,     'collab_unique_id_6': None,
-                                                           'collab_unique_id_7': None,     'collab_unique_id_8': None,
-                                                           'collab_unique_id_9': None})
+                                                           'collab_artist_unique_id_1': None,     'collab_artist_unique_id_2': None,
+                                                           'collab_artist_unique_id_3': None,     'collab_artist_unique_id_4': None,
+                                                           'collab_artist_unique_id_5': None,     'collab_artist_unique_id_6': None,
+                                                           'collab_artist_unique_id_7': None,     'collab_artist_unique_id_8': None,
+                                                           'collab_artist_unique_id_9': None,     'collab_org_unique_id_1':    None,
+                                                           'collab_org_uunique_id_2':   None,     'collab_org_uunique_id_3':   None,
+                                                           'collab_org_uunique_id_4':   None,     'collab_org_uunique_id_5':   None,
+                                                           'collab_org_uunique_id_6':   None,     'collab_org_uunique_id_7':   None,
+                                                           'collab_org_uunique_id_8':   None})
                             break
                         else:
                             # skip submission missing UID field(s)

@@ -110,64 +110,106 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
-                                   collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-                                   collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
+    def submitInternalFormResponse(self, submission_id, primary_unique_id, collab_artist_unique_id_1=None, collab_artist_unique_id_2=None,
+                                   collab_artist_unique_id_3=None, collab_artist_unique_id_4=None, collab_artist_unique_id_5=None, collab_artist_unique_id_6=None,
+                                   collab_artist_unique_id_7=None, collab_artist_unique_id_8=None, collab_artist_unique_id_9=None, collab_org_unique_id_1=None,
+                                   collab_org_unique_id_2=None, collab_org_unique_id_3=None, collab_org_unique_id_4=None,
+                                   collab_org_unique_id_5=None,collab_org_unique_id_6=None, collab_org_unique_id_7=None,
+                                   collab_org_unique_id_8 =None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
                    "fieldData": [
                        {
                            "fieldType":   "short_answer",
-                           "formFieldId": config.internal_form_field_id_1,
+                           "formFieldId": config.artist_internal_form_field_id_1,
                            "value":       primary_unique_id
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_2,
-                           "value": collab_unique_id_1
+                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "value": collab_artist_unique_id_1
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_3,
-                           "value": collab_unique_id_2
+                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "value": collab_artist_unique_id_2
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_4,
-                           "value": collab_unique_id_3
+                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "value": collab_artist_unique_id_3
                        },
                        {
                            "fieldType":   "short_answer",
-                           "formFieldId": config.internal_form_field_id_5,
-                           "value": collab_unique_id_4
+                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "value": collab_artist_unique_id_4
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_6,
-                           "value": collab_unique_id_5
+                           "formFieldId": config.artist_internal_form_field_id_6,
+                           "value": collab_artist_unique_id_5
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_7,
-                           "value": collab_unique_id_6
+                           "formFieldId": config.artist_internal_form_field_id_7,
+                           "value": collab_artist_unique_id_6
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_8,
-                           "value": collab_unique_id_7
+                           "formFieldId": config.artist_internal_form_field_id_8,
+                           "value": collab_artist_unique_id_7
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_9,
-                           "value": collab_unique_id_8
+                           "formFieldId": config.artist_internal_form_field_id_9,
+                           "value": collab_artist_unique_id_8
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_10,
-                           "value": collab_unique_id_9
+                           "formFieldId": config.artist_internal_form_field_id_10,
+                           "value": collab_artist_unique_id_9
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_1,
+                           "value": collab_org_unique_id_1
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "value": collab_org_unique_id_2
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "value": collab_org_unique_id_3
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "value": collab_org_unique_id_4
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "value": collab_org_unique_id_5
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_6,
+                           "value": collab_org_unique_id_6
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_7,
+                           "value": collab_org_unique_id_7
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_8,
+                           "value": collab_org_unique_id_8
                        }
-
                    ]
                    }
         payload  = json.dumps(payload)
@@ -183,63 +225,106 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
-        collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-        collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
+    def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_artist_unique_id_1=None, collab_artist_unique_id_2=None,
+                                   collab_artist_unique_id_3=None, collab_artist_unique_id_4=None, collab_artist_unique_id_5=None, collab_artist_unique_id_6=None,
+                                   collab_artist_unique_id_7=None, collab_artist_unique_id_8=None, collab_artist_unique_id_9=None, collab_org_unique_id_1=None,
+                                   collab_org_unique_id_2=None,    collab_org_unique_id_3=None,    collab_org_unique_id_4=None,
+                                   collab_org_unique_id_5=None,    collab_org_unique_id_6=None,    collab_org_unique_id_7=None,
+                                   collab_org_unique_id_8 =None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "internal",
                    "fieldData": [
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_1,
-                            "value": primary_unique_id
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_2,
-                            "value": collab_unique_id_1
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_3,
-                            "value": collab_unique_id_2
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_4,
-                            "value": collab_unique_id_3
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_5,
-                            "value": collab_unique_id_4
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_6,
-                            "value": collab_unique_id_5
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_7,
-                            "value": collab_unique_id_6
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_8,
-                            "value": collab_unique_id_7
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_9,
-                            "value": collab_unique_id_8
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_10,
-                            "value": collab_unique_id_9
-                        }
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_1,
+                           "value": primary_unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "value": collab_artist_unique_id_1
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "value": collab_artist_unique_id_2
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "value": collab_artist_unique_id_3
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "value": collab_artist_unique_id_4
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_6,
+                           "value": collab_artist_unique_id_5
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_7,
+                           "value": collab_artist_unique_id_6
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_8,
+                           "value": collab_artist_unique_id_7
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_9,
+                           "value": collab_artist_unique_id_8
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_10,
+                           "value": collab_artist_unique_id_9
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_1,
+                           "value": collab_org_unique_id_1
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "value": collab_org_unique_id_2
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "value": collab_org_unique_id_3
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "value": collab_org_unique_id_4
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "value": collab_org_unique_id_5
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_6,
+                           "value": collab_org_unique_id_6
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_7,
+                           "value": collab_org_unique_id_7
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.org_internal_form_field_id_8,
+                           "value": collab_org_unique_id_8
+                       }
                     ]
                 }
         payload  = json.dumps(payload)
@@ -314,10 +399,10 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getReferenceResponses(self):
+    def getReferenceResponses(self, ref_form_id):
         ref_responses = []
         page_size     = 1
-        endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page=1&pageSize={page_size}'
+        endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
@@ -327,7 +412,7 @@ class Submittable:
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize={page_size}'
+            endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             print("ref form resp", response.json())
