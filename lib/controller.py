@@ -112,11 +112,14 @@ class CreativesRebuildController:
     # save into database
     #
     def checkForDupUID(self):
-        logger.info(f"loading artists into database")
+        logger.info(f"checking artists")
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
         list_of_submissions = self.submittable.getListOfSubmissions()
+
+        # get list of reference form responses
+        reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
             project_id    = sub_item.getProjectId()
@@ -131,9 +134,6 @@ class CreativesRebuildController:
                 logger.info("project 1 - Submission")
                 ref_email = sub_response.getSubmitterEmail()
                 logger.info(f"ref email is: {ref_email}")
-
-                # get list of reference form responses
-                reference_responses = self.submittable.getReferenceResponses()
 
                 # go through initial form response list
                 for response in response_list:
