@@ -7,6 +7,6 @@ RUN python3 -m venv /venv
 CMD source venv/bin/activate
 # RUN pipenv install --deploy --ignore-pipfile
 RUN pip install -r requirements.txt
-CMD run python main.py
+CMD run python3 main.py
 
 # docker run creatives:latest
