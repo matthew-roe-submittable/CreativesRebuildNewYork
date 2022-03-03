@@ -11,9 +11,8 @@ mysql_conn = mysql.connector.connect(user=mysql_user,
                                      database=mysql_db)
 
 # ------------------------------ LIVE ACCOUNT SETTINGS ------------------------------ #
-'''
 # live account API key
-# submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
+submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
 
 # Project: AEP
 project_id_1                = "f5b5299e-149b-40fe-9764-f41fa3c57330"
@@ -71,11 +70,11 @@ label_id_1 = "320527"
 label_id_2 = ""
 # label "Pending Duplicate"
 label_id_3 = ""
-'''
 
+'''
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 # demo account
-submittable_token           = "700b04eccae244679785a0e8f13c786e"
+# submittable_token           = "700b04eccae244679785a0e8f13c786e"
 # Demo Account
 # Project: AEP demo project
 project_id_1                = "1903ba4a-2cd2-4b55-9caa-b2ec58237955"
@@ -134,13 +133,14 @@ label_id_1 = "317972"
 # label "Not Awarded Duplicate"
 label_id_2 = "317973"
 
-# label "P"ending Duplicate"
+# label "Pending Duplicate"
 label_id_3 = "317972"
 
 # Data structure to replace Database
 # volatile memory used and thrown away
 # list of dicts
 uid_data_struct = []
+'''
 
 # dict structure
 """

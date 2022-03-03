@@ -8,7 +8,7 @@ echo "Creatives Rebuild New York starting"
 
 # echo "Subject: Creatives Rebuild New York  running" | sendmail -v jesse.finneman@submittable.com
 
-docker run CreativesRebuildNewYork:latest
+docker run creativesrebuildnewyork:latest
 
 date
 
