@@ -4,7 +4,6 @@ import logging
 
 logger = logging.getLogger("logfile")
 
-
 #
 # Main - starting point
 #
