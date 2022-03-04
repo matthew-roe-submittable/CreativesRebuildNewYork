@@ -137,6 +137,11 @@ reference_form_name_id      = "0182623d-9114-4304-95ed-b2f9abd0ee6b"
 reference_form_dob_id       = "a6c73923-316c-4e50-8b5a-379bc9225111"
 reference_form_zipcode_id   = "a0936d07-ecc6-4031-ba5a-fc7da24f0526"
 
+org_reference_form_name_id     = "2d6b1afc-53e8-440b-802a-5ceec7488a94"
+# no dob field re-used zip field
+org_reference_form_dob_id      = "a2b4650e-6a2b-4787-8b70-29fc7663893f"
+org_reference_form_zipcode_id  = "a2b4650e-6a2b-4787-8b70-29fc7663893f"
+
 # Project: GI demo project
 project_id_2                 = "cc425384-5ee6-4063-8642-3155383a6bd1"
 project_2_formId             = "167be692-282c-46c4-baa7-0e8645fdfd89"
