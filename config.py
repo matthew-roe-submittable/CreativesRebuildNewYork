@@ -25,7 +25,8 @@ project_1_artist_zipcode    = "254429d2-640b-4c8b-9839-73c3e5ba12a7"
 project_1_artist_dob        = "a3c4efb3-c45b-4efc-bee5-6b5c94ed2592"
 
 # Collaboratives Artist Reference
-reference_form_id           = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
+org_reference_form_id    = "8990f98a-7f90-49e8-819e-ef100781e11c"
+artist_reference_form_id = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
 reference_form_field_id_1    = "2f5df106-e782-422b-9c39-a3345788b715"

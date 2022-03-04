@@ -317,7 +317,7 @@ class Submittable:
     def getReferenceResponses(self):
         ref_responses = []
         page_size     = 1
-        endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page=1&pageSize={page_size}'
+        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
@@ -327,7 +327,7 @@ class Submittable:
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.artist_collab_reference_form}?page={nextPage}&pageSize={page_size}'
+            endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             print("ref form resp", response.json())
