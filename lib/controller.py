@@ -7,7 +7,7 @@ import sys
 file_formatter = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -27,11 +27,12 @@ class CreativesRebuildController:
 
     def __init__(self):
         self.submittable  = Submittable()
-        self.project_id_1 = config.project_id_1
-        self.project_id_2 = config.project_id_2
-        self.label_id_1   = config.label_id_1
-        self.label_id_2   = config.label_id_2
-        self.label_id_3   = config.label_id_3
+        self.project_id_1     = config.project_id_1
+        self.project_id_2     = config.project_id_2
+        self.label_id_1       = config.label_id_1
+        self.label_id_2       = config.label_id_2
+        self.label_id_3       = config.label_id_3
+        self.uid_data_struct  = []
 
 
     def addLabel(self, submission_id, label_id):
@@ -76,10 +77,10 @@ class CreativesRebuildController:
 
     # UID - DOB-LASTNAME-ZIP
     def uid_chcek(self, uid_to_check):
-        logger.info(f"uid check run {uid_to_check}, list: {config.uid_data_struct}")
+        logger.info(f"uid check run {uid_to_check}, list: {self.uid_data_struct}")
 
-        if uid_to_check is not None and config.uid_data_struct != []:
-            for item in config.uid_data_struct:
+        if uid_to_check is not None and self.uid_data_struct != []:
+            for item in self.uid_data_struct:
                 if item["primary_unique_id"]   == uid_to_check:
                     return item["submission_id"]
                 elif item["collab_artist_unique_id_1"] == uid_to_check:
@@ -100,7 +101,6 @@ class CreativesRebuildController:
                     return item["submission_id"]
                 elif item["collab_artist_unique_id_9"] == uid_to_check:
                     return item["submission_id"]
-
                 elif item["collab_org_unique_id_1"] == uid_to_check:
                     return item["submission_id"]
                 elif item["collab_org_unique_id_2"] == uid_to_check:
@@ -701,19 +701,18 @@ class CreativesRebuildController:
                         artist_uid_check_sub_id_8  = self.uid_chcek(collab_artist_unique_id_7)
                         artist_uid_check_sub_id_9  = self.uid_chcek(collab_artist_unique_id_8)
                         artist_uid_check_sub_id_10 = self.uid_chcek(collab_artist_unique_id_9)
-
-
-                        org_uid_check_sub_id_1 = self.uid_chcek(collab_org_unique_id_1)
-                        org_uid_check_sub_id_2 = self.uid_chcek(collab_org_unique_id_2)
-                        org_uid_check_sub_id_3 = self.uid_chcek(collab_org_unique_id_3)
-                        org_uid_check_sub_id_4 = self.uid_chcek(collab_org_unique_id_4)
-                        org_uid_check_sub_id_5 = self.uid_chcek(collab_org_unique_id_5)
-                        org_uid_check_sub_id_6 = self.uid_chcek(collab_org_unique_id_6)
-                        org_uid_check_sub_id_7 = self.uid_chcek(collab_org_unique_id_7)
-                        org_uid_check_sub_id_8 = self.uid_chcek(collab_org_unique_id_8)
+                        # Org UID Check
+                        org_uid_check_sub_id_1     = self.uid_chcek(collab_org_unique_id_1)
+                        org_uid_check_sub_id_2     = self.uid_chcek(collab_org_unique_id_2)
+                        org_uid_check_sub_id_3     = self.uid_chcek(collab_org_unique_id_3)
+                        org_uid_check_sub_id_4     = self.uid_chcek(collab_org_unique_id_4)
+                        org_uid_check_sub_id_5     = self.uid_chcek(collab_org_unique_id_5)
+                        org_uid_check_sub_id_6     = self.uid_chcek(collab_org_unique_id_6)
+                        org_uid_check_sub_id_7     = self.uid_chcek(collab_org_unique_id_7)
+                        org_uid_check_sub_id_8     = self.uid_chcek(collab_org_unique_id_8)
 
                         if artist_uid_check_sub_id_1 is not None:
-                            print("project 1 - dup found")
+                            print("project 1 - primary artist dup found")
                             self.label_dups(submission_id, artist_uid_check_sub_id_1)
                         elif artist_uid_check_sub_id_2 is not None:
                             print(f"project 1 - collab_artist_unique_id_2 dup found")
@@ -742,8 +741,9 @@ class CreativesRebuildController:
                         elif artist_uid_check_sub_id_10 is not None:
                             print("project 1 - collab_artist_unique_id_9 dup found")
                             self.label_dups(submission_id, artist_uid_check_sub_id_10)
+
                         elif org_uid_check_sub_id_1 is not None:
-                            print("project 1 - dup found")
+                            print("project 1 - collab_org_unique_id_1 dup found")
                             self.label_dups(submission_id, org_uid_check_sub_id_1)
                         elif org_uid_check_sub_id_2 is not None:
                             print(f"project 1 - collab_org_unique_id_2 dup found")
@@ -768,17 +768,16 @@ class CreativesRebuildController:
                             self.label_dups(submission_id, org_uid_check_sub_id_8)
 
                         logger.info(f"project 1 - save to dict")
-                        config.uid_data_struct.append({'submission_id':      submission_id,      'primary_unique_id':  primary_unique_id,
-                                                       'collab_artist_unique_id_1': collab_artist_unique_id_1, 'collab_artist_unique_id_2': collab_artist_unique_id_2,
-                                                       'collab_artist_unique_id_3': collab_artist_unique_id_3, 'collab_artist_unique_id_4': collab_artist_unique_id_4,
-                                                       'collab_artist_unique_id_5': collab_artist_unique_id_5, 'collab_artist_unique_id_6': collab_artist_unique_id_6,
-                                                       'collab_artist_unique_id_7': collab_artist_unique_id_7, 'collab_artist_unique_id_8': collab_artist_unique_id_8,
-                                                       'collab_artist_unique_id_9': collab_artist_unique_id_9, 'collab_org_unique_id_1':    collab_org_unique_id_1,
-                                                       'collab_org_unique_id_2':    collab_org_unique_id_2,    'collab_org_unique_id_3':    collab_org_unique_id_3,
-                                                       'collab_org_unique_id_4':    collab_org_unique_id_4,    'collab_org_unique_id_5':    collab_org_unique_id_5,
-                                                       'collab_org_unique_id_6':    collab_org_unique_id_6,    'collab_org_unique_id_7':    collab_org_unique_id_7,
-                                                       'collab_org_unique_id_8':    collab_org_unique_id_8,
-                                                       })
+                        self.uid_data_struct.append({'submission_id':             submission_id,             'primary_unique_id':         primary_unique_id,
+                                                     'collab_artist_unique_id_1': collab_artist_unique_id_1, 'collab_artist_unique_id_2': collab_artist_unique_id_2,
+                                                     'collab_artist_unique_id_3': collab_artist_unique_id_3, 'collab_artist_unique_id_4': collab_artist_unique_id_4,
+                                                     'collab_artist_unique_id_5': collab_artist_unique_id_5, 'collab_artist_unique_id_6': collab_artist_unique_id_6,
+                                                     'collab_artist_unique_id_7': collab_artist_unique_id_7, 'collab_artist_unique_id_8': collab_artist_unique_id_8,
+                                                     'collab_artist_unique_id_9': collab_artist_unique_id_9, 'collab_org_unique_id_1':    collab_org_unique_id_1,
+                                                     'collab_org_unique_id_2':    collab_org_unique_id_2,    'collab_org_unique_id_3':    collab_org_unique_id_3,
+                                                     'collab_org_unique_id_4':    collab_org_unique_id_4,    'collab_org_unique_id_5':    collab_org_unique_id_5,
+                                                     'collab_org_unique_id_6':    collab_org_unique_id_6,    'collab_org_unique_id_7':    collab_org_unique_id_7,
+                                                     'collab_org_unique_id_8':    collab_org_unique_id_8})
 
 
                         # go to next response
@@ -844,16 +843,16 @@ class CreativesRebuildController:
                                 self.label_dups(submission_id, uid_check_sub_id)
 
                             logger.info(f"project 2 - save to dict")
-                            config.uid_data_struct.append({'submission_id': submission_id, 'primary_unique_id':  primary_unique_id,
-                                                           'collab_artist_unique_id_1': None,     'collab_artist_unique_id_2': None,
-                                                           'collab_artist_unique_id_3': None,     'collab_artist_unique_id_4': None,
-                                                           'collab_artist_unique_id_5': None,     'collab_artist_unique_id_6': None,
-                                                           'collab_artist_unique_id_7': None,     'collab_artist_unique_id_8': None,
-                                                           'collab_artist_unique_id_9': None,     'collab_org_unique_id_1':    None,
-                                                           'collab_org_uunique_id_2':   None,     'collab_org_uunique_id_3':   None,
-                                                           'collab_org_uunique_id_4':   None,     'collab_org_uunique_id_5':   None,
-                                                           'collab_org_uunique_id_6':   None,     'collab_org_uunique_id_7':   None,
-                                                           'collab_org_uunique_id_8':   None})
+                            self.uid_data_struct.append({'submission_id': submission_id, 'primary_unique_id':  primary_unique_id,
+                                                         'collab_artist_unique_id_1': None,     'collab_artist_unique_id_2': None,
+                                                         'collab_artist_unique_id_3': None,     'collab_artist_unique_id_4': None,
+                                                         'collab_artist_unique_id_5': None,     'collab_artist_unique_id_6': None,
+                                                         'collab_artist_unique_id_7': None,     'collab_artist_unique_id_8': None,
+                                                         'collab_artist_unique_id_9': None,     'collab_org_unique_id_1':    None,
+                                                         'collab_org_unique_id_2':    None,     'collab_org_unique_id_3':    None,
+                                                         'collab_org_unique_id_4':    None,     'collab_org_unique_id_5':    None,
+                                                         'collab_org_unique_id_6':    None,     'collab_org_unique_id_7':    None,
+                                                         'collab_org_unique_id_8':    None})
                             break
                         else:
                             # skip submission missing UID field(s)
@@ -863,4 +862,4 @@ class CreativesRebuildController:
                         logger.info(f"project 2 - failed to check unique id: {primary_unique_id} submission: {submission_id}")
 
         # log the completed list of UIDs
-        logger.info(f"config struct {config.uid_data_struct}")
+        logger.info(f"config struct {self.uid_data_struct}")

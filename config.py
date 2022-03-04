@@ -106,8 +106,8 @@ project_1_artist_dob        = "7cb13021-332e-4278-a98b-4a69ca96ec45"
 project_1_artist_zipcode    = "2d27064a-a57a-4f2e-847e-dee5f5876a43"
 
 # Collaboratives Artist Reference
-org_reference_form_id    = "d051aa12-614b-4f30-a9eb-db9f934a317a"
-artist_reference_form_id = "6d3bf23a-df28-4eca-b1fe-ff8504cd6a4a"
+org_reference_form_id    = "6318ba59-5688-4b2e-81db-d7c2c7871b5d"
+artist_reference_form_id = "ad9a40c6-4152-4d21-a16c-9a885b1f2a41"
 
 # Form field id of the reference form in the internal form
 # Artist collaborative artist 2-10

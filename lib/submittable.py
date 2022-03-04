@@ -415,15 +415,15 @@ class Submittable:
             endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-            print("ref form resp", response.json())
+            logger.info(f"ref form resp {response.json()}")
             if response.status_code != 200:
                 logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over go to next response
                 continue
             json_response     = response.json()
             ref_response_list = json_response["items"]
-            print(ref_response_list)
-            total_pages       = response.json()["totalPages"]
+            # print(ref_response_list)
+            # total_pages       = response.json()["totalPages"]
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
