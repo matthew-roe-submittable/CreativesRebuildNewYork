@@ -317,12 +317,15 @@ class Submittable:
     def getReferenceResponses(self):
         ref_responses = []
         page_size     = 1
+        total_pages   = 100
         endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
             logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
-        total_pages = response.json()["totalPages"]
+        else:
+            total_pages = response.json()["totalPages"]
+            print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -339,6 +342,7 @@ class Submittable:
             ref_response_list = json_response["items"]
             print(ref_response_list)
             total_pages       = response.json()["totalPages"]
+            print("total pages:", total_pages)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
