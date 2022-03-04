@@ -172,27 +172,27 @@ class Submittable:
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_1,
+                           "formFieldId": config.org_internal_form_field_id_1,
                            "value": collab_org_unique_id_1
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "formFieldId": config.org_internal_form_field_id_2,
                            "value": collab_org_unique_id_2
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "formFieldId": config.org_internal_form_field_id_3,
                            "value": collab_org_unique_id_3
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "formFieldId": config.org_internal_form_field_id_4,
                            "value": collab_org_unique_id_4
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "formFieldId": config.org_internal_form_field_id_5,
                            "value": collab_org_unique_id_5
                        },
                        {
@@ -287,27 +287,27 @@ class Submittable:
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_1,
+                           "formFieldId": config.org_internal_form_field_id_1,
                            "value": collab_org_unique_id_1
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_2,
+                           "formFieldId": config.org_internal_form_field_id_2,
                            "value": collab_org_unique_id_2
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_3,
+                           "formFieldId": config.org_internal_form_field_id_3,
                            "value": collab_org_unique_id_3
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_4,
+                           "formFieldId": config.org_internal_form_field_id_4,
                            "value": collab_org_unique_id_4
                        },
                        {
                            "fieldType": "short_answer",
-                           "formFieldId": config.artist_internal_form_field_id_5,
+                           "formFieldId": config.org_internal_form_field_id_5,
                            "value": collab_org_unique_id_5
                        },
                        {
@@ -326,7 +326,7 @@ class Submittable:
                            "value": collab_org_unique_id_8
                        }
                     ]
-                }
+                  }
         payload  = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         # print(response.json())
