@@ -1,3 +1,4 @@
+import data_struct
 from lib.submittable import *
 from datetime import datetime
 import config
@@ -121,9 +122,20 @@ class CreativesRebuildController:
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
+        skip = None
         for sub_item in list_of_submissions:
             project_id    = sub_item.getProjectId()
             submission_id = sub_item.getSubmissionId()
+            # data struct is a list of dicts
+            # loop through pull out sub id and check if match skip
+            for item in data_struct.data_struct:
+                if submission_id == item["submission_id"]:
+                    skip = True
+            if skip:
+                # skip sub its already processed
+                continue
+
+
             sub_response  = self.submittable.getSubmission(submission_id)
             # get submission form responses (initial)
             response_list = sub_response.getFormResponses()
