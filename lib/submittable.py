@@ -17,6 +17,7 @@ class Submittable:
     def __init__(self):
         self.api_key  = config.submittable_token
         self.baseURL  = "https://svcs.submittable.com/v3"
+        self.event    = threading.Event()
 
 
     @sleep_and_retry
@@ -256,6 +257,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
+        self.event.wait(0.1)
         endpoint       = f'{self.baseURL}/submissions/{submission_id}'
         headers        = {'Content-type': 'application/json'}
         response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)

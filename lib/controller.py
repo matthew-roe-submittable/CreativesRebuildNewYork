@@ -8,7 +8,7 @@ import sys
 file_formatter = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -122,17 +122,19 @@ class CreativesRebuildController:
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
-        skip = None
+
         for sub_item in list_of_submissions:
             project_id    = sub_item.getProjectId()
             submission_id = sub_item.getSubmissionId()
             # data struct is a list of dicts
             # loop through pull out sub id and check if match skip
+            skip = None
             for item in data_struct.data_struct:
                 if submission_id == item["submission_id"]:
                     skip = True
-            if skip:
+            if skip and skip is not None:
                 # skip sub its already processed
+                print("top skip")
                 continue
 
 
