@@ -1,5 +1,7 @@
 import mysql.connector
 
+import data_struct
+
 mysql_user  = "admin"
 mysql_pass  = "adminadmin"
 mysql_host  = "jesse-test.co76wjzk8jn7.us-east-2.rds.amazonaws.com"
@@ -130,7 +132,7 @@ label_id_3 = "317972"
 # Data structure to replace Database
 # volatile memory used and thrown away
 # list of dicts
-uid_data_struct = []
+uid_data_struct = data_struct.data_struct
 
 # dict structure
 """
