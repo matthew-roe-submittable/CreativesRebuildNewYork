@@ -74,6 +74,30 @@ label_id_2 = ""
 # label "Pending Duplicate"
 label_id_3 = ""
 
+# multi select initial form IDs
+first_multi_select_id  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"
+second_multi_select_id = "028936dd-a753-4201-909c-38e4f6122c1a"
+third_multi_select_id  = "94f117db-9536-4892-ab88-e8d4d60babe9"
+fourth_multi_select_id = "cad583dc-a922-4746-8db5-1ad7559a5dbf"
+
+# multi select option IDs
+first_multi_options_ids  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1",
+                            "14757995-2ce5-4902-9de6-70da31cc78d0",
+                            "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
+                            "a3092d24-5493-443a-9950-d4c860dacea9",
+                            "9dcea11d-1829-4ba6-b27c-9224ca856236",
+                            "7eed346b-2900-424c-901a-cd1797b66cb6"]
+
+second_multi_options_ids = ["4330a73a-1ae9-4fa7-8e97-99b66d23ac92"]
+third_multi_options_ids  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566"]
+fourth_multi_options_ids = ["89cf1db1-08ff-4496-84e8-75ba3fbedbbf"]
+
+# single select internal form IDs
+first_single_select_id  = ""
+second_single_select_id = ""
+third_single_select_id  = ""
+fourth_single_select_id = ""
+
 '''
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 # demo account
@@ -150,3 +174,276 @@ uid_data_struct = data_struct.data_struct
  'collab_unique_id_9': None
  }
 """
+
+# Initial forms multi-response questions mapped to single response
+mappedInitial2Internal = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+]
+
+internalFormFieldsFullOptions = [
+    {
+      "options": [
+        {
+          "formOptionId": "9000dc7a-3d39-437a-8d89-ea5268c9a9e2",
+          "label": "Albermarle",
+          "value":  False
+        }
+      ],
+      "formFieldId": "b5c9662a-6aff-4af4-86bd-1995a533d080",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Albermarle County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "d8b3806f-b249-4423-bd43-1db0af06b715",
+          "label": "Caroline",
+          "value":  False
+        }
+      ],
+      "formFieldId": "ebde95a1-b9b5-4f46-a2f3-20973f0980dc",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Caroline County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "2676c65c-8a0a-4641-aff3-2a1c274e3a07",
+          "label": "Clarke",
+          "value":  False
+        }
+      ],
+      "formFieldId": "cb492d25-a5cc-46ca-9db2-4fcc1c06b843",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Clarke County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "c63f54c3-a220-44e5-8c7f-4bf9a4b8a11f",
+          "label": "Culpepper",
+          "value":  False
+        }
+      ],
+      "formFieldId": "37407da6-009c-4e32-9276-7a45d2c2fd6d",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Culpepper County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "17094996-d804-42cb-b12a-be812f0e40f5",
+          "label": "Essex",
+          "value":  False
+        }
+      ],
+      "formFieldId": "082ab98f-3d9a-4aa0-a802-92c5dbf7d7c2",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Essex County?"
+    },
+    {
+      "formFieldId": "e4d5480c-ac00-45b2-882a-131fd7400fac",
+      "fieldType": "divider"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "23da4a2f-e6de-4d64-9e6e-7f65ce534dd4",
+          "label": "Albermarle",
+          "value":  False
+        }
+      ],
+      "formFieldId": "12223d40-5c0e-4abd-98de-671ae99f8056",
+      "fieldType": "single_response",
+      "label": "Does your event serve Albermarle County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "a2ed3587-c5bc-4e51-a87e-a3b8132f9665",
+          "label": "Caroline",
+          "value":  False
+        }
+      ],
+      "formFieldId": "502e4357-0ed0-42da-a641-a5942f2686ac",
+      "fieldType": "single_response",
+      "label": "Does your event serve Caroline County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "66f19dce-b0bf-4a0b-9541-bc2bd1d3bb62",
+          "label": "Clarke",
+          "value":  False
+        }
+      ],
+      "formFieldId": "fd5542bb-ec80-4464-b2f9-74c8f6976ec3",
+      "fieldType": "single_response",
+      "label": "Does your event serve Clarke County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "d4abbf1a-4664-450f-af69-bb750269a6ba",
+          "label": "Culpepper",
+          "value":  False
+        }
+      ],
+      "formFieldId": "7750aa04-1272-41ea-ba99-75c9e32318d2",
+      "fieldType": "single_response",
+      "label": "Does your event serve Culpepper County?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "14a35923-e506-4de6-b412-a1491093de00",
+          "label": "Essex",
+          "value":  False
+        }
+      ],
+      "formFieldId": "71c76521-b41b-4490-a98b-c3d7090a70a5",
+      "fieldType": "single_response",
+      "label": "Does your event serve Essex County?"
+    },
+    {
+      "formFieldId": "8bfee109-6ba8-4270-a24e-eeada0138190",
+      "fieldType": "divider"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "cec33d9a-f45f-40e4-8005-29b380c88d63",
+          "label": "Donation",
+          "value":  False
+        }
+      ],
+      "formFieldId": "bac214a7-df66-4521-8209-2f498307efe3",
+      "fieldType": "single_response",
+      "label": "Are you requesting a donation?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "7b42e32c-80ad-4609-9bae-d2d290af6387",
+          "label": "Sponsorship",
+          "value":  False
+        }
+      ],
+      "formFieldId": "4ea48418-d487-4272-8e20-f04c721859d7",
+      "fieldType": "single_response",
+      "label": "Are you requesting a sponsorship?"
+    },
+    {
+      "options": [
+        {
+          "formOptionId": "0320847a-ef57-4a46-b781-f3443e733345",
+          "label": "Event Participation",
+          "value":  False
+        }
+      ],
+      "formFieldId": "54a5205c-e035-43e6-88e6-31b1510964ff",
+      "fieldType": "single_response",
+      "label": "Are you requesting event participation?"
+    }
+  ]
+
+internalFormFieldData = [
+    {
+      "options": [],
+      "formFieldId": "b5c9662a-6aff-4af4-86bd-1995a533d080",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Albermarle County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "ebde95a1-b9b5-4f46-a2f3-20973f0980dc",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Caroline County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "cb492d25-a5cc-46ca-9db2-4fcc1c06b843",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Clarke County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "37407da6-009c-4e32-9276-7a45d2c2fd6d",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Culpepper County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "082ab98f-3d9a-4aa0-a802-92c5dbf7d7c2",
+      "fieldType": "single_response",
+      "label": "Does your organization serve Essex County?"
+    },
+    {
+      "formFieldId": "e4d5480c-ac00-45b2-882a-131fd7400fac",
+      "fieldType": "divider"
+    },
+    {
+      "options": [],
+      "formFieldId": "12223d40-5c0e-4abd-98de-671ae99f8056",
+      "fieldType": "single_response",
+      "label": "Does your event serve Albermarle County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "502e4357-0ed0-42da-a641-a5942f2686ac",
+      "fieldType": "single_response",
+      "label": "Does your event serve Caroline County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "fd5542bb-ec80-4464-b2f9-74c8f6976ec3",
+      "fieldType": "single_response",
+      "label": "Does your event serve Clarke County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "7750aa04-1272-41ea-ba99-75c9e32318d2",
+      "fieldType": "single_response",
+      "label": "Does your event serve Culpepper County?"
+    },
+    {
+      "options": [],
+      "formFieldId": "71c76521-b41b-4490-a98b-c3d7090a70a5",
+      "fieldType": "single_response",
+      "label": "Does your event serve Essex County?"
+    },
+    {
+      "formFieldId": "8bfee109-6ba8-4270-a24e-eeada0138190",
+      "fieldType": "divider"
+    },
+    {
+      "options": [],
+      "formFieldId": "bac214a7-df66-4521-8209-2f498307efe3",
+      "fieldType": "single_response",
+      "label": "Are you requesting a donation?"
+    },
+    {
+      "options": [],
+      "formFieldId": "4ea48418-d487-4272-8e20-f04c721859d7",
+      "fieldType": "single_response",
+      "label": "Are you requesting a sponsorship?"
+    },
+    {
+      "options": [],
+      "formFieldId": "54a5205c-e035-43e6-88e6-31b1510964ff",
+      "fieldType": "single_response",
+      "label": "Are you requesting event participation?"
+    }
+  ]

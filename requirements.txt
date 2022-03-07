@@ -58,3 +58,5 @@ docutils~=0.17.1
 ratelimit~=2.2.1
 
 certifi~=2021.10.8
+
+js2py~=0.71

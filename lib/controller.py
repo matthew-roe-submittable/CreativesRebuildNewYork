@@ -117,7 +117,7 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions()
+        list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()

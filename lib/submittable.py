@@ -184,7 +184,7 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
+    def updateInternalFormResponse(self, request_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
         collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
         collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
@@ -286,11 +286,15 @@ class Submittable:
     # get an list of submissions
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getListOfSubmissions(self):
+    def getListOfSubmissions(self, project_id_1, project_id_2=None):
         submissions = []
         page_size   = 1
         # get page size
-        endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+        if project_id_2 is not None:
+            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&projects.include={project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+        else:
+            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
