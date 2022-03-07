@@ -34,27 +34,36 @@ class InitialToInternal:
 
             for response in formResponses:
                 formId = response.getFormId()
+                print("form id", formId)
                 # check that form ids match
                 if formId == config.project_1_formId:
                     # pull the field data
-                    initialFormResponseData = formResponses.getFieldData()
+                    initialFormResponseData = response.getFieldData()
+                else:
+                    initialFormResponseData = []
+
+            multi_select_options_1 = []
+            multi_select_options_2 = []
+            multi_select_options_3 = []
+            multi_select_options_4 = []
 
             for init_resp_Data in initialFormResponseData:
                 fieldID = init_resp_Data.getFormFieldId()
 
-                if fieldID == config.first_multi_options_ids:
-                    first_multi_select = init_resp_Data.getOptions()
+                if fieldID == config.multi_select_id_1:
+                    multi_select_options_1 = init_resp_Data.getOptions()
 
-                elif fieldID == config.second_multi_options_ids:
-                    second_multi_select = init_resp_Data.getOptions()
+                elif fieldID == config.multi_select_id_2:
+                    multi_select_options_2 = init_resp_Data.getOptions()
 
-                elif fieldID == config.third_multi_options_ids:
-                    third_multi_select = init_resp_Data.getOptions()
+                elif fieldID == config.multi_select_id_3:
+                    multi_select_options_3 = init_resp_Data.getOptions()
 
-                elif fieldID == config.third_multi_options_ids:
-                    fourth_multi_select = init_resp_Data.getOptions()
+                elif fieldID == config.multi_select_id_4:
+                    multi_select_options_4 = init_resp_Data.getOptions()
 
 
+            print(multi_select_options_1, multi_select_options_2, multi_select_options_3, multi_select_options_4)
 
             self.submittable.updateInternalFormResponse(subId, config.internalFormFieldData)
 
