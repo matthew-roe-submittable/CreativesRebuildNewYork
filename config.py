@@ -161,30 +161,39 @@ label_id_2 = "317973"
 # label "Pending Duplicate"
 label_id_3 = "317972"
 
-# multi select initial form IDs
-multi_select_id_1  = "7eb3e60a-46d4-4af4-a7d3-da3e16bb9668"
-multi_select_id_2  = "d4b5d654-b49a-4bbc-83bb-108b5ce3720f"
-multi_select_id_3  = "3e7b727d-3673-4188-9e9f-8c8fd63acea2"
-multi_select_id_4  = "74b3f2a8-e875-4822-bccc-fe3a75f32dd0"
+# multi select initial form field IDs
+multi_select_id_1  = "eac76052-0e95-4116-ba19-a5bb6b8b2c8b"
+multi_select_id_2  = "7eb3e60a-46d4-4af4-a7d3-da3e16bb9668"
+multi_select_id_3  = "d4b5d654-b49a-4bbc-83bb-108b5ce3720f"
+multi_select_id_4  = "3e7b727d-3673-4188-9e9f-8c8fd63acea2"
 
 # multi select option IDs
-multi_options_ids_1  = ["f095a8a8-a5cf-45cd-b19e-889e0b35893b", "768db764-ff17-492e-8c24-8876b81a9ba0"]
-multi_options_ids_2  = ["12100b3c-e0a7-4c41-90b6-12c84852087f", "6b52484a-5c65-45ca-8b3d-32d86bbf63dc",
-                        "fad906d2-13cf-459b-b1fb-6329a724c13e", "1edc7f65-f9a7-4771-a5e5-8029f648e615"]
-multi_options_ids_3  = ["6b2afce6-69bd-412d-bdff-32e76c9751d4"]
-multi_options_ids_4  = ["b0180bf4-fc17-4d4c-ad19-abc106e020b2", "bcf235b1-b3ba-4323-8b0e-d37c0819b889"]
+multi_options_ids_1  = ["0fb42b6f-4ee8-4e6c-9b6b-e533265db81d", "e54dbccd-77d3-4a6f-917d-cc6f17f7e455", "48aed253-acb2-4df0-98f7-40241a94234a",
+                        "496ac6ce-d878-4502-a6c5-83785b955a1f", "342db86a-c143-4fe4-920e-4f55e3c2fbae"]
+
+multi_options_ids_2  = ["ab5c0380-4469-4978-afbe-031b9603c441", "70949d68-c837-4aa3-b635-87d9bd518029", "b981be25-ac64-4185-89e3-13af19cc320c",
+                        "96c3879c-e574-4a55-b3bf-1485803e627a", "f095a8a8-a5cf-45cd-b19e-889e0b35893b", "768db764-ff17-492e-8c24-8876b81a9ba0"]
+
+multi_options_ids_3  = ["c5d8bcca-a895-42f9-94b3-93b429abb95c", "12100b3c-e0a7-4c41-90b6-12c84852087f", "25a58ba3-bb29-4de1-8879-0c39e4b8af39",
+                        "6b52484a-5c65-45ca-8b3d-32d86bbf63dc", "a102482e-912f-42d8-ad2e-5412abc65a35", "fad906d2-13cf-459b-b1fb-6329a724c13e",
+                        "0ca564d6-bfdb-4dae-9fba-1c276de4afc8", "1edc7f65-f9a7-4771-a5e5-8029f648e615", "e2099bb8-5b46-4e0f-9ff3-bfba5ff57db7"]
+
+
+multi_options_ids_4  = ["5d4c6e58-cb49-4ea0-ba88-7e98f12ffc5b", "6b2afce6-69bd-412d-bdff-32e76c9751d4", "ce8dd191-f6c1-4849-95bd-b4cd464adad0",
+                        "cbd863f0-d915-4f0e-8e4b-48125b0c85b8", "111a90e1-626c-4276-906b-0df290c47f47", "70ca1382-90d6-4f26-8f05-0d921d1b17ea"]
+
 
 # single select internal form IDs
 single_select_id_1  = "0df8cde3-7b60-456d-9a8d-9bcf94de39d8"
-single_select_id_2 = "9bb8c05d-e110-45eb-af5c-9254f3d276a7"
+single_select_id_2  = "9bb8c05d-e110-45eb-af5c-9254f3d276a7"
 single_select_id_3  = "fab97e78-8d3c-4d99-9e32-caded4ec3780"
-single_select_id_4 = "fedc23b7-0c77-4b9b-b983-6fd0618c845f"
+single_select_id_4  = "fedc23b7-0c77-4b9b-b983-6fd0618c845f"
 
 # single select option IDs
-first_single_select_option_ids  = ["69b10947-53d8-44fd-9cc3-985dbabdac08", "d810d10b-d2ed-4568-ae80-2f42d2c4d4c7", "bfdc8d99-978c-4ab2-a530-b2456bc7734b"]
-second_single_select_option_ids = ["b1920b24-90e5-44ee-a943-6a64f591f394", "5e81cf6c-d039-4658-8e66-0f6af06dc354", "22a989cb-76e8-4d22-8f7f-067f5fdfa842"]
-third_single_select_option_ids  = ["a30a5f94-f5eb-452b-8f36-70e0be188af3", "6aeb62f7-0481-4f10-80b0-bbc12b4937ab", "be4a565b-47d2-479c-9677-4eaa6486149d"]
-fourth_single_select_option_ids = ["01c9c092-531f-4fa8-ac1a-2b0f39c3ffae", "e2c5deb6-b98d-4e42-872b-a6c05048c34d", "6dcea3ce-a1f9-44c7-9d24-6b9300f3a7ed"]
+single_select_option_ids_1  = ["69b10947-53d8-44fd-9cc3-985dbabdac08", "d810d10b-d2ed-4568-ae80-2f42d2c4d4c7", "bfdc8d99-978c-4ab2-a530-b2456bc7734b"]
+single_select_option_ids_2  = ["b1920b24-90e5-44ee-a943-6a64f591f394", "5e81cf6c-d039-4658-8e66-0f6af06dc354", "22a989cb-76e8-4d22-8f7f-067f5fdfa842"]
+single_select_option_ids_3  = ["a30a5f94-f5eb-452b-8f36-70e0be188af3", "6aeb62f7-0481-4f10-80b0-bbc12b4937ab", "be4a565b-47d2-479c-9677-4eaa6486149d"]
+single_select_option_ids_4  = ["01c9c092-531f-4fa8-ac1a-2b0f39c3ffae", "e2c5deb6-b98d-4e42-872b-a6c05048c34d", "6dcea3ce-a1f9-44c7-9d24-6b9300f3a7ed"]
 
 # Data structure to replace Database
 # volatile memory used and thrown away

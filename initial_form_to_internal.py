@@ -22,8 +22,9 @@ class InitialToInternal:
         for sub in subsList:
             subId = sub.getSubmissionId()
             logger.info(f"processing subId: {subId}")
-            initialFormResponse = []
-            formResponses = None
+            initialFormResponse     = []
+            initialFormResponseData = []
+            formResponses           = None
 
             try:
                 logger.info(f"Starting sub id:{subId}")
@@ -39,16 +40,17 @@ class InitialToInternal:
                 if formId == config.project_1_formId:
                     # pull the field data
                     initialFormResponseData = response.getFieldData()
-                else:
-                    initialFormResponseData = []
 
+            # for each submission clear the options list
             multi_select_options_1 = []
             multi_select_options_2 = []
             multi_select_options_3 = []
             multi_select_options_4 = []
 
+            # loop through initial form response data
             for init_resp_Data in initialFormResponseData:
                 fieldID = init_resp_Data.getFormFieldId()
+                print("filed id:", fieldID)
 
                 if fieldID == config.multi_select_id_1:
                     multi_select_options_1 = init_resp_Data.getOptions()
@@ -65,5 +67,16 @@ class InitialToInternal:
 
             print(multi_select_options_1, multi_select_options_2, multi_select_options_3, multi_select_options_4)
 
-            self.submittable.updateInternalFormResponse(subId, config.internalFormFieldData)
+            primary_unique_id   = "123"
+            collab_unique_id_1  = "321"
+            single_select_1     = True
+            single_select_2     = True
+            single_select_3     = True
+            single_select_4     = True
+
+
+
+            self.submittable.submitInternalFormResponse(subId, primary_unique_id, single_select_1, single_select_2, single_select_3, single_select_4, collab_unique_id_1)
+
+            # self.submittable.updateInternalFormResponse(subId, config.internalFormFieldData)
 
