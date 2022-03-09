@@ -110,8 +110,8 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, primary_unique_id, single_select_value_1, single_select_value_2, single_select_value_3, single_select_value_4, collab_unique_id_1=None,
-                                   collab_unique_id_2=None, collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
+    def submitInternalFormResponse(self, submission_id, primary_unique_id, single_select_options_1, single_select_options_2, single_select_options_3, single_select_options_4,
+                                   collab_unique_id_1=None, collab_unique_id_2=None, collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
                                    collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
@@ -168,24 +168,22 @@ class Submittable:
                            "value": collab_unique_id_9
                        },
                        {
-                           "options": [config.single_select_option_ids_1[0],
-                                       config.single_select_option_ids_1[1],
-                                       config.single_select_option_ids_1[2]],
+                           "options": single_select_options_1,
                            "fieldType": "single_response",
                            "formFieldId": config.single_select_id_1
                        },
                        {
-                           "options": [config.single_select_option_ids_2[0]],
+                           "options": single_select_options_2,
                            "fieldType": "single_response",
                            "formFieldId": config.single_select_id_2
                        },
                        {
-                           "options": [config.single_select_option_ids_3[0]],
+                           "options": single_select_options_3,
                            "fieldType": "single_response",
                            "formFieldId": config.single_select_id_3
                        },
                        {
-                           "options": [config.single_select_option_ids_4[0]],
+                           "options": single_select_options_4,
                            "fieldType": "single_response",
                            "formFieldId": config.single_select_id_4
                        }
