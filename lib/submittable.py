@@ -17,21 +17,22 @@ class Submittable:
     def __init__(self):
         self.api_key = config.submittable_token
         self.baseURL = "https://svcs.submittable.com/v3"
-        self.event = threading.Event()
+        self.event   = threading.Event()
 
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getLabelIds(self):
-        page_size = 50
-        label_ids = []
+        page_size   = 50
+        label_ids   = []
+        total_pages = 1
         endpoint = f'{self.baseURL}/labels?pageSize={page_size}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            logger.info(
-                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
-        total_pages = response.json()["totalPages"]
-
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+        else:
+            total_pages = response.json()["totalPages"]
+            # print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -39,9 +40,7 @@ class Submittable:
             endpoint = f'{self.baseURL}/labels?page={nextPage}&pageSize={page_size}'
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                print(f"get label ids failed {response.status_code}. Response payload: {response.content}")
-            else:
-                print("get label ids successful")
+                logger.info(f"get label ids failed {response.status_code}. Response payload: {response.content}")
             response_list = response.json()["items"]
             for item in response_list:
                 label_ids.append(SubmittableLabel(item))
@@ -51,34 +50,32 @@ class Submittable:
     @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.delete(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 204:
-            print(f"delete label failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"delete label failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"delete label failed {response.status_code}. Response payload: {response.content}")
-        else:
-            print("delete label successful")
         return response
 
     @sleep_and_retry
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 204:
-            print(f"add label failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"add label failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"add label failed {response.status_code}. Response payload: {response.content}")
         return response
 
     def createNewLabel(self, submission_id):
         endpoint = f'{self.baseURL}/labels'
-        headers = {'Content-type': 'application/json'}
-        payload = {'name': submission_id}
-        payload = json.dumps(payload)
+        headers  = {'Content-type': 'application/json'}
+        payload  = {'name': submission_id}
+        payload  = json.dumps(payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         if response.status_code != 201:
-            print(f"create new label failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"create new label failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"create new label failed {response.status_code}. Response payload: {response.content}")
         return response.json()['labelId']
 
@@ -86,13 +83,11 @@ class Submittable:
     @limits(calls=10, period=1)
     def getEntry(self, entry_id):
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
-        print(response.status_code)
+        # print(response.status_code)
         if response.status_code != 201:
-            print("get entry failed")
-        else:
-            print("get entry successful")
+            logger.info("get entry failed")
         return SubmittableBetaResponseEntry(response.json())
 
     @sleep_and_retry
@@ -105,9 +100,7 @@ class Submittable:
         payload = json.dumps(payload)
         response = requests.post(endpoint, auth=(":", self.api_key), headers=headers, data=payload)
         if response.status_code != 201:
-            print("initial from request id failed")
-        else:
-            print("initial form request id successful")
+            logger.info("initial from request id failed")
         return SubmittableFormRequestId(response.json())
 
     def submitInternalFormResponse(self, submission_id,      primary_unique_id,
@@ -129,9 +122,9 @@ class Submittable:
                                    collab_unique_id_6=None,  collab_unique_id_7=None,
                                    collab_unique_id_8=None,  collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
-        headers = {'Content-type': 'application/json'}
-        payload = {"submissionId": submission_id,
-                   "fieldData": [
+        headers  = {'Content-type': 'application/json'}
+        payload  = {"submissionId": submission_id,
+                    "fieldData": [
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_1,
@@ -308,15 +301,13 @@ class Submittable:
                            "formFieldId": config.single_select_id_25
                        }
                    ]
-                   }
-        payload = json.dumps(payload)
+                    }
+        payload  = json.dumps(payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
-        print("response:", response)
+        # print("response:", response)
         if response.status_code != 201:
-            print(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            logger.info(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
             raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-        else:
-            print("submit internal form response successful")
         return response.json()["entryId"]
 
     @sleep_and_retry
@@ -326,9 +317,9 @@ class Submittable:
                                    collab_unique_id_6=None, collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None,
                                    single_select_value_1=False, single_select_value_2=False, single_select_value_3=False, single_select_value_4=False):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
-        headers = {'Content-type': 'application/json'}
-        payload = {"formType": "internal",
-                   "fieldData": [
+        headers  = {'Content-type': 'application/json'}
+        payload  = {"formType": "internal",
+                    "fieldData": [
                        {
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_1,
@@ -420,17 +411,13 @@ class Submittable:
                            "formFieldId": config.single_select_id_4
                        }
                    ]
-                   }
-        payload = json.dumps(payload)
+                    }
+        payload  = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         # print(response.json())
         if response.status_code != 200:
-            print(
-                f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
-            raise ValueError(
-                f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-        else:
-            print("update initial form successful")
+            logger.info(f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
+            raise ValueError(f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         return response.json()
 
     # get an individual submission
@@ -439,14 +426,12 @@ class Submittable:
     def getSubmission(self, submission_id):
         self.event.wait(0.1)
         endpoint = f'{self.baseURL}/submissions/{submission_id}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print("get sub", response.json())
         if response.status_code != 200:
-            print(f"get submission failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
-        else:
-            print("get submission successful")
         return SubmittableSubmission(response.json())
 
     # get an individual submission
@@ -454,33 +439,29 @@ class Submittable:
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
         endpoint = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print(response.json())
         if response.status_code != 200:
-            print(f"get submission failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
         return SubmittableBetaSubmission(response.json())
 
     # get an list of submissions
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getListOfSubmissions(self, project_id_1, project_id_2=None):
+    def getListOfSubmissions(self):
         submissions = []
-        page_size = 1
-        # get page size
-        if project_id_2 is not None:
-            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&projects.include={project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
-        else:
-            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
-
+        page_size   = 1
+        total_pages = 1
+        endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            raise ValueError(
-                f"get submissions list failed {response.status_code}. Response payload: {response.content}")
-        total_pages = response.json()["totalPages"]
-        print("total pages", total_pages)
+            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+        else:
+            total_pages = response.json()["totalPages"]
+            # print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -489,12 +470,13 @@ class Submittable:
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                logger.info(
-                    f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
+                logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over do not add to list
                 continue
             json_response = response.json()
             submissions_list = json_response["items"]
+            # total_pages = response.json()["totalPages"]
+            # print("total pages:", total_pages)
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
         return submissions
@@ -503,17 +485,16 @@ class Submittable:
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
         ref_responses = []
-        page_size = 1
-        total_pages = 100
+        page_size     = 1
+        total_pages   = 1
         endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            logger.info(
-                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
-            print("get ref form total pages:", total_pages)
+            # print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
             if page == total_pages:
                 break
@@ -521,17 +502,15 @@ class Submittable:
             endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-            print("ref form resp", response.json())
+            # print("ref form resp", response.json())
             if response.status_code != 200:
-                logger.info(
-                    f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
+                logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over go to next response
                 continue
             json_response = response.json()
             ref_response_list = json_response["items"]
-            print(ref_response_list)
-            total_pages = response.json()["totalPages"]
-            print("total pages:", total_pages)
+            # total_pages = response.json()["totalPages"]
+            # print("total pages:", total_pages)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
@@ -582,7 +561,6 @@ class SubmittableBetaResponseEntry:
         self.payload = payload
 
     def getEntry(self):
-        # print("getEntry", self.payload)
         return self.payload["entry"]
 
     def getFieldData(self):
@@ -594,7 +572,6 @@ class SubmittableBetaResponseEntry:
 
     def getFormResponseId(self):
         payload = self.payload["entry"]
-        # print(payload)
         return payload["formResponseId"]
 
 
@@ -759,7 +736,6 @@ class SubmittableFormField:
         return self.payload["branchId"]
 
     def getOptions(self):
-        print(self.payload)
         options = []
         for option in self.payload["options"]:
             options.append(SubmittableFormOption(option))
@@ -1019,7 +995,6 @@ class SubmittableBetaFormEntry:
         return self.payload["formType"]
 
     def getEntry(self):
-        # print(self.payload)
         return SubmittableBetaEntry(self.payload["entry"])
 
 
@@ -1059,14 +1034,12 @@ class SubmittableFormResponse:
         return self.payload["projectId"]
 
     def getFormResponseId(self):
-        print("getFormResponseId", self.payload)
         return self.payload["formResponseId"]
 
     def getFormId(self):
         return self.payload["formId"]
 
     def getFieldData(self):
-        print("get field data payload", self.payload)
         # field_data = self.payload["fieldData"]
         field_data = []
         for data in self.payload['fieldData']:
@@ -1139,11 +1112,9 @@ class SubmittableFieldData:
         return self.payload["fieldType"]
 
     def getRefEmail(self):
-        print(self.payload)
         return self.payload['refereeEmail']
 
     def getFormFieldId(self):
-        # print("getFormFieldId", self.payload)
         return self.payload["formFieldId"]
 
     def getValue(self):
@@ -1255,7 +1226,6 @@ class SubmittableFieldData:
         return self.payload["rulingMonth"]
 
     def getFieldValue(self, response_field_type):
-        print("get field value")
         if response_field_type == "NAME":
             value = self.getLastName()
         elif response_field_type == "PHONE":
@@ -1269,9 +1239,8 @@ class SubmittableFieldData:
         elif response_field_type == "DATE":
             value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
-            # print('short answer', self.payload)
             value = self.getValue()
-        print(value)
+        print("get field value", value)
         return value
 
 

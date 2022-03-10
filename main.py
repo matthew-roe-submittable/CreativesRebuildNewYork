@@ -13,7 +13,10 @@ def main():
     # create controller obj
     controller = CreativesRebuildController()
     # check for dup UIDs
-    controller.checkForDupUID()
+    try:
+        controller.checkForDupUID()
+    except:
+        logger.info("data struct", config.uid_data_struct)
     print("finished", datetime.now())
 
 
