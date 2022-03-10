@@ -110,9 +110,24 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, primary_unique_id, single_select_options_1, single_select_options_2, single_select_options_3, single_select_options_4,
-                                   collab_unique_id_1=None, collab_unique_id_2=None, collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-                                   collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
+    def submitInternalFormResponse(self, submission_id,      primary_unique_id,
+                                   single_select_options_1,  single_select_options_2,
+                                   single_select_options_3,  single_select_options_4,
+                                   single_select_options_5,  single_select_options_6,
+                                   single_select_options_7,  single_select_options_8,
+                                   single_select_options_9,  single_select_options_10,
+                                   single_select_options_11, single_select_options_12,
+                                   single_select_options_13, single_select_options_14,
+                                   single_select_options_15, single_select_options_16,
+                                   single_select_options_17, single_select_options_18,
+                                   single_select_options_19, single_select_options_20,
+                                   single_select_options_21, single_select_options_22,
+                                   single_select_options_23, single_select_options_24,
+                                   single_select_options_25, collab_unique_id_1=None,
+                                   collab_unique_id_2=None,  collab_unique_id_3=None,
+                                   collab_unique_id_4=None,  collab_unique_id_5=None,
+                                   collab_unique_id_6=None,  collab_unique_id_7=None,
+                                   collab_unique_id_8=None,  collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -186,6 +201,111 @@ class Submittable:
                            "options": single_select_options_4,
                            "fieldType": "single_response",
                            "formFieldId": config.single_select_id_4
+                       },
+                       {
+                           "options": single_select_options_5,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_5
+                       },
+                       {
+                           "options": single_select_options_6,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_6
+                       },
+                       {
+                           "options": single_select_options_7,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_7
+                       },
+                       {
+                           "options": single_select_options_8,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_8
+                       },
+                       {
+                           "options": single_select_options_9,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_9
+                       },
+                       {
+                           "options": single_select_options_10,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_10
+                       },
+                       {
+                           "options": single_select_options_11,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_11
+                       },
+                       {
+                           "options": single_select_options_12,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_12
+                       },
+                       {
+                           "options": single_select_options_13,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_13
+                       },
+                       {
+                           "options": single_select_options_14,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_14
+                       },
+                       {
+                           "options": single_select_options_15,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_15
+                       },
+                       {
+                           "options": single_select_options_16,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_16
+                       },
+                       {
+                           "options": single_select_options_17,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_17
+                       },
+                       {
+                           "options": single_select_options_18,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_18
+                       },
+                       {
+                           "options": single_select_options_19,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_19
+                       },
+                       {
+                           "options": single_select_options_20,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_20
+                       },
+                       {
+                           "options": single_select_options_21,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_21
+                       },
+                       {
+                           "options": single_select_options_22,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_22
+                       },
+                       {
+                           "options": single_select_options_23,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_23
+                       },
+                       {
+                           "options": single_select_options_24,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_24
+                       },
+                       {
+                           "options": single_select_options_25,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_25
                        }
                    ]
                    }
@@ -262,7 +382,7 @@ class Submittable:
                        {
                            "options": [
                                {
-                                   "formOptionId": config.single_select_option_ids_1[0],
+                                   "formOptionId": config.single_select_option_id_1,
                                    "value": single_select_value_1
                                }
                            ],
@@ -272,7 +392,7 @@ class Submittable:
                        {
                            "options": [
                                {
-                                   "formOptionId": config.single_select_option_ids_2[0],
+                                   "formOptionId": config.single_select_option_ids_2,
                                    "value": single_select_value_2
                                }
                            ],
