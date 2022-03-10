@@ -117,15 +117,14 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        # list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
-        list_of_submissions = [23171861, 23171241, 23217200]
+        list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
-
         for sub_item in list_of_submissions:
-            submission_id = sub_item  # sub_item.getSubmissionId()
+            submission_id = sub_item.getSubmissionId()
+            project_id    = sub_item.getProjectId()
 
             '''
             # data struct is a list of dicts
@@ -141,7 +140,6 @@ class CreativesRebuildController:
             '''
 
             sub_response  = self.submittable.getSubmission(submission_id)
-            project_id    = sub_response.getProjectId()
             # get submission form responses (initial)
             response_list = sub_response.getFormResponses()
             logger.info(f"response list length: {len(response_list)}")
