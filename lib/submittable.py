@@ -15,10 +15,9 @@ logger = logging.getLogger("logfile")
 class Submittable:
 
     def __init__(self):
-        self.api_key  = config.submittable_token
-        self.baseURL  = "https://svcs.submittable.com/v3"
-        self.event    = threading.Event()
-
+        self.api_key = config.submittable_token
+        self.baseURL = "https://svcs.submittable.com/v3"
+        self.event = threading.Event()
 
     @sleep_and_retry
     @limits(calls=10, period=1)
@@ -29,7 +28,8 @@ class Submittable:
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            logger.info(
+                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         total_pages = response.json()["totalPages"]
 
         for page in range(0, total_pages):
@@ -51,7 +51,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
-        headers  = {'Content-type': 'application/json'}
+        headers = {'Content-type': 'application/json'}
         response = requests.delete(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 204:
             print(f"delete label failed {response.status_code}. Response payload: {response.content}")
@@ -64,7 +64,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
-        headers  = {'Content-type': 'application/json'}
+        headers = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 204:
             print(f"add label failed {response.status_code}. Response payload: {response.content}")
@@ -74,7 +74,7 @@ class Submittable:
     def createNewLabel(self, submission_id):
         endpoint = f'{self.baseURL}/labels'
         headers = {'Content-type': 'application/json'}
-        payload  = {'name': submission_id}
+        payload = {'name': submission_id}
         payload = json.dumps(payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         if response.status_code != 201:
@@ -86,7 +86,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getEntry(self, entry_id):
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
-        headers  = {'Content-type': 'application/json'}
+        headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
         print(response.status_code)
         if response.status_code != 201:
@@ -94,7 +94,6 @@ class Submittable:
         else:
             print("get entry successful")
         return SubmittableBetaResponseEntry(response.json())
-
 
     @sleep_and_retry
     @limits(calls=10, period=1)
@@ -111,17 +110,32 @@ class Submittable:
             print("initial form request id successful")
         return SubmittableFormRequestId(response.json())
 
-    def submitInternalFormResponse(self, submission_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
-                                   collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-                                   collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
+    def submitInternalFormResponse(self, submission_id,      primary_unique_id,
+                                   single_select_options_1,  single_select_options_2,
+                                   single_select_options_3,  single_select_options_4,
+                                   single_select_options_5,  single_select_options_6,
+                                   single_select_options_7,  single_select_options_8,
+                                   single_select_options_9,  single_select_options_10,
+                                   single_select_options_11, single_select_options_12,
+                                   single_select_options_13, single_select_options_14,
+                                   single_select_options_15, single_select_options_16,
+                                   single_select_options_17, single_select_options_18,
+                                   single_select_options_19, single_select_options_20,
+                                   single_select_options_21, single_select_options_22,
+                                   single_select_options_23, single_select_options_24,
+                                   single_select_options_25, collab_unique_id_1=None,
+                                   collab_unique_id_2=None,  collab_unique_id_3=None,
+                                   collab_unique_id_4=None,  collab_unique_id_5=None,
+                                   collab_unique_id_6=None,  collab_unique_id_7=None,
+                                   collab_unique_id_8=None,  collab_unique_id_9=None):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
                    "fieldData": [
                        {
-                           "fieldType":   "short_answer",
+                           "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_1,
-                           "value":       primary_unique_id
+                           "value": primary_unique_id
                        },
                        {
                            "fieldType": "short_answer",
@@ -139,7 +153,7 @@ class Submittable:
                            "value": collab_unique_id_3
                        },
                        {
-                           "fieldType":   "short_answer",
+                           "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_5,
                            "value": collab_unique_id_4
                        },
@@ -167,11 +181,135 @@ class Submittable:
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_10,
                            "value": collab_unique_id_9
+                       },
+                       {
+                           "options": single_select_options_1,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_1
+                       },
+                       {
+                           "options": single_select_options_2,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_2
+                       },
+                       {
+                           "options": single_select_options_3,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_3
+                       },
+                       {
+                           "options": single_select_options_4,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_4
+                       },
+                       {
+                           "options": single_select_options_5,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_5
+                       },
+                       {
+                           "options": single_select_options_6,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_6
+                       },
+                       {
+                           "options": single_select_options_7,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_7
+                       },
+                       {
+                           "options": single_select_options_8,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_8
+                       },
+                       {
+                           "options": single_select_options_9,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_9
+                       },
+                       {
+                           "options": single_select_options_10,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_10
+                       },
+                       {
+                           "options": single_select_options_11,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_11
+                       },
+                       {
+                           "options": single_select_options_12,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_12
+                       },
+                       {
+                           "options": single_select_options_13,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_13
+                       },
+                       {
+                           "options": single_select_options_14,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_14
+                       },
+                       {
+                           "options": single_select_options_15,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_15
+                       },
+                       {
+                           "options": single_select_options_16,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_16
+                       },
+                       {
+                           "options": single_select_options_17,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_17
+                       },
+                       {
+                           "options": single_select_options_18,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_18
+                       },
+                       {
+                           "options": single_select_options_19,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_19
+                       },
+                       {
+                           "options": single_select_options_20,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_20
+                       },
+                       {
+                           "options": single_select_options_21,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_21
+                       },
+                       {
+                           "options": single_select_options_22,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_22
+                       },
+                       {
+                           "options": single_select_options_23,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_23
+                       },
+                       {
+                           "options": single_select_options_24,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_24
+                       },
+                       {
+                           "options": single_select_options_25,
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_25
                        }
-
                    ]
                    }
-        payload  = json.dumps(payload)
+        payload = json.dumps(payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         print("response:", response)
         if response.status_code != 201:
@@ -181,74 +319,116 @@ class Submittable:
             print("submit internal form response successful")
         return response.json()["entryId"]
 
-
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def updateInternalFormResponse(self, request_id, form_field_id, primary_unique_id, collab_unique_id_1=None, collab_unique_id_2=None,
-        collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None, collab_unique_id_6=None,
-        collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None):
+    def updateInternalFormResponse(self, request_id, primary_unique_id, collab_unique_id_1=None,
+                                   collab_unique_id_2=None, collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None,
+                                   collab_unique_id_6=None, collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None,
+                                   single_select_value_1=False, single_select_value_2=False, single_select_value_3=False, single_select_value_4=False):
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "internal",
                    "fieldData": [
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_1,
-                            "value": primary_unique_id
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_2,
-                            "value": collab_unique_id_1
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_3,
-                            "value": collab_unique_id_2
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_4,
-                            "value": collab_unique_id_3
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_5,
-                            "value": collab_unique_id_4
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_6,
-                            "value": collab_unique_id_5
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_7,
-                            "value": collab_unique_id_6
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_8,
-                            "value": collab_unique_id_7
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_9,
-                            "value": collab_unique_id_8
-                        },
-                        {
-                            "fieldType": "short_answer",
-                            "formFieldId": config.internal_form_field_id_10,
-                            "value": collab_unique_id_9
-                        }
-                    ]
-                }
-        payload  = json.dumps(payload)
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_1,
+                           "value": primary_unique_id
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_2,
+                           "value": collab_unique_id_1
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_3,
+                           "value": collab_unique_id_2
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_4,
+                           "value": collab_unique_id_3
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_5,
+                           "value": collab_unique_id_4
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_6,
+                           "value": collab_unique_id_5
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_7,
+                           "value": collab_unique_id_6
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_8,
+                           "value": collab_unique_id_7
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_9,
+                           "value": collab_unique_id_8
+                       },
+                       {
+                           "fieldType": "short_answer",
+                           "formFieldId": config.internal_form_field_id_10,
+                           "value": collab_unique_id_9
+                       },
+                       {
+                           "options": [
+                               {
+                                   "formOptionId": config.single_select_option_id_1,
+                                   "value": single_select_value_1
+                               }
+                           ],
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_1
+                       },
+                       {
+                           "options": [
+                               {
+                                   "formOptionId": config.single_select_option_ids_2,
+                                   "value": single_select_value_2
+                               }
+                           ],
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_2
+                       },
+                       {
+                           "options": [
+                               {
+                                   "formOptionId": config.single_select_option_ids_3[0],
+                                   "value": single_select_value_3
+                               }
+                           ],
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_3
+                       },
+                       {
+                           "options": [
+                               {
+                                   "formOptionId": config.single_select_option_ids_4[0],
+                                   "value": single_select_value_4
+                               }
+                           ],
+                           "fieldType": "single_response",
+                           "formFieldId": config.single_select_id_4
+                       }
+                   ]
+                   }
+        payload = json.dumps(payload)
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         # print(response.json())
         if response.status_code != 200:
-            print(f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
-            raise ValueError(f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            print(
+                f"update initial form failed {response.status_code}. Response payload: {response.content}., \nRequest payload: {str(payload)}")
+            raise ValueError(
+                f"update initial form failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         else:
             print("update initial form successful")
         return response.json()
@@ -258,9 +438,9 @@ class Submittable:
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
         self.event.wait(0.1)
-        endpoint       = f'{self.baseURL}/submissions/{submission_id}'
-        headers        = {'Content-type': 'application/json'}
-        response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        endpoint = f'{self.baseURL}/submissions/{submission_id}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print("get sub", response.json())
         if response.status_code != 200:
             print(f"get submission failed {response.status_code}. Response payload: {response.content}")
@@ -273,28 +453,32 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
-        endpoint       = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
-        headers        = {'Content-type': 'application/json'}
-        response       = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        endpoint = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print(response.json())
         if response.status_code != 200:
             print(f"get submission failed {response.status_code}. Response payload: {response.content}")
             raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
         return SubmittableBetaSubmission(response.json())
 
-
     # get an list of submissions
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getListOfSubmissions(self):
+    def getListOfSubmissions(self, project_id_1, project_id_2=None):
         submissions = []
-        page_size   = 1
+        page_size = 1
         # get page size
-        endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+        if project_id_2 is not None:
+            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&projects.include={project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+        else:
+            endpoint = f'{self.baseURL}/submissions?projects.include={project_id_1}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
+
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+            raise ValueError(
+                f"get submissions list failed {response.status_code}. Response payload: {response.content}")
         total_pages = response.json()["totalPages"]
         print("total pages", total_pages)
         for page in range(0, total_pages):
@@ -302,13 +486,14 @@ class Submittable:
                 break
             nextPage = page + 1
             endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&page={nextPage}&pageSize={page_size}'
-            headers  = {'Content-type': 'application/json'}
+            headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
+                logger.info(
+                    f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over do not add to list
                 continue
-            json_response    = response.json()
+            json_response = response.json()
             submissions_list = json_response["items"]
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
@@ -318,13 +503,14 @@ class Submittable:
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
         ref_responses = []
-        page_size     = 1
-        total_pages   = 100
+        page_size = 1
+        total_pages = 100
         endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=1&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            logger.info(
+                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
             print("get ref form total pages:", total_pages)
@@ -337,13 +523,14 @@ class Submittable:
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             print("ref form resp", response.json())
             if response.status_code != 200:
-                logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
+                logger.info(
+                    f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over go to next response
                 continue
-            json_response     = response.json()
+            json_response = response.json()
             ref_response_list = json_response["items"]
             print(ref_response_list)
-            total_pages       = response.json()["totalPages"]
+            total_pages = response.json()["totalPages"]
             print("total pages:", total_pages)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
@@ -572,6 +759,7 @@ class SubmittableFormField:
         return self.payload["branchId"]
 
     def getOptions(self):
+        print(self.payload)
         options = []
         for option in self.payload["options"]:
             options.append(SubmittableFormOption(option))
@@ -660,8 +848,8 @@ class SubmittableFormOption:
 
 
 class SubmittableTransaction:
-    status_awarded    = "awarded"
-    status_paid       = "paid"
+    status_awarded = "awarded"
+    status_paid = "paid"
     status_processing = "processing"
 
     def __init__(self, payload):
