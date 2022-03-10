@@ -77,7 +77,7 @@ class CreativesRebuildController:
 
     # UID - DOB-LASTNAME-ZIP
     def uid_chcek(self, uid_to_check):
-        logger.info(f"uid check run {uid_to_check}") # , list: {config.uid_data_struct}")
+        logger.info(f"uid check run {uid_to_check}, list: {config.uid_data_struct}")
 
         if uid_to_check is not None and config.uid_data_struct != []:
             for item in config.uid_data_struct:
