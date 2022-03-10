@@ -95,7 +95,7 @@ project_1_multi_options_ids_3  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20
 # GI multi select initial form field IDs
 project_2_multi_select_id_1  = "758c4332-05cd-4bc4-aa8c-29608f25aa23"  # Which of the following best describes you
 project_2_multi_select_id_2  = "4c251fd1-79f1-4f2e-9cf2-c2ba4a3e978b"  # What is your gender identity
-project_2_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+project_2_multi_select_id_3  = "7958711d-5b0a-47b2-bb18-626c85aeb810"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
 # GI project only
 project_2_multi_select_id_4  = "57229736-c2e0-4394-8741-4456e0aa4afc"  # Please check all that apply regarding your financial safety net
 
@@ -118,37 +118,38 @@ project_2_multi_options_ids_4  = ["ba27ef1b-2b26-4a14-bed4-e9ebc34b0248", "db505
 # single select internal form IDs 1-25
 #
 # single select form field IDs for Multi-Select Question: "Which of the following best describes you"
-single_select_id_1   = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"
-single_select_id_2   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"
-single_select_id_3   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"
-single_select_id_4   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"
-single_select_id_5   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"
-single_select_id_6   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"
-single_select_id_7   = "77002d8f-7d56-44f1-a3b6-262888449130"
-single_select_id_8   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"
-single_select_id_9   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"
+single_select_id_1   = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"  # Arab or Middle Eastern
+single_select_id_2   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"  # Asian or Pacific Islander
+single_select_id_3   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"  # Black or African American
+single_select_id_4   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"  # Hispanic or Latinx
+single_select_id_5   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"  # Indigenous American, First Nation, or Alaska Native
+single_select_id_6   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"  # Pacific Islander or Native Hawaiian
+single_select_id_7   = "77002d8f-7d56-44f1-a3b6-262888449130"  # White
+single_select_id_8   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"  # Other (please describe)
+single_select_id_9   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"  # I prefer not to answer
+
 
 # single select option IDs for Multi-Select Question: "What is your gender identity"
-single_select_id_10  = "ef768aeb-5ab9-4b11-bb22-42f03e569548"
-single_select_id_11  = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"
-single_select_id_12  = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"
-single_select_id_13  = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"
-single_select_id_14  = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"
-single_select_id_15  = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"
+single_select_id_10  = "ef768aeb-5ab9-4b11-bb22-42f03e569548"  # Man
+single_select_id_11  = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"  # Woman
+single_select_id_12  = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"  # Non-binary
+single_select_id_13  = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"  # Two-spirit
+single_select_id_14  = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"  # Other (please describe)
+single_select_id_15  = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
-single_select_id_16  = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"
-single_select_id_17  = "275673c7-fd28-4990-b9b1-c30e25643fb8"
-single_select_id_18  = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"
-single_select_id_19  = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"
-single_select_id_20  = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"
+single_select_id_16  = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"  # Yes, a child or children
+single_select_id_17  = "275673c7-fd28-4990-b9b1-c30e25643fb8"  # Yes, a spouse or partner who is elderly, ill, or disabled
+single_select_id_18  = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+single_select_id_19  = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"  # No
+single_select_id_20  = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
-single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"
-single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"
-single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"
-single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"
-single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"
+single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"  # I am unsure when I will make any income again
+single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"  # I have no financial safety net (savings, assets, family resources)
+single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"  # I am vulnerable to a medical emergency
+single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unmanageable debt (financial obligations not paid in full each month like credit cards, personal loans, payday loans or short-term debt, student loan debt, housing debt, automobile loan, other)
+single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
 # single select option IDs for Multi-Select Question: "Which of the following best describes you"
 single_select_option_id_1   = "f89526fa-2498-4855-900c-3db5415b5cdb"

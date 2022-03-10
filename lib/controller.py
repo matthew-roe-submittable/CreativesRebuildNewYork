@@ -660,7 +660,7 @@ class CreativesRebuildController:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
                         # map multi-select fields to internal form single select fields
-                        elif field_id == config.project_1_multi_select_id_1:
+                        elif field_id == config.project_2_multi_select_id_1:
                             multi_select_options_1 = data.getOptions()
                             for option in multi_select_options_1:
                                 if option == config.project_2_multi_options_ids_1[0]:
@@ -682,9 +682,9 @@ class CreativesRebuildController:
                                 elif option == config.project_2_multi_options_ids_1[8]:
                                     single_select_options_9.append(config.single_select_option_id_9)
 
-                        elif field_id == config.project_2_multi_select_id_1:
+                        elif field_id == config.project_2_multi_select_id_2:
                             multi_select_options_2 = data.getOptions()
-                            for option in multi_select_options_1:
+                            for option in multi_select_options_2:
                                 if option == config.project_2_multi_options_ids_2[0]:
                                     single_select_options_10.append(config.single_select_option_id_10)
                                 elif option == config.project_2_multi_options_ids_2[1]:
@@ -712,7 +712,7 @@ class CreativesRebuildController:
                                 elif option == config.project_2_multi_options_ids_3[4]:
                                     single_select_options_20.append(config.single_select_option_id_20)
 
-                        #GI project only
+                        # GI project only
                         elif field_id == config.project_2_multi_select_id_4:
                             multi_select_options_4 = data.getOptions()
                             for option in multi_select_options_4:
