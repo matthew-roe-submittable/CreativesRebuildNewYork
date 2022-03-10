@@ -8,7 +8,7 @@ import sys
 file_formatter = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -117,15 +117,15 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
+        # list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
+        list_of_submissions = [23171861, 23171241, 23217200]
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
 
         for sub_item in list_of_submissions:
-            project_id    = sub_item.getProjectId()
-            submission_id = sub_item.getSubmissionId()
+            submission_id = sub_item  # sub_item.getSubmissionId()
 
             '''
             # data struct is a list of dicts
@@ -141,9 +141,42 @@ class CreativesRebuildController:
             '''
 
             sub_response  = self.submittable.getSubmission(submission_id)
+            project_id    = sub_response.getProjectId()
             # get submission form responses (initial)
             response_list = sub_response.getFormResponses()
             logger.info(f"response list length: {len(response_list)}")
+
+            # for each submission clear the options list
+            multi_select_options_1 = []
+            multi_select_options_2 = []
+            multi_select_options_3 = []
+            multi_select_options_4 = []
+
+            single_select_options_1 = []
+            single_select_options_2 = []
+            single_select_options_3 = []
+            single_select_options_4 = []
+            single_select_options_5 = []
+            single_select_options_6 = []
+            single_select_options_7 = []
+            single_select_options_8 = []
+            single_select_options_9 = []
+            single_select_options_10 = []
+            single_select_options_11 = []
+            single_select_options_12 = []
+            single_select_options_13 = []
+            single_select_options_14 = []
+            single_select_options_15 = []
+            single_select_options_16 = []
+            single_select_options_17 = []
+            single_select_options_18 = []
+            single_select_options_19 = []
+            single_select_options_20 = []
+            single_select_options_21 = []
+            single_select_options_22 = []
+            single_select_options_23 = []
+            single_select_options_24 = []
+            single_select_options_25 = []
 
             # load database from project 1 (AEP)
             if project_id == self.project_id_1:
@@ -204,8 +237,6 @@ class CreativesRebuildController:
                     collab_zip_9       = None
                     collab_unique_id_9 = None
 
-                    id_list_check      = None
-
                     # Pull the initial forms response data
                     field_data = response.getFieldData()
 
@@ -249,7 +280,7 @@ class CreativesRebuildController:
                                         collab_unique_id_1 = collab_unique_id_1.replace("-", "")
                                         logger.info(f"collab_unique_id_1: {collab_unique_id_1}")
 
-                        if field_id == config.reference_form_field_id_2:
+                        elif field_id == config.reference_form_field_id_2:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
@@ -271,7 +302,7 @@ class CreativesRebuildController:
                                         collab_unique_id_2 = collab_unique_id_2.replace("-", "")
                                         logger.info(f"collab_unique_id_2: {collab_unique_id_2}")
 
-                        if field_id == config.reference_form_field_id_3:
+                        elif field_id == config.reference_form_field_id_3:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
@@ -293,7 +324,7 @@ class CreativesRebuildController:
                                         collab_unique_id_3 = collab_unique_id_3.replace("-", "")
                                         logger.info(f"collab_unique_id_3: {collab_unique_id_3}")
 
-                        if field_id == config.reference_form_field_id_4:
+                        elif field_id == config.reference_form_field_id_4:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_4 and ref_email == resp.getRefEmail():
@@ -315,7 +346,7 @@ class CreativesRebuildController:
                                         collab_unique_id_4 = collab_unique_id_4.replace("-", "")
                                         logger.info(f"collab_unique_id_4: {collab_unique_id_4}")
 
-                        if field_id == config.reference_form_field_id_5:
+                        elif field_id == config.reference_form_field_id_5:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_5 and ref_email == resp.getRefEmail():
@@ -337,7 +368,7 @@ class CreativesRebuildController:
                                         collab_unique_id_5 = collab_unique_id_5.replace("-", "")
                                         logger.info("collab_unique_id_5: {collab_unique_id_5}")
 
-                        if field_id == config.reference_form_field_id_6:
+                        elif field_id == config.reference_form_field_id_6:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_6 and ref_email == resp.getRefEmail():
@@ -359,7 +390,7 @@ class CreativesRebuildController:
                                         collab_unique_id_6 = collab_unique_id_6.replace("-", "")
                                         logger.info(f"collab_unique_id_6: {collab_unique_id_6}")
 
-                        if field_id == config.reference_form_field_id_7:
+                        elif field_id == config.reference_form_field_id_7:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_7 and ref_email == resp.getRefEmail():
@@ -381,7 +412,7 @@ class CreativesRebuildController:
                                         collab_unique_id_7 = collab_unique_id_7.replace("-", "")
                                         logger.info(f"collab_unique_id_7: {collab_unique_id_7}")
 
-                        if field_id == config.reference_form_field_id_8:
+                        elif field_id == config.reference_form_field_id_8:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_8 and ref_email == resp.getRefEmail():
@@ -403,7 +434,7 @@ class CreativesRebuildController:
                                         collab_unique_id_8 = collab_unique_id_8.replace("-", "")
                                         logger.info(f"collab_unique_id_8: {collab_unique_id_8}")
 
-                        if field_id == config.reference_form_field_id_9:
+                        elif field_id == config.reference_form_field_id_9:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 9: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_9 and ref_email == resp.getRefEmail():
@@ -424,6 +455,59 @@ class CreativesRebuildController:
                                         collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
                                         collab_unique_id_9 = collab_unique_id_9.replace("-", "")
                                         logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
+
+                        # map multi-select fields to internal form single select fields
+                        elif field_id == config.project_1_multi_select_id_1:
+                            multi_select_options_1 = data.getOptions()
+                            for option in multi_select_options_1:
+                                if option == config.project_1_multi_options_ids_1[0]:
+                                    single_select_options_1.append(config.single_select_option_id_1)
+                                elif option == config.project_1_multi_options_ids_1[1]:
+                                    single_select_options_2.append(config.single_select_option_id_2)
+                                elif option == config.project_1_multi_options_ids_1[2]:
+                                    single_select_options_3.append(config.single_select_option_id_3)
+                                elif option == config.project_1_multi_options_ids_1[3]:
+                                    single_select_options_4.append(config.single_select_option_id_4)
+                                elif option == config.project_1_multi_options_ids_1[4]:
+                                    single_select_options_5.append(config.single_select_option_id_5)
+                                elif option == config.project_1_multi_options_ids_1[5]:
+                                    single_select_options_6.append(config.single_select_option_id_6)
+                                elif option == config.project_1_multi_options_ids_1[6]:
+                                    single_select_options_7.append(config.single_select_option_id_7)
+                                elif option == config.project_1_multi_options_ids_1[7]:
+                                    single_select_options_8.append(config.single_select_option_id_8)
+                                elif option == config.project_1_multi_options_ids_1[8]:
+                                    single_select_options_9.append(config.single_select_option_id_9)
+
+                        elif field_id == config.project_1_multi_select_id_2:
+                            multi_select_options_2 = data.getOptions()
+                            for option in multi_select_options_2:
+                                if option == config.project_1_multi_options_ids_2[0]:
+                                    single_select_options_10.append(config.single_select_option_id_10)
+                                elif option == config.project_1_multi_options_ids_2[1]:
+                                    single_select_options_11.append(config.single_select_option_id_11)
+                                elif option == config.project_1_multi_options_ids_2[2]:
+                                    single_select_options_12.append(config.single_select_option_id_12)
+                                elif option == config.project_1_multi_options_ids_2[3]:
+                                    single_select_options_13.append(config.single_select_option_id_13)
+                                elif option == config.project_1_multi_options_ids_2[4]:
+                                    single_select_options_14.append(config.single_select_option_id_14)
+                                elif option == config.project_1_multi_options_ids_2[5]:
+                                    single_select_options_15.append(config.single_select_option_id_15)
+
+                        elif field_id == config.project_1_multi_select_id_3:
+                            multi_select_options_3 = data.getOptions()
+                            for option in multi_select_options_3:
+                                if option == config.project_1_multi_options_ids_3[0]:
+                                    single_select_options_16.append(config.single_select_option_id_16)
+                                elif option == config.project_1_multi_options_ids_3[1]:
+                                    single_select_options_17.append(config.single_select_option_id_17)
+                                elif option == config.project_1_multi_options_ids_3[2]:
+                                    single_select_options_18.append(config.single_select_option_id_18)
+                                elif option == config.project_1_multi_options_ids_3[3]:
+                                    single_select_options_19.append(config.single_select_option_id_19)
+                                elif option == config.project_1_multi_options_ids_3[4]:
+                                    single_select_options_20.append(config.single_select_option_id_20)
 
                     # create the primary UID
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
@@ -459,10 +543,24 @@ class CreativesRebuildController:
 
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         try:
-                            self.submittable.submitInternalFormResponse(submission_id, primary_unique_id, collab_unique_id_1,
-                                                                        collab_unique_id_2, collab_unique_id_3, collab_unique_id_4,
-                                                                        collab_unique_id_5, collab_unique_id_6, collab_unique_id_7,
-                                                                        collab_unique_id_8, collab_unique_id_9)
+                            self.submittable.submitInternalFormResponse(submission_id,            primary_unique_id,
+                                                                        single_select_options_1,  single_select_options_2,
+                                                                        single_select_options_3,  single_select_options_4,
+                                                                        single_select_options_5,  single_select_options_6,
+                                                                        single_select_options_7,  single_select_options_8,
+                                                                        single_select_options_9,  single_select_options_10,
+                                                                        single_select_options_11, single_select_options_12,
+                                                                        single_select_options_13, single_select_options_14,
+                                                                        single_select_options_15, single_select_options_16,
+                                                                        single_select_options_17, single_select_options_18,
+                                                                        single_select_options_19, single_select_options_20,
+                                                                        single_select_options_21, single_select_options_22,
+                                                                        single_select_options_23, single_select_options_24,
+                                                                        single_select_options_25, collab_unique_id_1,
+                                                                        collab_unique_id_2,       collab_unique_id_3,
+                                                                        collab_unique_id_4,       collab_unique_id_5,
+                                                                        collab_unique_id_6,       collab_unique_id_7,
+                                                                        collab_unique_id_8,       collab_unique_id_9)
 
                         except:
                             logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
@@ -555,11 +653,80 @@ class CreativesRebuildController:
                         # Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_2_name_field_id:
                             primary_last_name = data.getFieldValue("SHORT_ANSWER")
-                        if field_id == config.project_2_dob_field_id:
+                        elif field_id == config.project_2_dob_field_id:
                             date_string = data.getFieldValue("DATE")
                             primary_dob = date_string[0:10]
-                        if field_id == config.project_2_zipcode_field_id:
+                        elif field_id == config.project_2_zipcode_field_id:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
+
+                        # map multi-select fields to internal form single select fields
+                        elif field_id == config.project_1_multi_select_id_1:
+                            multi_select_options_1 = data.getOptions()
+                            for option in multi_select_options_1:
+                                if option == config.project_2_multi_options_ids_1[0]:
+                                    single_select_options_1.append(config.single_select_option_id_1)
+                                elif option == config.project_2_multi_options_ids_1[1]:
+                                    single_select_options_2.append(config.single_select_option_id_2)
+                                elif option == config.project_2_multi_options_ids_1[2]:
+                                    single_select_options_3.append(config.single_select_option_id_3)
+                                elif option == config.project_2_multi_options_ids_1[3]:
+                                    single_select_options_4.append(config.single_select_option_id_4)
+                                elif option == config.project_2_multi_options_ids_1[4]:
+                                    single_select_options_5.append(config.single_select_option_id_5)
+                                elif option == config.project_2_multi_options_ids_1[5]:
+                                    single_select_options_6.append(config.single_select_option_id_6)
+                                elif option == config.project_2_multi_options_ids_1[6]:
+                                    single_select_options_7.append(config.single_select_option_id_7)
+                                elif option == config.project_2_multi_options_ids_1[7]:
+                                    single_select_options_8.append(config.single_select_option_id_8)
+                                elif option == config.project_2_multi_options_ids_1[8]:
+                                    single_select_options_9.append(config.single_select_option_id_9)
+
+                        elif field_id == config.project_2_multi_select_id_1:
+                            multi_select_options_2 = data.getOptions()
+                            for option in multi_select_options_1:
+                                if option == config.project_2_multi_options_ids_2[0]:
+                                    single_select_options_10.append(config.single_select_option_id_10)
+                                elif option == config.project_2_multi_options_ids_2[1]:
+                                    single_select_options_11.append(config.single_select_option_id_11)
+                                elif option == config.project_2_multi_options_ids_2[2]:
+                                    single_select_options_12.append(config.single_select_option_id_12)
+                                elif option == config.project_2_multi_options_ids_2[3]:
+                                    single_select_options_13.append(config.single_select_option_id_13)
+                                elif option == config.project_2_multi_options_ids_2[4]:
+                                    single_select_options_14.append(config.single_select_option_id_14)
+                                elif option == config.project_2_multi_options_ids_2[5]:
+                                    single_select_options_15.append(config.single_select_option_id_15)
+
+                        elif field_id == config.project_2_multi_select_id_3:
+                            multi_select_options_3 = data.getOptions()
+                            for option in multi_select_options_3:
+                                if option == config.project_2_multi_options_ids_3[0]:
+                                    single_select_options_16.append(config.single_select_option_id_16)
+                                elif option == config.project_2_multi_options_ids_3[1]:
+                                    single_select_options_17.append(config.single_select_option_id_17)
+                                elif option == config.project_2_multi_options_ids_3[2]:
+                                    single_select_options_18.append(config.single_select_option_id_18)
+                                elif option == config.project_2_multi_options_ids_3[3]:
+                                    single_select_options_19.append(config.single_select_option_id_19)
+                                elif option == config.project_2_multi_options_ids_3[4]:
+                                    single_select_options_20.append(config.single_select_option_id_20)
+
+                        #GI project only
+                        elif field_id == config.project_2_multi_select_id_4:
+                            multi_select_options_4 = data.getOptions()
+                            for option in multi_select_options_4:
+                                if option == config.project_2_multi_options_ids_4[0]:
+                                    single_select_options_21.append(config.single_select_option_id_21)
+                                elif option == config.project_2_multi_options_ids_4[1]:
+                                    single_select_options_22.append(config.single_select_option_id_22)
+                                elif option == config.project_2_multi_options_ids_4[2]:
+                                    single_select_options_23.append(config.single_select_option_id_23)
+                                elif option == config.project_2_multi_options_ids_4[3]:
+                                    single_select_options_24.append(config.single_select_option_id_24)
+                                elif option == config.project_2_multi_options_ids_4[4]:
+                                    single_select_options_25.append(config.single_select_option_id_25)
+
 
                     # create the primary UID
                     primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
@@ -571,7 +738,20 @@ class CreativesRebuildController:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                             # create internal entry using beta endpoint - Work In Progress
                             try:
-                                self.submittable.submitInternalFormResponse(submission_id, primary_unique_id)
+                                self.submittable.submitInternalFormResponse(submission_id,            primary_unique_id,
+                                                                            single_select_options_1,  single_select_options_2,
+                                                                            single_select_options_3,  single_select_options_4,
+                                                                            single_select_options_5,  single_select_options_6,
+                                                                            single_select_options_7,  single_select_options_8,
+                                                                            single_select_options_9,  single_select_options_10,
+                                                                            single_select_options_11, single_select_options_12,
+                                                                            single_select_options_13, single_select_options_14,
+                                                                            single_select_options_15, single_select_options_16,
+                                                                            single_select_options_17, single_select_options_18,
+                                                                            single_select_options_19, single_select_options_20,
+                                                                            single_select_options_21, single_select_options_22,
+                                                                            single_select_options_23, single_select_options_24,
+                                                                            single_select_options_25)
                             except:
                                 logger.info(f"project 2 - failed to create/update internal form for submission {submission_id}")
 

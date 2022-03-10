@@ -80,7 +80,7 @@ class InitialToInternal:
                 fieldID = init_resp_Data.getFormFieldId()
                 print("filed id:", fieldID)
 
-                if fieldID == config.multi_select_id_1:
+                if fieldID == config.project_1_multi_select_id_1:
                     multi_select_options_1 = init_resp_Data.getOptions()
                     for option in multi_select_options_1:
                         if option == config.multi_options_ids_1[0]:

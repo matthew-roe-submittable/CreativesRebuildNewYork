@@ -13,9 +13,9 @@ mysql_conn = mysql.connector.connect(user=mysql_user,
                                      database=mysql_db)
 
 # ------------------------------ LIVE ACCOUNT SETTINGS ------------------------------ #
-'''
+
 # live account API key
-# submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
+submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
 
 # Project: AEP
 project_id_1                = "f5b5299e-149b-40fe-9764-f41fa3c57330"
@@ -75,39 +75,116 @@ label_id_2 = ""
 # label "Pending Duplicate"
 label_id_3 = ""
 
-# TODO - update for production 
-# multi select initial form IDs
-first_multi_select_id  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"
-second_multi_select_id = "028936dd-a753-4201-909c-38e4f6122c1a"
-third_multi_select_id  = "94f117db-9536-4892-ab88-e8d4d60babe9"
-fourth_multi_select_id = "cad583dc-a922-4746-8db5-1ad7559a5dbf"
+
+# AEP multi select initial form field IDs
+project_1_multi_select_id_1  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
+project_1_multi_select_id_2  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
+project_1_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
 
 # multi select option IDs
-first_multi_options_ids  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1",
-                            "14757995-2ce5-4902-9de6-70da31cc78d0",
-                            "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
-                            "a3092d24-5493-443a-9950-d4c860dacea9",
-                            "9dcea11d-1829-4ba6-b27c-9224ca856236",
-                            "7eed346b-2900-424c-901a-cd1797b66cb6"]
+project_1_multi_options_ids_1  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-0550-49eb-84ce-2de922506cf7", "5cf12f61-ec64-415f-b2ae-9bc242e5efec",
+                                  "a9142c59-79fc-4e6d-a3a1-7b97cb61bcca", "b20a0284-4ddf-4588-82c8-fbc5dfc8d9ed", "85cb5937-1cb2-499f-8ffa-8d3a06f7f33c",
+                                  "4330a73a-1ae9-4fa7-8e97-99b66d23ac92", "708ccca7-571e-4a55-a68c-7a1689125287", "d5f06b5c-5257-4fb5-a739-60785fba2aa2"]
 
-second_multi_options_ids = ["4330a73a-1ae9-4fa7-8e97-99b66d23ac92"]
-third_multi_options_ids  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566"]
-fourth_multi_options_ids = ["89cf1db1-08ff-4496-84e8-75ba3fbedbbf"]
+project_1_multi_options_ids_2  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
+                                  "8b9ca158-27a2-4e42-94f0-ddd47ac95ca5", "6276f882-1985-4fdb-8b1e-af0776ebf4bd", "ad7991d1-1f9c-4791-a90a-5c5014ab79a0"]
 
-# single select internal form IDs
-first_single_select_id  = "0df8cde3-7b60-456d-9a8d-9bcf94de39d8"
-second_single_select_id = "9bb8c05d-e110-45eb-af5c-9254f3d276a7"
-third_single_select_id  = "fab97e78-8d3c-4d99-9e32-caded4ec3780"
-fourth_single_select_id = "fedc23b7-0c77-4b9b-b983-6fd0618c845f"
+project_1_multi_options_ids_3  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20a0e-b0e2-4ecf-8626-7b21f36916fb", "95aec17a-4eda-4f86-b3e3-8e1e18851a90",
+                                  "89cf1db1-08ff-4496-84e8-75ba3fbedbbf", "8c9f4e92-2430-417c-8071-168805ad984a"]
 
-# single select option IDs
-first_single_select_option_ids  = ["69b10947-53d8-44fd-9cc3-985dbabdac08", "d810d10b-d2ed-4568-ae80-2f42d2c4d4c7", "bfdc8d99-978c-4ab2-a530-b2456bc7734b"]
-second_single_select_option_ids = ["b1920b24-90e5-44ee-a943-6a64f591f394", "5e81cf6c-d039-4658-8e66-0f6af06dc354", "22a989cb-76e8-4d22-8f7f-067f5fdfa842"]
-third_single_select_option_ids  = ["a30a5f94-f5eb-452b-8f36-70e0be188af3", "6aeb62f7-0481-4f10-80b0-bbc12b4937ab", "be4a565b-47d2-479c-9677-4eaa6486149d"]
-fourth_single_select_option_ids = ["01c9c092-531f-4fa8-ac1a-2b0f39c3ffae", "e2c5deb6-b98d-4e42-872b-a6c05048c34d", "6dcea3ce-a1f9-44c7-9d24-6b9300f3a7ed"]
-'''
+# GI multi select initial form field IDs
+project_2_multi_select_id_1  = "758c4332-05cd-4bc4-aa8c-29608f25aa23"  # Which of the following best describes you
+project_2_multi_select_id_2  = "4c251fd1-79f1-4f2e-9cf2-c2ba4a3e978b"  # What is your gender identity
+project_2_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+# GI project only
+project_2_multi_select_id_4  = "57229736-c2e0-4394-8741-4456e0aa4afc"  # Please check all that apply regarding your financial safety net
+
+# multi select option IDs
+project_2_multi_options_ids_1  = ["c0a1fa70-2901-4dba-9fd2-01c7e9411940", "d102efb5-5855-4fb6-a55e-cbdbbb590255", "0acea73a-cde1-44c6-8e91-ca2179461651",
+                                  "bab9b368-671a-416d-b796-58d33ce2e6c4", "df7fbb0a-8b13-4ba9-be60-5548f9359a33", "718b9f71-3eab-475d-b621-ca720970a791",
+                                  "a103d095-d51f-420e-a017-ab49a6cc0421", "49fff122-a902-482c-91d6-4178d8e73f87", "c09931d0-422d-4697-9833-73b98efdb444"]
+
+project_2_multi_options_ids_2  = ["b4a52ba9-6961-48a0-9e40-84ec49847e72", "1c7a9ad7-f6ba-44f4-aa27-d4299dd698e9", "7314db42-ccfd-474b-aaea-e10be26d9529",
+                                  "cc4611cd-e7ba-4df4-bcac-85f6f81f59d2", "4ea1d978-b361-4595-a758-f1bd0d251718", "7525a512-64fc-4a97-a282-ff50609704f9"]
+
+project_2_multi_options_ids_3  = ["2e6dfc90-8106-4107-a910-552d4197a8c6", "702b6585-a1c8-4d99-8e16-d1d797c92d36", "ec6fb886-5ca3-47f6-908f-d4a5c7f00347",
+                                  "c491e047-30f8-4e7c-8754-417e50e3f8aa", "f45bd78a-08fc-41c7-b5a8-8dab724d52b9"]
+
+# GI project only
+project_2_multi_options_ids_4  = ["ba27ef1b-2b26-4a14-bed4-e9ebc34b0248", "db505e3b-d0df-485e-9e80-851dac87821c", "ef9d1bf4-37c6-4c79-93bf-a154a4f17dc0",
+                                  "13f70502-7549-4dc6-86f7-d04ca4b05134", "a0bd6179-bbb6-422d-8cb2-1ab8a1a1f8cd"]
+
+
+# single select internal form IDs 1-25
+#
+# single select form field IDs for Multi-Select Question: "Which of the following best describes you"
+single_select_id_1   = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"
+single_select_id_2   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"
+single_select_id_3   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"
+single_select_id_4   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"
+single_select_id_5   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"
+single_select_id_6   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"
+single_select_id_7   = "77002d8f-7d56-44f1-a3b6-262888449130"
+single_select_id_8   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"
+single_select_id_9   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"
+
+# single select option IDs for Multi-Select Question: "What is your gender identity"
+single_select_id_10  = "ef768aeb-5ab9-4b11-bb22-42f03e569548"
+single_select_id_11  = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"
+single_select_id_12  = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"
+single_select_id_13  = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"
+single_select_id_14  = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"
+single_select_id_15  = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"
+
+# single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
+single_select_id_16  = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"
+single_select_id_17  = "275673c7-fd28-4990-b9b1-c30e25643fb8"
+single_select_id_18  = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"
+single_select_id_19  = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"
+single_select_id_20  = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"
+
+# single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
+single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"
+single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"
+single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"
+single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"
+single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"
+
+# single select option IDs for Multi-Select Question: "Which of the following best describes you"
+single_select_option_id_1   = "f89526fa-2498-4855-900c-3db5415b5cdb"
+single_select_option_id_2   = "9c790d51-c08c-4630-8de8-650fefdd7f73"
+single_select_option_id_3   = "30bed219-d669-471d-beca-a09d1bf152fc"
+single_select_option_id_4   = "1c2680ef-7222-47fe-93a4-127cfc3c2285"
+single_select_option_id_5   = "7f9c0e65-2983-4e2a-b530-7c8f83135d1c"
+single_select_option_id_6   = "7832c635-ae2b-407c-afd9-e7bb7230aed6"
+single_select_option_id_7   = "9347685b-b39a-4045-9b5e-92b024755206"
+single_select_option_id_8   = "1ff30422-f5bb-4dd1-bbfd-ee945c63f502"
+single_select_option_id_9   = "e8fe5a2b-a445-43b8-9156-fb96fa902906"
+
+# single select option IDs for Multi-Select Question: "What is your gender identity"
+single_select_option_id_10  = "5cc64c48-ec92-475a-bfbf-dc09a7294e5f"
+single_select_option_id_11  = "146aeb7f-506e-465c-92e0-115c9569d47f"
+single_select_option_id_12  = "acb58eab-cb62-4a03-a547-c612cbebce04"
+single_select_option_id_13  = "09a490a5-8adf-4fd1-a79e-8734f9af0b04"
+single_select_option_id_14  = "1ff5ccd1-8103-49b8-81e5-88977ed2305b"
+single_select_option_id_15  = "188fc04b-118f-4b28-a288-1440889d8530"
+
+# single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
+single_select_option_id_16  = "8f8b4d79-1c31-4b84-8fd5-a51adc619761"
+single_select_option_id_17  = "2e6dc0d4-6bc4-4a1f-ae1e-d90d491fc385"
+single_select_option_id_18  = "8ac92a6c-ddfa-49fb-ae9b-38473768dc29"
+single_select_option_id_19  = "24f60998-6e9f-4a36-9eb6-31b7b5a933a9"
+single_select_option_id_20  = "f8089702-01d3-4e27-a6b8-1e743b7fb828"
+
+# single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
+single_select_option_id_21  = "05788879-016d-4f8c-b174-7a1474b700ec"
+single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
+single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
+single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
+single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
+'''
 # demo account
 submittable_token           = "700b04eccae244679785a0e8f13c786e"
 # Demo Account
@@ -250,7 +327,7 @@ single_select_option_id_22  = "ee872fe1-3239-4e6d-abf3-190b3e59fd87"
 single_select_option_id_23  = "cb6c77b1-aa07-4c09-be90-f0256604841c"
 single_select_option_id_24  = "2f28ed22-3306-4265-9894-bb7ee469ff90"
 single_select_option_id_25  = "67e2e1e9-e773-46ce-9143-17f9b9dd5c2a"
-
+'''
 
 # Data structure to replace Database
 # volatile memory used and thrown away
