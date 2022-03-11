@@ -16,7 +16,7 @@ def main():
     try:
         controller.checkForDupUID()
     except:
-        logger.info(f"data struct {config.uid_data_struct}")
+        logger.info(f"**** error: dump data struct {config.uid_data_struct}")
     print("finished", datetime.now())
 
 

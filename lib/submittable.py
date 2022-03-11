@@ -62,7 +62,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
-        self.event.wait(0.1)
+        self.event.wait(0.2)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
@@ -432,7 +432,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
-        self.event.wait(0.1)
+        self.event.wait(0.2)
         endpoint = f'{self.baseURL}/submissions/{submission_id}'
         headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -460,12 +460,12 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getListOfSubmissions(self):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         submissions = []
-        page_size   = 1
+        page_size   = 50
         total_pages = 1
         endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
             raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
@@ -473,6 +473,7 @@ class Submittable:
             total_pages = response.json()["totalPages"]
             # print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
+            # self.event.wait(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -483,10 +484,10 @@ class Submittable:
                 logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over do not add to list
                 continue
-            json_response = response.json()
+            json_response    = response.json()
             submissions_list = json_response["items"]
-            # total_pages = response.json()["totalPages"]
-            # print("total pages:", total_pages)
+            # total_pages    = response.json()["totalPages"]
+            print("page:", page)
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
         return submissions
@@ -494,12 +495,11 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
-        self.event.wait(0.1)
         ref_responses = []
         page_size     = 1
         total_pages   = 1
         endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=1&pageSize={page_size}'
-        headers = {'Content-type': 'application/json'}
+        headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
             logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
@@ -507,6 +507,7 @@ class Submittable:
             total_pages = response.json()["totalPages"]
             # print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
+            self.event.wait(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -518,10 +519,10 @@ class Submittable:
                 logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over go to next response
                 continue
-            json_response = response.json()
+            json_response     = response.json()
             ref_response_list = json_response["items"]
-            # total_pages = response.json()["totalPages"]
-            # print("total pages:", total_pages)
+            # total_pages     = response.json()["totalPages"]
+            print("page:", page)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
@@ -1251,7 +1252,7 @@ class SubmittableFieldData:
             value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
             value = self.getValue()
-        print("get field value", value)
+        # print("get field value", value)
         return value
 
 

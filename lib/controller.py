@@ -8,7 +8,7 @@ import sys
 file_formatter = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -124,10 +124,11 @@ class CreativesRebuildController:
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
+            # submission_id = sub_item
             submission_id = sub_item.getSubmissionId()
             project_id    = sub_item.getProjectId()
 
-            '''
+
             # only used for re-runs 
             # data struct is a list of dicts
             # loop through pull out sub id and check if match skip
@@ -139,8 +140,8 @@ class CreativesRebuildController:
                 # skip sub its already processed
                 print("top skip")
                 continue
-            '''
 
+            print("get submission")
             sub_response  = self.submittable.getSubmission(submission_id)
             # project_id = sub_response.getProjectId()
             # get submission form responses (initial)
@@ -181,7 +182,7 @@ class CreativesRebuildController:
 
             # load database from project 1 (AEP)
             if project_id == self.project_id_1:
-                print("project 1 - Submission")
+                logger.info(f"project 1 - Submission {submission_id}")
                 ref_email = sub_response.getSubmitterEmail()
                 # print(f"ref email is: {ref_email}")
 
@@ -510,8 +511,9 @@ class CreativesRebuildController:
                                 elif option == config.project_1_multi_options_ids_3[4]:
                                     single_select_options_20.append(config.single_select_option_id_20)
 
-                    # create the primary UID
+
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
+                        # create the primary UID
                         primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
                         primary_unique_id = primary_unique_id.replace(" ", "")
                         primary_unique_id = primary_unique_id.replace("-", "")
@@ -530,7 +532,7 @@ class CreativesRebuildController:
                     # check the uids in the form for dups
                     for elem in id_list_check:
                         if id_list_check.count(elem) > 1 and elem is not None:
-                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 {primary_unique_id} for submission {submission_id}")
+                            logger.info(f"project 1 - INTERNAL FORM duplicate unique id project 1 for submission {submission_id}")
                             try:
                                 # add dup label to this submission (single form dup)
                                 # logger.info(f"project 1 - try to create label")
@@ -579,37 +581,37 @@ class CreativesRebuildController:
                         uid_check_sub_id_10 = self.uid_chcek(collab_unique_id_9)
 
                         if uid_check_sub_id_1 is not None:
-                            # print("project 1 - dup found")
+                            logger.info(f"project 1 - dup found  sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_1)
                         elif uid_check_sub_id_2 is not None:
-                            # print((f"project 1 - collab_unique_id_2 dup found")
+                            logger.info(f"project 1 - collab_unique_id_2 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_2)
                         elif uid_check_sub_id_3 is not None:
-                            # print(("project 1 - collab_unique_id_3 dup found")
+                            logger.info(f"project 1 - collab_unique_id_3 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_3)
                         elif uid_check_sub_id_4 is not None:
-                            # print(("project 1 - collab_unique_id_4 dup found")
+                            logger.info(f"project 1 - collab_unique_id_4 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_4)
                         elif uid_check_sub_id_5 is not None:
-                            # print(("project 1 - collab_unique_id_5 dup found")
+                            logger.info(f"project 1 - collab_unique_id_5 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_5)
                         elif uid_check_sub_id_6 is not None:
-                            # print(("project 1 - collab_unique_id_6 dup found")
+                            logger.info(f"project 1 - collab_unique_id_6 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_6)
                         elif uid_check_sub_id_7 is not None:
-                            # print(("project 1 - collab_unique_id_7 dup found")
+                            logger.info(f"project 1 - collab_unique_id_7 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_7)
                         elif uid_check_sub_id_8 is not None:
-                            # print(("project 1 - collab_unique_id_7 dup found")
+                            logger.info(f"project 1 - collab_unique_id_7 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_8)
                         elif uid_check_sub_id_9 is not None:
-                            # print(("project 1 - collab_unique_id_8 dup found")
+                            logger.info(f"project 1 - collab_unique_id_8 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_9)
                         elif uid_check_sub_id_10 is not None:
-                            # print(("project 1 - collab_unique_id_9 dup found")
+                            logger.info(f"project 1 - collab_unique_id_9 dup found sub id: {submission_id}")
                             self.label_dups(submission_id, uid_check_sub_id_10)
 
-                        logger.info(f"project 1 - save to dict")
+                        logger.info(f"project 1 - save to dict {primary_unique_id} sub id {submission_id}")
                         config.uid_data_struct.append({'submission_id':      submission_id,      'primary_unique_id':  primary_unique_id,
                                                        'collab_unique_id_1': collab_unique_id_1, 'collab_unique_id_2': collab_unique_id_2,
                                                        'collab_unique_id_3': collab_unique_id_3, 'collab_unique_id_4': collab_unique_id_4,
@@ -621,13 +623,13 @@ class CreativesRebuildController:
                         # go to next response
                         break
                     else:
-                        logger.info(f"project 1 - collaborator UID field Null for submission {submission_id}")
+                        logger.info(f"project 1 - primary UID field Null: {primary_unique_id} for submission: {submission_id}")
                         # skip submission missing primary UID field(s)
                         continue
 
             # check project 2
             elif project_id == self.project_id_2:
-                logger.info(f"project 2 - Submission")
+                logger.info(f"project 2 - Submission {submission_id}")
                 # Skip submission if not in "new" or "in_progress" state
                 status = sub_response.getSubmissionStatus()
                 if status != "new" and status != "in_progress":
@@ -729,11 +731,13 @@ class CreativesRebuildController:
                                     single_select_options_25.append(config.single_select_option_id_25)
 
 
-                    # create the primary UID
-                    primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
-                    primary_unique_id = primary_unique_id.replace(" ", "")
-                    primary_unique_id = primary_unique_id.replace("-", "")
-                    logger.info(f"project 2 - primary_unique_id: {primary_unique_id}")
+
+                    if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
+                        # create the primary UID
+                        primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+                        primary_unique_id = primary_unique_id.replace(" ", "")
+                        primary_unique_id = primary_unique_id.replace("-", "")
+                        logger.info(f"project 2 - primary_unique_id: {primary_unique_id}")
 
                     try:
                         if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
@@ -772,10 +776,11 @@ class CreativesRebuildController:
                             break
                         else:
                             # skip submission missing UID field(s)
+                            logger.info(f"project 2 - primary UID field Null: {primary_unique_id} for submission: {submission_id}")
                             continue
                     except:
                         # log the failure
-                        logger.info(f"project 2 - failed to check unique id: {primary_unique_id} submission: {submission_id}")
+                        logger.info(f"project 2 - failed to check unique id for submission: {submission_id}")
 
         # log the completed list of UIDs
         logger.info(f"config struct {config.uid_data_struct}")
