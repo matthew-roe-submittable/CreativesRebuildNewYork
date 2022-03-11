@@ -8,7 +8,7 @@ import sys
 file_formatter = logging.Formatter('%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s')
 console_formatter = logging.Formatter('%(levelname)s -- %(message)s')
 
-file_handler = logging.FileHandler("logs/logfile.log")
+file_handler = logging.FileHandler("../logs/logfile.log")
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(file_formatter)
 console_handler = logging.StreamHandler()
@@ -117,16 +117,17 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
+        list_of_submissions =  [23171861, 23171241, 23217200] # self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
-            submission_id = sub_item.getSubmissionId()
-            project_id    = sub_item.getProjectId()
+            submission_id = sub_item  # sub_item.getSubmissionId()
+            # project_id    = sub_item.getProjectId()
 
             '''
+            # only used for re-runs 
             # data struct is a list of dicts
             # loop through pull out sub id and check if match skip
             skip = None
@@ -140,6 +141,7 @@ class CreativesRebuildController:
             '''
 
             sub_response  = self.submittable.getSubmission(submission_id)
+            project_id = sub_response.getProjectId()
             # get submission form responses (initial)
             response_list = sub_response.getFormResponses()
             # print(f"response list length: {len(response_list)}")
@@ -643,7 +645,7 @@ class CreativesRebuildController:
                     field_data = responses.getFieldData()
 
                     for data in field_data:
-                        logger.info(f"project 2 - data in field_data {data}")
+                        # logger.info(f"project 2 - data in field_data {data}")
                         field_id    = data.getFormFieldId()
                         field_value = responses.getFieldResponse(field_id)
                         field_id    = field_value.getFormFieldId()
