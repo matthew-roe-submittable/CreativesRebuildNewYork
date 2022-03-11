@@ -128,7 +128,7 @@ class CreativesRebuildController:
             submission_id = sub_item.getSubmissionId()
             project_id    = sub_item.getProjectId()
 
-
+            '''
             # only used for re-runs 
             # data struct is a list of dicts
             # loop through pull out sub id and check if match skip
@@ -140,6 +140,7 @@ class CreativesRebuildController:
                 # skip sub its already processed
                 print("top skip")
                 continue
+            '''
 
             print("get submission")
             sub_response  = self.submittable.getSubmission(submission_id)

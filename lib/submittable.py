@@ -438,8 +438,14 @@ class Submittable:
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print("get sub", response.json())
         if response.status_code != 200:
-            logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
-            raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
+            if response.status_code == 429:
+                print("api rate limit hit wait 15 mins")
+                self.event.wait(900)
+                # call to get submission again
+                self.getSubmission(submission_id)
+            else:
+                logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
+                raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
         return SubmittableSubmission(response.json())
 
     # get an individual submission
