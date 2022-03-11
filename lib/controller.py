@@ -113,11 +113,11 @@ class CreativesRebuildController:
     # save into database
     #
     def checkForDupUID(self):
-        # print(f"checking artists")
+        print(f"checking artists")
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions(self.project_id_1, self.project_id_2)
+        list_of_submissions = self.submittable.getListOfSubmissions()
         # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523]
 
         # get list of reference form responses
