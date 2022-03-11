@@ -22,6 +22,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getLabelIds(self):
+        self.event.wait(0.1)
         page_size   = 50
         label_ids   = []
         total_pages = 1
@@ -49,6 +50,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
+        self.event.wait(0.1)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
         response = requests.delete(endpoint, auth=("", self.api_key), headers=headers)
@@ -60,6 +62,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
+        self.event.wait(0.1)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers  = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
@@ -69,6 +72,7 @@ class Submittable:
         return response
 
     def createNewLabel(self, submission_id):
+        self.event.wait(0.1)
         endpoint = f'{self.baseURL}/labels'
         headers  = {'Content-type': 'application/json'}
         payload  = {'name': submission_id}
@@ -82,6 +86,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getEntry(self, entry_id):
+        self.event.wait(0.1)
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
         headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
@@ -93,6 +98,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getInitialFormRequestId(self, subId):
+        self.event.wait(0.1)
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "initial",
@@ -121,6 +127,7 @@ class Submittable:
                                    collab_unique_id_4=None,  collab_unique_id_5=None,
                                    collab_unique_id_6=None,  collab_unique_id_7=None,
                                    collab_unique_id_8=None,  collab_unique_id_9=None):
+        self.event.wait(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers  = {'Content-type': 'application/json'}
         payload  = {"submissionId": submission_id,
@@ -316,6 +323,7 @@ class Submittable:
                                    collab_unique_id_2=None, collab_unique_id_3=None, collab_unique_id_4=None, collab_unique_id_5=None,
                                    collab_unique_id_6=None, collab_unique_id_7=None, collab_unique_id_8=None, collab_unique_id_9=None,
                                    single_select_value_1=False, single_select_value_2=False, single_select_value_3=False, single_select_value_4=False):
+        self.event.wait(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/entries/{request_id}'
         headers  = {'Content-type': 'application/json'}
         payload  = {"formType": "internal",
@@ -438,6 +446,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
+        self.event.wait(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers  = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -451,6 +460,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getListOfSubmissions(self):
+        self.event.wait(0.1)
         submissions = []
         page_size   = 1
         total_pages = 1
@@ -484,6 +494,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
+        self.event.wait(0.1)
         ref_responses = []
         page_size     = 1
         total_pages   = 1
