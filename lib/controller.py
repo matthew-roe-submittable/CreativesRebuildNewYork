@@ -30,9 +30,8 @@ class CreativesRebuildController:
         self.submittable  = Submittable()
         self.project_id_1 = config.project_id_1
         self.project_id_2 = config.project_id_2
-        self.label_id_1   = config.label_id_1
-        self.label_id_2   = config.label_id_2
-        self.label_id_3   = config.label_id_3
+        self.label_id_1   = config.dup_label_id
+
 
 
     def addLabel(self, submission_id, label_id):
@@ -144,6 +143,17 @@ class CreativesRebuildController:
 
             print("get submission")
             sub_response  = self.submittable.getSubmission(submission_id)
+
+            # check for Migrated label - skip submission if label is present
+            check_labels  = sub_response.getLabels()
+            set_break     = False
+            for label in check_labels:
+                if config.migrated_label == str(label.getLabelId()):
+                    set_break = True
+            if set_break:
+                # skip submission
+                continue
+
             # project_id = sub_response.getProjectId()
             # get submission form responses (initial)
             response_list = sub_response.getFormResponses()

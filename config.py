@@ -69,11 +69,10 @@ internal_form_field_id_9    = "a402fa0e-e106-4630-aac8-9550b262db0b"
 internal_form_field_id_10   = "9a02a624-26e2-4f8a-84fb-222f710b1079"
 
 # label "Pending Duplicate"
-label_id_1 = "320527"
-# label "Not Awarded Duplicate"
-label_id_2 = ""
-# label "Pending Duplicate"
-label_id_3 = ""
+dup_label_id = "320527"
+# label "Migrated"
+migrated_label = "325691"
+
 
 
 # AEP multi select initial form field IDs
