@@ -88,11 +88,9 @@ migrated_label = "325691"
 project_1_multi_select_id_1  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
 project_1_multi_select_id_2  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
 project_1_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-
 project_1_multi_select_id_4  = "8f21320b-c09f-42dd-9a18-781470c0e101"  # At what scale do your services or programs operate
 project_1_multi_select_id_5  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # How do you approach your practice as an artist, culture bearer, or culture maker
 project_1_multi_select_id_6  = "6a0521d4-5111-4199-8b54-b9663a904551"  # In what capacity has your organization worked with artists?
-
 project_1_multi_select_id_7  = "9baa2709-d5e2-4aa0-abe1-4b62ff81c37b"  # Which of the following communities does your organization explicitly serve
 project_1_multi_select_id_8  = "a674b07b-5fce-4d86-a558-53cd0569c77c"  # Which of the following did you receive
 project_1_multi_select_id_9  = "a8b213cf-634f-4927-8bb6-56e9f94792f2"  # If yes, does it include the following
@@ -260,33 +258,233 @@ app_survey_multi_options_ids_7  = ["91994fbb-c6da-4227-811e-68606fea7309", "d2bc
                                    "6c8d6976-1c8b-4125-a68d-f2ee565fbcb1"]
 
 
-# Ineligible single select internal form IDs
+# Ineligible Survey single select form field IDs
+#
+# Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker"
+ineligible_single_select_id_1    = "863c25a2-67b5-4f99-ae19-b9643df55cd5"  # I work as a solo artist
+ineligible_single_select_id_2    = "f97aada7-9357-483e-8ae3-d3d53bffbfd5"  # I collaborate regularly with other artists
+ineligible_single_select_id_3    = "de919207-0a93-4061-b51d-ef67b9e6c09c"  # I collaborate regularly with other non-arts practitioners
+ineligible_single_select_id_4    = "12b4ac3b-46ce-4982-b3f9-f1223e9711e5"  # My practice requires public or community involvement to have meaning
+ineligible_single_select_id_5    = "ab5d4e6b-ad1a-4be4-9204-25e774d6531f"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
+ineligible_single_select_id_6    = "5d329ca2-a86f-459a-a5be-ff8aa234d5b3"  # # Teaching or educating others is core to my practice
+
+# Multi-Select Question: "How do you currently earn money"
+ineligible_single_select_id_7    = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"  # I have one or more part-time jobs (less than 30 hours per week)
+ineligible_single_select_id_8    = "456c97ef-8c15-49d4-a1b5-8a337b1c180e"  # I have a full-time job (more than 30 hours per week)
+ineligible_single_select_id_9    = "dcca3742-45c2-4e78-b606-4f3581d0a9e6"  # I have a series of gigs, contracts, and temporary jobs
+ineligible_single_select_id_10   = "f2709e28-b611-4003-960e-48bea8f257f3"  # I am primarily or entirely supported by family or by my spouse/partner
+ineligible_single_select_id_11   = "53286bb9-5075-4f1e-82b7-702f0fc3e8ea"  # I am currently unemployed
+ineligible_single_select_id_12   = "fd74bf2d-0a64-4b0a-8f76-2ab943e33825"  # I earn 100% of my living through my art practice.
+ineligible_single_select_id_13   = "d50ff3be-fdbf-4ff8-904e-1f978b89c73f"  # Other (please describe)
+
+# Multi-Select Question: "How are your wages currently paid"
+ineligible_single_select_id_14   = ""
+ineligible_single_select_id_15   = ""
+ineligible_single_select_id_16   = ""
+ineligible_single_select_id_17   = ""
+ineligible_single_select_id_18   = ""
+ineligible_single_select_id_19   = ""
+ineligible_single_select_id_20   = ""
+ineligible_single_select_id_21   = ""
+ineligible_single_select_id_22   = ""
+ineligible_single_select_id_23   = ""
+ineligible_single_select_id_24   = ""
+
+# Multi-Select Question: ""
+ineligible_single_select_id_25   = ""
+ineligible_single_select_id_26   = ""
+ineligible_single_select_id_27   = ""
+ineligible_single_select_id_28   = ""
+ineligible_single_select_id_29   = ""
+ineligible_single_select_id_30   = ""
+ineligible_single_select_id_31   = ""
+ineligible_single_select_id_32   = ""
+ineligible_single_select_id_33   = ""
+ineligible_single_select_id_34   = ""
+ineligible_single_select_id_35   = ""
+
+# Multi-Select Question: ""
+ineligible_single_select_id_36   = ""
+ineligible_single_select_id_37   = ""
+ineligible_single_select_id_38   = ""
+ineligible_single_select_id_39   = ""
+ineligible_single_select_id_40   = ""
+ineligible_single_select_id_41   = ""
+ineligible_single_select_id_42   = ""
+ineligible_single_select_id_43   = ""
+ineligible_single_select_id_44   = ""
+ineligible_single_select_id_45   = ""
+ineligible_single_select_id_46   = ""
+
+# Multi-Select Question: ""
+ineligible_single_select_id_47   = ""
+ineligible_single_select_id_48   = ""
+ineligible_single_select_id_49   = ""
+ineligible_single_select_id_50   = ""
+ineligible_single_select_id_51   = ""
+ineligible_single_select_id_52   = ""
+ineligible_single_select_id_53   = ""
+ineligible_single_select_id_54   = ""
+ineligible_single_select_id_55   = ""
+ineligible_single_select_id_56   = ""
+ineligible_single_select_id_57   = ""
+
+# Multi-Select Question: ""
+ineligible_single_select_id_58   = ""
+ineligible_single_select_id_59   = ""
+ineligible_single_select_id_60   = ""
+ineligible_single_select_id_61   = ""
+ineligible_single_select_id_62   = ""
+ineligible_single_select_id_63   = ""
+ineligible_single_select_id_64   = ""
+ineligible_single_select_id_65   = ""
+ineligible_single_select_id_66   = ""
+ineligible_single_select_id_67   = ""
+ineligible_single_select_id_68   = ""
+ineligible_single_select_id_69   = ""
+ineligible_single_select_id_70   = ""
+
+
+# Multi-Select Question: "Which of the following best describes you"
+ineligible_single_select_id_71   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"  # Arab or Middle Eastern
+ineligible_single_select_id_72   = "27f26774-0831-41ee-994a-ae5c642615f0"  # Asian or Pacific Islander
+ineligible_single_select_id_73   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"  # Black or African American
+ineligible_single_select_id_74   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"  # Hispanic or Latinx
+ineligible_single_select_id_75   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"  # Indigenous American, First Nation, or Alaska Native
+ineligible_single_select_id_76   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"  # Pacific Islander or Native Hawaiian
+ineligible_single_select_id_77   = "77002d8f-7d56-44f1-a3b6-262888449130"  # White
+ineligible_single_select_id_78   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"  # Other (please describe)
+ineligible_single_select_id_79   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"  # I prefer not to answer
+
+# Multi-Select Question: "What is your gender identity"
+ineligible_single_select_id_80   = "ef768aeb-5ab9-4b11-bb22-42f03e569548"  # Man
+ineligible_single_select_id_81   = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"  # Woman
+ineligible_single_select_id_82   = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"  # Non-binary
+ineligible_single_select_id_83   = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"  # Two-spirit
+ineligible_single_select_id_84   = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"  # Other (please describe)
+ineligible_single_select_id_85   = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"  # I prefer not to answer
+
+# Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
+ineligible_single_select_id_86   = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"  # Yes, a child or children
+ineligible_single_select_id_87   = "275673c7-fd28-4990-b9b1-c30e25643fb8"  # Yes, a spouse or partner who is elderly, ill, or disabled
+ineligible_single_select_id_88   = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+ineligible_single_select_id_89   = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"  # No
+ineligible_single_select_id_90   = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"  # I prefer not to answer
+
+# Ineligible Survey single select option field IDs
+#
+# Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker"
+ineligible_single_select_option_id_1     = "2fc98d0d-9b84-4850-8741-434b4c9b575a"  # I work as a solo artist
+ineligible_single_select_option_id_2     = "7fe8aa91-2218-4d54-a5d1-64e455fab7ee"  # I collaborate regularly with other artists
+ineligible_single_select_option_id_3     = "9586582e-f0d5-4831-b713-857294dd12c9"  # I collaborate regularly with other non-arts practitioners
+ineligible_single_select_option_id_4     = "841c84fb-6f5f-4262-a92a-8e1aefca7691"  # My practice requires public or community involvement to have meaning
+ineligible_single_select_option_id_5     = "1ab9d66e-80d6-4475-9983-6ff355fa455c"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
+ineligible_single_select_option_id_6     = "0f0762f4-c514-43c8-ba6c-66bb0cedaa0f"  # Teaching or educating others is core to my practice
+
+
+ineligible_single_select_option_id_7     = "f89526fa-2498-4855-900c-3db5415b5cdb"  # I have one or more part-time jobs (less than 30 hours per week)
+ineligible_single_select_option_id_8     = "7e14cfc8-97ce-4dee-b1a6-e4341a6a3e10"  # I have a full-time job (more than 30 hours per week)
+ineligible_single_select_option_id_9     = "101d5cf0-b230-4794-84fa-1c49bf8110b8"  # I have a series of gigs, contracts, and temporary jobs
+ineligible_single_select_option_id_10    = "fd233f81-af2a-426b-bf81-ddf16afb8f1a"  # I am primarily or entirely supported by family or by my spouse/partner
+ineligible_single_select_option_id_11    = "1e3abf6a-ce5a-4adf-8f5c-139f0e8400f7"  # I am currently unemployed
+ineligible_single_select_option_id_12    = "3e9e9ccb-52e4-44fe-94ff-1e1b064ce15e"  # I earn 100% of my living through my art practice.
+ineligible_single_select_option_id_13    = "43af3dbe-c4d4-4f2e-bf45-3f9caeed522b"  # Other (please describe)
+
+# Multi-Select Question: "How are your wages currently paid"
+ineligible_single_select_option_id_14   = ""
+ineligible_single_select_option_id_15   = ""
+ineligible_single_select_option_id_16   = ""
+ineligible_single_select_option_id_17   = ""
+ineligible_single_select_option_id_18   = ""
+ineligible_single_select_option_id_19   = ""
+ineligible_single_select_option_id_20   = ""
+ineligible_single_select_option_id_21   = ""
+ineligible_single_select_option_id_22   = ""
+ineligible_single_select_option_id_23   = ""
+ineligible_single_select_option_id_24   = ""
+
+# Multi-select Question: ""
+ineligible_single_select_option_id_25   = ""
+ineligible_single_select_option_id_26   = ""
+ineligible_single_select_option_id_27   = ""
+ineligible_single_select_option_id_28   = ""
+ineligible_single_select_option_id_29   = ""
+ineligible_single_select_option_id_30   = ""
+ineligible_single_select_option_id_31   = ""
+ineligible_single_select_option_id_32   = ""
+ineligible_single_select_option_id_33   = ""
+ineligible_single_select_option_id_34   = ""
+ineligible_single_select_option_id_35   = ""
+
+# Multi-select Question: ""
+ineligible_single_select_option_id_36   = ""
+ineligible_single_select_option_id_37   = ""
+ineligible_single_select_option_id_38   = ""
+ineligible_single_select_option_id_39   = ""
+ineligible_single_select_option_id_40   = ""
+ineligible_single_select_option_id_41   = ""
+ineligible_single_select_option_id_42   = ""
+ineligible_single_select_option_id_43   = ""
+ineligible_single_select_option_id_44   = ""
+ineligible_single_select_option_id_45   = ""
+ineligible_single_select_option_id_46   = ""
+
+# Multi-select Question: ""
+ineligible_single_select_option_id_47   = ""
+ineligible_single_select_option_id_48   = ""
+ineligible_single_select_option_id_49   = ""
+ineligible_single_select_option_id_50   = ""
+ineligible_single_select_option_id_51   = ""
+ineligible_single_select_option_id_52   = ""
+ineligible_single_select_option_id_53   = ""
+ineligible_single_select_option_id_54   = ""
+ineligible_single_select_option_id_55   = ""
+ineligible_single_select_option_id_56   = ""
+ineligible_single_select_option_id_57   = ""
+
+# Multi-select Question: ""
+ineligible_single_select_option_id_58   = ""
+ineligible_single_select_option_id_59   = ""
+ineligible_single_select_option_id_60   = ""
+ineligible_single_select_option_id_61   = ""
+ineligible_single_select_option_id_62   = ""
+ineligible_single_select_option_id_63   = ""
+ineligible_single_select_option_id_64   = ""
+ineligible_single_select_option_id_65   = ""
+ineligible_single_select_option_id_66   = ""
+ineligible_single_select_option_id_67   = ""
+ineligible_single_select_option_id_68   = ""
+ineligible_single_select_option_id_69   = ""
+ineligible_single_select_option_id_70   = ""
+
+# Ineligible Survey single select option field IDs
 #
 # single select option IDs for Multi-Select Question: "Which of the following best describes you"
-ineligible_single_select_option_id_1   = "9c790d51-c08c-4630-8de8-650fefdd7f73"  # Arab or Middle Eastern
-ineligible_single_select_option_id_2   = "33bfd756-68e9-4481-8986-b7585bc04b88"  # Asian or Pacific Islander
-ineligible_single_select_option_id_3   = "30bed219-d669-471d-beca-a09d1bf152fc"  # Black or African American
-ineligible_single_select_option_id_4   = "1c2680ef-7222-47fe-93a4-127cfc3c2285"  # Hispanic or Latinx
-ineligible_single_select_option_id_5   = "7f9c0e65-2983-4e2a-b530-7c8f83135d1c"  # Indigenous American, First Nation, or Alaska Native
-ineligible_single_select_option_id_6   = "7832c635-ae2b-407c-afd9-e7bb7230aed6"  # Pacific Islander or Native Hawaiian
-ineligible_single_select_option_id_7   = "9347685b-b39a-4045-9b5e-92b024755206"  # White
-ineligible_single_select_option_id_8   = "1ff30422-f5bb-4dd1-bbfd-ee945c63f502"  # Other (please describe)
-ineligible_single_select_option_id_9   = "e8fe5a2b-a445-43b8-9156-fb96fa902906"  # I prefer not to answer
+ineligible_single_select_option_id_71   = "9c790d51-c08c-4630-8de8-650fefdd7f73"  # Arab or Middle Eastern
+ineligible_single_select_option_id_72   = "33bfd756-68e9-4481-8986-b7585bc04b88"  # Asian or Pacific Islander
+ineligible_single_select_option_id_73   = "30bed219-d669-471d-beca-a09d1bf152fc"  # Black or African American
+ineligible_single_select_option_id_74   = "1c2680ef-7222-47fe-93a4-127cfc3c2285"  # Hispanic or Latinx
+ineligible_single_select_option_id_75   = "7f9c0e65-2983-4e2a-b530-7c8f83135d1c"  # Indigenous American, First Nation, or Alaska Native
+ineligible_single_select_option_id_76   = "7832c635-ae2b-407c-afd9-e7bb7230aed6"  # Pacific Islander or Native Hawaiian
+ineligible_single_select_option_id_77   = "9347685b-b39a-4045-9b5e-92b024755206"  # White
+ineligible_single_select_option_id_78   = "1ff30422-f5bb-4dd1-bbfd-ee945c63f502"  # Other (please describe)
+ineligible_single_select_option_id_79   = "e8fe5a2b-a445-43b8-9156-fb96fa902906"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "What is your gender identity"
-ineligible_single_select_option_id_10  = "5cc64c48-ec92-475a-bfbf-dc09a7294e5f"  # Man
-ineligible_single_select_option_id_11  = "146aeb7f-506e-465c-92e0-115c9569d47f"  # Woman
-ineligible_single_select_option_id_12  = "acb58eab-cb62-4a03-a547-c612cbebce04"  # Non-binary
-ineligible_single_select_option_id_13  = "09a490a5-8adf-4fd1-a79e-8734f9af0b04"  # Two-spirit
-ineligible_single_select_option_id_14  = "1ff5ccd1-8103-49b8-81e5-88977ed2305b"  # Other (please describe)
-ineligible_single_select_option_id_15  = "188fc04b-118f-4b28-a288-1440889d8530"  # I prefer not to answer
+ineligible_single_select_option_id_80  = "5cc64c48-ec92-475a-bfbf-dc09a7294e5f"  # Man
+ineligible_single_select_option_id_81  = "146aeb7f-506e-465c-92e0-115c9569d47f"  # Woman
+ineligible_single_select_option_id_82  = "acb58eab-cb62-4a03-a547-c612cbebce04"  # Non-binary
+ineligible_single_select_option_id_83  = "09a490a5-8adf-4fd1-a79e-8734f9af0b04"  # Two-spirit
+ineligible_single_select_option_id_84  = "1ff5ccd1-8103-49b8-81e5-88977ed2305b"  # Other (please describe)
+ineligible_single_select_option_id_85  = "188fc04b-118f-4b28-a288-1440889d8530"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
-ineligible_single_select_option_id_16  = "8f8b4d79-1c31-4b84-8fd5-a51adc619761"  # Yes, a child or children
-ineligible_single_select_option_id_17  = "2e6dc0d4-6bc4-4a1f-ae1e-d90d491fc385"  # Yes, a spouse or partner who is elderly, ill, or disabled
-ineligible_single_select_option_id_18  = "8ac92a6c-ddfa-49fb-ae9b-38473768dc29"  # Yes, an adult/adults who is/are elderly, ill, or disabled
-ineligible_single_select_option_id_19  = "24f60998-6e9f-4a36-9eb6-31b7b5a933a9"  # No
-ineligible_single_select_option_id_20  = "f8089702-01d3-4e27-a6b8-1e743b7fb828"  # I prefer not to answer
+ineligible_single_select_option_id_86  = "8f8b4d79-1c31-4b84-8fd5-a51adc619761"  # Yes, a child or children
+ineligible_single_select_option_id_87  = "2e6dc0d4-6bc4-4a1f-ae1e-d90d491fc385"  # Yes, a spouse or partner who is elderly, ill, or disabled
+ineligible_single_select_option_id_88  = "8ac92a6c-ddfa-49fb-ae9b-38473768dc29"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+ineligible_single_select_option_id_89  = "24f60998-6e9f-4a36-9eb6-31b7b5a933a9"  # No
+ineligible_single_select_option_id_90  = "f8089702-01d3-4e27-a6b8-1e743b7fb828"  # I prefer not to answer
+
 
 # AEP single select internal form IDs
 #
@@ -324,11 +522,10 @@ aep_single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unma
 aep_single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
 
-
 # GI single select internal form IDs
 #
 # single select option IDs for Multi-Select Question: "Which of the following best describes you"
-gi_single_select_option_id_1   = "9bbbaa79-4b33-4172-b65a-bcb44e9d008f"  # Arab or Middle Eastern
+gi_single_select_option_id_1   = "e6a80c04-cf00-457a-85be-0cc6f51c2995"  # Arab or Middle Eastern
 gi_single_select_option_id_2   = "b2795b62-e1b3-4047-b0f0-f31588fed67b"  # Asian or Pacific Islander
 gi_single_select_option_id_3   = "a25caf1b-fee2-4b4f-a27a-63e0b6faea5b"  # Black or African American
 gi_single_select_option_id_4   = "b0743141-f015-4759-a578-7482a4c877b4"  # Hispanic or Latinx
@@ -360,14 +557,16 @@ gi_single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
 gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
 
 
-# GI single select internal form IDs
+# Application Survey single select internal form IDs
 #
-# single select option IDs for Multi-Select Question: ""
-app_single_select_option_id_1  = ""
-app_single_select_option_id_2  = ""
-app_single_select_option_id_3  = ""
-app_single_select_option_id_4  = ""
-
+# single select option IDs for Multi-Select Question: "How do you currently earn money"
+app_single_select_option_id_1  = "231aa812-b746-41ec-9992-d771108f4cd4"
+app_single_select_option_id_2  = "5811efa8-3c73-48f7-b0fc-06f47720054f"
+app_single_select_option_id_3  = "334d9aa3-9b05-476d-9700-b3635a1773a6"
+app_single_select_option_id_4  = "e2ebb6ee-78e7-4cce-be79-ee0744de9d46"
+app_single_select_option_id_5  = "5519c0b3-1e22-438b-ba1c-3f6055474dac"
+app_single_select_option_id_6  = "76b6eeab-0488-4812-ae86-809b6492fa4c"
+app_single_select_option_id_7  = "3807199c-3af2-4ee0-bc51-ac134c4dd407"
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 '''
