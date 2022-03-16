@@ -665,6 +665,30 @@ gi_single_select_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
 gi_single_select_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
 gi_single_select_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
 
+# Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
+gi_single_select_id_26   = "80aefb5f-67da-4cc5-97c3-929699d8917e"  # I work as a solo artist.
+gi_single_select_id_27   = "88576fc2-a677-4a4d-a56b-3b610c201b68"  # I collaborate regularly with other artists.
+gi_single_select_id_28   = "31e90ca4-4865-4037-9971-80df68e70260"  # I collaborate regularly with other non-arts practitioners.
+gi_single_select_id_29   = "14487b0b-4d81-4bf9-8bb3-33d6c28584f5"  # My practice requires public or community involvement to have meaning.
+gi_single_select_id_30   = "9311dd9f-1498-46d6-b192-a025a25f7e41"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
+gi_single_select_id_31   = "1128dd7b-00cb-4728-a70f-263ee0632ba4"  # Teaching or educating others is core to my practice.
+
+# Multi-Select Question: "To the best of your knowledge, in which of the following are you currently enrolled"
+gi_single_select_id_32   = "149d1620-2324-41a2-9779-8853b4532325"  # Childcare Subsidy (CCDF)
+gi_single_select_id_33   = "f8e760ec-7a8e-44d3-be66-ad777738d7e2"  # Head Start/Early Head Start
+gi_single_select_id_34   = "9fff7afb-92bc-4339-b13a-01339ecabd29"  # Supplemental Nutrition Assistance Program (SNAP)
+gi_single_select_id_35   = "215ec455-54ca-42f4-9e45-5c96f49f453c"  # Women, Infants, and Children Nutrition Program (WIC)
+gi_single_select_id_36   = "e06bd276-4990-4de6-b0cb-8203a72b19db"  # Section 8 Housing Voucher
+gi_single_select_id_37   = "fc125909-3d8e-452a-9c52-7b82e46cc6da"  # Health Insurance Marketplace Subsidies
+gi_single_select_id_38   = "4cedcbdf-38bc-41d1-bc66-18afb595c8d8"  # Medicaid for Adults and Child Health Plus
+gi_single_select_id_39   = "2df2a40b-78dc-4541-9e26-edb96d43c9b8"  # Earned Income Tax Credit (EITC)
+gi_single_select_id_40   = "a864eabe-8329-45f7-92a6-b7a6c660e3c6"  # Child Tax Credit (CTC)
+gi_single_select_id_41   = "593dbb2f-d405-402a-a2a5-2041c98498bf"  # Federal Child and Dependent Care Tax Credit (CDCTC)
+gi_single_select_id_42   = "27c6b983-b5b1-4f25-97fa-87d33d97e0d4"  # Temporary Cash Assistance (TANF)
+gi_single_select_id_43   = "fd1126f2-207a-47fd-bff6-892c629bd734"  # Supplemental Security Income (SSI)
+gi_single_select_id_44   = "7f7db88c-c36f-439a-be2c-d38b7ca10632"  # Social Security Disability Insurance (SSDI)
+gi_single_select_id_45   = "931614b2-78b9-40ca-bbab-fdd914de5dc1"  # Other (please describe)
+
 
 # GI single select option IDs
 #
@@ -699,6 +723,30 @@ gi_single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
 gi_single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
 gi_single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
 gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
+
+# Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
+gi_single_select_option_id_26   = "4970981e-637d-4fda-951a-da59bf2e9772"  # I work as a solo artist.
+gi_single_select_option_id_27   = "9a15a7a8-0606-425e-9e2e-231665046361"  # I collaborate regularly with other artists.
+gi_single_select_option_id_28   = "e91dc053-16d6-4be9-abdc-4014eaaab5f9"  # I collaborate regularly with other non-arts practitioners.
+gi_single_select_option_id_29   = "5273ee24-d766-4bb2-aa8b-b1c733eeb389"  # My practice requires public or community involvement to have meaning.
+gi_single_select_option_id_30   = "dba5d6f7-4bc2-4bd7-b71f-404913871001"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
+gi_single_select_option_id_31   = "8c55765a-a256-4fd5-a59c-783c28c084df"  # Teaching or educating others is core to my practice.
+
+# Multi-Select Question: "To the best of your knowledge, in which of the following are you currently enrolled"
+gi_single_select_option_id_32   = "ef897392-9867-4be0-997f-c73830f15b58"  # Childcare Subsidy (CCDF)
+gi_single_select_option_id_33   = "a8f99dde-421b-4611-aac2-0edaa0fb6b80"  # Head Start/Early Head Start
+gi_single_select_option_id_34   = "58545058-5442-48bf-b2f8-9f896284732a"  # Supplemental Nutrition Assistance Program (SNAP)
+gi_single_select_option_id_35   = "0d0e404f-aaab-4b5a-baae-47ff623e556f"  # Women, Infants, and Children Nutrition Program (WIC)
+gi_single_select_option_id_36   = "751cdc09-b490-424a-af0c-79a8a15a6cd8"  # Section 8 Housing Voucher
+gi_single_select_option_id_37   = "0e4dfa72-c70b-4216-bad7-d4b7102e41f3"  # Health Insurance Marketplace Subsidies
+gi_single_select_option_id_38   = "3d25e53e-b882-4f6e-b4c6-37e43ea2cb7d"  # Medicaid for Adults and Child Health Plus
+gi_single_select_option_id_39   = "b31d84b3-1120-473b-b4ec-c2bb28e4123f"  # Earned Income Tax Credit (EITC)
+gi_single_select_option_id_40   = "eee826b5-97a9-4b97-8f41-8be1549c784f"  # Child Tax Credit (CTC)
+gi_single_select_option_id_41   = "bf13a3c1-be60-4f3b-8eac-ef4e4e2c2889"  # Federal Child and Dependent Care Tax Credit (CDCTC)
+gi_single_select_option_id_42   = "7118ac33-bfe5-404c-8915-8e7be6452f75"  # Temporary Cash Assistance (TANF)
+gi_single_select_option_id_43   = "fe2145f5-ab6e-47d5-aad1-f8bcd9f992b2"  # Supplemental Security Income (SSI)
+gi_single_select_option_id_44   = "7f7db88c-c36f-439a-be2c-d38b7ca10632"  # Social Security Disability Insurance (SSDI)
+gi_single_select_option_id_45   = "2d305547-b86c-4fe0-b10c-fcadbd5c479f"  # Other (please describe)
 
 
 # Application Survey single select internal form IDs
