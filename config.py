@@ -296,56 +296,56 @@ ineligible_single_select_id_26   = "719e4858-ae83-461c-98aa-8a50c0be2734"  # Soc
 ineligible_single_select_id_27   = "34ab9112-fc44-4ffb-ab66-52da1c9e9512"  # Other (please describe)
 ineligible_single_select_id_28   = "e99d8475-185e-45ba-aed2-7aa842bd18c3"  # None at this time
 
-# Multi-Select Question: ""
-ineligible_single_select_id_29   = ""
-ineligible_single_select_id_30   = ""
-ineligible_single_select_id_31   = ""
-ineligible_single_select_id_32   = ""
-ineligible_single_select_id_33   = ""
-ineligible_single_select_id_34   = ""
-ineligible_single_select_id_35   = ""
+# Multi-select Question: "At any time between March 2020 and February 2022, did you receive any kind of emergency financial assistance?
+#                         If yes, which of the following types of emergency financial assistance did you receive"
+ineligible_single_select_id_29   = "5ad1d3d8-369a-4417-bd8b-b453c4d6893c"  # Federal relief legislation (ie., American Rescue Plan, Paycheck Protection Program, etc.)
+ineligible_single_select_id_30   = "324aa8fc-b383-4962-9d41-b15db5ef721b"  # Unemployment benefits
+ineligible_single_select_id_31   = "6f2b503b-7d9c-4b60-a3a6-ee42a15bff22"  # An emergency grant
+ineligible_single_select_id_32   = "1afaa147-deea-4450-87a1-bbfff0e7d5d9"  # Mutual aid or other grassroots contributions
+ineligible_single_select_id_33   = "912a4ed5-ed5d-4ff8-a27f-e646ffcaa965"  # Family/personal assistance
+ineligible_single_select_id_34   = "e864f113-01ef-4642-a4ed-0071184cd6e5"  # Other (please describe)
 
-# Multi-Select Question: ""
-ineligible_single_select_id_36   = ""
-ineligible_single_select_id_37   = ""
-ineligible_single_select_id_38   = ""
-ineligible_single_select_id_39   = ""
-ineligible_single_select_id_40   = ""
-ineligible_single_select_id_41   = ""
-ineligible_single_select_id_42   = ""
-ineligible_single_select_id_43   = ""
-ineligible_single_select_id_44   = ""
-ineligible_single_select_id_45   = ""
-ineligible_single_select_id_46   = ""
+# Multi-Select Question: "How, if at all, was your employment impacted between March 2020 and February 2022"
+ineligible_single_select_id_35   = "684036cc-6446-4b6f-85a7-5ab22c47ea93"  # I was furloughed or my hours were reduced.
+ineligible_single_select_id_36   = "9353704c-33b2-4c2c-902c-010a70e76eb0"  # I was laid off or fired from a job.
+ineligible_single_select_id_37   = "99e6b4cf-fca5-4dd9-836b-93e31cd4fbed"  # I left a job or reduced hours to attend to family caregiving.
+ineligible_single_select_id_38   = "3328ca59-2a2c-421c-8f61-ce782f7f05f3"  # My freelance work, gigs, and/or contracts were canceled.
+ineligible_single_select_id_39   = "8800cf19-6b10-4c51-b274-7aed30d71a17"  # My entire industry was shut down.
+ineligible_single_select_id_40   = "b540ff2b-4e50-4a11-af76-b086d2a1e885"  # I started a new full-time or part-time job.
+ineligible_single_select_id_41   = "b31647ed-1369-46fc-ae48-4fbf29f8fcd9"  # I picked up new freelance work, gigs, and/or contracts.
+ineligible_single_select_id_42   = "4ebcb65f-7606-4501-a013-c00c3b8535a2"  # Other (please describe)
+ineligible_single_select_id_43   = "6cd78b01-1534-4178-b015-06e0ced65c03"  # My employment was not affected by the pandemic.
 
-# Multi-Select Question: ""
-ineligible_single_select_id_47   = ""
-ineligible_single_select_id_48   = ""
-ineligible_single_select_id_49   = ""
-ineligible_single_select_id_50   = ""
-ineligible_single_select_id_51   = ""
-ineligible_single_select_id_52   = ""
-ineligible_single_select_id_53   = ""
-ineligible_single_select_id_54   = ""
-ineligible_single_select_id_55   = ""
-ineligible_single_select_id_56   = ""
-ineligible_single_select_id_57   = ""
+# Multi-select Question: "How has your artistic practice been affected by the COVID19 pandemic"
+ineligible_single_select_id_44   = "34d8975d-a1e8-45b9-a11c-5f3e8c4448ff"  # My scheduled exhibitions/shows/performances/gigs were canceled.
+ineligible_single_select_id_45   = "54698e38-bb69-4794-bf9b-b65612d8b4a0"  # Canceled travel prevented me from attending my exhibitions/shows/performances/gigs.
+ineligible_single_select_id_46   = "fdb5a5f8-4245-4cd7-883c-5f8d57760bdd"  # My studio/rehearsal space closed due to the pandemic.
+ineligible_single_select_id_47   = "5123d201-d91d-4416-b38c-a2cb8fe02f37"  # I could no longer afford a studio/rehearsal space.
+ineligible_single_select_id_48   = "b43e2e3a-4875-4fd0-ba01-b7c60b13c75a"  # I could no longer collaborate safely with others.
+ineligible_single_select_id_49   = "14322e43-d0da-4d41-beb8-e5b1262d6239"  # I was less motivated to pursue my artistic practice.
+ineligible_single_select_id_50   = "222d7389-42b0-402e-a86c-b12bcc346b03"  # I was more motivated to pursue my artistic practice.
+ineligible_single_select_id_51   = "401cfe68-a777-490d-b2c4-a45c592ad407"  # I sought out new collaborators, communities, or professional networks.
+ineligible_single_select_id_52   = "963a5e45-4250-42d3-8b7f-1daa66fc6a95"  # I evolved my artistic practice to address community needs.
+ineligible_single_select_id_53   = "3a024b3c-bee7-4c51-a705-c692c83ab7b8"  # I embraced new opportunities to present my work online.
+ineligible_single_select_id_54   = "0447e994-a41c-4e96-9845-0f3119e92e5d"  # I created a new series of work.
+ineligible_single_select_id_55   = "01adb9c2-bb37-4ba6-a723-f1643e65051d"  # I picked up new exhibitions/shows/performances/gigs.
+ineligible_single_select_id_56   = "d9a3944d-2540-4404-9a90-b96647545649"  # Other (please describe)
+ineligible_single_select_id_57   = "199e45ec-8f61-4482-9eb3-ac2521ace593"  # My artistic practice was not impacted by the pandemic.
 
-# Multi-Select Question: ""
-ineligible_single_select_id_58   = ""
-ineligible_single_select_id_59   = ""
-ineligible_single_select_id_60   = ""
-ineligible_single_select_id_61   = ""
-ineligible_single_select_id_62   = ""
-ineligible_single_select_id_63   = ""
-ineligible_single_select_id_64   = ""
-ineligible_single_select_id_65   = ""
-ineligible_single_select_id_66   = ""
-ineligible_single_select_id_67   = ""
-ineligible_single_select_id_68   = ""
-ineligible_single_select_id_69   = ""
-ineligible_single_select_id_70   = ""
-
+# Multi-select Question: "How, if at all, was your well-being impacted between March 2020 and February 2022"
+ineligible_single_select_id_58   = "15be48e7-5d3b-4c55-857f-ffe62c7f328f"  # I experienced anxiety or depression.
+ineligible_single_select_id_59   = "a791517e-eef6-499e-95a4-655a13aa795a"  # I experienced loneliness.
+ineligible_single_select_id_60   = "17c2031a-36e8-4493-a0f3-45d818fc7cdd"  # I got sick.
+ineligible_single_select_id_61   = "4556dee1-424b-46a7-9aa6-cdbf4a6e2cf8"  # I experienced food insecurity.
+ineligible_single_select_id_62   = "5cf92c6d-199c-4530-a26d-250484d71fc1"  # I experienced housing insecurity.
+ineligible_single_select_id_63   = "e2ef521d-6990-4e6b-a19a-298f0ba1df8c"  # I had to move.
+ineligible_single_select_id_64   = "73d9a21a-77fc-49b5-aca7-5911ac36bbcb"  # I accumulated debt.
+ineligible_single_select_id_65   = "12dd2f7f-dc70-495b-a285-a3be37f293e2"  # I became a part- or full-time caregiver.
+ineligible_single_select_id_66   = "de1662a7-ee1e-4bda-88bc-09c2e8f15f8b"  # My self-care improved.
+ineligible_single_select_id_67   = "74bd2a25-9b99-41f6-9299-6c97dc0a2a97"  # My mental health improved.
+ineligible_single_select_id_68   = "584e5201-e626-47d8-8766-44c78c92784a"  # My physical health improved.
+ineligible_single_select_id_69   = "27df2c5f-068f-4167-bcee-b35b42972346"  # Other (please describe):
+ineligible_single_select_id_70   = "b5c16620-8484-43d0-8a01-85b7e79d4859"  # My well-being was not impacted by the pandemic.
 
 # Multi-Select Question: "Which of the following best describes you"
 ineligible_single_select_id_71   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"  # Arab or Middle Eastern
@@ -411,55 +411,55 @@ ineligible_single_select_option_id_26   = "4b24cf25-6714-4d87-a723-1bbc6ea41e81"
 ineligible_single_select_option_id_27   = "7f2228ed-de41-4cdc-861d-7cbb5ec6fbc4"  # Other (please describe)
 ineligible_single_select_option_id_28   = "a90fb0ef-493b-4e49-b3c1-45b5f8da7a29"  # None at this time
 
-# Multi-select Question: ""
-ineligible_single_select_option_id_29   = ""
-ineligible_single_select_option_id_30   = ""
-ineligible_single_select_option_id_31   = ""
-ineligible_single_select_option_id_32   = ""
-ineligible_single_select_option_id_33   = ""
-ineligible_single_select_option_id_34   = ""
-ineligible_single_select_option_id_35   = ""
+# Multi-select Question: "At any time between March 2020 and February 2022, did you receive any kind of emergency financial assistance? If yes, which of the following types of emergency financial assistance did you receive"
+ineligible_single_select_option_id_29   = "977720cb-bcde-4e22-ad81-e01b0a1e55ff"  # Federal relief legislation (ie., American Rescue Plan, Paycheck Protection Program, etc.)
+ineligible_single_select_option_id_30   = "257bb985-ae69-41fd-9f90-f244e6e47efe"  # Unemployment benefits
+ineligible_single_select_option_id_31   = "2980b816-e124-4c6b-b6f7-10571c1d3800"  # An emergency grant
+ineligible_single_select_option_id_32   = "4a6edd5c-9a7d-43e4-b48a-60e09f9a9516"  # Mutual aid or other grassroots contributions
+ineligible_single_select_option_id_33   = "1f356e24-8209-4d53-b86e-1a3e6f1bc2d5"  # Family/personal assistance
+ineligible_single_select_option_id_34   = "4c8a31dc-7965-4e71-9981-9a1b2cc0a867"  # Other (please describe)
 
-# Multi-select Question: ""
-ineligible_single_select_option_id_36   = ""
-ineligible_single_select_option_id_37   = ""
-ineligible_single_select_option_id_38   = ""
-ineligible_single_select_option_id_39   = ""
-ineligible_single_select_option_id_40   = ""
-ineligible_single_select_option_id_41   = ""
-ineligible_single_select_option_id_42   = ""
-ineligible_single_select_option_id_43   = ""
-ineligible_single_select_option_id_44   = ""
-ineligible_single_select_option_id_45   = ""
-ineligible_single_select_option_id_46   = ""
+# Multi-Select Question: "How, if at all, was your employment impacted between March 2020 and February 2022"
+ineligible_single_select_option_id_35   = "b63a23de-88f4-4872-86e9-e2f71e9c03cc"  # I was furloughed or my hours were reduced.
+ineligible_single_select_option_id_36   = "9ed3977e-f05e-47c5-931e-a7bce84e72ca"  # I was laid off or fired from a job.
+ineligible_single_select_option_id_37   = "aedd6ac1-1ab0-4286-a50b-cdeab7151ebc"  # I left a job or reduced hours to attend to family caregiving.
+ineligible_single_select_option_id_38   = "74e8a016-8c4a-4c6f-867a-19e6272ae339"  # My freelance work, gigs, and/or contracts were canceled.
+ineligible_single_select_option_id_39   = "1ef7b860-371e-4f54-857d-871348143f00"  # My entire industry was shut down.
+ineligible_single_select_option_id_40   = "d5ab5990-1e08-49c0-ab39-a94ee3adc05b"  # I started a new full-time or part-time job.
+ineligible_single_select_option_id_41   = "af5d6f40-8e87-4f64-b45c-63c16598b9a9"  # I picked up new freelance work, gigs, and/or contracts.
+ineligible_single_select_option_id_42   = "3ae9f53b-eff6-4484-805c-c21ccac21c6e"  # Other (please describe)
+ineligible_single_select_option_id_43   = "372cb096-87db-4edf-9d98-50abd84a9461"  # My employment was not affected by the pandemic.
 
-# Multi-select Question: ""
-ineligible_single_select_option_id_47   = ""
-ineligible_single_select_option_id_48   = ""
-ineligible_single_select_option_id_49   = ""
-ineligible_single_select_option_id_50   = ""
-ineligible_single_select_option_id_51   = ""
-ineligible_single_select_option_id_52   = ""
-ineligible_single_select_option_id_53   = ""
-ineligible_single_select_option_id_54   = ""
-ineligible_single_select_option_id_55   = ""
-ineligible_single_select_option_id_56   = ""
-ineligible_single_select_option_id_57   = ""
+# Multi-select Question: "How has your artistic practice been affected by the COVID19 pandemic"
+ineligible_single_select_option_id_44   = "a0960714-e90d-4a03-9cba-74d8330806d7"  # My scheduled exhibitions/shows/performances/gigs were canceled.
+ineligible_single_select_option_id_45   = "77622f8e-280b-4947-95af-c84ca1fd543e"  # Canceled travel prevented me from attending my exhibitions/shows/performances/gigs.
+ineligible_single_select_option_id_46   = "c05d4b0e-65e4-410b-b153-b6c2820b7ef8"  # My studio/rehearsal space closed due to the pandemic.
+ineligible_single_select_option_id_47   = "fddd5045-983f-4484-a85c-29716bfd0ce0"  # I could no longer afford a studio/rehearsal space.
+ineligible_single_select_option_id_48   = "0e525c3d-3ee3-4855-be06-80811baf84a3"  # I could no longer collaborate safely with others.
+ineligible_single_select_option_id_49   = "abca4782-4210-4551-981d-74b307bd28f8"  # I was less motivated to pursue my artistic practice.
+ineligible_single_select_option_id_50   = "1fbef054-99f9-46af-b67b-14f10ce34fcc"  # I was more motivated to pursue my artistic practice.
+ineligible_single_select_option_id_51   = "eddabeb0-f331-4f4a-9dfe-b5bb9013ba21"  # I sought out new collaborators, communities, or professional networks.
+ineligible_single_select_option_id_52   = "40e01e2a-0179-4bf8-8c9b-164bef385169"  # I evolved my artistic practice to address community needs.
+ineligible_single_select_option_id_53   = "1a92ec94-77a3-4b0e-878a-54c32598dbb6"  # I embraced new opportunities to present my work online.
+ineligible_single_select_option_id_54   = "dafe8bfa-8eca-42f2-b77a-35bbad25f78d"  # I created a new series of work.
+ineligible_single_select_option_id_55   = "1ccbe759-a90a-420d-beb6-958cc387c3ee"  # I picked up new exhibitions/shows/performances/gigs.
+ineligible_single_select_option_id_56   = "2a0c6dad-236c-4fd1-9ad7-38480265eb0f"  # Other (please describe)
+ineligible_single_select_option_id_57   = "bdb37e15-1171-4f7a-aab9-82eca6d29687"  # My artistic practice was not impacted by the pandemic.
 
-# Multi-select Question: ""
-ineligible_single_select_option_id_58   = ""
-ineligible_single_select_option_id_59   = ""
-ineligible_single_select_option_id_60   = ""
-ineligible_single_select_option_id_61   = ""
-ineligible_single_select_option_id_62   = ""
-ineligible_single_select_option_id_63   = ""
-ineligible_single_select_option_id_64   = ""
-ineligible_single_select_option_id_65   = ""
-ineligible_single_select_option_id_66   = ""
-ineligible_single_select_option_id_67   = ""
-ineligible_single_select_option_id_68   = ""
-ineligible_single_select_option_id_69   = ""
-ineligible_single_select_option_id_70   = ""
+# Multi-select Question: "How, if at all, was your well-being impacted between March 2020 and February 2022"
+ineligible_single_select_option_id_58   = "98ab27c7-8d49-4498-b3d0-5b92405ff638"  # I experienced anxiety or depression.
+ineligible_single_select_option_id_59   = "1516363a-ecbb-48e9-8a5d-77be18831705"  # I experienced loneliness.
+ineligible_single_select_option_id_60   = "a291e76f-e485-46b4-ad3d-cd5daed1a82d"  # I got sick.
+ineligible_single_select_option_id_61   = "0927b04b-80ea-4b9e-bb66-298b518a4899"  # I experienced food insecurity.
+ineligible_single_select_option_id_62   = "e332ec76-e687-4b73-b713-a08bcd1ca189"  # I experienced housing insecurity.
+ineligible_single_select_option_id_63   = "39627fcb-4f15-4fb8-892a-309a3bec4d8f"  # I had to move.
+ineligible_single_select_option_id_64   = "b96c8656-d9ea-45ed-9514-3bd932d4c8cb"  # I accumulated debt.
+ineligible_single_select_option_id_65   = "cf062389-582a-46c3-b8a2-e93e21523847"  # I became a part- or full-time caregiver.
+ineligible_single_select_option_id_66   = "09b277a0-628e-48f0-98a9-cef4d1582025"  # My self-care improved.
+ineligible_single_select_option_id_67   = "0a499f96-cf62-4f00-b36c-d068304f320c"  # My mental health improved.
+ineligible_single_select_option_id_68   = "47b9b98c-3e73-43fe-bbcb-5f9e3650c853"  # My physical health improved.
+ineligible_single_select_option_id_69   = "f22312c4-94dd-4ed6-a2ec-a462eed28852"  # Other (please describe):
+ineligible_single_select_option_id_70   = "969d360c-d926-4537-a4c4-60cf35717cc1"  # My well-being was not impacted by the pandemic.
 
 # Ineligible Survey single select option field IDs
 #
