@@ -278,23 +278,25 @@ ineligible_single_select_id_12   = "fd74bf2d-0a64-4b0a-8f76-2ab943e33825"  # I e
 ineligible_single_select_id_13   = "d50ff3be-fdbf-4ff8-904e-1f978b89c73f"  # Other (please describe)
 
 # Multi-Select Question: "How are your wages currently paid"
-ineligible_single_select_id_14   = ""
-ineligible_single_select_id_15   = ""
-ineligible_single_select_id_16   = ""
-ineligible_single_select_id_17   = ""
-ineligible_single_select_id_18   = ""
-ineligible_single_select_id_19   = ""
-ineligible_single_select_id_20   = ""
-ineligible_single_select_id_21   = ""
-ineligible_single_select_id_22   = ""
-ineligible_single_select_id_23   = ""
-ineligible_single_select_id_24   = ""
+ineligible_single_select_id_14   = "696ba359-4add-4440-a8bb-e6c92658cfe3"  # I am an employee who receives an IRS Form W-2.
+ineligible_single_select_id_15   = "25539d6c-1f43-4208-a3a1-5228ec879049"  # I am a freelance/independent contractor who receives an IRS Form 1099.
+ineligible_single_select_id_16   = "34209196-e237-4218-a985-00aaa26f88e0"  # Both of the above.
+ineligible_single_select_id_17   = "bfeaf8fb-0e19-4091-ad0a-8710c73ccdb3"  # I don’t know.
+ineligible_single_select_id_18   = "02e8c4c9-4010-4293-b259-a9ecf2b62906"  # I prefer not to answer.
+
+# Multi-Select Question: "What coalitions or causes do you actively participate in as a supporter or advocate"
+ineligible_single_select_id_19   = "ea7016b8-2cb1-4dde-bc94-e97543f120b9"  # Arts/culture
+ineligible_single_select_id_20   = "dc08eaa6-2ea5-497f-a538-cd6a20e9d00c"  # Childcare access
+ineligible_single_select_id_21   = "5d5eb361-3279-4d5e-bb68-4865860d8103"  # Disability justice
+ineligible_single_select_id_22   = "12337f3c-5352-4125-b9bf-26e9bcc80623"  # Economic justice"
+ineligible_single_select_id_23   = "a3a8351a-92d1-49b2-8f85-5dce8f73f3c1"  # Environment/Climate justice
+ineligible_single_select_id_24   = "8c2a052a-b907-4c97-89c8-721295fc2a82"  # Housing/Tenants’ rights
+ineligible_single_select_id_25   = "8661d3e9-6a6f-415b-bcdc-d45e5dd6ad5d"  # Labor/Workers’ rights
+ineligible_single_select_id_26   = "719e4858-ae83-461c-98aa-8a50c0be2734"  # Social and racial justice
+ineligible_single_select_id_27   = "34ab9112-fc44-4ffb-ab66-52da1c9e9512"  # Other (please describe)
+ineligible_single_select_id_28   = "e99d8475-185e-45ba-aed2-7aa842bd18c3"  # None at this time
 
 # Multi-Select Question: ""
-ineligible_single_select_id_25   = ""
-ineligible_single_select_id_26   = ""
-ineligible_single_select_id_27   = ""
-ineligible_single_select_id_28   = ""
 ineligible_single_select_id_29   = ""
 ineligible_single_select_id_30   = ""
 ineligible_single_select_id_31   = ""
@@ -391,23 +393,25 @@ ineligible_single_select_option_id_12    = "3e9e9ccb-52e4-44fe-94ff-1e1b064ce15e
 ineligible_single_select_option_id_13    = "43af3dbe-c4d4-4f2e-bf45-3f9caeed522b"  # Other (please describe)
 
 # Multi-Select Question: "How are your wages currently paid"
-ineligible_single_select_option_id_14   = ""
-ineligible_single_select_option_id_15   = ""
-ineligible_single_select_option_id_16   = ""
-ineligible_single_select_option_id_17   = ""
-ineligible_single_select_option_id_18   = ""
-ineligible_single_select_option_id_19   = ""
-ineligible_single_select_option_id_20   = ""
-ineligible_single_select_option_id_21   = ""
-ineligible_single_select_option_id_22   = ""
-ineligible_single_select_option_id_23   = ""
-ineligible_single_select_option_id_24   = ""
+ineligible_single_select_option_id_14   = "bfe85389-0716-43a9-927f-7eea06ed597a"  # I am an employee who receives an IRS Form W-2.
+ineligible_single_select_option_id_15   = "5d7b106e-cae1-40f3-89b1-19cc8fe5f185"  # I am a freelance/independent contractor who receives an IRS Form 1099.
+ineligible_single_select_option_id_16   = "6a3f30b0-d3c5-4fc0-932c-7605d3a37158"  # Both of the above.
+ineligible_single_select_option_id_17   = "603b6c6c-98a2-41f1-b61f-362396c291ed"  # I don’t know.
+ineligible_single_select_option_id_18   = "9db81bb5-f29f-44fd-8305-92680e2e0381"  # I prefer not to answer.
+
+# Multi-Select Question: "What coalitions or causes do you actively participate in as a supporter or advocate"
+ineligible_single_select_option_id_19   = "20c2af53-d156-4583-83ae-fbbfe109269e"  # Arts/culture
+ineligible_single_select_option_id_20   = "b278197a-d5ba-4250-9592-9e3e7083e77b"  # Childcare access
+ineligible_single_select_option_id_21   = "c43ee769-92fa-4e06-820b-c06c566f97ce"  # Disability justice
+ineligible_single_select_option_id_22   = "6bdcb6d0-7be6-4058-b490-41024429f5bc"  # Economic justice
+ineligible_single_select_option_id_23   = "455edd58-b803-482f-b4c2-7fd93e171d73"  # Environment/Climate justice
+ineligible_single_select_option_id_24   = "167c16cf-feaf-40cc-8b73-124ebd9e78d5"  # Housing/Tenants’ rights
+ineligible_single_select_option_id_25   = "2e304c5c-8ada-44ee-baa3-3af3f0eca0f9"  # Labor/Workers’ rights
+ineligible_single_select_option_id_26   = "4b24cf25-6714-4d87-a723-1bbc6ea41e81"  # Social and racial justice
+ineligible_single_select_option_id_27   = "7f2228ed-de41-4cdc-861d-7cbb5ec6fbc4"  # Other (please describe)
+ineligible_single_select_option_id_28   = "a90fb0ef-493b-4e49-b3c1-45b5f8da7a29"  # None at this time
 
 # Multi-select Question: ""
-ineligible_single_select_option_id_25   = ""
-ineligible_single_select_option_id_26   = ""
-ineligible_single_select_option_id_27   = ""
-ineligible_single_select_option_id_28   = ""
 ineligible_single_select_option_id_29   = ""
 ineligible_single_select_option_id_30   = ""
 ineligible_single_select_option_id_31   = ""
