@@ -260,74 +260,114 @@ app_survey_multi_options_ids_7  = ["91994fbb-c6da-4227-811e-68606fea7309", "d2bc
                                    "6c8d6976-1c8b-4125-a68d-f2ee565fbcb1"]
 
 
-# single select internal form IDs 1-25
+# Ineligible single select internal form IDs
+#
+# single select option IDs for Multi-Select Question: "Which of the following best describes you"
+ineligible_single_select_option_id_1   = "9c790d51-c08c-4630-8de8-650fefdd7f73"  # Arab or Middle Eastern
+ineligible_single_select_option_id_2   = "33bfd756-68e9-4481-8986-b7585bc04b88"  # Asian or Pacific Islander
+ineligible_single_select_option_id_3   = "30bed219-d669-471d-beca-a09d1bf152fc"  # Black or African American
+ineligible_single_select_option_id_4   = "1c2680ef-7222-47fe-93a4-127cfc3c2285"  # Hispanic or Latinx
+ineligible_single_select_option_id_5   = "7f9c0e65-2983-4e2a-b530-7c8f83135d1c"  # Indigenous American, First Nation, or Alaska Native
+ineligible_single_select_option_id_6   = "7832c635-ae2b-407c-afd9-e7bb7230aed6"  # Pacific Islander or Native Hawaiian
+ineligible_single_select_option_id_7   = "9347685b-b39a-4045-9b5e-92b024755206"  # White
+ineligible_single_select_option_id_8   = "1ff30422-f5bb-4dd1-bbfd-ee945c63f502"  # Other (please describe)
+ineligible_single_select_option_id_9   = "e8fe5a2b-a445-43b8-9156-fb96fa902906"  # I prefer not to answer
+
+# single select option IDs for Multi-Select Question: "What is your gender identity"
+ineligible_single_select_option_id_10  = "5cc64c48-ec92-475a-bfbf-dc09a7294e5f"  # Man
+ineligible_single_select_option_id_11  = "146aeb7f-506e-465c-92e0-115c9569d47f"  # Woman
+ineligible_single_select_option_id_12  = "acb58eab-cb62-4a03-a547-c612cbebce04"  # Non-binary
+ineligible_single_select_option_id_13  = "09a490a5-8adf-4fd1-a79e-8734f9af0b04"  # Two-spirit
+ineligible_single_select_option_id_14  = "1ff5ccd1-8103-49b8-81e5-88977ed2305b"  # Other (please describe)
+ineligible_single_select_option_id_15  = "188fc04b-118f-4b28-a288-1440889d8530"  # I prefer not to answer
+
+# single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
+ineligible_single_select_option_id_16  = "8f8b4d79-1c31-4b84-8fd5-a51adc619761"  # Yes, a child or children
+ineligible_single_select_option_id_17  = "2e6dc0d4-6bc4-4a1f-ae1e-d90d491fc385"  # Yes, a spouse or partner who is elderly, ill, or disabled
+ineligible_single_select_option_id_18  = "8ac92a6c-ddfa-49fb-ae9b-38473768dc29"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+ineligible_single_select_option_id_19  = "24f60998-6e9f-4a36-9eb6-31b7b5a933a9"  # No
+ineligible_single_select_option_id_20  = "f8089702-01d3-4e27-a6b8-1e743b7fb828"  # I prefer not to answer
+
+# AEP single select internal form IDs
 #
 # single select form field IDs for Multi-Select Question: "Which of the following best describes you"
-single_select_id_1   = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"  # Arab or Middle Eastern
-single_select_id_2   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"  # Asian or Pacific Islander
-single_select_id_3   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"  # Black or African American
-single_select_id_4   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"  # Hispanic or Latin
-single_select_id_5   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"  # Indigenous American, First Nation, or Alaska Native
-single_select_id_6   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"  # Pacific Islander or Native Hawaiian
-single_select_id_7   = "77002d8f-7d56-44f1-a3b6-262888449130"  # White
-single_select_id_8   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"  # Other (please describe)
-single_select_id_9   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"  # I prefer not to answer
-
+aep_single_select_id_1   = "90b7e584-a834-4bcd-948d-d0fcd90cdcdb"  # Arab or Middle Eastern
+aep_single_select_id_2   = "dbd9a5fc-f8ee-4486-a1d9-631952149f0e"  # Asian or Pacific Islander
+aep_single_select_id_3   = "b1bb0975-2256-442f-9f75-2fed4f8b1a17"  # Black or African American
+aep_single_select_id_4   = "ff294db0-b3e5-4394-a859-5dcdfb3cd2ee"  # Hispanic or Latin
+aep_single_select_id_5   = "f642f43e-832f-4be9-9ebd-05f700b0ee36"  # Indigenous American, First Nation, or Alaska Native
+aep_single_select_id_6   = "936c0d42-01ca-4356-89f2-5504c6d6d6b8"  # Pacific Islander or Native Hawaiian
+aep_single_select_id_7   = "77002d8f-7d56-44f1-a3b6-262888449130"  # White
+aep_single_select_id_8   = "1e6826d3-ada0-4161-92cf-e8673cdc7fc6"  # Other (please describe)
+aep_single_select_id_9   = "13aa0a48-b6df-4d73-9996-f2ee48ef5eb8"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "What is your gender identity"
-single_select_id_10  = "ef768aeb-5ab9-4b11-bb22-42f03e569548"  # Man
-single_select_id_11  = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"  # Woman
-single_select_id_12  = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"  # Non-binary
-single_select_id_13  = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"  # Two-spirit
-single_select_id_14  = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"  # Other (please describe)
-single_select_id_15  = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"  # I prefer not to answer
+aep_single_select_id_10  = "ef768aeb-5ab9-4b11-bb22-42f03e569548"  # Man
+aep_single_select_id_11  = "5592c59e-c3fe-42dc-8214-92ce7a1c6ef2"  # Woman
+aep_single_select_id_12  = "78ecc6d2-8c6b-43ce-aaab-2cf769dfa89c"  # Non-binary
+aep_single_select_id_13  = "8f6ef29b-12be-41c6-82a5-565ce2ff1f23"  # Two-spirit
+aep_single_select_id_14  = "2ecfe0c1-9119-4874-a54e-4f71a9743e14"  # Other (please describe)
+aep_single_select_id_15  = "af0c3735-020b-4c2d-840a-ad6ed569a4b0"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
-single_select_id_16  = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"  # Yes, a child or children
-single_select_id_17  = "275673c7-fd28-4990-b9b1-c30e25643fb8"  # Yes, a spouse or partner who is elderly, ill, or disabled
-single_select_id_18  = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"  # Yes, an adult/adults who is/are elderly, ill, or disabled
-single_select_id_19  = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"  # No
-single_select_id_20  = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"  # I prefer not to answer
+aep_single_select_id_16  = "9b378d16-a1bf-4276-9197-fd9b19d16ea2"  # Yes, a child or children
+aep_single_select_id_17  = "275673c7-fd28-4990-b9b1-c30e25643fb8"  # Yes, a spouse or partner who is elderly, ill, or disabled
+aep_single_select_id_18  = "9ecb2f4f-82d1-4e93-8647-2e30fec87f76"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+aep_single_select_id_19  = "664cd79a-d2cc-4bf8-9f3f-60e7545c87b9"  # No
+aep_single_select_id_20  = "3ae3d3c6-49ef-4e47-b52b-7b8ea21eeaf6"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
-single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"  # I am unsure when I will make any income again
-single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"  # I have no financial safety net (savings, assets, family resources)
-single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"  # I am vulnerable to a medical emergency
-single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unmanageable debt (financial obligations not paid in full each month like credit cards, personal loans, payday loans or short-term debt, student loan debt, housing debt, automobile loan, other)
-single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
+aep_single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"  # I am unsure when I will make any income again
+aep_single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"  # I have no financial safety net (savings, assets, family resources)
+aep_single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"  # I am vulnerable to a medical emergency
+aep_single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unmanageable debt (financial obligations not paid in full each month like credit cards, personal loans, payday loans or short-term debt, student loan debt, housing debt, automobile loan, other)
+aep_single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
+
+
+# GI single select internal form IDs
+#
 # single select option IDs for Multi-Select Question: "Which of the following best describes you"
-single_select_option_id_1   = "f89526fa-2498-4855-900c-3db5415b5cdb"
-single_select_option_id_2   = "9c790d51-c08c-4630-8de8-650fefdd7f73"
-single_select_option_id_3   = "30bed219-d669-471d-beca-a09d1bf152fc"
-single_select_option_id_4   = "1c2680ef-7222-47fe-93a4-127cfc3c2285"
-single_select_option_id_5   = "7f9c0e65-2983-4e2a-b530-7c8f83135d1c"
-single_select_option_id_6   = "7832c635-ae2b-407c-afd9-e7bb7230aed6"
-single_select_option_id_7   = "9347685b-b39a-4045-9b5e-92b024755206"
-single_select_option_id_8   = "1ff30422-f5bb-4dd1-bbfd-ee945c63f502"
-single_select_option_id_9   = "e8fe5a2b-a445-43b8-9156-fb96fa902906"
+gi_single_select_option_id_1   = "9bbbaa79-4b33-4172-b65a-bcb44e9d008f"  # Arab or Middle Eastern
+gi_single_select_option_id_2   = "b2795b62-e1b3-4047-b0f0-f31588fed67b"  # Asian or Pacific Islander
+gi_single_select_option_id_3   = "a25caf1b-fee2-4b4f-a27a-63e0b6faea5b"  # Black or African American
+gi_single_select_option_id_4   = "b0743141-f015-4759-a578-7482a4c877b4"  # Hispanic or Latinx
+gi_single_select_option_id_5   = "16c84bc2-86f6-4b0d-acd2-c49f2732327d"  # Indigenous American, First Nation, or Alaska Native
+gi_single_select_option_id_6   = "f71879c2-396d-443e-b3f5-d60437d0ef2e"  # Pacific Islander or Native Hawaiian
+gi_single_select_option_id_7   = "f16f7b78-fe33-4609-980d-ff268be39835"  # White
+gi_single_select_option_id_8   = "28a9e701-a7a9-4c84-96aa-0490abc359a0"  # Other (please describe)
+gi_single_select_option_id_9   = "35f2ac42-cfe4-4371-acc2-9b25a34922b3"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "What is your gender identity"
-single_select_option_id_10  = "5cc64c48-ec92-475a-bfbf-dc09a7294e5f"
-single_select_option_id_11  = "146aeb7f-506e-465c-92e0-115c9569d47f"
-single_select_option_id_12  = "acb58eab-cb62-4a03-a547-c612cbebce04"
-single_select_option_id_13  = "09a490a5-8adf-4fd1-a79e-8734f9af0b04"
-single_select_option_id_14  = "1ff5ccd1-8103-49b8-81e5-88977ed2305b"
-single_select_option_id_15  = "188fc04b-118f-4b28-a288-1440889d8530"
+gi_single_select_option_id_10  = "0949f954-52f5-47be-8f1f-0e7b075b3e8f"  # Man
+gi_single_select_option_id_11  = "be120d7c-e8dd-4c4a-941e-b43e02925c30"  # Woman
+gi_single_select_option_id_12  = "ba5dfe25-c185-4c88-8291-8756f1d8bc2b"  # Non-binary
+gi_single_select_option_id_13  = "ffdd8269-10d4-42f7-a90f-da6ba193d9d9"  # Two-spirit
+gi_single_select_option_id_14  = "18258d27-6266-4c47-8046-c7241423bf6f"  # Other (please describe)
+gi_single_select_option_id_15  = "6f75a9e0-b467-4716-8ffe-85f7f58a98e4"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
-single_select_option_id_16  = "8f8b4d79-1c31-4b84-8fd5-a51adc619761"
-single_select_option_id_17  = "2e6dc0d4-6bc4-4a1f-ae1e-d90d491fc385"
-single_select_option_id_18  = "8ac92a6c-ddfa-49fb-ae9b-38473768dc29"
-single_select_option_id_19  = "24f60998-6e9f-4a36-9eb6-31b7b5a933a9"
-single_select_option_id_20  = "f8089702-01d3-4e27-a6b8-1e743b7fb828"
+gi_single_select_option_id_16  = "4e20af02-3c70-42ee-8802-162d3b32bdab"  # Yes, a child or children
+gi_single_select_option_id_17  = "530d6138-73fa-4f6c-a7c3-05a4fbf8cde5"  # Yes, a spouse or partner who is elderly, ill, or disabled
+gi_single_select_option_id_18  = "066bb242-7846-4711-9caa-eba2d3139cb7"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+gi_single_select_option_id_19  = "8f26e1d7-d930-4713-b707-3c09188496f8"  # No
+gi_single_select_option_id_20  = "a5d195e8-f9a9-4de9-8017-1e5c84c490b5"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
-single_select_option_id_21  = "05788879-016d-4f8c-b174-7a1474b700ec"
-single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
-single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
-single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
-single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
+gi_single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
+gi_single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
+gi_single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
+gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
+
+
+# GI single select internal form IDs
+#
+# single select option IDs for Multi-Select Question: ""
+app_single_select_option_id_1  = ""
+app_single_select_option_id_2  = ""
+app_single_select_option_id_3  = ""
+app_single_select_option_id_4  = ""
+
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 '''
