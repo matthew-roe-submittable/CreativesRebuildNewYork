@@ -134,43 +134,53 @@ ineligible_survey_multi_options_ids_11  = ["ba34723d-43ad-467f-b268-47628d1be2d8
 
 
 # AEP multi select initial form field IDs
-aep_multi_select_id_1  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
-aep_multi_select_id_2  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
-aep_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-aep_multi_select_id_4  = "8f21320b-c09f-42dd-9a18-781470c0e101"  # At what scale do your services or programs operate
-aep_multi_select_id_5  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # How do you approach your practice as an artist, culture bearer, or culture maker
+aep_multi_select_id_1  = "8f21320b-c09f-42dd-9a18-781470c0e101"  # At what scale do your services or programs operate
+aep_multi_select_id_2  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # How do you approach your practice as an artist, culture bearer, or culture maker
+aep_multi_select_id_3  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
+aep_multi_select_id_4  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
+aep_multi_select_id_5  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
 aep_multi_select_id_6  = "6a0521d4-5111-4199-8b54-b9663a904551"  # In what capacity has your organization worked with artists?
 aep_multi_select_id_7  = "9baa2709-d5e2-4aa0-abe1-4b62ff81c37b"  # Which of the following communities does your organization explicitly serve
 aep_multi_select_id_8  = "a674b07b-5fce-4d86-a558-53cd0569c77c"  # Which of the following did you receive
 aep_multi_select_id_9  = "a8b213cf-634f-4927-8bb6-56e9f94792f2"  # If yes, does it include the following
 
 # multi select option IDs
-aep_multi_options_ids_1  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-0550-49eb-84ce-2de922506cf7", "5cf12f61-ec64-415f-b2ae-9bc242e5efec",
+
+# At what scale do your services or programs operate
+aep_multi_options_ids_1  = ["dd74db01-944f-4e60-a9ad-83846a8740c4", "9985c072-ab99-40d3-99df-03ab547953e8", "ffd42ca3-67c0-4149-98c0-d31b20f2df34",
+                            "683af09d-6c09-4100-9231-843b58054d39", "f8e7d91c-3dcc-4c59-b695-34e474208365"]
+
+# How do you approach your practice as an artist, culture bearer, or culture maker
+aep_multi_options_ids_2  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1", "14757995-2ce5-4902-9de6-70da31cc78d0", "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
+                            "a3092d24-5493-443a-9950-d4c860dacea9", "9dcea11d-1829-4ba6-b27c-9224ca856236",  "7eed346b-2900-424c-901a-cd1797b66cb6"]
+
+# Which of the following best describes you
+aep_multi_options_ids_3  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-0550-49eb-84ce-2de922506cf7", "5cf12f61-ec64-415f-b2ae-9bc242e5efec",
                             "a9142c59-79fc-4e6d-a3a1-7b97cb61bcca", "b20a0284-4ddf-4588-82c8-fbc5dfc8d9ed", "85cb5937-1cb2-499f-8ffa-8d3a06f7f33c",
                             "4330a73a-1ae9-4fa7-8e97-99b66d23ac92", "708ccca7-571e-4a55-a68c-7a1689125287", "d5f06b5c-5257-4fb5-a739-60785fba2aa2"]
 
-aep_multi_options_ids_2  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
+# What is your gender identity
+aep_multi_options_ids_4  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
                             "8b9ca158-27a2-4e42-94f0-ddd47ac95ca5", "6276f882-1985-4fdb-8b1e-af0776ebf4bd", "ad7991d1-1f9c-4791-a90a-5c5014ab79a0"]
 
-aep_multi_options_ids_3  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20a0e-b0e2-4ecf-8626-7b21f36916fb", "95aec17a-4eda-4f86-b3e3-8e1e18851a90",
+# Do you regularly provide care—either on your own or with someone else—to any of the following people
+aep_multi_options_ids_5  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20a0e-b0e2-4ecf-8626-7b21f36916fb", "95aec17a-4eda-4f86-b3e3-8e1e18851a90",
                             "89cf1db1-08ff-4496-84e8-75ba3fbedbbf", "8c9f4e92-2430-417c-8071-168805ad984a"]
 
-aep_multi_options_ids_4  = ["dd74db01-944f-4e60-a9ad-83846a8740c4", "9985c072-ab99-40d3-99df-03ab547953e8", "ffd42ca3-67c0-4149-98c0-d31b20f2df34",
-                            "683af09d-6c09-4100-9231-843b58054d39", "f8e7d91c-3dcc-4c59-b695-34e474208365"]
-
-aep_multi_options_ids_5  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1", "14757995-2ce5-4902-9de6-70da31cc78d0", "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
-                            "a3092d24-5493-443a-9950-d4c860dacea9", "9dcea11d-1829-4ba6-b27c-9224ca856236",  "7eed346b-2900-424c-901a-cd1797b66cb6"]
-
+# In what capacity has your organization worked with artists
 aep_multi_options_ids_6  = ["e7149032-947e-4f91-99fa-c9d84a164fc6", "d9d84ba7-9b05-4c7b-ac5b-d8b3c8ea9b08", "12bd0210-1c22-458e-ab6e-425f3acea5e6",
                             "27c3042c-742f-4915-80d2-07f205f95f83"]
 
+# Which of the following communities does your organization explicitly serve
 aep_multi_options_ids_7  = ["87066c94-81d6-49ae-8800-4c934a91af79", "1b51e25f-731c-4a88-b02e-f35973ef0a23", "15683710-931b-453a-bca1-e2d5f5afc839",
                             "6439d360-c52f-4b34-bef6-301165c1b783", "4d649913-c52e-4012-b5cc-ca96f4f87e70", "ec9f7e5c-9fea-48ca-8bd1-35c5e774d228",
                             "5dbcf425-6271-4d1c-9c9b-b1a42fc9d739",  "96e48837-0269-427a-befe-719b1268d927"]
 
+# Which of the following did you receive
 aep_multi_options_ids_8  = ["6c6c9c68-bb94-425d-af2c-de0a0091bd1d", "e4a0633e-8dbe-41b7-85b0-dfd91d6eb0de", "fe4d8a94-cc30-4d6b-85a9-cf2a9d4b707f",
                             "1cd781a5-8d74-42bd-8888-fa9e52397494"]
 
+# If yes, does it include the following
 aep_multi_options_ids_9  = ["fa9fba85-32a4-4fea-bdd3-25a88257bc88", "40464179-7568-462c-88fa-8fc0c36e6450", "65fefc57-57d5-4f69-a94e-a687d849e4b3",
                             "1214af96-e2e3-4793-9ba6-f3d94b11dace"]
 
