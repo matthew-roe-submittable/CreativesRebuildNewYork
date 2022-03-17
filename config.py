@@ -53,14 +53,6 @@ project_2_name_field_id      = "582e9043-8977-447b-a569-cbc2e5df12ed"
 project_2_dob_field_id       = "b5e07e17-8d0b-4705-9628-ba35de352804"
 project_2_zipcode_field_id   = "d533967d-d72b-4266-a502-577b6ae6db81"
 
-# Multi-select to single-select projects (no UID check)
-project_id_3                 = "0566982c-934d-495e-a7ea-e408d44215fe"  # Portrait of New York State Artists
-project_id_4                 = "ff3d1f76-8a37-4b7d-bfda-2651e940244c"  # Retrato de Artistas del Estado de Nueva York
-project_id_5                 = "d5b24c6e-2cb1-45f2-94e9-9b0c199c32c3"  # Portrait of New York State Artists - Applicant Questionnaire
-project_id_6                 = "649f06b5-636e-49fb-a103-78322effe0fb"  # Retrato de Artistas del Estado de Nueva York - Cuestionario para Solicitantes
-project_id_7                 = "a7f25ed0-66b5-4f4b-991d-e9f0a771fb0a"  # AEP Manual submission
-project_id_8                 = "46744312-6d9b-4b87-b8da-d129414cede5"  # GI Manual submission
-
 
 # internal form
 internal_form_id            = "f2911a5d-1293-4f84-85b2-63ec0a1e6282"
