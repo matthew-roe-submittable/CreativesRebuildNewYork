@@ -74,81 +74,6 @@ dup_label_id   = "320527"
 # label "Migrated"
 migrated_label = "325691"
 
-
-
-# AEP multi select initial form field IDs
-project_1_multi_select_id_1  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
-project_1_multi_select_id_2  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
-project_1_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-project_1_multi_select_id_4  = "8f21320b-c09f-42dd-9a18-781470c0e101"  # At what scale do your services or programs operate
-project_1_multi_select_id_5  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # How do you approach your practice as an artist, culture bearer, or culture maker
-project_1_multi_select_id_6  = "6a0521d4-5111-4199-8b54-b9663a904551"  # In what capacity has your organization worked with artists?
-project_1_multi_select_id_7  = "9baa2709-d5e2-4aa0-abe1-4b62ff81c37b"  # Which of the following communities does your organization explicitly serve
-project_1_multi_select_id_8  = "a674b07b-5fce-4d86-a558-53cd0569c77c"  # Which of the following did you receive
-project_1_multi_select_id_9  = "a8b213cf-634f-4927-8bb6-56e9f94792f2"  # If yes, does it include the following
-
-# multi select option IDs
-project_1_multi_options_ids_1  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-0550-49eb-84ce-2de922506cf7", "5cf12f61-ec64-415f-b2ae-9bc242e5efec",
-                                  "a9142c59-79fc-4e6d-a3a1-7b97cb61bcca", "b20a0284-4ddf-4588-82c8-fbc5dfc8d9ed", "85cb5937-1cb2-499f-8ffa-8d3a06f7f33c",
-                                  "4330a73a-1ae9-4fa7-8e97-99b66d23ac92", "708ccca7-571e-4a55-a68c-7a1689125287", "d5f06b5c-5257-4fb5-a739-60785fba2aa2"]
-
-project_1_multi_options_ids_2  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
-                                  "8b9ca158-27a2-4e42-94f0-ddd47ac95ca5", "6276f882-1985-4fdb-8b1e-af0776ebf4bd", "ad7991d1-1f9c-4791-a90a-5c5014ab79a0"]
-
-project_1_multi_options_ids_3  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20a0e-b0e2-4ecf-8626-7b21f36916fb", "95aec17a-4eda-4f86-b3e3-8e1e18851a90",
-                                  "89cf1db1-08ff-4496-84e8-75ba3fbedbbf", "8c9f4e92-2430-417c-8071-168805ad984a"]
-
-project_1_multi_options_ids_4  = ["dd74db01-944f-4e60-a9ad-83846a8740c4", "9985c072-ab99-40d3-99df-03ab547953e8", "ffd42ca3-67c0-4149-98c0-d31b20f2df34",
-                                  "683af09d-6c09-4100-9231-843b58054d39", "f8e7d91c-3dcc-4c59-b695-34e474208365"]
-
-project_1_multi_options_ids_5  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1", "14757995-2ce5-4902-9de6-70da31cc78d0", "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
-                                  "a3092d24-5493-443a-9950-d4c860dacea9", "9dcea11d-1829-4ba6-b27c-9224ca856236",  "7eed346b-2900-424c-901a-cd1797b66cb6"]
-
-project_1_multi_options_ids_6  = ["e7149032-947e-4f91-99fa-c9d84a164fc6", "d9d84ba7-9b05-4c7b-ac5b-d8b3c8ea9b08", "12bd0210-1c22-458e-ab6e-425f3acea5e6",
-                                  "27c3042c-742f-4915-80d2-07f205f95f83", "fad990d0-e83f-4ec9-a99e-2743fc3e6a50"]
-
-project_1_multi_options_ids_7  = ["87066c94-81d6-49ae-8800-4c934a91af79", "1b51e25f-731c-4a88-b02e-f35973ef0a23", "15683710-931b-453a-bca1-e2d5f5afc839",
-                                  "6439d360-c52f-4b34-bef6-301165c1b783", "4d649913-c52e-4012-b5cc-ca96f4f87e70", "ec9f7e5c-9fea-48ca-8bd1-35c5e774d228",
-                                  "5dbcf425-6271-4d1c-9c9b-b1a42fc9d739",  "96e48837-0269-427a-befe-719b1268d927"]
-
-project_1_multi_options_ids_8  = ["6c6c9c68-bb94-425d-af2c-de0a0091bd1d", "e4a0633e-8dbe-41b7-85b0-dfd91d6eb0de", "fe4d8a94-cc30-4d6b-85a9-cf2a9d4b707f",
-                                  "1cd781a5-8d74-42bd-8888-fa9e52397494"]
-
-project_1_multi_options_ids_9  = ["fa9fba85-32a4-4fea-bdd3-25a88257bc88", "40464179-7568-462c-88fa-8fc0c36e6450", "65fefc57-57d5-4f69-a94e-a687d849e4b3",
-                                  "1214af96-e2e3-4793-9ba6-f3d94b11dace"]
-
-
-# GI multi select initial form field IDs
-project_2_multi_select_id_1  = "758c4332-05cd-4bc4-aa8c-29608f25aa23"  # Which of the following best describes you
-project_2_multi_select_id_2  = "4c251fd1-79f1-4f2e-9cf2-c2ba4a3e978b"  # What is your gender identity
-project_2_multi_select_id_3  = "7958711d-5b0a-47b2-bb18-626c85aeb810"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-project_2_multi_select_id_4  = "57229736-c2e0-4394-8741-4456e0aa4afc"  # Please check all that apply regarding your financial safety net
-project_2_multi_select_id_5  = "80accf26-bdf4-4767-afa1-516e04db34ca"  # How do you approach your practice as an artist, culture bearer, or culture maker
-project_2_multi_select_id_6  = "19965a1f-c95f-4e0f-99e2-2f67ae6ba96d"  # To the best of your knowledge, in which of the following are you currently enrolled
-
-# multi select option IDs
-project_2_multi_options_ids_1  = ["c0a1fa70-2901-4dba-9fd2-01c7e9411940", "d102efb5-5855-4fb6-a55e-cbdbbb590255", "0acea73a-cde1-44c6-8e91-ca2179461651",
-                                  "bab9b368-671a-416d-b796-58d33ce2e6c4", "df7fbb0a-8b13-4ba9-be60-5548f9359a33", "718b9f71-3eab-475d-b621-ca720970a791",
-                                  "a103d095-d51f-420e-a017-ab49a6cc0421", "49fff122-a902-482c-91d6-4178d8e73f87", "c09931d0-422d-4697-9833-73b98efdb444"]
-
-project_2_multi_options_ids_2  = ["b4a52ba9-6961-48a0-9e40-84ec49847e72", "1c7a9ad7-f6ba-44f4-aa27-d4299dd698e9", "7314db42-ccfd-474b-aaea-e10be26d9529",
-                                  "cc4611cd-e7ba-4df4-bcac-85f6f81f59d2", "4ea1d978-b361-4595-a758-f1bd0d251718", "7525a512-64fc-4a97-a282-ff50609704f9"]
-
-project_2_multi_options_ids_3  = ["2e6dfc90-8106-4107-a910-552d4197a8c6", "702b6585-a1c8-4d99-8e16-d1d797c92d36", "ec6fb886-5ca3-47f6-908f-d4a5c7f00347",
-                                  "c491e047-30f8-4e7c-8754-417e50e3f8aa", "f45bd78a-08fc-41c7-b5a8-8dab724d52b9"]
-
-project_2_multi_options_ids_4  = ["ba27ef1b-2b26-4a14-bed4-e9ebc34b0248", "db505e3b-d0df-485e-9e80-851dac87821c", "ef9d1bf4-37c6-4c79-93bf-a154a4f17dc0",
-                                  "13f70502-7549-4dc6-86f7-d04ca4b05134", "a0bd6179-bbb6-422d-8cb2-1ab8a1a1f8cd"]
-
-project_2_multi_options_ids_5  = ["c10cd09c-1f42-43fb-9add-27624bc97fa3", "f055e486-69f0-45ef-b399-26f392f405b2", "e228897b-1010-4fb7-8e4f-9e112e2b5b76",
-                                  "691fc1fb-4f83-4448-9820-b52edbba5549", "7a25a1c7-307f-4c16-b9d1-9dc81b4fd9fc", "715fde81-243d-49c1-be4a-1d0540ba13a5"]
-
-project_2_multi_options_ids_6  = ["9f73f8df-1782-4587-bcf4-b45e34dcda7f", "a25b7983-91e4-4307-b074-621b1cea6b16", "25296dd2-fffd-4d71-9d8f-296191f5c9bc",
-                                  "fbd30fda-dd46-4461-9db6-c425bfdfe570", "232a8147-dc83-4d68-a050-13dbfc4157ef", "50eeb188-cdd8-431b-aec9-c9da09f5c82c",
-                                  "76611988-c8a8-4f1c-b9dc-835900dd15f8", "bcdf3a4b-8618-40bf-a470-0d809a4a14dc", "7d15fdbf-e10b-4877-8790-52fcb8cdd142",
-                                  "5aa38ae1-8f03-41a7-8a92-f8df39ba8000", "66baf3b0-4794-44bb-a33e-a3b61fd49a47", "afc2f52c-c667-4d41-a5c3-1aee670aae20",
-                                  "3cc63592-708d-4b92-ae37-4ca987846bc7", "e78453f5-89e7-40bd-bef6-9e60d3555311"]
-
 # Ineligible Survey multi select initial form field IDs
 ineligible_survey_multi_select_id_1   = "edcccd65-8a54-4cff-81b3-1cfa83f2f1a9"
 ineligible_survey_multi_select_id_2   = "062a66a3-27ab-4375-92f5-21376467ea7e"
@@ -170,7 +95,7 @@ ineligible_survey_multi_options_ids_2   = ["9fce1ac4-a1c7-401e-b091-b10230f40a58
                                            "71bf108f-018e-43c9-a4cf-de8483af857f", "00c0f6de-325b-4f77-8ecb-d90c6c88e3fb", "61228b47-2252-4af5-b6e9-609eaa727ba0",
                                            "eb03277f-79e8-46b4-bc6d-aa388d358d42"]
 
-ineligible_survey_multi_options_ids_3   = ["1bb49643-a5c9-47f6-b536-462826126831","946c1f53-ca01-4f44-9cab-e068c65e4099", "ffa238ca-61ff-4481-b449-911e35fb150a",
+ineligible_survey_multi_options_ids_3   = ["1bb49643-a5c9-47f6-b536-462826126831", "946c1f53-ca01-4f44-9cab-e068c65e4099", "ffa238ca-61ff-4481-b449-911e35fb150a",
                                            "6b4cf741-d002-4e46-987e-6c4ceca84b12", "6866580e-f680-458e-9aaf-d5086fccc241"]
 
 ineligible_survey_multi_options_ids_4   = ["3371c768-b379-4c76-aa00-995d73898a05", "28880ad4-90d4-498b-8dbc-e066beafdbe3", "7c5e6808-af72-49b8-9a22-a6f9f4ba816e",
@@ -206,6 +131,80 @@ ineligible_survey_multi_options_ids_10  = ["1d2e5a20-e651-48d4-b1ee-e06840c8123c
 
 ineligible_survey_multi_options_ids_11  = ["ba34723d-43ad-467f-b268-47628d1be2d8", "d322091c-2e4b-41d4-9197-94e285383c36", "312121f5-a493-4cae-83dc-46680e46ac9b",
                                            "c0a423ef-f426-4df9-a970-44cb8917b8c5", "dff80b54-909c-4fb7-8b8c-4b0704ab2630"]
+
+
+# AEP multi select initial form field IDs
+aep_multi_select_id_1  = "028936dd-a753-4201-909c-38e4f6122c1a"  # Which of the following best describes you
+aep_multi_select_id_2  = "94f117db-9536-4892-ab88-e8d4d60babe9"  # What is your gender identity
+aep_multi_select_id_3  = "cad583dc-a922-4746-8db5-1ad7559a5dbf"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+aep_multi_select_id_4  = "8f21320b-c09f-42dd-9a18-781470c0e101"  # At what scale do your services or programs operate
+aep_multi_select_id_5  = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # How do you approach your practice as an artist, culture bearer, or culture maker
+aep_multi_select_id_6  = "6a0521d4-5111-4199-8b54-b9663a904551"  # In what capacity has your organization worked with artists?
+aep_multi_select_id_7  = "9baa2709-d5e2-4aa0-abe1-4b62ff81c37b"  # Which of the following communities does your organization explicitly serve
+aep_multi_select_id_8  = "a674b07b-5fce-4d86-a558-53cd0569c77c"  # Which of the following did you receive
+aep_multi_select_id_9  = "a8b213cf-634f-4927-8bb6-56e9f94792f2"  # If yes, does it include the following
+
+# multi select option IDs
+aep_multi_options_ids_1  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-0550-49eb-84ce-2de922506cf7", "5cf12f61-ec64-415f-b2ae-9bc242e5efec",
+                            "a9142c59-79fc-4e6d-a3a1-7b97cb61bcca", "b20a0284-4ddf-4588-82c8-fbc5dfc8d9ed", "85cb5937-1cb2-499f-8ffa-8d3a06f7f33c",
+                            "4330a73a-1ae9-4fa7-8e97-99b66d23ac92", "708ccca7-571e-4a55-a68c-7a1689125287", "d5f06b5c-5257-4fb5-a739-60785fba2aa2"]
+
+aep_multi_options_ids_2  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
+                            "8b9ca158-27a2-4e42-94f0-ddd47ac95ca5", "6276f882-1985-4fdb-8b1e-af0776ebf4bd", "ad7991d1-1f9c-4791-a90a-5c5014ab79a0"]
+
+aep_multi_options_ids_3  = ["637ec5f0-2eff-4831-92a4-5fe81261622d", "e2f20a0e-b0e2-4ecf-8626-7b21f36916fb", "95aec17a-4eda-4f86-b3e3-8e1e18851a90",
+                            "89cf1db1-08ff-4496-84e8-75ba3fbedbbf", "8c9f4e92-2430-417c-8071-168805ad984a"]
+
+aep_multi_options_ids_4  = ["dd74db01-944f-4e60-a9ad-83846a8740c4", "9985c072-ab99-40d3-99df-03ab547953e8", "ffd42ca3-67c0-4149-98c0-d31b20f2df34",
+                            "683af09d-6c09-4100-9231-843b58054d39", "f8e7d91c-3dcc-4c59-b695-34e474208365"]
+
+aep_multi_options_ids_5  = ["6a782b6b-fa61-433e-9a8b-cf0a1f88ade1", "14757995-2ce5-4902-9de6-70da31cc78d0", "b4a7a3e7-a15b-4cd8-b781-3b70be1f95b5",
+                            "a3092d24-5493-443a-9950-d4c860dacea9", "9dcea11d-1829-4ba6-b27c-9224ca856236",  "7eed346b-2900-424c-901a-cd1797b66cb6"]
+
+aep_multi_options_ids_6  = ["e7149032-947e-4f91-99fa-c9d84a164fc6", "d9d84ba7-9b05-4c7b-ac5b-d8b3c8ea9b08", "12bd0210-1c22-458e-ab6e-425f3acea5e6",
+                            "27c3042c-742f-4915-80d2-07f205f95f83", "fad990d0-e83f-4ec9-a99e-2743fc3e6a50"]
+
+aep_multi_options_ids_7  = ["87066c94-81d6-49ae-8800-4c934a91af79", "1b51e25f-731c-4a88-b02e-f35973ef0a23", "15683710-931b-453a-bca1-e2d5f5afc839",
+                            "6439d360-c52f-4b34-bef6-301165c1b783", "4d649913-c52e-4012-b5cc-ca96f4f87e70", "ec9f7e5c-9fea-48ca-8bd1-35c5e774d228",
+                            "5dbcf425-6271-4d1c-9c9b-b1a42fc9d739",  "96e48837-0269-427a-befe-719b1268d927"]
+
+aep_multi_options_ids_8  = ["6c6c9c68-bb94-425d-af2c-de0a0091bd1d", "e4a0633e-8dbe-41b7-85b0-dfd91d6eb0de", "fe4d8a94-cc30-4d6b-85a9-cf2a9d4b707f",
+                            "1cd781a5-8d74-42bd-8888-fa9e52397494"]
+
+aep_multi_options_ids_9  = ["fa9fba85-32a4-4fea-bdd3-25a88257bc88", "40464179-7568-462c-88fa-8fc0c36e6450", "65fefc57-57d5-4f69-a94e-a687d849e4b3",
+                            "1214af96-e2e3-4793-9ba6-f3d94b11dace"]
+
+
+# GI multi select initial form field IDs
+gi_multi_select_id_1  = "758c4332-05cd-4bc4-aa8c-29608f25aa23"  # Which of the following best describes you
+gi_multi_select_id_2  = "4c251fd1-79f1-4f2e-9cf2-c2ba4a3e978b"  # What is your gender identity
+gi_multi_select_id_3  = "7958711d-5b0a-47b2-bb18-626c85aeb810"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+gi_multi_select_id_4  = "57229736-c2e0-4394-8741-4456e0aa4afc"  # Please check all that apply regarding your financial safety net
+gi_multi_select_id_5  = "80accf26-bdf4-4767-afa1-516e04db34ca"  # How do you approach your practice as an artist, culture bearer, or culture maker
+gi_multi_select_id_6  = "19965a1f-c95f-4e0f-99e2-2f67ae6ba96d"  # To the best of your knowledge, in which of the following are you currently enrolled
+
+# multi select option IDs
+gi_multi_options_ids_1  = ["c0a1fa70-2901-4dba-9fd2-01c7e9411940", "d102efb5-5855-4fb6-a55e-cbdbbb590255", "0acea73a-cde1-44c6-8e91-ca2179461651",
+                           "bab9b368-671a-416d-b796-58d33ce2e6c4", "df7fbb0a-8b13-4ba9-be60-5548f9359a33", "718b9f71-3eab-475d-b621-ca720970a791",
+                           "a103d095-d51f-420e-a017-ab49a6cc0421", "49fff122-a902-482c-91d6-4178d8e73f87", "c09931d0-422d-4697-9833-73b98efdb444"]
+
+gi_multi_options_ids_2  = ["b4a52ba9-6961-48a0-9e40-84ec49847e72", "1c7a9ad7-f6ba-44f4-aa27-d4299dd698e9", "7314db42-ccfd-474b-aaea-e10be26d9529",
+                           "cc4611cd-e7ba-4df4-bcac-85f6f81f59d2", "4ea1d978-b361-4595-a758-f1bd0d251718", "7525a512-64fc-4a97-a282-ff50609704f9"]
+
+gi_multi_options_ids_3  = ["2e6dfc90-8106-4107-a910-552d4197a8c6", "702b6585-a1c8-4d99-8e16-d1d797c92d36", "ec6fb886-5ca3-47f6-908f-d4a5c7f00347",
+                           "c491e047-30f8-4e7c-8754-417e50e3f8aa", "f45bd78a-08fc-41c7-b5a8-8dab724d52b9"]
+
+gi_multi_options_ids_4  = ["ba27ef1b-2b26-4a14-bed4-e9ebc34b0248", "db505e3b-d0df-485e-9e80-851dac87821c", "ef9d1bf4-37c6-4c79-93bf-a154a4f17dc0",
+                           "13f70502-7549-4dc6-86f7-d04ca4b05134", "a0bd6179-bbb6-422d-8cb2-1ab8a1a1f8cd"]
+
+gi_multi_options_ids_5  = ["c10cd09c-1f42-43fb-9add-27624bc97fa3", "f055e486-69f0-45ef-b399-26f392f405b2", "e228897b-1010-4fb7-8e4f-9e112e2b5b76",
+                           "691fc1fb-4f83-4448-9820-b52edbba5549", "7a25a1c7-307f-4c16-b9d1-9dc81b4fd9fc", "715fde81-243d-49c1-be4a-1d0540ba13a5"]
+
+gi_multi_options_ids_6  = ["9f73f8df-1782-4587-bcf4-b45e34dcda7f", "a25b7983-91e4-4307-b074-621b1cea6b16", "25296dd2-fffd-4d71-9d8f-296191f5c9bc",
+                           "fbd30fda-dd46-4461-9db6-c425bfdfe570", "232a8147-dc83-4d68-a050-13dbfc4157ef", "50eeb188-cdd8-431b-aec9-c9da09f5c82c",
+                           "76611988-c8a8-4f1c-b9dc-835900dd15f8", "bcdf3a4b-8618-40bf-a470-0d809a4a14dc", "7d15fdbf-e10b-4877-8790-52fcb8cdd142",
+                           "5aa38ae1-8f03-41a7-8a92-f8df39ba8000", "66baf3b0-4794-44bb-a33e-a3b61fd49a47", "afc2f52c-c667-4d41-a5c3-1aee670aae20",
+                           "3cc63592-708d-4b92-ae37-4ca987846bc7", "e78453f5-89e7-40bd-bef6-9e60d3555311"]
 
 
 # Applicant Survey multi select initial form field IDs
@@ -375,6 +374,7 @@ ineligible_single_select_option_id_4     = "841c84fb-6f5f-4262-a92a-8e1aefca7691
 ineligible_single_select_option_id_5     = "1ab9d66e-80d6-4475-9983-6ff355fa455c"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
 ineligible_single_select_option_id_6     = "0f0762f4-c514-43c8-ba6c-66bb0cedaa0f"  # Teaching or educating others is core to my practice
 
+# Multi-Select Question: "
 ineligible_single_select_option_id_7     = "f89526fa-2498-4855-900c-3db5415b5cdb"  # I have one or more part-time jobs (less than 30 hours per week)
 ineligible_single_select_option_id_8     = "7e14cfc8-97ce-4dee-b1a6-e4341a6a3e10"  # I have a full-time job (more than 30 hours per week)
 ineligible_single_select_option_id_9     = "101d5cf0-b230-4794-84fa-1c49bf8110b8"  # I have a series of gigs, contracts, and temporary jobs
