@@ -290,7 +290,7 @@ class CreativesRebuildController:
             single_select_options_92 = []
             single_select_options_93 = []
             single_select_options_94 = []
-            single_select_options_96 = []
+            single_select_options_95 = []
             single_select_options_96 = []
             single_select_options_97 = []
             single_select_options_98 = []
@@ -755,209 +755,503 @@ class CreativesRebuildController:
                             multi_select_options_2 = data.getOptions()
                             for option in multi_select_options_2:
                                 if option == config.ineligible_survey_multi_options_ids_2[0]:
-                                    single_select_options_10.append(config.ineligible_single_select_option_id_7)
+                                    single_select_options_7.append(config.ineligible_single_select_option_id_7)
                                 elif option == config.ineligible_survey_multi_options_ids_2[1]:
-                                    single_select_options_11.append(config.ineligible_single_select_option_id_8)
+                                    single_select_options_8.append(config.ineligible_single_select_option_id_8)
                                 elif option == config.ineligible_survey_multi_options_ids_2[2]:
-                                    single_select_options_12.append(config.ineligible_single_select_option_id_9)
+                                    single_select_options_9.append(config.ineligible_single_select_option_id_9)
                                 elif option == config.ineligible_survey_multi_options_ids_2[3]:
-                                    single_select_options_13.append(config.ineligible_single_select_option_id_10)
+                                    single_select_options_10.append(config.ineligible_single_select_option_id_10)
                                 elif option == config.ineligible_survey_multi_options_ids_2[4]:
-                                    single_select_options_14.append(config.ineligible_single_select_option_id_11)
+                                    single_select_options_11.append(config.ineligible_single_select_option_id_11)
                                 elif option == config.ineligible_survey_multi_options_ids_2[5]:
-                                    single_select_options_15.append(config.ineligible_single_select_option_id_12)
+                                    single_select_options_12.append(config.ineligible_single_select_option_id_12)
                                 elif option == config.ineligible_survey_multi_options_ids_2[6]:
-                                    single_select_options_15.append(config.ineligible_single_select_option_id_13)
+                                    single_select_options_13.append(config.ineligible_single_select_option_id_13)
 
                         elif field_id == config.ineligible_survey_multi_select_id_3:
                             multi_select_options_3 = data.getOptions()
                             for option in multi_select_options_3:
                                 if option == config.ineligible_survey_multi_options_ids_3[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_14)
+                                    single_select_options_14.append(config.ineligible_single_select_option_id_14)
                                 elif option == config.ineligible_survey_multi_options_ids_3[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_15)
+                                    single_select_options_15.append(config.ineligible_single_select_option_id_15)
                                 elif option == config.ineligible_survey_multi_options_ids_3[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_16)
+                                    single_select_options_16.append(config.ineligible_single_select_option_id_16)
                                 elif option == config.ineligible_survey_multi_options_ids_3[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_17)
+                                    single_select_options_17.append(config.ineligible_single_select_option_id_17)
                                 elif option == config.ineligible_survey_multi_options_ids_3[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_18)
+                                    single_select_options_18.append(config.ineligible_single_select_option_id_18)
 
                         elif field_id == config.ineligible_survey_multi_select_id_4:
                             multi_select_options_4 = data.getOptions()
                             for option in multi_select_options_4:
                                 if option == config.ineligible_survey_multi_options_ids_4[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_19)
+                                    single_select_options_19.append(config.ineligible_single_select_option_id_19)
                                 elif option == config.ineligible_survey_multi_options_ids_4[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_20)
+                                    single_select_options_20.append(config.ineligible_single_select_option_id_20)
                                 elif option == config.ineligible_survey_multi_options_ids_4[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_21)
+                                    single_select_options_21.append(config.ineligible_single_select_option_id_21)
                                 elif option == config.ineligible_survey_multi_options_ids_4[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_22)
+                                    single_select_options_22.append(config.ineligible_single_select_option_id_22)
                                 elif option == config.ineligible_survey_multi_options_ids_4[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_23)
+                                    single_select_options_23.append(config.ineligible_single_select_option_id_23)
                                 elif option == config.ineligible_survey_multi_options_ids_4[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_24)
+                                    single_select_options_24.append(config.ineligible_single_select_option_id_24)
                                 elif option == config.ineligible_survey_multi_options_ids_4[6]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_25)
+                                    single_select_options_25.append(config.ineligible_single_select_option_id_25)
                                 elif option == config.ineligible_survey_multi_options_ids_4[7]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_26)
+                                    single_select_options_26.append(config.ineligible_single_select_option_id_26)
                                 elif option == config.ineligible_survey_multi_options_ids_4[8]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_27)
+                                    single_select_options_27.append(config.ineligible_single_select_option_id_27)
                                 elif option == config.ineligible_survey_multi_options_ids_4[9]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_28)
+                                    single_select_options_28.append(config.ineligible_single_select_option_id_28)
 
                         elif field_id == config.ineligible_survey_multi_select_id_5:
                             multi_select_options_5 = data.getOptions()
                             for option in multi_select_options_5:
                                 if option == config.ineligible_survey_multi_options_ids_5[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_29)
+                                    single_select_options_29.append(config.ineligible_single_select_option_id_29)
                                 elif option == config.ineligible_survey_multi_options_ids_5[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_30)
+                                    single_select_options_30.append(config.ineligible_single_select_option_id_30)
                                 elif option == config.ineligible_survey_multi_options_ids_5[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_31)
+                                    single_select_options_31.append(config.ineligible_single_select_option_id_31)
                                 elif option == config.ineligible_survey_multi_options_ids_5[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_32)
+                                    single_select_options_32.append(config.ineligible_single_select_option_id_32)
                                 elif option == config.ineligible_survey_multi_options_ids_5[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_33)
+                                    single_select_options_33.append(config.ineligible_single_select_option_id_33)
                                 elif option == config.ineligible_survey_multi_options_ids_5[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_34)
+                                    single_select_options_34.append(config.ineligible_single_select_option_id_34)
 
                         elif field_id == config.ineligible_survey_multi_select_id_6:
                             multi_select_options_6 = data.getOptions()
                             for option in multi_select_options_6:
                                 if option == config.ineligible_survey_multi_options_ids_6[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_35)
+                                    single_select_options_35.append(config.ineligible_single_select_option_id_35)
                                 elif option == config.ineligible_survey_multi_options_ids_6[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_36)
+                                    single_select_options_36.append(config.ineligible_single_select_option_id_36)
                                 elif option == config.ineligible_survey_multi_options_ids_6[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_37)
+                                    single_select_options_37.append(config.ineligible_single_select_option_id_37)
                                 elif option == config.ineligible_survey_multi_options_ids_6[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_38)
+                                    single_select_options_38.append(config.ineligible_single_select_option_id_38)
                                 elif option == config.ineligible_survey_multi_options_ids_6[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_39)
+                                    single_select_options_39.append(config.ineligible_single_select_option_id_39)
                                 elif option == config.ineligible_survey_multi_options_ids_6[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_40)
+                                    single_select_options_40.append(config.ineligible_single_select_option_id_40)
                                 elif option == config.ineligible_survey_multi_options_ids_6[6]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_41)
+                                    single_select_options_41.append(config.ineligible_single_select_option_id_41)
                                 elif option == config.ineligible_survey_multi_options_ids_6[7]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_42)
+                                    single_select_options_42.append(config.ineligible_single_select_option_id_42)
                                 elif option == config.ineligible_survey_multi_options_ids_6[8]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_43)
+                                    single_select_options_43.append(config.ineligible_single_select_option_id_43)
 
                         elif field_id == config.ineligible_survey_multi_select_id_7:
                             multi_select_options_7 = data.getOptions()
                             for option in multi_select_options_7:
                                 if option == config.ineligible_survey_multi_options_ids_7[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_44)
+                                    single_select_options_44.append(config.ineligible_single_select_option_id_44)
                                 elif option == config.ineligible_survey_multi_options_ids_7[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_45)
+                                    single_select_options_45.append(config.ineligible_single_select_option_id_45)
                                 elif option == config.ineligible_survey_multi_options_ids_7[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_46)
+                                    single_select_options_46.append(config.ineligible_single_select_option_id_46)
                                 elif option == config.ineligible_survey_multi_options_ids_7[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_47)
+                                    single_select_options_47.append(config.ineligible_single_select_option_id_47)
                                 elif option == config.ineligible_survey_multi_options_ids_7[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_48)
+                                    single_select_options_48.append(config.ineligible_single_select_option_id_48)
                                 elif option == config.ineligible_survey_multi_options_ids_7[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_49)
+                                    single_select_options_49.append(config.ineligible_single_select_option_id_49)
                                 elif option == config.ineligible_survey_multi_options_ids_7[6]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_50)
+                                    single_select_options_50.append(config.ineligible_single_select_option_id_50)
                                 elif option == config.ineligible_survey_multi_options_ids_7[7]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_51)
+                                    single_select_options_51.append(config.ineligible_single_select_option_id_51)
                                 elif option == config.ineligible_survey_multi_options_ids_7[8]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_52)
+                                    single_select_options_52.append(config.ineligible_single_select_option_id_52)
                                 elif option == config.ineligible_survey_multi_options_ids_7[9]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_53)
+                                    single_select_options_53.append(config.ineligible_single_select_option_id_53)
                                 elif option == config.ineligible_survey_multi_options_ids_7[10]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_54)
+                                    single_select_options_54.append(config.ineligible_single_select_option_id_54)
                                 elif option == config.ineligible_survey_multi_options_ids_7[11]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_55)
+                                    single_select_options_55.append(config.ineligible_single_select_option_id_55)
                                 elif option == config.ineligible_survey_multi_options_ids_7[12]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_56)
+                                    single_select_options_56.append(config.ineligible_single_select_option_id_56)
                                 elif option == config.ineligible_survey_multi_options_ids_7[13]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_57)
+                                    single_select_options_57.append(config.ineligible_single_select_option_id_57)
 
                         elif field_id == config.ineligible_survey_multi_select_id_8:
                             multi_select_options_8 = data.getOptions()
                             for option in multi_select_options_8:
                                 if option == config.ineligible_survey_multi_options_ids_8[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_58)
+                                    single_select_options_58.append(config.ineligible_single_select_option_id_58)
                                 elif option == config.ineligible_survey_multi_options_ids_8[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_59)
+                                    single_select_options_59.append(config.ineligible_single_select_option_id_59)
                                 elif option == config.ineligible_survey_multi_options_ids_8[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_60)
+                                    single_select_options_60.append(config.ineligible_single_select_option_id_60)
                                 elif option == config.ineligible_survey_multi_options_ids_8[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_61)
+                                    single_select_options_61.append(config.ineligible_single_select_option_id_61)
                                 elif option == config.ineligible_survey_multi_options_ids_8[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_62)
+                                    single_select_options_62.append(config.ineligible_single_select_option_id_62)
                                 elif option == config.ineligible_survey_multi_options_ids_8[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_63)
+                                    single_select_options_63.append(config.ineligible_single_select_option_id_63)
                                 elif option == config.ineligible_survey_multi_options_ids_8[6]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_64)
+                                    single_select_options_64.append(config.ineligible_single_select_option_id_64)
                                 elif option == config.ineligible_survey_multi_options_ids_8[7]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_65)
+                                    single_select_options_65.append(config.ineligible_single_select_option_id_65)
                                 elif option == config.ineligible_survey_multi_options_ids_8[8]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_66)
+                                    single_select_options_66.append(config.ineligible_single_select_option_id_66)
                                 elif option == config.ineligible_survey_multi_options_ids_8[9]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_67)
+                                    single_select_options_67.append(config.ineligible_single_select_option_id_67)
                                 elif option == config.ineligible_survey_multi_options_ids_8[10]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_68)
+                                    single_select_options_68.append(config.ineligible_single_select_option_id_68)
                                 elif option == config.ineligible_survey_multi_options_ids_8[11]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_69)
+                                    single_select_options_69.append(config.ineligible_single_select_option_id_69)
                                 elif option == config.ineligible_survey_multi_options_ids_8[12]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_70)
+                                    single_select_options_70.append(config.ineligible_single_select_option_id_70)
 
                         elif field_id == config.ineligible_survey_multi_select_id_9:
                             multi_select_options_9 = data.getOptions()
                             for option in multi_select_options_9:
                                 if option == config.ineligible_survey_multi_options_ids_9[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_71)
+                                    single_select_options_71.append(config.ineligible_single_select_option_id_71)
                                 elif option == config.ineligible_survey_multi_options_ids_9[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_72)
+                                    single_select_options_72.append(config.ineligible_single_select_option_id_72)
                                 elif option == config.ineligible_survey_multi_options_ids_9[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_73)
+                                    single_select_options_73.append(config.ineligible_single_select_option_id_73)
                                 elif option == config.ineligible_survey_multi_options_ids_9[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_74)
+                                    single_select_options_74.append(config.ineligible_single_select_option_id_74)
                                 elif option == config.ineligible_survey_multi_options_ids_9[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_75)
+                                    single_select_options_75.append(config.ineligible_single_select_option_id_75)
                                 elif option == config.ineligible_survey_multi_options_ids_9[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_76)
+                                    single_select_options_76.append(config.ineligible_single_select_option_id_76)
                                 elif option == config.ineligible_survey_multi_options_ids_9[6]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_77)
+                                    single_select_options_77.append(config.ineligible_single_select_option_id_77)
                                 elif option == config.ineligible_survey_multi_options_ids_9[7]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_78)
+                                    single_select_options_78.append(config.ineligible_single_select_option_id_78)
                                 elif option == config.ineligible_survey_multi_options_ids_9[8]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_79)
+                                    single_select_options_79.append(config.ineligible_single_select_option_id_79)
 
                         elif field_id == config.ineligible_survey_multi_select_id_10:
                             multi_select_options_10 = data.getOptions()
                             for option in multi_select_options_10:
                                 if option == config.ineligible_survey_multi_options_ids_10[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_80)
+                                    single_select_options_80.append(config.ineligible_single_select_option_id_80)
                                 elif option == config.ineligible_survey_multi_options_ids_10[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_81)
+                                    single_select_options_81.append(config.ineligible_single_select_option_id_81)
                                 elif option == config.ineligible_survey_multi_options_ids_10[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_82)
+                                    single_select_options_82.append(config.ineligible_single_select_option_id_82)
                                 elif option == config.ineligible_survey_multi_options_ids_10[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_83)
+                                    single_select_options_83.append(config.ineligible_single_select_option_id_83)
                                 elif option == config.ineligible_survey_multi_options_ids_10[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_84)
+                                    single_select_options_84.append(config.ineligible_single_select_option_id_84)
                                 elif option == config.ineligible_survey_multi_options_ids_10[5]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_85)
+                                    single_select_options_85.append(config.ineligible_single_select_option_id_85)
 
                         elif field_id == config.ineligible_survey_multi_select_id_11:
                             multi_select_options_11 = data.getOptions()
                             for option in multi_select_options_11:
                                 if option == config.ineligible_survey_multi_options_ids_11[0]:
-                                    single_select_options_16.append(config.ineligible_single_select_option_id_86)
+                                    single_select_options_86.append(config.ineligible_single_select_option_id_86)
                                 elif option == config.ineligible_survey_multi_options_ids_11[1]:
-                                    single_select_options_17.append(config.ineligible_single_select_option_id_87)
+                                    single_select_options_87.append(config.ineligible_single_select_option_id_87)
                                 elif option == config.ineligible_survey_multi_options_ids_11[2]:
-                                    single_select_options_18.append(config.ineligible_single_select_option_id_88)
+                                    single_select_options_88.append(config.ineligible_single_select_option_id_88)
                                 elif option == config.ineligible_survey_multi_options_ids_11[3]:
-                                    single_select_options_19.append(config.ineligible_single_select_option_id_89)
+                                    single_select_options_89.append(config.ineligible_single_select_option_id_89)
                                 elif option == config.ineligible_survey_multi_options_ids_11[4]:
-                                    single_select_options_20.append(config.ineligible_single_select_option_id_90)
+                                    single_select_options_90.append(config.ineligible_single_select_option_id_90)
+
+                        # AEP multi-select
+                        elif field_id == config.aep_multi_select_id_1:
+                            multi_select_options_12 = data.getOptions()
+                            for option in multi_select_options_12:
+                                if option   == config.aep_multi_options_ids_1[0]:
+                                    single_select_options_91.append(config.aep_single_select_option_id_1)
+                                elif option == config.aep_multi_options_ids_1[1]:
+                                    single_select_options_92.append(config.aep_single_select_option_id_2)
+                                elif option == config.aep_multi_options_ids_1[2]:
+                                    single_select_options_93.append(config.aep_single_select_option_id_3)
+                                elif option == config.aep_multi_options_ids_1[3]:
+                                    single_select_options_94.append(config.aep_single_select_option_id_4)
+                                elif option == config.aep_multi_options_ids_1[4]:
+                                    single_select_options_95.append(config.aep_single_select_option_id_5)
+                                elif option == config.aep_multi_options_ids_1[5]:
+                                    single_select_options_96.append(config.aep_single_select_option_id_6)
+                                elif option == config.aep_multi_options_ids_1[6]:
+                                    single_select_options_97.append(config.aep_single_select_option_id_7)
+                                elif option == config.aep_multi_options_ids_1[7]:
+                                    single_select_options_98.append(config.aep_single_select_option_id_8)
+                                elif option == config.aep_multi_options_ids_1[8]:
+                                    single_select_options_99.append(config.aep_single_select_option_id_9)
+
+                        elif field_id == config.aep_multi_select_id_2:
+                            multi_select_options_13 = data.getOptions()
+                            for option in multi_select_options_13:
+                                if option   == config.aep_multi_options_ids_2[0]:
+                                    single_select_options_100.append(config.aep_single_select_option_id_10)
+                                elif option == config.aep_multi_options_ids_2[1]:
+                                    single_select_options_101.append(config.aep_single_select_option_id_11)
+                                elif option == config.aep_multi_options_ids_2[2]:
+                                    single_select_options_102.append(config.aep_single_select_option_id_12)
+                                elif option == config.aep_multi_options_ids_2[3]:
+                                    single_select_options_103.append(config.aep_single_select_option_id_13)
+                                elif option == config.aep_multi_options_ids_2[4]:
+                                    single_select_options_104.append(config.aep_single_select_option_id_14)
+                                elif option == config.aep_multi_options_ids_2[5]:
+                                    single_select_options_105.append(config.aep_single_select_option_id_15)
+
+                        elif field_id == config.aep_multi_select_id_3:
+                            multi_select_options_14 = data.getOptions()
+                            for option in multi_select_options_14:
+                                if option   == config.aep_multi_options_ids_3[0]:
+                                    single_select_options_106.append(config.aep_single_select_option_id_16)
+                                elif option == config.aep_multi_options_ids_3[1]:
+                                    single_select_options_107.append(config.aep_single_select_option_id_17)
+                                elif option == config.aep_multi_options_ids_3[2]:
+                                    single_select_options_108.append(config.aep_single_select_option_id_18)
+                                elif option == config.aep_multi_options_ids_3[3]:
+                                    single_select_options_109.append(config.aep_single_select_option_id_19)
+                                elif option == config.aep_multi_options_ids_3[4]:
+                                    single_select_options_110.append(config.aep_single_select_option_id_20)
+
+                        elif field_id == config.aep_multi_select_id_4:
+                            multi_select_options_15 = data.getOptions()
+                            for option in multi_select_options_15:
+                                if option   == config.aep_multi_options_ids_4[0]:
+                                    single_select_options_111.append(config.aep_single_select_option_id_21)
+                                elif option == config.aep_multi_options_ids_4[1]:
+                                    single_select_options_112.append(config.aep_single_select_option_id_22)
+                                elif option == config.aep_multi_options_ids_4[2]:
+                                    single_select_options_113.append(config.aep_single_select_option_id_23)
+                                elif option == config.aep_multi_options_ids_4[3]:
+                                    single_select_options_114.append(config.aep_single_select_option_id_24)
+                                elif option == config.aep_multi_options_ids_4[4]:
+                                    single_select_options_115.append(config.aep_single_select_option_id_25)
+
+                        elif field_id == config.aep_multi_select_id_5:
+                            multi_select_options_16 = data.getOptions()
+                            for option in multi_select_options_16:
+                                if option   == config.aep_multi_options_ids_5[0]:
+                                    single_select_options_116.append(config.aep_single_select_option_id_26)
+                                elif option == config.aep_multi_options_ids_5[1]:
+                                    single_select_options_117.append(config.aep_single_select_option_id_27)
+                                elif option == config.aep_multi_options_ids_5[2]:
+                                    single_select_options_118.append(config.aep_single_select_option_id_28)
+                                elif option == config.aep_multi_options_ids_5[3]:
+                                    single_select_options_119.append(config.aep_single_select_option_id_29)
+                                elif option == config.aep_multi_options_ids_5[4]:
+                                    single_select_options_120.append(config.aep_single_select_option_id_30)
+                                elif option == config.aep_multi_options_ids_5[5]:
+                                    single_select_options_121.append(config.aep_single_select_option_id_31)
+
+                        elif field_id == config.aep_multi_select_id_6:
+                            multi_select_options_17 = data.getOptions()
+                            for option in multi_select_options_17:
+                                if option   == config.aep_multi_options_ids_6[0]:
+                                    single_select_options_122.append(config.aep_single_select_option_id_32)
+                                elif option == config.aep_multi_options_ids_6[1]:
+                                    single_select_options_123.append(config.aep_single_select_option_id_33)
+                                elif option == config.aep_multi_options_ids_6[2]:
+                                    single_select_options_124.append(config.aep_single_select_option_id_34)
+                                elif option == config.aep_multi_options_ids_6[3]:
+                                    single_select_options_125.append(config.aep_single_select_option_id_35)
+
+                        elif field_id == config.aep_multi_select_id_7:
+                            multi_select_options_18 = data.getOptions()
+                            for option in multi_select_options_18:
+                                if option   == config.aep_multi_options_ids_7[0]:
+                                    single_select_options_126.append(config.aep_single_select_option_id_36)
+                                elif option == config.aep_multi_options_ids_7[1]:
+                                    single_select_options_127.append(config.aep_single_select_option_id_37)
+                                elif option == config.aep_multi_options_ids_7[2]:
+                                    single_select_options_128.append(config.aep_single_select_option_id_38)
+                                elif option == config.aep_multi_options_ids_7[3]:
+                                    single_select_options_129.append(config.aep_single_select_option_id_39)
+                                elif option == config.aep_multi_options_ids_7[4]:
+                                    single_select_options_130.append(config.aep_single_select_option_id_40)
+                                elif option == config.aep_multi_options_ids_7[5]:
+                                    single_select_options_131.append(config.aep_single_select_option_id_41)
+                                elif option == config.aep_multi_options_ids_7[6]:
+                                    single_select_options_132.append(config.aep_single_select_option_id_42)
+                                elif option == config.aep_multi_options_ids_7[7]:
+                                    single_select_options_133.append(config.aep_single_select_option_id_43)
+
+                        elif field_id == config.aep_multi_select_id_8:
+                            multi_select_options_19 = data.getOptions()
+                            for option in multi_select_options_19:
+                                if option   == config.aep_multi_options_ids_8[0]:
+                                    single_select_options_134.append(config.aep_single_select_option_id_44)
+                                elif option == config.aep_multi_options_ids_8[1]:
+                                    single_select_options_135.append(config.aep_single_select_option_id_45)
+                                elif option == config.aep_multi_options_ids_8[2]:
+                                    single_select_options_136.append(config.aep_single_select_option_id_46)
+                                elif option == config.aep_multi_options_ids_8[3]:
+                                    single_select_options_137.append(config.aep_single_select_option_id_47)
+
+                        elif field_id == config.aep_multi_select_id_9:
+                            multi_select_options_20 = data.getOptions()
+                            for option in multi_select_options_20:
+                                if option   == config.aep_multi_options_ids_9[0]:
+                                    single_select_options_138.append(config.aep_single_select_option_id_48)
+                                elif option == config.aep_multi_options_ids_9[1]:
+                                    single_select_options_139.append(config.aep_single_select_option_id_49)
+                                elif option == config.aep_multi_options_ids_9[2]:
+                                    single_select_options_140.append(config.aep_single_select_option_id_50)
+                                elif option == config.aep_multi_options_ids_9[3]:
+                                    single_select_options_141.append(config.aep_single_select_option_id_51)
+
+                        # GI multi-select
+                        elif field_id == config.gi_multi_select_id_1:
+                            multi_select_options_21 = data.getOptions()
+                            for option in multi_select_options_21:
+                                if option   == config.gi_multi_options_ids_1[0]:
+                                    single_select_options_142.append(config.gi_single_select_option_id_1)
+                                elif option == config.gi_multi_options_ids_1[1]:
+                                    single_select_options_143.append(config.gi_single_select_option_id_2)
+                                elif option == config.gi_multi_options_ids_1[2]:
+                                    single_select_options_144.append(config.gi_single_select_option_id_3)
+                                elif option == config.gi_multi_options_ids_1[3]:
+                                    single_select_options_145.append(config.gi_single_select_option_id_4)
+                                elif option == config.gi_multi_options_ids_1[4]:
+                                    single_select_options_146.append(config.gi_single_select_option_id_5)
+                                elif option == config.gi_multi_options_ids_1[5]:
+                                    single_select_options_147.append(config.gi_single_select_option_id_6)
+                                elif option == config.gi_multi_options_ids_1[6]:
+                                    single_select_options_148.append(config.gi_single_select_option_id_7)
+                                elif option == config.gi_multi_options_ids_1[7]:
+                                    single_select_options_149.append(config.gi_single_select_option_id_8)
+                                elif option == config.gi_multi_options_ids_1[8]:
+                                    single_select_options_150.append(config.gi_single_select_option_id_9)
+
+                        elif field_id == config.gi_multi_select_id_2:
+                            multi_select_options_22 = data.getOptions()
+                            for option in multi_select_options_22:
+                                if option   == config.gi_multi_options_ids_2[0]:
+                                    single_select_options_151.append(config.gi_single_select_option_id_10)
+                                elif option == config.gi_multi_options_ids_2[1]:
+                                    single_select_options_152.append(config.gi_single_select_option_id_11)
+                                elif option == config.gi_multi_options_ids_2[2]:
+                                    single_select_options_153.append(config.gi_single_select_option_id_12)
+                                elif option == config.gi_multi_options_ids_2[3]:
+                                    single_select_options_154.append(config.gi_single_select_option_id_13)
+                                elif option == config.gi_multi_options_ids_2[4]:
+                                    single_select_options_155.append(config.gi_single_select_option_id_14)
+                                elif option == config.gi_multi_options_ids_2[5]:
+                                    single_select_options_156.append(config.gi_single_select_option_id_15)
+
+                        elif field_id == config.gi_multi_select_id_3:
+                            multi_select_options_23 = data.getOptions()
+                            for option in multi_select_options_23:
+                                if option   == config.gi_multi_options_ids_3[0]:
+                                    single_select_options_157.append(config.gi_single_select_option_id_16)
+                                elif option == config.gi_multi_options_ids_3[1]:
+                                    single_select_options_158.append(config.gi_single_select_option_id_17)
+                                elif option == config.gi_multi_options_ids_3[2]:
+                                    single_select_options_159.append(config.gi_single_select_option_id_18)
+                                elif option == config.gi_multi_options_ids_3[3]:
+                                    single_select_options_160.append(config.gi_single_select_option_id_19)
+                                elif option == config.gi_multi_options_ids_3[4]:
+                                    single_select_options_161.append(config.gi_single_select_option_id_20)
+
+                        elif field_id == config.gi_multi_select_id_4:
+                            multi_select_options_24 = data.getOptions()
+                            for option in multi_select_options_24:
+                                if option   == config.gi_multi_options_ids_4[0]:
+                                    single_select_options_162.append(config.gi_single_select_option_id_21)
+                                elif option == config.gi_multi_options_ids_4[1]:
+                                    single_select_options_163.append(config.gi_single_select_option_id_22)
+                                elif option == config.gi_multi_options_ids_4[2]:
+                                    single_select_options_164.append(config.gi_single_select_option_id_23)
+                                elif option == config.gi_multi_options_ids_4[3]:
+                                    single_select_options_165.append(config.gi_single_select_option_id_24)
+                                elif option == config.gi_multi_options_ids_4[4]:
+                                    single_select_options_166.append(config.gi_single_select_option_id_25)
+
+                        elif field_id == config.gi_multi_select_id_5:
+                            multi_select_options_25 = data.getOptions()
+                            for option in multi_select_options_25:
+                                if option   == config.gi_multi_options_ids_5[0]:
+                                    single_select_options_151.append(config.gi_single_select_option_id_26)
+                                elif option == config.gi_multi_options_ids_5[1]:
+                                    single_select_options_152.append(config.gi_single_select_option_id_27)
+                                elif option == config.gi_multi_options_ids_5[2]:
+                                    single_select_options_153.append(config.gi_single_select_option_id_28)
+                                elif option == config.gi_multi_options_ids_5[3]:
+                                    single_select_options_154.append(config.gi_single_select_option_id_29)
+                                elif option == config.gi_multi_options_ids_5[4]:
+                                    single_select_options_155.append(config.gi_single_select_option_id_30)
+                                elif option == config.gi_multi_options_ids_5[5]:
+                                    single_select_options_156.append(config.gi_single_select_option_id_31)
+
+                        elif field_id == config.gi_multi_select_id_6:
+                            multi_select_options_26 = data.getOptions()
+                            for option in multi_select_options_26:
+                                if option   == config.gi_multi_options_ids_6[0]:
+                                    single_select_options_157.append(config.gi_single_select_option_id_32)
+                                elif option == config.gi_multi_options_ids_6[1]:
+                                    single_select_options_158.append(config.gi_single_select_option_id_33)
+                                elif option == config.gi_multi_options_ids_6[2]:
+                                    single_select_options_159.append(config.gi_single_select_option_id_34)
+                                elif option == config.gi_multi_options_ids_6[3]:
+                                    single_select_options_160.append(config.gi_single_select_option_id_35)
+                                elif option == config.gi_multi_options_ids_6[4]:
+                                    single_select_options_161.append(config.gi_single_select_option_id_36)
+                                elif option == config.gi_multi_options_ids_6[5]:
+                                    single_select_options_162.append(config.gi_single_select_option_id_37)
+                                elif option == config.gi_multi_options_ids_6[6]:
+                                    single_select_options_163.append(config.gi_single_select_option_id_38)
+                                elif option == config.gi_multi_options_ids_6[7]:
+                                    single_select_options_164.append(config.gi_single_select_option_id_39)
+                                elif option == config.gi_multi_options_ids_6[8]:
+                                    single_select_options_165.append(config.gi_single_select_option_id_40)
+                                elif option == config.gi_multi_options_ids_6[9]:
+                                    single_select_options_166.append(config.gi_single_select_option_id_41)
+                                elif option == config.gi_multi_options_ids_6[10]:
+                                    single_select_options_167.append(config.gi_single_select_option_id_42)
+                                elif option == config.gi_multi_options_ids_6[11]:
+                                    single_select_options_168.append(config.gi_single_select_option_id_43)
+                                elif option == config.gi_multi_options_ids_6[12]:
+                                    single_select_options_169.append(config.gi_single_select_option_id_44)
+                                elif option == config.gi_multi_options_ids_6[13]:
+                                    single_select_options_170.append(config.gi_single_select_option_id_45)
+
+                        # App survey multi-select
+                        elif field_id == config.app_survey_multi_select_id_1:
+                            multi_select_options_27 = data.getOptions()
+                            for option in multi_select_options_27:
+                                if option   == config.app_survey_multi_options_ids_1[0]:
+                                    single_select_options_171.append(config.app_single_select_option_id_1)
+                                elif option == config.app_survey_multi_options_ids_1[1]:
+                                    single_select_options_172.append(config.app_single_select_option_id_2)
+                                elif option == config.app_survey_multi_options_ids_1[2]:
+                                    single_select_options_173.append(config.app_single_select_option_id_3)
+                                elif option == config.app_survey_multi_options_ids_1[3]:
+                                    single_select_options_174.append(config.app_single_select_option_id_4)
+                                elif option == config.app_survey_multi_options_ids_1[4]:
+                                    single_select_options_175.append(config.app_single_select_option_id_5)
+                                elif option == config.app_survey_multi_options_ids_1[5]:
+                                    single_select_options_176.append(config.app_single_select_option_id_6)
+                                elif option == config.app_survey_multi_options_ids_1[6]:
+                                    single_select_options_177.append(config.app_single_select_option_id_7)
+
+                        elif field_id == config.app_survey_multi_select_id_2:
+                            multi_select_options_27 = data.getOptions()
+                            for option in multi_select_options_27:
+                                if option   == config.app_survey_multi_options_ids_2[0]:
+                                    single_select_options_178.append(config.app_single_select_option_id_1)
+                                elif option == config.app_survey_multi_options_ids_2[1]:
+                                    single_select_options_179.append(config.app_single_select_option_id_2)
+                                elif option == config.app_survey_multi_options_ids_2[2]:
+                                    single_select_options_180.append(config.app_single_select_option_id_3)
+                                elif option == config.app_survey_multi_options_ids_2[3]:
+                                    single_select_options_181.append(config.app_single_select_option_id_4)
+                                elif option == config.app_survey_multi_options_ids_2[4]:
+                                    single_select_options_182.append(config.app_single_select_option_id_5)
+                                elif option == config.app_survey_multi_options_ids_2[5]:
+                                    single_select_options_183.append(config.app_single_select_option_id_6)
+
+
+
+
+
 
 
 
