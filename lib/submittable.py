@@ -1543,7 +1543,7 @@ class Submittable:
                 f"get submissions list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
-            # print("total pages:", total_pages)
+            print("total pages:", total_pages)
         for page in range(0, total_pages):
             # self.event.wait(0.1)
             if page == total_pages:
