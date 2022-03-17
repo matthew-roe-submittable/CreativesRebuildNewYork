@@ -652,10 +652,11 @@ gi_single_select_id_19  = "8f26e1d7-d930-4713-b707-3c09188496f8"  # No
 gi_single_select_id_20  = "a5d195e8-f9a9-4de9-8017-1e5c84c490b5"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
-gi_single_select_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
-gi_single_select_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
-gi_single_select_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
-gi_single_select_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
+gi_single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"  # I am unsure when I will make any income again
+gi_single_select_id_22  = "0e11b4b3-44ea-4c35-9256-51a331316800"  # I have no financial safety net (savings, assets, family resources)
+gi_single_select_id_23  = "d77551d6-2d1a-4908-af17-cca24508599a"  # I am vulnerable to a medical emergency
+gi_single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unmanageable debt
+gi_single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
 # Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
 gi_single_select_id_26   = "80aefb5f-67da-4cc5-97c3-929699d8917e"  # I work as a solo artist.
@@ -711,10 +712,11 @@ gi_single_select_option_id_19  = "8f26e1d7-d930-4713-b707-3c09188496f8"  # No
 gi_single_select_option_id_20  = "a5d195e8-f9a9-4de9-8017-1e5c84c490b5"  # I prefer not to answer
 
 # Multi-Select Question: "Please check all that apply regarding your financial safety net"
-gi_single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"
-gi_single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"
-gi_single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"
-gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"
+gi_single_select_option_id_21  = "05788879-016d-4f8c-b174-7a1474b700ec"  # I am unsure when I will make any income again
+gi_single_select_option_id_22  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"  # I have no financial safety net (savings, assets, family resources)
+gi_single_select_option_id_23  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"  # I am vulnerable to a medical emergency
+gi_single_select_option_id_24  = "c4379de6-8c00-45c1-83af-9bdef092678c"  # I have unmanageable debt
+gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"  # None of the above
 
 # Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
 gi_single_select_option_id_26   = "4970981e-637d-4fda-951a-da59bf2e9772"  # I work as a solo artist.
