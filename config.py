@@ -751,25 +751,170 @@ gi_single_select_option_id_45   = "2d305547-b86c-4fe0-b10c-fcadbd5c479f"  # Othe
 
 # Application Survey single select internal form IDs
 #
-# single select option IDs for Multi-Select Question: "How do you currently earn money"
-app_single_select_id_1  = "231aa812-b746-41ec-9992-d771108f4cd4"
-app_single_select_id_2  = "5811efa8-3c73-48f7-b0fc-06f47720054f"
-app_single_select_id_3  = "334d9aa3-9b05-476d-9700-b3635a1773a6"
-app_single_select_id_4  = "e2ebb6ee-78e7-4cce-be79-ee0744de9d46"
-app_single_select_id_5  = "5519c0b3-1e22-438b-ba1c-3f6055474dac"
-app_single_select_id_6  = "76b6eeab-0488-4812-ae86-809b6492fa4c"
-app_single_select_id_7  = "3807199c-3af2-4ee0-bc51-ac134c4dd407"
+# Multi-Select Question: "How do you currently earn money"
+app_single_select_id_1  = "8c248661-1741-4881-86ca-4465778c4e5b"  # I have one or more part-time jobs (less than 30 hours per week).
+app_single_select_id_2  = "17b35347-4bb5-4709-ac06-d3fae7915e53"  # I have a full-time job (more than 30 hours per week).
+app_single_select_id_3  = "beaf260d-d343-4137-87b6-86ab754d684c"  # I have a series of gigs, contracts, and temporary jobs.
+app_single_select_id_4  = "3b1b8d34-827b-48d2-af7f-04d3b12f9414"  # I am primarily or entirely supported by family or by my spouse/partner.
+app_single_select_id_5  = "f43e4360-1325-4151-b64c-433bcda0fc06"  # I am currently unemployed.
+app_single_select_id_6  = "5924ad30-6bd6-4350-bdcd-342beb3e43bf"  # I earn 100% of my living through my art practice.
+app_single_select_id_7  = "cc7a4e97-d5be-4860-8f2b-839a5e1c8b5c"  # Other (please describe)
+
+# Multi-Select Question: "How are your wages currently paid"
+app_single_select_id_8   = "982a50a9-42f8-4576-af22-20adbc8f4ae0"  # I am an employee who receives an IRS Form W-2.
+app_single_select_id_9   = "e79adbdb-7c73-4270-8fd3-f0f059ac2265"  # I am a freelance/independent contractor who receives an IRS Form 1099.
+app_single_select_id_10  = "41fc2c88-24d7-434c-abd2-0bf5b1a1356c"  # Both of the above.
+app_single_select_id_11  = "c482f3c2-cf4b-4ad7-872a-65c145a2baff"  # I don’t know.
+app_single_select_id_12  = "6c7b3471-d9e5-4c7c-a878-149ac1f65dfc"  # I prefer not to answer.
+
+# Multi-Select Question: "What coalitions or causes do you actively participate in as a supporter or advocate"
+app_single_select_id_13  = "405bbe3e-e269-46ab-bbf4-e52f4eadd5cf"  # Arts/culture
+app_single_select_id_14  = "193f2a2a-39dc-4131-b3e8-3811637119c0"  # Childcare access
+app_single_select_id_15  = "52eb869f-71fa-4b1d-95a0-2f64af914863"  # Disability justice
+app_single_select_id_16  = "555c13aa-1748-487d-bac6-a4cb7684277c"  # Economic justice
+app_single_select_id_17  = "475e4b0b-2a24-43be-b17e-056990572bf8"  # Environment/climate justice
+app_single_select_id_18  = "d1be6396-ab45-495e-8112-6bbe9354589e"  # Housing/tenants’ rights
+app_single_select_id_19  = "7a44a715-9923-4749-a467-c0672922665d"  # Labor/workers’ rights
+app_single_select_id_20  = "2b0deb84-9b6f-47b9-a6a3-05e1ad9dbef9"  # Social and racial justice
+app_single_select_id_21  = "9b5b3210-f04c-4b1e-91e1-1a3b1ddfa587"  # Other (please describe)
+app_single_select_id_22  = "bc4f7002-8d04-4feb-b8c9-aec226779954"  # None at this time
+
+# Multi-Select Question: "At any time between March 2020 and February 2022, did you receive any kind of emergency financial assistance?
+# If yes, which of the following types of emergency financial assistance did you receive"
+app_single_select_id_23  = "39dc0c91-45e8-4046-91fa-54c44b37e409"  # Federal relief legislation (ie., American Rescue Plan, Paycheck Protection Program, etc.)
+app_single_select_id_24  = "e151f0db-3186-4c64-b84c-c3106c0a5ce6"  # Unemployment benefits
+app_single_select_id_25  = "750e9ed7-0bd7-44b9-adf6-3379cd1d8df7"  # An emergency grant
+app_single_select_id_26  = "53356f73-bc84-43ac-8eb7-0f0fc6a8dc35"  # Mutual aid or other grassroots contributions
+app_single_select_id_27  = "f6da2e28-ea24-4378-9ce2-d1bfe8200bea"  # Family/personal assistance
+app_single_select_id_28  = "3bc30197-f7de-4d60-95f7-ac4faac161ee"  # Other (please describe)
+
+# Multi-Select Question: "How, if at all, was your employment impacted between March 2020 and February 2022"
+app_single_select_id_29  = "2e1e09cc-691b-411f-9407-4ea87f1884d5"  # I was furloughed or my hours were reduced.
+app_single_select_id_30  = "a9cb4148-ff4c-4cf3-8948-0c20d3230c6b"  # I was laid off or fired from a job.
+app_single_select_id_31  = "9c10bb27-1032-46b6-9da2-5fe292261528"  # I left a job or reduced hours to attend to family caregiving.
+app_single_select_id_32  = "56ca5435-b31f-4cd9-8922-9d3324228db8"  # "My freelance work, gigs, and/or contracts were canceled.
+app_single_select_id_33  = "39a6f069-d818-46da-ba61-20cbd6429931"  # My entire industry was shut down.
+app_single_select_id_34  = "2bdd01b5-2ea9-44b2-a35e-44105c0b077b"  # I started a new full-time or part-time job.
+app_single_select_id_35  = "918791f6-945c-4f21-ae02-67e8cc96d7a9"  # I picked up new freelance work, gigs, and/or contracts.
+app_single_select_id_36  = "06743904-8fe3-4745-aa86-da89667c5e23"  # Other (please describe)
+app_single_select_id_37  = "50bbc3e8-70eb-4c96-a641-8f65b38f1125"  # My employment was not affected by the pandemic.
+
+# Multi-Select Question: "How, if at all, was your artistic practice impacted between March 2020 and February 2022"
+app_single_select_id_38  = "e195054b-cddb-46da-8a07-cb4b492aa090"   # My scheduled exhibitions/shows/performances/gigs were canceled.
+app_single_select_id_39  = "e57e6e6e-4123-48b2-a852-c2be960de850"  # Canceled travel prevented me from attending my exhibitions/shows/performances/gigs.
+app_single_select_id_40  = "71c7149f-01b6-4d17-8b36-fdc3b0bf10c5"  # My studio/rehearsal space closed due to the pandemic.
+app_single_select_id_41  = "83285d24-4c23-4166-97b2-3dab006ebdbe"  # I could no longer afford a studio/rehearsal space.
+app_single_select_id_42  = "453b0a3e-8e81-4aa2-97d8-13e7349edaa1"  # I could no longer collaborate safely with others.
+app_single_select_id_43  = "5f55268c-79b8-4709-b05e-d8e93c6193f5"  # I was less motivated to pursue my artistic practice.
+app_single_select_id_44  = "3185b9c5-4cc0-45a6-9a2f-12848ccf5244"  # I was more motivated to pursue my artistic practice.
+app_single_select_id_45  = "23a3eed0-9d01-4f2c-901d-918cddc772f6"  # I sought out new collaborators, communities, or professional networks.
+app_single_select_id_46  = "21bdb5c5-9de2-4351-a9a8-04d59c14b0d0"  # I evolved my artistic practice to address community needs.
+app_single_select_id_47  = "49ce1f80-afa3-4080-94ef-d1fc68dcd044"  # I embraced new opportunities to present my work online.
+app_single_select_id_48  = "22e40f50-e60e-4215-8e2a-34ccd2766fcb"  # I created a new series of work.
+app_single_select_id_49  = "d1ec8e15-3ad7-4d87-b235-9f0a238e7aee"  # I picked up new exhibitions/shows/performances/gigs.
+app_single_select_id_50  = "bd58be3b-008d-4bcd-a2a7-36fe5bdaddda"  # Other (please describe)
+app_single_select_id_51  = "a2da604c-b576-441f-b901-64a7d18b96d8"  # My artistic practice was not impacted by the pandemic
+
+# Multi-Select Question: "How, if at all, was your well-being impacted between March 2020 and February 2022"
+app_single_select_id_52  = "bab5bf4d-c177-431b-a74c-86384727610c"  # I experienced anxiety or depression.
+app_single_select_id_53  = "ac059e3e-28ea-48e4-8948-e2a41346c336"  # I experienced loneliness.
+app_single_select_id_54  = "4c734bd1-307c-4952-bdd6-ce5be9630f29"  # I got sick.
+app_single_select_id_55  = "eb24de5b-16cf-4aa3-88e3-5d5e46124036"  # I experienced food insecurity.
+app_single_select_id_56  = "c33e0100-18bd-48cc-9629-7f9981367afe"  # I experienced housing insecurity.
+app_single_select_id_57  = "31a80e92-7cba-43a1-b9b2-4d86c31c19a8"  # I had to move.
+app_single_select_id_58  = "a0cc2cd1-ce65-4256-8528-f16008a8c74f"  # I accumulated debt.
+app_single_select_id_59  = "fcf8d174-b395-4488-b5ff-1068e5bcff76"  # I became a part- or full-time caregiver
+app_single_select_id_60  = "dcd5ef0f-a7e2-4495-87d2-7f32e206f650"  # My self-care improved.
+app_single_select_id_61  = "2fddd4cc-2ea4-46a0-ab2f-79313375813b"  # My mental health improved.
+app_single_select_id_62  = "eb8b30ca-4a57-4c4f-a860-8eeab7e2151b"  # My physical health improved.
+app_single_select_id_63  = "144312cd-3dca-44fb-93d8-800fb29bc066"  # Other (please describe)
+app_single_select_id_64  = "ab35ad5f-127b-44d8-9ff9-497635064682"  # My well-being was not impacted by the pandemic.
+
 
 # Application Survey single select option IDs
 #
 # Multi-Select Question: "How do you currently earn money"
-app_single_select_option_id_1  = "231aa812-b746-41ec-9992-d771108f4cd4"
-app_single_select_option_id_2  = "5811efa8-3c73-48f7-b0fc-06f47720054f"
-app_single_select_option_id_3  = "334d9aa3-9b05-476d-9700-b3635a1773a6"
-app_single_select_option_id_4  = "e2ebb6ee-78e7-4cce-be79-ee0744de9d46"
-app_single_select_option_id_5  = "5519c0b3-1e22-438b-ba1c-3f6055474dac"
-app_single_select_option_id_6  = "76b6eeab-0488-4812-ae86-809b6492fa4c"
-app_single_select_option_id_7  = "3807199c-3af2-4ee0-bc51-ac134c4dd407"
+app_single_select_option_id_1   = "231aa812-b746-41ec-9992-d771108f4cd4"  # I have one or more part-time jobs (less than 30 hours per week).
+app_single_select_option_id_2   = "5811efa8-3c73-48f7-b0fc-06f47720054f"  # I have a full-time job (more than 30 hours per week).
+app_single_select_option_id_3   = "334d9aa3-9b05-476d-9700-b3635a1773a6"  # I have a series of gigs, contracts, and temporary jobs.
+app_single_select_option_id_4   = "e2ebb6ee-78e7-4cce-be79-ee0744de9d46"  # I am primarily or entirely supported by family or by my spouse/partner.
+app_single_select_option_id_5   = "5519c0b3-1e22-438b-ba1c-3f6055474dac"  # I am currently unemployed.
+app_single_select_option_id_6   = "76b6eeab-0488-4812-ae86-809b6492fa4c"  # I earn 100% of my living through my art practice.
+app_single_select_option_id_7   = "3807199c-3af2-4ee0-bc51-ac134c4dd407"  # Other (please describe)
+
+# Multi-Select Question: "How are your wages currently paid"
+app_single_select_option_id_8   = "46783581-3211-43f7-a4d8-43f574b2c2ba"  # I am an employee who receives an IRS Form W-2.
+app_single_select_option_id_9   = "d1f93404-69c9-4ba0-84a2-171143c44529"  # I am a freelance/independent contractor who receives an IRS Form 1099.
+app_single_select_option_id_10  = "5070649f-2c65-4a68-9099-2f6452865e47"  # Both of the above.
+app_single_select_option_id_11  = "db513a3c-3210-4b7c-9bfa-04b0027ca9bd"  # I don’t know.
+app_single_select_option_id_12  = "c7a58e63-d406-4152-a619-655b2d465d73"  # I prefer not to answer.
+
+# Multi-Select Question: "What coalitions or causes do you actively participate in as a supporter or advocate"
+app_single_select_option_id_13  = "69cc4226-1b17-488d-877a-79eaa322b1ce"  # Arts/culture
+app_single_select_option_id_14  = "8eaebb71-acef-49c3-8fb2-0530cc97dab7"  # Childcare access
+app_single_select_option_id_15  = "f1c588d1-ef95-4d5c-9d02-baf5e53ce7eb"  # Disability justice
+app_single_select_option_id_16  = "a8a53e41-61b2-41bc-aa51-09371777e414"  # Economic justice
+app_single_select_option_id_17  = "c0559d32-c926-4dc9-871c-54981cac2a08"  # Environment/climate justice
+app_single_select_option_id_18  = "5018918f-5bd8-4a45-9384-28a301684dcc"  # Housing/tenants’ rights
+app_single_select_option_id_19  = "9b8555ac-af1d-4e3a-be36-3e112df233bd"  # Labor/workers’ rights
+app_single_select_option_id_20  = "7f23af6b-8678-44f2-9a6b-267014b0948b"  # Social and racial justice
+app_single_select_option_id_21  = "9079facb-3cdf-45ea-8273-9f8ad33a0a61"  # Other (please describe)
+app_single_select_option_id_22  = "c031796d-dcd0-475f-97e2-a99cc1bdac0c"  # None at this time
+
+# Multi-Select Question: "At any time between March 2020 and February 2022, did you receive any kind of emergency financial assistance?
+# If yes, which of the following types of emergency financial assistance did you receive"
+app_single_select_option_id_23  = "cb5d1632-01d8-4749-9550-c158cf9bf033"  # Federal relief legislation (ie., American Rescue Plan, Paycheck Protection Program, etc.)
+app_single_select_option_id_24  = "e35dab1c-9c27-4df5-a2aa-ca4b74753b13"  # Unemployment benefits
+app_single_select_option_id_25  = "fe8f4cc0-7fbf-4b00-9103-43f4e1bc88fc"  # An emergency grant
+app_single_select_option_id_26  = "c2ea295b-20fd-4e83-8515-b7195234c585"  # Mutual aid or other grassroots contributions
+app_single_select_option_id_27  = "4d8fdff6-2c52-4d31-8413-ad81f83bae37"  # Family/personal assistance
+app_single_select_option_id_28  = "9853c865-9bd1-4cac-8603-f796098f1083"  # Other (please describe)
+
+# Multi-Select Question: "How, if at all, was your employment impacted between March 2020 and February 2022"
+app_single_select_option_id_29  = "475a32f5-d803-41fe-84cd-4f79ededb1eb"  # I was furloughed or my hours were reduced.
+app_single_select_option_id_30  = "c1513747-7778-477f-82c6-9da796f33062"  # I was laid off or fired from a job.
+app_single_select_option_id_31  = "4acb7623-51aa-4b7c-b112-8cc2faa34452"  # I left a job or reduced hours to attend to family caregiving.
+app_single_select_option_id_32  = "f661a7b2-0b04-4418-8a49-1c2302767bec"  # "My freelance work, gigs, and/or contracts were canceled.
+app_single_select_option_id_33  = "c57404b2-0e01-47ca-ab22-8d856d4a3db2"  # My entire industry was shut down.
+app_single_select_option_id_34  = "81842747-8efe-4995-b7b1-8145c82de4fa"  # I started a new full-time or part-time job.
+app_single_select_option_id_35  = "76cb4ca9-32fe-4f30-9eee-334bd64097ea"  # I picked up new freelance work, gigs, and/or contracts.
+app_single_select_option_id_36  = "9f00167d-8166-43a7-a13d-6650cedadfeb"  # Other (please describe)
+app_single_select_option_id_37  = "401798a6-9c7b-4346-9e08-2c8594c63f51"  # My employment was not affected by the pandemic.
+
+# Multi-Select Question: "How, if at all, was your artistic practice impacted between March 2020 and February 2022"
+app_single_select_option_id_38  = "9fe68b47-cb6e-4e30-8d84-f0c446bd8bf3"  # My scheduled exhibitions/shows/performances/gigs were canceled.
+app_single_select_option_id_39  = "d261b3f2-0bd0-4f21-acd9-240b675af9d4"  # Canceled travel prevented me from attending my exhibitions/shows/performances/gigs.
+app_single_select_option_id_40  = "7e732238-3755-4758-bde7-7ee17b569821"  # My studio/rehearsal space closed due to the pandemic.
+app_single_select_option_id_41  = "1736fffc-bcdf-4938-87b2-841770f4e164"  # I could no longer afford a studio/rehearsal space.
+app_single_select_option_id_42  = "5a5e0e65-95fb-4f61-bf07-150c596fc741"  # I could no longer collaborate safely with others.
+app_single_select_option_id_43  = "24228b14-e265-4b71-9188-a9527cd00432"  # I was less motivated to pursue my artistic practice.
+app_single_select_option_id_44  = "9d152a65-8def-4578-bff8-5898e1b019a5"  # I was more motivated to pursue my artistic practice.
+app_single_select_option_id_45  = "057e2ffb-0076-4d0f-a67d-3bce48384e33"  # I sought out new collaborators, communities, or professional networks.
+app_single_select_option_id_46  = "ea956f04-ab95-495e-8875-4fe87d59b385"  # I evolved my artistic practice to address community needs.
+app_single_select_option_id_47  = "e81f944d-5d60-42a1-b67a-273168fc969f"  # I embraced new opportunities to present my work online.
+app_single_select_option_id_48  = "e251d10d-1f57-42c7-885c-6004617454a9"  # I created a new series of work.
+app_single_select_option_id_49  = "3b445f7b-45d9-40a1-bd43-a36c0aeca2e4"  # I picked up new exhibitions/shows/performances/gigs.
+app_single_select_option_id_50  = "e796e71e-bb0a-41d9-9d41-e21339f1a1cb"  # Other (please describe)
+app_single_select_option_id_51  = "a535f02a-9ec3-4c02-9f6b-4985afb81552"  # My artistic practice was not impacted by the pandemic
+
+# Multi-Select Question: "How, if at all, was your well-being impacted between March 2020 and February 2022"
+app_single_select_option_id_52  = "da49f515-a993-48ca-bb13-e5b2f64392c6"  # I experienced anxiety or depression.
+app_single_select_option_id_53  = "1da237e2-33e9-4920-a364-5ce84482499a"  # I experienced loneliness.
+app_single_select_option_id_54  = "9830cc28-9102-4cd0-b077-0290b5bc2946"  # I got sick.
+app_single_select_option_id_55  = "9b4498c7-a1ad-4da7-bb52-adf4662c4a54"  # I experienced food insecurity.
+app_single_select_option_id_56  = "b1937259-a3ca-43a3-bfce-050d56eaaade"  # I experienced housing insecurity.
+app_single_select_option_id_57  = "20052931-ae17-4cf0-9b31-1f7093960599"  # I had to move.
+app_single_select_option_id_58  = "49d2a0a8-00b3-477e-aa19-9a6375823074"  # I accumulated debt.
+app_single_select_option_id_59  = "bc108cdf-2c93-4d56-9c9b-90e534198f24"  # I became a part- or full-time caregiver
+app_single_select_option_id_60  = "cc326105-c795-48ba-9e0b-f129fbf4101d"  # My self-care improved.
+app_single_select_option_id_61  = "4825f8d3-a560-42b9-8135-ed4d186f27cc"  # My mental health improved.
+app_single_select_option_id_62  = "162cc8a2-84ec-4f41-a76c-03db15669cc4"  # My physical health improved.
+app_single_select_option_id_63  = "8cf0ba20-2701-48af-947a-7c41d1eca75b"  # Other (please describe)
+app_single_select_option_id_64  = "05c78a1a-3762-4b8b-9753-e6f6139567fc"  # My well-being was not impacted by the pandemic.
+
+
+
+
 
 # ------------------------------ DEMO ACCOUNT SETTINGS ------------------------------ #
 '''
