@@ -1492,6 +1492,8 @@ class Submittable:
         if response.status_code != 201:
             logger.info(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
             raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+        else:
+            print("internal succ")
         return response.json()["entryId"]
 
     # get an individual submission

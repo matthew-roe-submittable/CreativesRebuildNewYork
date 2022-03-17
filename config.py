@@ -502,7 +502,7 @@ aep_single_select_id_5    = "cea866f2-3a35-4a6e-ac77-5e9cf4e1a929"  # National
 aep_single_select_id_6    = "7438ab49-8e2b-407b-b1e1-d94fae78d447"  # I work as a solo artist.
 aep_single_select_id_7    = "1cfb749a-081b-4c8c-ae89-c1654a4c4f1f"  # I collaborate regularly with other artists.
 aep_single_select_id_8    = "2f391ae5-9d0c-4868-a993-00f416d25f74"  # I collaborate regularly with other non-arts practitioners.
-aep_single_select_id_9    = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # My practice requires public or community involvement to have meaning.
+aep_single_select_id_9    = "98fc2e30-d24e-4b12-8e6d-e1abf4925037"  # My practice requires public or community involvement to have meaning.
 aep_single_select_id_10   = "ef1812a2-5ebd-4a49-a49e-a6692455eb02"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
 aep_single_select_id_11   = "3646de59-ca6c-498e-bf20-b5d82e81b01a"  # Teaching or educating others is core to my practice.
 
@@ -669,10 +669,10 @@ gi_single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unman
 gi_single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
 # Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
-gi_single_select_id_26   = "7438ab49-8e2b-407b-b1e1-d94fae78d447"  # I work as a solo artist.
-gi_single_select_id_27   = "1cfb749a-081b-4c8c-ae89-c1654a4c4f1f"  # I collaborate regularly with other artists.
-gi_single_select_id_28   = "2f391ae5-9d0c-4868-a993-00f416d25f74"  # I collaborate regularly with other non-arts practitioners.
-gi_single_select_id_29   = "98fc2e30-d24e-4b12-8e6d-e1abf4925037"  # My practice requires public or community involvement to have meaning.
+gi_single_select_id_26   = "80aefb5f-67da-4cc5-97c3-929699d8917e"  # I work as a solo artist.
+gi_single_select_id_27   = "88576fc2-a677-4a4d-a56b-3b610c201b68"  # I collaborate regularly with other artists.
+gi_single_select_id_28   = "31e90ca4-4865-4037-9971-80df68e70260"  # I collaborate regularly with other non-arts practitioners.
+gi_single_select_id_29   = "14487b0b-4d81-4bf9-8bb3-33d6c28584f5"  # My practice requires public or community involvement to have meaning.
 gi_single_select_id_30   = "9311dd9f-1498-46d6-b192-a025a25f7e41"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
 gi_single_select_id_31   = "1128dd7b-00cb-4728-a70f-263ee0632ba4"  # Teaching or educating others is core to my practice.
 
