@@ -192,6 +192,7 @@ class CreativesRebuildController:
             multi_select_options_30 = []
             multi_select_options_31 = []
             multi_select_options_32 = []
+            multi_select_options_33 = []
 
             single_select_options_1  = []
             single_select_options_2  = []
@@ -1233,27 +1234,142 @@ class CreativesRebuildController:
                                     single_select_options_177.append(config.app_single_select_option_id_7)
 
                         elif field_id == config.app_survey_multi_select_id_2:
-                            multi_select_options_27 = data.getOptions()
-                            for option in multi_select_options_27:
+                            multi_select_options_28 = data.getOptions()
+                            for option in multi_select_options_28:
                                 if option   == config.app_survey_multi_options_ids_2[0]:
-                                    single_select_options_178.append(config.app_single_select_option_id_1)
+                                    single_select_options_178.append(config.app_single_select_option_id_8)
                                 elif option == config.app_survey_multi_options_ids_2[1]:
-                                    single_select_options_179.append(config.app_single_select_option_id_2)
+                                    single_select_options_179.append(config.app_single_select_option_id_9)
                                 elif option == config.app_survey_multi_options_ids_2[2]:
-                                    single_select_options_180.append(config.app_single_select_option_id_3)
+                                    single_select_options_180.append(config.app_single_select_option_id_10)
                                 elif option == config.app_survey_multi_options_ids_2[3]:
-                                    single_select_options_181.append(config.app_single_select_option_id_4)
+                                    single_select_options_181.append(config.app_single_select_option_id_11)
                                 elif option == config.app_survey_multi_options_ids_2[4]:
-                                    single_select_options_182.append(config.app_single_select_option_id_5)
-                                elif option == config.app_survey_multi_options_ids_2[5]:
-                                    single_select_options_183.append(config.app_single_select_option_id_6)
+                                    single_select_options_182.append(config.app_single_select_option_id_12)
 
+                        elif field_id == config.app_survey_multi_select_id_3:
+                            multi_select_options_29 = data.getOptions()
+                            for option in multi_select_options_29:
+                                if option   == config.app_survey_multi_options_ids_3[0]:
+                                    single_select_options_184.append(config.app_single_select_option_id_13)
+                                elif option == config.app_survey_multi_options_ids_3[1]:
+                                    single_select_options_185.append(config.app_single_select_option_id_14)
+                                elif option == config.app_survey_multi_options_ids_3[2]:
+                                    single_select_options_186.append(config.app_single_select_option_id_15)
+                                elif option == config.app_survey_multi_options_ids_3[3]:
+                                    single_select_options_187.append(config.app_single_select_option_id_16)
+                                elif option == config.app_survey_multi_options_ids_3[4]:
+                                    single_select_options_188.append(config.app_single_select_option_id_17)
+                                elif option == config.app_survey_multi_options_ids_3[5]:
+                                    single_select_options_189.append(config.app_single_select_option_id_18)
+                                elif option == config.app_survey_multi_options_ids_3[6]:
+                                    single_select_options_190.append(config.app_single_select_option_id_19)
+                                elif option == config.app_survey_multi_options_ids_3[7]:
+                                    single_select_options_191.append(config.app_single_select_option_id_20)
+                                elif option == config.app_survey_multi_options_ids_3[8]:
+                                    single_select_options_192.append(config.app_single_select_option_id_21)
+                                elif option == config.app_survey_multi_options_ids_3[9]:
+                                    single_select_options_193.append(config.app_single_select_option_id_22)
 
+                        elif field_id == config.app_survey_multi_select_id_4:
+                            multi_select_options_30 = data.getOptions()
+                            for option in multi_select_options_30:
+                                if option   == config.app_survey_multi_options_ids_4[0]:
+                                    single_select_options_194.append(config.app_single_select_option_id_23)
+                                elif option == config.app_survey_multi_options_ids_4[1]:
+                                    single_select_options_195.append(config.app_single_select_option_id_24)
+                                elif option == config.app_survey_multi_options_ids_4[2]:
+                                    single_select_options_196.append(config.app_single_select_option_id_25)
+                                elif option == config.app_survey_multi_options_ids_4[3]:
+                                    single_select_options_197.append(config.app_single_select_option_id_26)
+                                elif option == config.app_survey_multi_options_ids_4[4]:
+                                    single_select_options_198.append(config.app_single_select_option_id_27)
+                                elif option == config.app_survey_multi_options_ids_4[5]:
+                                    single_select_options_199.append(config.app_single_select_option_id_28)
 
+                        elif field_id == config.app_survey_multi_select_id_5:
+                            multi_select_options_31 = data.getOptions()
+                            for option in multi_select_options_31:
+                                if option   == config.app_survey_multi_options_ids_3[0]:
+                                    single_select_options_200.append(config.app_single_select_option_id_29)
+                                elif option == config.app_survey_multi_options_ids_3[1]:
+                                    single_select_options_201.append(config.app_single_select_option_id_30)
+                                elif option == config.app_survey_multi_options_ids_3[2]:
+                                    single_select_options_202.append(config.app_single_select_option_id_31)
+                                elif option == config.app_survey_multi_options_ids_3[3]:
+                                    single_select_options_203.append(config.app_single_select_option_id_32)
+                                elif option == config.app_survey_multi_options_ids_3[4]:
+                                    single_select_options_204.append(config.app_single_select_option_id_33)
+                                elif option == config.app_survey_multi_options_ids_3[5]:
+                                    single_select_options_205.append(config.app_single_select_option_id_34)
+                                elif option == config.app_survey_multi_options_ids_3[6]:
+                                    single_select_options_206.append(config.app_single_select_option_id_35)
+                                elif option == config.app_survey_multi_options_ids_3[7]:
+                                    single_select_options_207.append(config.app_single_select_option_id_36)
+                                elif option == config.app_survey_multi_options_ids_3[8]:
+                                    single_select_options_208.append(config.app_single_select_option_id_37)
 
+                        elif field_id == config.app_survey_multi_select_id_6:
+                            multi_select_options_32 = data.getOptions()
+                            for option in multi_select_options_32:
+                                if option   == config.app_survey_multi_options_ids_6[0]:
+                                    single_select_options_209.append(config.app_single_select_option_id_38)
+                                elif option == config.app_survey_multi_options_ids_6[1]:
+                                    single_select_options_210.append(config.app_single_select_option_id_39)
+                                elif option == config.app_survey_multi_options_ids_6[2]:
+                                    single_select_options_211.append(config.app_single_select_option_id_40)
+                                elif option == config.app_survey_multi_options_ids_6[3]:
+                                    single_select_options_212.append(config.app_single_select_option_id_41)
+                                elif option == config.app_survey_multi_options_ids_6[4]:
+                                    single_select_options_213.append(config.app_single_select_option_id_42)
+                                elif option == config.app_survey_multi_options_ids_6[5]:
+                                    single_select_options_214.append(config.app_single_select_option_id_43)
+                                elif option == config.app_survey_multi_options_ids_6[6]:
+                                    single_select_options_215.append(config.app_single_select_option_id_44)
+                                elif option == config.app_survey_multi_options_ids_6[7]:
+                                    single_select_options_216.append(config.app_single_select_option_id_45)
+                                elif option == config.app_survey_multi_options_ids_6[8]:
+                                    single_select_options_217.append(config.app_single_select_option_id_46)
+                                elif option == config.app_survey_multi_options_ids_6[9]:
+                                    single_select_options_218.append(config.app_single_select_option_id_47)
+                                elif option == config.app_survey_multi_options_ids_6[10]:
+                                    single_select_options_219.append(config.app_single_select_option_id_48)
+                                elif option == config.app_survey_multi_options_ids_6[11]:
+                                    single_select_options_220.append(config.app_single_select_option_id_49)
+                                elif option == config.app_survey_multi_options_ids_6[12]:
+                                    single_select_options_221.append(config.app_single_select_option_id_50)
+                                elif option == config.app_survey_multi_options_ids_6[13]:
+                                    single_select_options_222.append(config.app_single_select_option_id_51)
 
-
-
+                        elif field_id == config.app_survey_multi_select_id_7:
+                            multi_select_options_33 = data.getOptions()
+                            for option in multi_select_options_33:
+                                if option   == config.app_survey_multi_options_ids_7[0]:
+                                    single_select_options_200.append(config.app_single_select_option_id_52)
+                                elif option == config.app_survey_multi_options_ids_7[1]:
+                                    single_select_options_201.append(config.app_single_select_option_id_53)
+                                elif option == config.app_survey_multi_options_ids_7[2]:
+                                    single_select_options_202.append(config.app_single_select_option_id_54)
+                                elif option == config.app_survey_multi_options_ids_7[3]:
+                                    single_select_options_203.append(config.app_single_select_option_id_55)
+                                elif option == config.app_survey_multi_options_ids_7[4]:
+                                    single_select_options_204.append(config.app_single_select_option_id_56)
+                                elif option == config.app_survey_multi_options_ids_7[5]:
+                                    single_select_options_205.append(config.app_single_select_option_id_57)
+                                elif option == config.app_survey_multi_options_ids_7[6]:
+                                    single_select_options_206.append(config.app_single_select_option_id_58)
+                                elif option == config.app_survey_multi_options_ids_7[7]:
+                                    single_select_options_207.append(config.app_single_select_option_id_59)
+                                elif option == config.app_survey_multi_options_ids_7[8]:
+                                    single_select_options_208.append(config.app_single_select_option_id_60)
+                                elif option == config.app_survey_multi_options_ids_7[9]:
+                                    single_select_options_204.append(config.app_single_select_option_id_61)
+                                elif option == config.app_survey_multi_options_ids_7[10]:
+                                    single_select_options_205.append(config.app_single_select_option_id_62)
+                                elif option == config.app_survey_multi_options_ids_7[11]:
+                                    single_select_options_206.append(config.app_single_select_option_id_63)
+                                elif option == config.app_survey_multi_options_ids_7[12]:
+                                    single_select_options_207.append(config.app_single_select_option_id_64)
 
                     if primary_last_name is not None and primary_dob is not None and primary_zip is not None:
                         # create the primary UID
