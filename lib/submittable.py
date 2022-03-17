@@ -1,7 +1,6 @@
 import datetime
 import threading
 import time
-
 import requests
 import json
 from ratelimit import limits, sleep_and_retry
@@ -19,7 +18,7 @@ class Submittable:
     def __init__(self):
         self.api_key = config.submittable_token
         self.baseURL = "https://svcs.submittable.com/v3"
-        self.event = threading.Event()
+        self.event   = threading.Event()
 
     @sleep_and_retry
     @limits(calls=10, period=1)
@@ -1513,7 +1512,9 @@ class Submittable:
                 # self.event.wait(900)
                 time.sleep(900)
                 # call to get submission again
-                self.getSubmission(submission_id)
+                print("*** call get sub ****", datetime.datetime.now())
+                return self.getSubmission(submission_id)
+                # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             else:
                 logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
                 raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
