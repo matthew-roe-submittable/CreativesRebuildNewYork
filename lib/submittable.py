@@ -1,5 +1,7 @@
 import datetime
 import threading
+import time
+
 import requests
 import json
 from ratelimit import limits, sleep_and_retry
@@ -22,7 +24,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getLabelIds(self):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         page_size = 50
         label_ids = []
         total_pages = 1
@@ -36,6 +38,7 @@ class Submittable:
             total_pages = response.json()["totalPages"]
             # print("total pages:", total_pages)
         for page in range(0, total_pages):
+            time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -63,7 +66,8 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
-        self.event.wait(0.2)
+        # self.event.wait(0.2)
+        time.sleep(0.1)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
@@ -73,7 +77,7 @@ class Submittable:
         return response
 
     def createNewLabel(self, submission_id):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         endpoint = f'{self.baseURL}/labels'
         headers = {'Content-type': 'application/json'}
         payload = {'name': submission_id}
@@ -87,7 +91,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getEntry(self, entry_id):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
@@ -99,7 +103,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getInitialFormRequestId(self, subId):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "initial",
@@ -176,7 +180,7 @@ class Submittable:
                                    single_select_options_249, single_select_options_250, collab_unique_id_1=None,     collab_unique_id_2=None,
                                    collab_unique_id_3=None,   collab_unique_id_4=None,   collab_unique_id_5=None,     collab_unique_id_6=None,
                                    collab_unique_id_7=None,   collab_unique_id_8=None,   collab_unique_id_9=None):
-        self.event.wait(0.1)
+        time.sleep(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -1497,7 +1501,8 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
-        self.event.wait(0.2)
+        # self.event.wait(0.2)
+        time.sleep(0.1)
         endpoint = f'{self.baseURL}/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -1505,7 +1510,8 @@ class Submittable:
         if response.status_code != 200:
             if response.status_code == 429:
                 print("api rate limit hit wait 15 mins")
-                self.event.wait(900)
+                # self.event.wait(900)
+                time.sleep(900)
                 # call to get submission again
                 self.getSubmission(submission_id)
             else:
@@ -1517,7 +1523,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -1568,7 +1574,6 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getReferenceResponses(self):
-        print("here")
         ref_responses = []
         page_size = 1
         total_pages = 1
@@ -1582,7 +1587,7 @@ class Submittable:
             total_pages = response.json()["totalPages"]
             print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
-            self.event.wait(0.1)
+            # self.event.wait(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
