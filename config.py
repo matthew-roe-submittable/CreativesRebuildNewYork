@@ -75,17 +75,17 @@ dup_label_id   = "320527"
 migrated_label = "325691"
 
 # Ineligible Survey multi select initial form field IDs
-ineligible_survey_multi_select_id_1   = "edcccd65-8a54-4cff-81b3-1cfa83f2f1a9"
-ineligible_survey_multi_select_id_2   = "062a66a3-27ab-4375-92f5-21376467ea7e"
-ineligible_survey_multi_select_id_3   = "392fb2f0-bd2a-4b69-8f79-d04f7c74dd5e"
-ineligible_survey_multi_select_id_4   = "9e5a3a5e-6dcb-4ff4-a250-c782495d7702"
-ineligible_survey_multi_select_id_5   = "4dfba398-4b2f-40aa-8c42-fe39a8d1f315"
-ineligible_survey_multi_select_id_6   = "4e435746-6ed0-44e4-8e51-a78d40d2f036"
-ineligible_survey_multi_select_id_7   = "3e245f86-e612-402b-9582-e0bcafb52aaa"
-ineligible_survey_multi_select_id_8   = "7c822478-5db9-4a80-af1c-36fa2184d22d"
-ineligible_survey_multi_select_id_9   = "ddfa547e-4926-4a35-9639-f427c2fe21f8"
-ineligible_survey_multi_select_id_10  = "38ed7303-483d-4e90-a788-f38045e3dcb6"
-ineligible_survey_multi_select_id_11  = "e5f2ddf6-d9d3-4539-a0ad-6be9a30a6456"
+ineligible_survey_multi_select_id_1   = "edcccd65-8a54-4cff-81b3-1cfa83f2f1a9"  # How do you approach your practice as an artist, culture bearer, or culture maker
+ineligible_survey_multi_select_id_2   = "062a66a3-27ab-4375-92f5-21376467ea7e"  # How do you currently earn money
+ineligible_survey_multi_select_id_3   = "392fb2f0-bd2a-4b69-8f79-d04f7c74dd5e"  # How are your wages currently paid
+ineligible_survey_multi_select_id_4   = "9e5a3a5e-6dcb-4ff4-a250-c782495d7702"  # What coalitions or causes do you actively participate in as a supporter or advocate
+ineligible_survey_multi_select_id_5   = "4dfba398-4b2f-40aa-8c42-fe39a8d1f315"  # If yes, which of the following types of emergency financial assistance did you receive
+ineligible_survey_multi_select_id_6   = "4e435746-6ed0-44e4-8e51-a78d40d2f036"  # How, if at all, was your employment impacted between March 2020 and February 2022
+ineligible_survey_multi_select_id_7   = "3e245f86-e612-402b-9582-e0bcafb52aaa"  # How has your artistic practice been affected by the COVID19 pandemic
+ineligible_survey_multi_select_id_8   = "7c822478-5db9-4a80-af1c-36fa2184d22d"  # How, if at all, was your well-being impacted between March 2020 and February 2022
+ineligible_survey_multi_select_id_9   = "ddfa547e-4926-4a35-9639-f427c2fe21f8"  # Which of the following best describes you
+ineligible_survey_multi_select_id_10  = "38ed7303-483d-4e90-a788-f38045e3dcb6"  # What is your gender identity
+ineligible_survey_multi_select_id_11  = "e5f2ddf6-d9d3-4539-a0ad-6be9a30a6456"  # Do you regularly provide care – either on your own or with someone else – to any of the following people
 
 # Ineligible Survey multi select option IDs
 ineligible_survey_multi_options_ids_1   = ["5f95bb5d-8742-42c3-a3a8-989bbf9ef2a9", "96f609fc-aec5-4683-bbaf-bdb8e0bb1215", "882e2ead-2105-4351-938d-eeaefbe5701a",
@@ -218,13 +218,13 @@ gi_multi_options_ids_6  = ["9f73f8df-1782-4587-bcf4-b45e34dcda7f", "a25b7983-91e
 
 
 # Applicant Survey multi select initial form field IDs
-app_survey_multi_select_id_1  = "fdb4e9c2-d4ff-448d-b273-b4913a817315"
-app_survey_multi_select_id_2  = "0ff425b2-e52a-4a61-bf1f-d57b1a86d0e3"
-app_survey_multi_select_id_3  = "4ea18a73-9b23-4189-a639-a84543aeb555"
-app_survey_multi_select_id_4  = "828e0f70-7df8-47d0-b72a-473ce40a379d"
-app_survey_multi_select_id_5  = "8c0279f9-d18b-4d19-acc6-763e68118b28"
-app_survey_multi_select_id_6  = "1dfdce13-1cab-4dd3-9142-b483abeeef1b"
-app_survey_multi_select_id_7  = "6c532c53-aa2f-4b09-939a-f22293af4bf0"
+app_survey_multi_select_id_1  = "fdb4e9c2-d4ff-448d-b273-b4913a817315"  # How do you currently earn money
+app_survey_multi_select_id_2  = "0ff425b2-e52a-4a61-bf1f-d57b1a86d0e3"  # How are your wages currently paid
+app_survey_multi_select_id_3  = "4ea18a73-9b23-4189-a639-a84543aeb555"  # What coalitions or causes do you actively participate in as a supporter or advocate
+app_survey_multi_select_id_4  = "828e0f70-7df8-47d0-b72a-473ce40a379d"  # If yes, which of the following types of emergency financial assistance did you receive
+app_survey_multi_select_id_5  = "8c0279f9-d18b-4d19-acc6-763e68118b28"  # How, if at all, was your employment impacted between March 2020 and February 2022
+app_survey_multi_select_id_6  = "1dfdce13-1cab-4dd3-9142-b483abeeef1b"  # How, if at all, was your artistic practice impacted between March 2020 and February 2022
+app_survey_multi_select_id_7  = "6c532c53-aa2f-4b09-939a-f22293af4bf0"  # How, if at all, was your well-being impacted between March 2020 and February 2022
 
 # Applicant Survey multi select option IDs
 app_survey_multi_options_ids_1  = ["efdf3c25-fd41-4347-9524-2c6bded7679b", "8de7a620-cae4-42d0-b49d-69118a2742a9", "d5a227ee-140a-486e-94be-3b2efdda8b54",
