@@ -627,29 +627,29 @@ aep_single_select_option_id_51  = "a67f0d8d-07e6-4884-bf00-7c991204d408"  # Othe
 #
 # single select option IDs for Multi-Select Question: "Which of the following best describes you"
 gi_single_select_id_1   = "e6a80c04-cf00-457a-85be-0cc6f51c2995"  # Arab or Middle Eastern
-gi_single_select_id_2   = "b2795b62-e1b3-4047-b0f0-f31588fed67b"  # Asian or Pacific Islander
-gi_single_select_id_3   = "a25caf1b-fee2-4b4f-a27a-63e0b6faea5b"  # Black or African American
-gi_single_select_id_4   = "b0743141-f015-4759-a578-7482a4c877b4"  # Hispanic or Latinx
-gi_single_select_id_5   = "16c84bc2-86f6-4b0d-acd2-c49f2732327d"  # Indigenous American, First Nation, or Alaska Native
-gi_single_select_id_6   = "f71879c2-396d-443e-b3f5-d60437d0ef2e"  # Pacific Islander or Native Hawaiian
-gi_single_select_id_7   = "f16f7b78-fe33-4609-980d-ff268be39835"  # White
-gi_single_select_id_8   = "28a9e701-a7a9-4c84-96aa-0490abc359a0"  # Other (please describe)
-gi_single_select_id_9   = "35f2ac42-cfe4-4371-acc2-9b25a34922b3"  # I prefer not to answer
+gi_single_select_id_2   = "e6982387-d329-4523-9dd2-cef30ca4302d"  # Asian or Pacific Islander e6982387-d329-4523-9dd2-cef30ca4302d
+gi_single_select_id_3   = "079c023b-dcd3-45a1-900c-8e6bbfa0a4e2"  # Black or African American
+gi_single_select_id_4   = "2554a149-31be-4520-ae39-32610adabf49"  # Hispanic or Latinx
+gi_single_select_id_5   = "18838ddb-551b-4d1e-b15c-01562f5fdc1e"  # Indigenous American, First Nation, or Alaska Native
+gi_single_select_id_6   = "313b3ac5-37e3-4cb4-8d8d-bf7bda3937e8"  # Pacific Islander or Native Hawaiian
+gi_single_select_id_7   = "b4b2d59d-2b4c-4808-be46-b87374be58d2"  # White
+gi_single_select_id_8   = "1b22786c-cbc0-44bf-b2cd-4aba48bde867"  # Other (please describe)
+gi_single_select_id_9   = "6b6289ee-8ddf-4f31-bc77-0e689d127992"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "What is your gender identity"
-gi_single_select_id_10  = "0949f954-52f5-47be-8f1f-0e7b075b3e8f"  # Man
-gi_single_select_id_11  = "be120d7c-e8dd-4c4a-941e-b43e02925c30"  # Woman
-gi_single_select_id_12  = "ba5dfe25-c185-4c88-8291-8756f1d8bc2b"  # Non-binary
-gi_single_select_id_13  = "ffdd8269-10d4-42f7-a90f-da6ba193d9d9"  # Two-spirit
-gi_single_select_id_14  = "18258d27-6266-4c47-8046-c7241423bf6f"  # Other (please describe)
-gi_single_select_id_15  = "6f75a9e0-b467-4716-8ffe-85f7f58a98e4"  # I prefer not to answer
+gi_single_select_id_10  = "0c166e81-90c3-437b-9863-561c0d0b1336"  # Man
+gi_single_select_id_11  = "3c3fa6f2-ce6c-4eea-b94a-046e782a4c9e"  # Woman
+gi_single_select_id_12  = "0414e07b-568e-40bf-b76a-70e4de23bf39"  # Non-binary
+gi_single_select_id_13  = "da64a0af-b3b7-4a10-8ca5-e48e681989c1"  # Two-spirit
+gi_single_select_id_14  = "890428df-fe6b-4126-866d-65e84db24ea6"  # Other (please describe)
+gi_single_select_id_15  = "8b6db72b-5652-4caf-8595-2b65ee210be2"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Do you regularly provide care—either on your own or with someone else—to any of the following people"
-gi_single_select_id_16  = "4e20af02-3c70-42ee-8802-162d3b32bdab"  # Yes, a child or children
-gi_single_select_id_17  = "530d6138-73fa-4f6c-a7c3-05a4fbf8cde5"  # Yes, a spouse or partner who is elderly, ill, or disabled
-gi_single_select_id_18  = "066bb242-7846-4711-9caa-eba2d3139cb7"  # Yes, an adult/adults who is/are elderly, ill, or disabled
-gi_single_select_id_19  = "8f26e1d7-d930-4713-b707-3c09188496f8"  # No
-gi_single_select_id_20  = "a5d195e8-f9a9-4de9-8017-1e5c84c490b5"  # I prefer not to answer
+gi_single_select_id_16  = "907f5db2-b3f8-40b2-8cc9-3c192f13596f"  # Yes, a child or children
+gi_single_select_id_17  = "abf7cfba-ba7d-41de-9868-db3d4bb25eda"  # Yes, a spouse or partner who is elderly, ill, or disabled
+gi_single_select_id_18  = "289ec2f1-6471-44a3-80c4-3890f83392ba"  # Yes, an adult/adults who is/are elderly, ill, or disabled
+gi_single_select_id_19  = "1d849039-ae70-4b84-80ef-908230273992"  # No
+gi_single_select_id_20  = "13292167-d124-43ba-b5d4-82ff30964a37"  # I prefer not to answer
 
 # single select option IDs for Multi-Select Question: "Please check all that apply regarding your financial safety net"
 gi_single_select_id_21  = "97e6fc50-6a45-4ce7-b1a3-26c2ee32d97b"  # I am unsure when I will make any income again
@@ -679,14 +679,14 @@ gi_single_select_id_40   = "a864eabe-8329-45f7-92a6-b7a6c660e3c6"  # Child Tax C
 gi_single_select_id_41   = "593dbb2f-d405-402a-a2a5-2041c98498bf"  # Federal Child and Dependent Care Tax Credit (CDCTC)
 gi_single_select_id_42   = "27c6b983-b5b1-4f25-97fa-87d33d97e0d4"  # Temporary Cash Assistance (TANF)
 gi_single_select_id_43   = "fd1126f2-207a-47fd-bff6-892c629bd734"  # Supplemental Security Income (SSI)
-gi_single_select_id_44   = "7f7db88c-c36f-439a-be2c-d38b7ca10632"  # Social Security Disability Insurance (SSDI)
+gi_single_select_id_44   = "5da8baec-b9cd-4588-ad6d-d619c157c9c6"  # Social Security Disability Insurance (SSDI)
 gi_single_select_id_45   = "931614b2-78b9-40ca-bbab-fdd914de5dc1"  # Other (please describe)
 
 
 # GI single select option IDs
 #
 # Multi-Select Question: "Which of the following best describes you"
-gi_single_select_option_id_1   = "e6a80c04-cf00-457a-85be-0cc6f51c2995"  # Arab or Middle Eastern
+gi_single_select_option_id_1   = "9bbbaa79-4b33-4172-b65a-bcb44e9d008f"  # Arab or Middle Eastern
 gi_single_select_option_id_2   = "b2795b62-e1b3-4047-b0f0-f31588fed67b"  # Asian or Pacific Islander
 gi_single_select_option_id_3   = "a25caf1b-fee2-4b4f-a27a-63e0b6faea5b"  # Black or African American
 gi_single_select_option_id_4   = "b0743141-f015-4759-a578-7482a4c877b4"  # Hispanic or Latinx
@@ -713,9 +713,9 @@ gi_single_select_option_id_20  = "a5d195e8-f9a9-4de9-8017-1e5c84c490b5"  # I pre
 
 # Multi-Select Question: "Please check all that apply regarding your financial safety net"
 gi_single_select_option_id_21  = "05788879-016d-4f8c-b174-7a1474b700ec"  # I am unsure when I will make any income again
-gi_single_select_option_id_22  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"  # I have no financial safety net (savings, assets, family resources)
-gi_single_select_option_id_23  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"  # I am vulnerable to a medical emergency
-gi_single_select_option_id_24  = "c4379de6-8c00-45c1-83af-9bdef092678c"  # I have unmanageable debt
+gi_single_select_option_id_22  = "4353d9e7-d667-4cef-83af-8d49faa600d8"  # I have no financial safety net (savings, assets, family resources)
+gi_single_select_option_id_23  = "9da6b73d-6795-4f0d-8f56-6da65d78783b"  # I am vulnerable to a medical emergency
+gi_single_select_option_id_24  = "4f81b635-c1e2-4565-82fd-3ad0c7511cd0"  # I have unmanageable debt
 gi_single_select_option_id_25  = "c4379de6-8c00-45c1-83af-9bdef092678c"  # None of the above
 
 # Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""

@@ -118,7 +118,7 @@ class CreativesRebuildController:
         list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523]
 
         # get list of reference form responses
-        reference_responses = self.submittable.getReferenceResponses()
+        # reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
             submission_id = sub_item
