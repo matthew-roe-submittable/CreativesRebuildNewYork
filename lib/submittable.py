@@ -37,7 +37,7 @@ class Submittable:
             total_pages = response.json()["totalPages"]
             # print("total pages:", total_pages)
         for page in range(0, total_pages):
-            time.sleep(0.1)
+            # time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -66,7 +66,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def addLabel(self, submissionId, labelId):
         # self.event.wait(0.2)
-        time.sleep(0.1)
+        # time.sleep(0.1)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers = {'Content-type': 'application/json'}
         response = requests.put(endpoint, auth=("", self.api_key), headers=headers)
@@ -179,7 +179,6 @@ class Submittable:
                                    single_select_options_249, single_select_options_250, collab_unique_id_1=None,     collab_unique_id_2=None,
                                    collab_unique_id_3=None,   collab_unique_id_4=None,   collab_unique_id_5=None,     collab_unique_id_6=None,
                                    collab_unique_id_7=None,   collab_unique_id_8=None,   collab_unique_id_9=None):
-        time.sleep(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -1487,20 +1486,20 @@ class Submittable:
                    ]
                    }
         payload = json.dumps(payload)
+        print("palyoad:", payload)
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         print("response:", response)
         if response.status_code != 201:
-            logger.info(
-                f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-            raise ValueError(
-                f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            logger.info(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+            raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         return response.json()["entryId"]
 
     # get an individual submission
     @sleep_and_retry
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
-        # self.event.wait(0.2)
+        # self.event.wait(0.1)
+        print("get submission")
         time.sleep(0.1)
         endpoint = f'{self.baseURL}/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
@@ -1518,6 +1517,8 @@ class Submittable:
             else:
                 logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
                 raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
+        else:
+            print("get sub succ")
         return SubmittableSubmission(response.json())
 
     # get an individual submission
@@ -1550,7 +1551,7 @@ class Submittable:
                 f"get submissions list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
-            print("total pages:", total_pages)
+            print("total pages:", str(total_pages))
         for page in range(0, total_pages):
             # self.event.wait(0.1)
             if page == total_pages:
@@ -1578,7 +1579,7 @@ class Submittable:
         ref_responses = []
         page_size = 1
         total_pages = 1
-        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=300&pageSize={page_size}'
+        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=303&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:

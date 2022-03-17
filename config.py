@@ -1,6 +1,6 @@
 import mysql.connector
 
-import data_struct
+# import data_struct
 
 mysql_user  = "admin"
 mysql_pass  = "adminadmin"
@@ -18,7 +18,7 @@ mysql_conn = mysql.connector.connect(user=mysql_user,
 submittable_token = "5379d0ca57f64c1f827f3d0a0b476554"
 
 # Project: AEP
-project_id_1                = "f5b5299e-149b-40fe-9764-f41fa3c57330" # Artist Employment Program 2022
+project_id_1                = "f5b5299e-149b-40fe-9764-f41fa3c57330"  # Artist Employment Program 2022
 # Initial form
 project_1_formId            = "17b94926-61e9-4ec6-95be-df32c0176ea6"
 
@@ -160,7 +160,7 @@ aep_multi_options_ids_3  = ["91ceece7-c757-45d1-8596-33c9b38c103d", "87a30d36-05
                             "4330a73a-1ae9-4fa7-8e97-99b66d23ac92", "708ccca7-571e-4a55-a68c-7a1689125287", "d5f06b5c-5257-4fb5-a739-60785fba2aa2"]
 
 # What is your gender identity
-aep_multi_options_ids_4  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98","16a007c4-20b6-4911-a8ff-852dad20d2bf",
+aep_multi_options_ids_4  = ["b00c64b9-5291-4f78-a1ae-10a498e5d566", "7a380a61-c348-4193-9db8-030f5799ad98", "16a007c4-20b6-4911-a8ff-852dad20d2bf",
                             "8b9ca158-27a2-4e42-94f0-ddd47ac95ca5", "6276f882-1985-4fdb-8b1e-af0776ebf4bd", "ad7991d1-1f9c-4791-a90a-5c5014ab79a0"]
 
 # Do you regularly provide care—either on your own or with someone else—to any of the following people
@@ -239,7 +239,7 @@ app_survey_multi_options_ids_3  = ["40424037-bf54-40da-9fe0-6316a0737a78", "c32f
                                    "209dd0b0-6a64-43c8-8ec6-dc5efd800268", "bd82d82f-2b97-4f52-8853-f3ef2f2f715b", "e75e4227-6fa1-4f66-b3b6-5654a0bae5f8",
                                    "25231213-6ca2-45ed-95e3-6824e59c4e57"]
 
-app_survey_multi_options_ids_4  = ["e647fbd3-f198-438c-88a2-072c0c5df7a2","23e672f9-9254-4de1-8ea4-c3e0414ed99e", "053a282f-bcbb-4a91-aee1-bf32ad0efbc6",
+app_survey_multi_options_ids_4  = ["e647fbd3-f198-438c-88a2-072c0c5df7a2", "23e672f9-9254-4de1-8ea4-c3e0414ed99e", "053a282f-bcbb-4a91-aee1-bf32ad0efbc6",
                                    "debb386e-beda-41f2-ac10-4bafc3e192f7", "5e09b5e5-9831-42f5-89f1-f1afbf9ae375", "feaf721b-ced2-48ae-8a7a-c13813d35f58"]
 
 app_survey_multi_options_ids_5  = ["aaf9afbe-b8fd-4dfb-94f6-dffe263e5cb6", "0b07dcc7-9295-4cfc-9349-f69e0485e8aa", "6be7dbbf-6f70-455c-b3ce-9595921b2bad",
@@ -502,7 +502,7 @@ aep_single_select_id_5    = "cea866f2-3a35-4a6e-ac77-5e9cf4e1a929"  # National
 aep_single_select_id_6    = "7438ab49-8e2b-407b-b1e1-d94fae78d447"  # I work as a solo artist.
 aep_single_select_id_7    = "1cfb749a-081b-4c8c-ae89-c1654a4c4f1f"  # I collaborate regularly with other artists.
 aep_single_select_id_8    = "2f391ae5-9d0c-4868-a993-00f416d25f74"  # I collaborate regularly with other non-arts practitioners.
-aep_single_select_id_9    = "98fc2e30-d24e-4b12-8e6d-e1abf4925037"  # My practice requires public or community involvement to have meaning.
+aep_single_select_id_9    = "d04f1e3e-169e-4bd4-8d13-0f9a36007dc4"  # My practice requires public or community involvement to have meaning.
 aep_single_select_id_10   = "ef1812a2-5ebd-4a49-a49e-a6692455eb02"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
 aep_single_select_id_11   = "3646de59-ca6c-498e-bf20-b5d82e81b01a"  # Teaching or educating others is core to my practice.
 
@@ -669,10 +669,10 @@ gi_single_select_id_24  = "31124d16-8763-43ff-b77d-071e660a3a32"  # I have unman
 gi_single_select_id_25  = "7728da4b-e57b-4085-98c4-3dbfc30dc127"  # None of the above
 
 # Multi-Select Question: "How do you approach your practice as an artist, culture bearer, or culture maker""
-gi_single_select_id_26   = "80aefb5f-67da-4cc5-97c3-929699d8917e"  # I work as a solo artist.
-gi_single_select_id_27   = "88576fc2-a677-4a4d-a56b-3b610c201b68"  # I collaborate regularly with other artists.
-gi_single_select_id_28   = "31e90ca4-4865-4037-9971-80df68e70260"  # I collaborate regularly with other non-arts practitioners.
-gi_single_select_id_29   = "14487b0b-4d81-4bf9-8bb3-33d6c28584f5"  # My practice requires public or community involvement to have meaning.
+gi_single_select_id_26   = "7438ab49-8e2b-407b-b1e1-d94fae78d447"  # I work as a solo artist.
+gi_single_select_id_27   = "1cfb749a-081b-4c8c-ae89-c1654a4c4f1f"  # I collaborate regularly with other artists.
+gi_single_select_id_28   = "2f391ae5-9d0c-4868-a993-00f416d25f74"  # I collaborate regularly with other non-arts practitioners.
+gi_single_select_id_29   = "98fc2e30-d24e-4b12-8e6d-e1abf4925037"  # My practice requires public or community involvement to have meaning.
 gi_single_select_id_30   = "9311dd9f-1498-46d6-b192-a025a25f7e41"  # Performing, presenting, or exhibiting to an audience or viewers is core to my practice.
 gi_single_select_id_31   = "1128dd7b-00cb-4728-a70f-263ee0632ba4"  # Teaching or educating others is core to my practice.
 
@@ -1069,7 +1069,7 @@ single_select_option_id_25  = "67e2e1e9-e773-46ce-9143-17f9b9dd5c2a"
 # Data structure to replace Database
 # volatile memory used and thrown away
 # list of dicts
-uid_data_struct = data_struct.data_struct
+uid_data_struct = []  # data_struct.data_struct
 
 # dict structure
 """
