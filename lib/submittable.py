@@ -115,6 +115,9 @@ class Submittable:
             logger.info("initial from request id failed")
         return SubmittableFormRequestId(response.json())
 
+    # create internal form
+    @sleep_and_retry
+    @limits(calls=10, period=1)
     def submitInternalFormResponse(self, submission_id, primary_unique_id,
                                    single_select_options_1,   single_select_options_2,    single_select_options_3,    single_select_options_4,
                                    single_select_options_5,   single_select_options_6,    single_select_options_7,    single_select_options_8,
@@ -181,6 +184,8 @@ class Submittable:
                                    single_select_options_249, single_select_options_250, collab_unique_id_1=None,     collab_unique_id_2=None,
                                    collab_unique_id_3=None,   collab_unique_id_4=None,   collab_unique_id_5=None,     collab_unique_id_6=None,
                                    collab_unique_id_7=None,   collab_unique_id_8=None,   collab_unique_id_9=None):
+        time.sleep(0.1)
+        logger.info(f"create internal form {submission_id}")
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
         headers = {'Content-type': 'application/json'}
         payload = {"submissionId": submission_id,
@@ -1493,7 +1498,7 @@ class Submittable:
         # print("response:", response)
         if response.status_code != 201:
             if response.status_code == 429:
-                print("submit internal form - pi rate limit hit wait 15 mins")
+                logger.info("submit internal form - pi rate limit hit wait 15 mins")
                 # self.event.wait(900)
                 time.sleep(900)
                 return self.submitInternalFormResponse(submission_id, primary_unique_id,
@@ -1571,7 +1576,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getSubmission(self, submission_id):
         # self.event.wait(0.1)
-        print("get submission")
+        logger.info(f"get submission {submission_id}")
         time.sleep(0.1)
         endpoint = f'{self.baseURL}/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
@@ -1579,7 +1584,7 @@ class Submittable:
         # print("get sub", response.json())
         if response.status_code != 200:
             if response.status_code == 429:
-                print("api rate limit hit wait 15 mins")
+                logger.info("get submission - api rate limit hit wait 15 mins")
                 # self.event.wait(900)
                 time.sleep(900)
                 return self.getSubmission(submission_id)
@@ -1612,17 +1617,22 @@ class Submittable:
         # time.sleep(0.1)
         submissions = []
         page_size = 50
-        total_pages = 100
-        '''
+        total_pages = 319
         endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+            if response.status_code == 429:
+                logger.info("get sub list - api rate limit hit wait 15 mins")
+                # self.event.wait(900)
+                time.sleep(900)
+                return self.getListOfSubmissions()
+                # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+            else:
+                raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
-            print("total pages:", str(total_pages))
-        '''
+            logger.info(f"total pages:{total_pages}")
         for page in range(0, total_pages):
             # self.event.wait(0.1)
             time.sleep(0.1)
@@ -1633,14 +1643,21 @@ class Submittable:
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
-                # skip over do not add to list
-                continue
+                if response.status_code == 429:
+                    logger.info("get sub list - api rate limit hit wait 15 mins")
+                    # self.event.wait(900)
+                    time.sleep(900)
+                    return self.getListOfSubmissions()
+                    # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+                else:
+                    logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
+                    # skip over do not add to list
+                    continue
             json_response = response.json()
             submissions_list = json_response["items"]
             # total_pages    = response.json()["totalPages"]
-            print("sub total pages:", str(total_pages))
-            print("sub page:", page)
+            # print("sub total pages:", str(total_pages))
+            logger.info(f"sub page: {page}")
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
         return submissions
@@ -1650,16 +1667,16 @@ class Submittable:
     def getReferenceResponses(self):
         ref_responses = []
         page_size = 1
-        total_pages = 100
-        # endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=100&pageSize={page_size}'
-        # headers = {'Content-type': 'application/json'}
-        # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        # if response.status_code != 200:
-        #    logger.info(
-        #        f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 1")
-        # else:
-        #    total_pages = response.json()["totalPages"]
-        #    print("get ref form total pages:", total_pages)
+        total_pages = 522
+        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=177&pageSize={page_size}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        # print(response.json())
+        if response.status_code != 200:
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 1")
+        else:
+            total_pages = response.json()["totalPages"]
+            logger.info(f"total pages:{total_pages}")
         for page in range(0, total_pages):
             # self.event.wait(0.1)
             time.sleep(0.1)
@@ -1676,9 +1693,9 @@ class Submittable:
                 continue
             json_response = response.json()
             ref_response_list = json_response["items"]
-            total_pages     = response.json()["totalPages"]
-            print("ref form total pages:", total_pages)
-            print("ref page:", page)
+            # total_pages     = response.json()["totalPages"]
+            # print("ref form total pages:", total_pages)
+            logger.info(f"sub page: {page}")
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
@@ -2408,6 +2425,8 @@ class SubmittableFieldData:
             value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
             value = self.getValue()
+        else:
+            value = None
         # print("get field value", value)
         return value
 

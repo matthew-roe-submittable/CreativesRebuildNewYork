@@ -52,7 +52,7 @@ class CreativesRebuildController:
             self.addLabel(submission_id, self.label_id_1)
             # print(f"duplicate submission: {submission_id} with submission {sub_id}")
         except ValueError:
-            print(f"failed to add duplicate label for submission id {submission_id}")
+            logger.info(f"failed to add duplicate label for submission id {submission_id}")
 
         try:
             # label submission id of original sub to new submission with dup label
@@ -63,7 +63,7 @@ class CreativesRebuildController:
             for id in label_id_list:
                 if str(id.getName()) == str(sub_id):
                     label_id = id.getLabelId()
-            print(f"failed to create new submission id duplicate label for submission id {submission_id}")
+            logger.info(f"failed to create new submission id duplicate label for submission id {submission_id}")
 
         if label_id is not None:
             try:
@@ -71,7 +71,7 @@ class CreativesRebuildController:
                 self.addLabel(submission_id, label_id)
                 # print(f"duplicate UID submission: {submission_id} with submission {sub_id}")
             except ValueError:
-                print(f"failed to create new submission id duplicate label for submission id {submission_id}")
+                logger.info(f"failed to create new submission id duplicate label for submission id {submission_id}")
 
     # UID - DOB-LASTNAME-ZIP
     def uid_chcek(self, uid_to_check):
@@ -110,20 +110,20 @@ class CreativesRebuildController:
     # save into database
     #
     def checkForDupUID(self):
-        print(f"checking artists")
+        logger.info(f"run checking artists")
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions()
-        # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
+        # list_of_submissions = self.submittable.getListOfSubmissions()
+        list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
-            # submission_id = sub_item
-            submission_id = sub_item.getSubmissionId()
-            project_id    = sub_item.getProjectId()
+            submission_id = sub_item
+            # submission_id = sub_item.getSubmissionId()
+            # project_id    = sub_item.getProjectId()
 
             '''
             # only used for re-runs 
@@ -141,7 +141,7 @@ class CreativesRebuildController:
 
 
             sub_response  = self.submittable.getSubmission(submission_id)
-            # project_id = sub_response.getProjectId()
+            project_id = sub_response.getProjectId()
 
             # check for Migrated label - skip submission if label is present
             check_labels  = sub_response.getLabels()

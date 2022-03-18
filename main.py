@@ -13,10 +13,10 @@ def main():
     # create controller obj
     controller = CreativesRebuildController()
     # check for dup UIDs
-    try:
-        controller.checkForDupUID()
-    except:
-        logger.info(f"**** error: dump data struct {config.uid_data_struct}")
+    # try:
+    controller.checkForDupUID()
+    # except:
+        # logger.info(f"**** error: dump data struct {config.uid_data_struct}")
     print("finished", datetime.now())
 
 
