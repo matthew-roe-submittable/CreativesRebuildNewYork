@@ -141,7 +141,7 @@ class CreativesRebuildController:
 
 
             sub_response  = self.submittable.getSubmission(submission_id)
-            # project_id    = sub_response.getProjectId()
+            # project_id = sub_response.getProjectId()
 
             # check for Migrated label - skip submission if label is present
             check_labels  = sub_response.getLabels()

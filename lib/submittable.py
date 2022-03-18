@@ -31,13 +31,12 @@ class Submittable:
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            logger.info(
-                f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
+            logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
             # print("total pages:", total_pages)
         for page in range(0, total_pages):
-            # time.sleep(0.1)
+            time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -53,7 +52,7 @@ class Submittable:
     @sleep_and_retry
     @limits(calls=10, period=1)
     def deleteLabel(self, submissionId, labelId):
-        self.event.wait(0.1)
+        # self.event.wait(0.1)
         endpoint = f'{self.baseURL}/submissions/{submissionId}/labels/{labelId}'
         headers = {'Content-type': 'application/json'}
         response = requests.delete(endpoint, auth=("", self.api_key), headers=headers)
@@ -77,6 +76,7 @@ class Submittable:
 
     def createNewLabel(self, submission_id):
         # self.event.wait(0.1)
+        # time.sleep(0.1)
         endpoint = f'{self.baseURL}/labels'
         headers = {'Content-type': 'application/json'}
         payload = {'name': submission_id}
@@ -91,6 +91,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getEntry(self, entry_id):
         # self.event.wait(0.1)
+        # time.sleep(0.1)
         endpoint = f"https://submittable-api.submittable.com/beta/entries/{entry_id}"
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=(":", self.api_key), headers=headers)
@@ -103,6 +104,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getInitialFormRequestId(self, subId):
         # self.event.wait(0.1)
+        # time.sleep(0.1)
         endpoint = f'{self.baseURL}/requests'
         headers = {'Content-type': 'application/json'}
         payload = {"formType": "initial",
@@ -1490,10 +1492,78 @@ class Submittable:
         response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
         # print("response:", response)
         if response.status_code != 201:
-            logger.info(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-            raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
-        else:
-            print("internal succ")
+            if response.status_code == 429:
+                print("submit internal form - pi rate limit hit wait 15 mins")
+                # self.event.wait(900)
+                time.sleep(900)
+                return self.submitInternalFormResponse(submission_id, primary_unique_id,
+                                   single_select_options_1,   single_select_options_2,    single_select_options_3,    single_select_options_4,
+                                   single_select_options_5,   single_select_options_6,    single_select_options_7,    single_select_options_8,
+                                   single_select_options_9,   single_select_options_10,   single_select_options_11,   single_select_options_12,
+                                   single_select_options_13,  single_select_options_14,   single_select_options_15,   single_select_options_16,
+                                   single_select_options_17,  single_select_options_18,   single_select_options_19,   single_select_options_20,
+                                   single_select_options_21,  single_select_options_22,   single_select_options_23,   single_select_options_24,
+                                   single_select_options_25,  single_select_options_26,   single_select_options_27,   single_select_options_28,
+                                   single_select_options_29,  single_select_options_30,   single_select_options_31,   single_select_options_32,
+                                   single_select_options_33,  single_select_options_34,   single_select_options_35,   single_select_options_36,
+                                   single_select_options_37,  single_select_options_38,   single_select_options_39,   single_select_options_40,
+                                   single_select_options_41,  single_select_options_42,   single_select_options_43,   single_select_options_44,
+                                   single_select_options_45,  single_select_options_46,   single_select_options_47,   single_select_options_48,
+                                   single_select_options_49,  single_select_options_50,   single_select_options_51,   single_select_options_52,
+                                   single_select_options_53,  single_select_options_54,   single_select_options_55,   single_select_options_56,
+                                   single_select_options_57,  single_select_options_58,   single_select_options_59,   single_select_options_60,
+                                   single_select_options_61,  single_select_options_62,   single_select_options_63,   single_select_options_64,
+                                   single_select_options_65,  single_select_options_66,   single_select_options_67,   single_select_options_68,
+                                   single_select_options_69,  single_select_options_70,   single_select_options_71,   single_select_options_72,
+                                   single_select_options_73,  single_select_options_74,   single_select_options_75,   single_select_options_76,
+                                   single_select_options_77,  single_select_options_78,   single_select_options_79,   single_select_options_80,
+                                   single_select_options_81,  single_select_options_82,   single_select_options_83,   single_select_options_84,
+                                   single_select_options_85,  single_select_options_86,   single_select_options_87,   single_select_options_88,
+                                   single_select_options_89,  single_select_options_90,   single_select_options_91,   single_select_options_92,
+                                   single_select_options_93,  single_select_options_94,   single_select_options_95,   single_select_options_96,
+                                   single_select_options_97,  single_select_options_98,   single_select_options_99,   single_select_options_100,
+                                   single_select_options_101, single_select_options_102, single_select_options_103,   single_select_options_104,
+                                   single_select_options_105, single_select_options_106, single_select_options_107,   single_select_options_108,
+                                   single_select_options_109, single_select_options_110, single_select_options_111,   single_select_options_112,
+                                   single_select_options_113, single_select_options_114, single_select_options_115,   single_select_options_116,
+                                   single_select_options_117, single_select_options_118, single_select_options_119,   single_select_options_120,
+                                   single_select_options_121, single_select_options_122, single_select_options_123,   single_select_options_124,
+                                   single_select_options_125, single_select_options_126, single_select_options_127,   single_select_options_128,
+                                   single_select_options_129, single_select_options_130, single_select_options_131,   single_select_options_132,
+                                   single_select_options_133, single_select_options_134, single_select_options_135,   single_select_options_136,
+                                   single_select_options_137, single_select_options_138, single_select_options_139,   single_select_options_140,
+                                   single_select_options_141, single_select_options_142, single_select_options_143,   single_select_options_144,
+                                   single_select_options_145, single_select_options_146, single_select_options_147,   single_select_options_148,
+                                   single_select_options_149, single_select_options_150, single_select_options_151,   single_select_options_152,
+                                   single_select_options_153, single_select_options_154, single_select_options_155,   single_select_options_156,
+                                   single_select_options_157, single_select_options_158, single_select_options_159,   single_select_options_160,
+                                   single_select_options_161, single_select_options_162, single_select_options_163,   single_select_options_164,
+                                   single_select_options_165, single_select_options_166, single_select_options_167,   single_select_options_168,
+                                   single_select_options_169, single_select_options_170, single_select_options_171,   single_select_options_172,
+                                   single_select_options_173, single_select_options_174, single_select_options_175,   single_select_options_176,
+                                   single_select_options_177, single_select_options_178, single_select_options_179,   single_select_options_180,
+                                   single_select_options_181, single_select_options_182, single_select_options_183,   single_select_options_184,
+                                   single_select_options_185, single_select_options_186, single_select_options_187,   single_select_options_188,
+                                   single_select_options_189, single_select_options_190, single_select_options_191,   single_select_options_192,
+                                   single_select_options_193, single_select_options_194, single_select_options_195,   single_select_options_196,
+                                   single_select_options_197, single_select_options_198, single_select_options_199,   single_select_options_200,
+                                   single_select_options_201, single_select_options_202, single_select_options_203,   single_select_options_204,
+                                   single_select_options_205, single_select_options_206, single_select_options_207,   single_select_options_208,
+                                   single_select_options_209, single_select_options_210, single_select_options_211,   single_select_options_212,
+                                   single_select_options_213, single_select_options_214, single_select_options_215,   single_select_options_216,
+                                   single_select_options_217, single_select_options_218, single_select_options_219,   single_select_options_220,
+                                   single_select_options_221, single_select_options_222, single_select_options_223,   single_select_options_224,
+                                   single_select_options_225, single_select_options_226, single_select_options_227,   single_select_options_228,
+                                   single_select_options_229, single_select_options_230, single_select_options_231,   single_select_options_232,
+                                   single_select_options_233, single_select_options_234, single_select_options_235,   single_select_options_236,
+                                   single_select_options_237, single_select_options_238, single_select_options_239,   single_select_options_240,
+                                   single_select_options_241, single_select_options_242, single_select_options_243,   single_select_options_244,
+                                   single_select_options_245, single_select_options_246, single_select_options_247,   single_select_options_248,
+                                   single_select_options_249, single_select_options_250)
+                # response = requests.post(endpoint, auth=("", self.api_key), headers=headers, data=payload)
+            else:
+                logger.info(f"submit internal form response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
+                raise ValueError(f"submit internal from response failed {response.status_code}. Response payload: {response.content}. \nRequest payload: {str(payload)}")
         return response.json()["entryId"]
 
     # get an individual submission
@@ -1512,15 +1582,11 @@ class Submittable:
                 print("api rate limit hit wait 15 mins")
                 # self.event.wait(900)
                 time.sleep(900)
-                # call to get submission again
-                print("*** call get sub ****", datetime.datetime.now())
                 return self.getSubmission(submission_id)
                 # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             else:
                 logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
                 raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
-        else:
-            print("get sub succ")
         return SubmittableSubmission(response.json())
 
     # get an individual submission
@@ -1528,6 +1594,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getSubmissionBeta(self, submission_id):
         # self.event.wait(0.1)
+        # time.sleep(0.1)
         endpoint = f'https://submittable-api.submittable.com/beta/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -1542,6 +1609,7 @@ class Submittable:
     @limits(calls=10, period=1)
     def getListOfSubmissions(self):
         # self.event.wait(0.1)
+        # time.sleep(0.1)
         submissions = []
         page_size = 50
         total_pages = 1
@@ -1549,13 +1617,13 @@ class Submittable:
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         if response.status_code != 200:
-            raise ValueError(
-                f"get submissions list failed {response.status_code}. Response payload: {response.content}")
+            raise ValueError(f"get submissions list failed {response.status_code}. Response payload: {response.content}")
         else:
             total_pages = response.json()["totalPages"]
             print("total pages:", str(total_pages))
         for page in range(0, total_pages):
             # self.event.wait(0.1)
+            time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -1563,8 +1631,7 @@ class Submittable:
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             if response.status_code != 200:
-                logger.info(
-                    f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
+                logger.info(f"get submissions list failed {response.status_code}. Response payload: {response.content}, skip item")
                 # skip over do not add to list
                 continue
             json_response = response.json()
@@ -1580,18 +1647,19 @@ class Submittable:
     def getReferenceResponses(self):
         ref_responses = []
         page_size = 1
-        total_pages = 1
-        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=303&pageSize={page_size}'
-        headers = {'Content-type': 'application/json'}
-        response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
-        if response.status_code != 200:
-            logger.info(
-                f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 1")
-        else:
-            total_pages = response.json()["totalPages"]
-            print("get ref form total pages:", total_pages)
+        total_pages = 100
+        # endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=100&pageSize={page_size}'
+        # headers = {'Content-type': 'application/json'}
+        # response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
+        # if response.status_code != 200:
+        #    logger.info(
+        #        f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 1")
+        # else:
+        #    total_pages = response.json()["totalPages"]
+        #    print("get ref form total pages:", total_pages)
         for page in range(0, total_pages):
             # self.event.wait(0.1)
+            time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
@@ -1600,13 +1668,13 @@ class Submittable:
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             # print("ref form resp", response.json())
             if response.status_code != 200:
-                logger.info(
-                    f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 2")
+                logger.info(f"get reference responses list failed {response.status_code}. Response payload: {response.content}, skip item 2")
                 # skip over go to next response
                 continue
             json_response = response.json()
             ref_response_list = json_response["items"]
-            # total_pages     = response.json()["totalPages"]
+            total_pages     = response.json()["totalPages"]
+            print("get ref form total pages:", total_pages)
             print("page:", page)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
