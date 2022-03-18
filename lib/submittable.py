@@ -1612,7 +1612,8 @@ class Submittable:
         # time.sleep(0.1)
         submissions = []
         page_size = 50
-        total_pages = 1
+        total_pages = 100
+        '''
         endpoint = f'{self.baseURL}/submissions?projects.include={config.project_id_1}&projects.include={config.project_id_2}&statuses.include=new&statuses.include=in_progress&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
@@ -1621,6 +1622,7 @@ class Submittable:
         else:
             total_pages = response.json()["totalPages"]
             print("total pages:", str(total_pages))
+        '''
         for page in range(0, total_pages):
             # self.event.wait(0.1)
             time.sleep(0.1)
@@ -1637,7 +1639,8 @@ class Submittable:
             json_response = response.json()
             submissions_list = json_response["items"]
             # total_pages    = response.json()["totalPages"]
-            print("page:", page)
+            print("sub total pages:", str(total_pages))
+            print("sub page:", page)
             for item in submissions_list:
                 submissions.append(SubmittableSubmissionList(item))
         return submissions
@@ -1674,8 +1677,8 @@ class Submittable:
             json_response = response.json()
             ref_response_list = json_response["items"]
             total_pages     = response.json()["totalPages"]
-            print("get ref form total pages:", total_pages)
-            print("page:", page)
+            print("ref form total pages:", total_pages)
+            print("ref page:", page)
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses
