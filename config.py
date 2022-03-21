@@ -922,128 +922,188 @@ app_single_select_option_id_64  = "05c78a1a-3762-4b8b-9753-e6f6139567fc"  # My w
 #
 
 # Spanish - Ineligible Survey multi select initial form field IDs
-spanish_ineligible_survey_multi_select_id_1   = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
-spanish_ineligible_survey_multi_select_id_2   = ""  # How do you currently earn money
-spanish_ineligible_survey_multi_select_id_3   = ""  # How are your wages currently paid
-spanish_ineligible_survey_multi_select_id_4   = ""  # What coalitions or causes do you actively participate in as a supporter or advocate
-spanish_ineligible_survey_multi_select_id_5   = ""  # If yes, which of the following types of emergency financial assistance did you receive
-spanish_ineligible_survey_multi_select_id_6   = ""  # How, if at all, was your employment impacted between March 2020 and February 2022
-spanish_ineligible_survey_multi_select_id_7   = ""  # How has your artistic practice been affected by the COVID19 pandemic
-spanish_ineligible_survey_multi_select_id_8   = ""  # How, if at all, was your well-being impacted between March 2020 and February 2022
-spanish_ineligible_survey_multi_select_id_9   = ""  # Which of the following best describes you
-spanish_ineligible_survey_multi_select_id_10  = ""  # What is your gender identity
-spanish_ineligible_survey_multi_select_id_11  = ""  # Do you regularly provide care – either on your own or with someone else – to any of the following people
+spanish_ineligible_survey_multi_select_id_1   = "9a3b018a-0a66-4de0-8348-2dcc88fb7357"  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_ineligible_survey_multi_select_id_2   = "2288692e-28c1-442c-8dc3-f1d467315282"  # How do you currently earn money
+spanish_ineligible_survey_multi_select_id_3   = "1106c182-3727-4f09-b775-392df03d31b0"  # How are your wages currently paid
+spanish_ineligible_survey_multi_select_id_4   = "a5fcdb51-0bdb-42b4-863f-8b6d686b2494"  # What coalitions or causes do you actively participate in as a supporter or advocate
+spanish_ineligible_survey_multi_select_id_5   = "9d2e984e-9e1d-43bd-b648-99ad102f2571"  # If yes, which of the following types of emergency financial assistance did you receive
+spanish_ineligible_survey_multi_select_id_6   = "539d2bbb-e7ec-4c65-97dc-e966207a8708"  # How, if at all, was your employment impacted between March 2020 and February 2022
+spanish_ineligible_survey_multi_select_id_7   = "e8f19d22-0708-42f0-ab35-4f3b20b8d171"  # How has your artistic practice been affected by the COVID19 pandemic
+spanish_ineligible_survey_multi_select_id_8   = "425379bf-e9d9-4c0a-a143-9e74113eac20"  # How, if at all, was your well-being impacted between March 2020 and February 2022
+spanish_ineligible_survey_multi_select_id_9   = "00adad45-c656-496d-ab98-b1bef465c6bc"  # Which of the following best describes you
+spanish_ineligible_survey_multi_select_id_10  = "ad7eaaca-409f-4362-a9ab-b0027e08745c"  # What is your gender identity
+spanish_ineligible_survey_multi_select_id_11  = "d5f689bd-bafb-4757-8c88-09dc9843b3d4"  # Do you regularly provide care – either on your own or with someone else – to any of the following people
 
 # Spanish - Ineligible Survey multi select option IDs
-spanish_ineligible_survey_multi_options_ids_1   = []
+spanish_ineligible_survey_multi_options_ids_1   = ["203efa4e-7d17-4ae4-b62e-c2043561c1bf", "034b7fcd-0439-4004-9fcd-7ebebcb683ac", "10af6de9-dfe5-43c6-af13-1d5dbf2b682e",
+                                                   "d63a1a6a-6544-4639-8c19-7157b5019e0f", "a1157a88-f7ba-4b6f-b638-5e46f11f940a", "51f8c8d1-1717-4cef-a672-957549104e0b"]
 
-spanish_ineligible_survey_multi_options_ids_2   = []
+spanish_ineligible_survey_multi_options_ids_2   = ["da119f5c-a141-464f-883e-2e6fa70930cd", "61f47a78-cbec-47a2-a267-8686ca28bc1b", "156b9c20-1e44-4aa2-a1dc-e3e0d8fcc7e2",
+                                                   "acc6a647-c5ef-4ea6-96af-eca0fb902ed5", "e5bc8e81-b900-4822-ac97-14593343a60a", "1b41776b-26af-4a0d-9623-90f864ce8844",
+                                                   "5de5a1f9-8b0f-40dd-a381-938a31394ede"]
 
-spanish_ineligible_survey_multi_options_ids_3   = []
+spanish_ineligible_survey_multi_options_ids_3   = ["7459df2f-e097-46f5-a5f4-a64930d1b103", "45ee5d8c-443a-46e4-bd7c-f0c74914e32f", "c436c610-7179-4183-93fc-41d621a15f14",
+                                                   "2e5efdd9-a98f-4f9e-b90e-1393359f5f01", "0efb9d21-ebb1-4c3d-9ced-f603b75a9a48"]
 
-spanish_ineligible_survey_multi_options_ids_4   = []
+spanish_ineligible_survey_multi_options_ids_4   = ["ff5c554c-6611-45c3-a2c3-c516b172a06a", "c531698f-7324-47cf-8ea5-48ea9de803c9", "b52c76a9-7acd-49a8-90fc-d649e99d66df",
+                                                   "dc430d3a-2026-4fcc-8e64-345abd6b2b00", "11fb15ff-e952-4aaf-84a2-5b4ed464daac", "1eabcfeb-eb27-4e35-b955-e37dd6c81940",
+                                                   "3087b216-bb8f-4480-9d4f-a1848a7231ba", "472c8e1c-b997-475b-9a75-1fdc15194f92", "363d3dcb-856e-41e7-b296-1ff4b960ff5f",
+                                                   "07d792ae-86fc-4789-b014-1396bab8b0dc"]
 
-spanish_ineligible_survey_multi_options_ids_5   = []
+spanish_ineligible_survey_multi_options_ids_5   = ["a478a727-0fc0-48c0-9742-30b45c7a2d32", "8302efed-bb8f-437e-b60a-efd52632e7a5", "03262e2b-5bd0-49c6-9da9-0fb4bb46dfc4",
+                                                   "8539bf96-da82-4882-a5e2-332e91653226", "f83c9633-7f88-41ed-a470-bf0e87a78eb0", "741d8935-dd98-4600-8c0d-576e453fea52"]
 
-spanish_ineligible_survey_multi_options_ids_6   = []
+spanish_ineligible_survey_multi_options_ids_6   = ["a3857f7e-0591-420a-8eb5-2d0969e720fd", "ee096d52-0f15-4937-82c6-0d0ca34b7dee", "716a5b05-3878-44fb-82c8-dfd33e47e7e2",
+                                                   "0dbea452-e849-4290-ae55-d07e41f04928", "4a9a5bc8-c5de-4797-bb76-0a24ad13ebcc", "95d3ed12-0061-4195-8384-4564d73f839e",
+                                                   "e94dbc73-c47f-40df-91fd-2e7326107e58", "d820105b-f408-4fda-a3ac-ded9ec02ce6b", "f98bc1dd-86c8-48d0-9c38-8f2d146fa42a"]
 
-spanish_ineligible_survey_multi_options_ids_7   = []
+spanish_ineligible_survey_multi_options_ids_7   = ["0559768f-bd9a-4193-bc1c-3900674107df", "f1855661-2317-433d-bedc-6c92c50926f1", "2b45f08f-fba5-4cc1-9aee-69c0bc44e708",
+                                                   "746279d3-cf26-4f70-90e7-aad36db492f6", "1b4a83e2-6fa6-4345-b753-dcd55055eef3", "450aceba-95ad-4ef5-8654-127d77c185db",
+                                                   "59431f72-dcae-44ab-b297-2db123877f70", "ca30fbaa-cbd1-4c05-89d9-b7a4d75c83a3", "d9c6c6f7-c0d6-42af-b042-613309883f73",
+                                                   "945bd89c-c6b4-406d-8852-a08ffdc72db1", "7445840b-f4de-41af-8258-589cf1b711e0", "8b4f421f-8bdc-4123-9050-6081fcd70d8f",
+                                                   "d5b1fea4-dc3f-439f-8c8f-dfc3ac3f91a4", "3c5cc4c5-45e5-4bb8-83a9-2d15aba06bcd"]
 
-spanish_ineligible_survey_multi_options_ids_8   = []
+spanish_ineligible_survey_multi_options_ids_8   = ["78cc5204-437c-4d0e-8669-bad0185b5647", "8e2b246a-165c-4de0-996a-a0f41fb973ac", "fbbe7213-f571-4add-8b0f-1dcffc0b2e68",
+                                                   "66457e32-8cc2-408a-9b8a-f6d7e7b37638", "b523b5db-42bc-484b-9af9-73d83fa4109f", "fd3751b2-0629-478e-8b74-dee27383ddac",
+                                                   "b31336d8-ab5c-4beb-b7d1-c85ef9d527b8", "1172e57a-6d2f-4b88-8376-70677c2f57f6", "b9e6ac9c-b0aa-4592-8024-08e245cc634e",
+                                                   "ab021bd2-677b-4245-a6b9-5687f888561d", "ebac6234-50ba-47ff-9056-3d6ced55d3c0", "b8203e86-1967-4d74-8021-5b2e7d2b2fb7",
+                                                   "a26466c9-9221-485e-8768-ffe3f36ddbfd"]
 
-spanish_ineligible_survey_multi_options_ids_9   = []
+spanish_ineligible_survey_multi_options_ids_9   = ["4c823940-b681-4862-a82a-07955c6ec829", "066e9caf-c7b8-4ab7-8d31-d5e08676325e", "11185d16-faeb-45da-9094-38131f50f5bc",
+                                                   "c038d175-f091-463b-a6d4-20af7673219e", "f22343e8-9439-4660-b3da-f105dad4f4ee", "50ea47d8-bc5b-4681-8235-a85569dedf82",
+                                                   "f9632428-d144-42dd-b031-ab7c0b756fbc", "a2700b60-90e2-42cd-831b-6c0ec614dafa", "81b7d583-91e2-4fcb-8e19-551a1fed124c"]
 
-spanish_ineligible_survey_multi_options_ids_10  = []
+spanish_ineligible_survey_multi_options_ids_10  = ["5b7d5cef-123b-4fb4-88fc-773509da864d", "de4de4b3-87ce-4681-8171-a3e432964dcc", "15fde5ef-65c2-4ccd-abf3-f39c1625c603",
+                                                   "780b8c54-e96a-4fb7-8d29-8bfc046ccb18", "88efda14-ddd8-48ee-ade4-d4debaeef6d3", "65643e01-1ff3-4b84-869b-35b2a8296e92"]
 
-spanish_ineligible_survey_multi_options_ids_11  = []
+spanish_ineligible_survey_multi_options_ids_11  = ["6a5d34f7-1dc4-4570-9c1b-e3961a3273e3", "3e273161-cbdf-409a-b299-df738bfc9037", "020ca898-b3f6-4461-b7c9-0c45ad23f9c2",
+                                                   "7029e098-2145-4416-9c0b-030a310a9a68", "2f5b5662-caf8-49f1-bfce-c4e60f363685"]
 
 
-# AEP multi select initial form field IDs
-spanish_aep_multi_select_id_1  = ""  # At what scale do your services or programs operate
-spanish_aep_multi_select_id_2  = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
-spanish_aep_multi_select_id_3  = ""  # Which of the following best describes you
-spanish_aep_multi_select_id_4  = ""  # What is your gender identity
-spanish_aep_multi_select_id_5  = ""  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-spanish_aep_multi_select_id_6  = ""  # In what capacity has your organization worked with artists?
-spanish_aep_multi_select_id_7  = ""  # Which of the following communities does your organization explicitly serve
-spanish_aep_multi_select_id_8  = ""  # Which of the following did you receive
-spanish_aep_multi_select_id_9  = ""  # If yes, does it include the following
+# Spanish - AEP multi select initial form field IDs
+spanish_aep_multi_select_id_1  = "5bdc0300-a93d-439f-af0b-c4a59a22adec"  # At what scale do your services or programs operate
+spanish_aep_multi_select_id_2  = "54b5cd34-77a6-4c1f-9615-9f186f292d56"  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_aep_multi_select_id_3  = "e7124c48-63d0-4178-a4c6-b333d88f607d"  # Which of the following best describes you
+spanish_aep_multi_select_id_4  = "ed4895ae-1b0c-412c-96a4-cbb53a2c0cdb"  # What is your gender identity
+spanish_aep_multi_select_id_5  = "0e00a589-9957-4a2e-866d-37cd078acd0f"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+spanish_aep_multi_select_id_6  = "8fa7767c-710c-4fa8-a820-7ea208f284fa"  # In what capacity has your organization worked with artists?
+spanish_aep_multi_select_id_7  = "22b8baea-7cb0-4a3a-852c-112837c007d6"  # Which of the following communities does your organization explicitly serve
+spanish_aep_multi_select_id_8  = "7e26941c-bd26-40f0-a15e-e328cfe861a3"  # Which of the following did you receive
+spanish_aep_multi_select_id_9  = "1cc91625-7880-44d2-8a29-a6f92c4555d2"  # If yes, does it include the following
 
-# multi select option IDs
-
+# Spanish - AEP multi select option IDs
+#
 # At what scale do your services or programs operate
-spanish_aep_multi_options_ids_1  = []
+spanish_aep_multi_options_ids_1  = ["e0de0189-0202-4519-9da9-269a5eafb145", "d0df4705-64c4-4a76-bcd6-f83efccf9459", "f2e03ab2-d18b-4ad1-9c02-5d918c339996",
+                                    "15ef1686-3439-467e-80c3-78cb7c627142", "0acccb0f-c98a-4b47-8d08-6d682b28b6f1"]
 
 # How do you approach your practice as an artist, culture bearer, or culture maker
-spanish_aep_multi_options_ids_2  = []
+spanish_aep_multi_options_ids_2  = ["6e70be8d-678c-4c1f-bf98-3acf8c386121", "2a6e38dc-5186-4e24-a2bd-b6aa67f10419", "04e66cb6-0306-482e-baff-37073b20bcf9",
+                                    "5059fc6e-0ea9-477c-b4a5-fed0eef35a3f", "93ba69fd-afa2-43f5-87ea-04838dd0d8c0", "d7b032f6-8276-4650-84c0-472dbd758983"]
 
 # Which of the following best describes you
-spanish_aep_multi_options_ids_3  = []
+spanish_aep_multi_options_ids_3  = ["8f080b2f-017e-4c30-9747-cba105ab69b7", "0e49b61d-f29d-46fb-8c11-78c0bbca71a6", "d363c6d3-f633-482e-a865-09c5180bcec2",
+                                    "b39eea7e-ff81-46ed-8570-efc9993e6e10", "74ebc02e-61fd-4d32-88be-737863325e93", "c31640e0-a118-4114-9d0f-28fedd6e4313",
+                                    "a326aff8-3eac-46db-a505-cc9145dfd675", "8fceedde-69d9-4b23-bac3-bffb5aa4b9d7", "b238faa3-f2ba-4545-ae0d-85fc08a812d5"]
 
 # What is your gender identity
-spanish_aep_multi_options_ids_4  = []
+spanish_aep_multi_options_ids_4  = ["2cf43284-da3a-4e70-b6e0-b42e20578290", "aea6f698-80a2-4df8-bb9e-c0f3a10a64e8", "ea7a71d7-8f03-4a27-8cfc-7bbed83e408f",
+                                    "98155e52-aa74-4949-b4ac-1880c3b0ecc8", "2c98a521-9663-4a38-a9cd-d2c0185e1652", "a4db897e-1d2b-4a8c-a7a5-44a0abf67bc4"]
 
 # Do you regularly provide care—either on your own or with someone else—to any of the following people
-spanish_aep_multi_options_ids_5  = []
+spanish_aep_multi_options_ids_5  = ["011668e1-2a7a-4337-8e5f-cc5ae0499411", "0ecc8aaa-6d06-4fa3-9b52-520c8aa66544", "bdd2f984-54d7-4f49-aa1a-367010012f02",
+                                    "ab95de3d-79d4-4027-b865-e36323143738", "1c25a030-cc82-4c59-bbc9-aa5a8637cba4"]
 
 # In what capacity has your organization worked with artists
-spanish_aep_multi_options_ids_6  = []
+spanish_aep_multi_options_ids_6  = ["dde62b61-37c9-4e4b-8103-0d056b743830", "811b3eb7-7ff8-40a4-b133-a64944b018c0", "0adbd347-60df-41cf-a183-81d411a4401e",
+                                    "2aa89594-388a-4f87-90be-04a9d15e58d7"]
 
 # Which of the following communities does your organization explicitly serve
-spanish_aep_multi_options_ids_7  = []
+spanish_aep_multi_options_ids_7  = ["afc206ab-307a-459d-a0bf-4424234725dd", "8a626f58-8404-40d4-b7ee-2bc982982954", "ad4ce1a0-72da-4f9a-a310-7ed59e4bae55",
+                                    "43f56f50-6756-4b03-a6f1-5996d4e08344", "228f9c40-c9f9-494f-991d-49ae3cd55d5b", "f6872a17-b43b-4c50-8a30-bc0a889ccef3",
+                                    "05910118-dcab-4718-9f87-0105db14dca9", "1de18fba-8b71-47a9-b62d-03499e594cb4"]
 
 # Which of the following did you receive
-spanish_aep_multi_options_ids_8  = []
+spanish_aep_multi_options_ids_8  = ["efc28d09-53b2-45ad-a50e-3d78d56a9ca7", "85bf1636-a592-4fda-8f54-b2e318384e2c", "2e501c43-f45b-4068-8bab-0b6e60e5fdf3",
+                                    "cefd75ec-27a7-4730-b758-e0946b9b5651"]
 
 # If yes, does it include the following
-spanish_aep_multi_options_ids_9  = []
+spanish_aep_multi_options_ids_9  = ["9bace460-dcfd-4f9b-a609-56ba7a2a5cde", "793f9a9a-5377-423f-b11a-df77cd584822", "76c6180b-e184-4ffa-a62b-52513049d638",
+                                    "f47a7fe4-5ff1-4492-85ad-7b3148d1e5dc"]
 
 
-# GI multi select initial form field IDs
-spanish_gi_multi_select_id_1  = ""  # Which of the following best describes you
-spanish_gi_multi_select_id_2  = ""  # What is your gender identity
-spanish_gi_multi_select_id_3  = ""  # Do you regularly provide care—either on your own or with someone else—to any of the following people
-spanish_gi_multi_select_id_4  = ""  # Please check all that apply regarding your financial safety net
-spanish_gi_multi_select_id_5  = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
-spanish_gi_multi_select_id_6  = ""  # To the best of your knowledge, in which of the following are you currently enrolled
+# Spanish - GI multi select initial form field IDs
+spanish_gi_multi_select_id_1  = "0a13849f-4d6d-40f6-9b4f-49deb93b756f"  # Which of the following best describes you
+spanish_gi_multi_select_id_2  = "4b4b17a6-42fa-4956-9ce3-5bc46b00facb"  # What is your gender identity
+spanish_gi_multi_select_id_3  = "5ab04d79-e7c3-4612-a54d-f930b6245f23"  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+spanish_gi_multi_select_id_4  = "91cf1cba-d637-4a6e-8dca-967f1e5d507d"  # Please check all that apply regarding your financial safety net
+spanish_gi_multi_select_id_5  = "c3433ce8-bf42-4bfa-be56-11f706e4b351"  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_gi_multi_select_id_6  = "178a05e9-0021-4f13-92a0-562536866971"  # To the best of your knowledge, in which of the following are you currently enrolled
 
-# multi select option IDs
-spanish_gi_multi_options_ids_1  = []
+# Spanish - GI multi select option IDs
+spanish_gi_multi_options_ids_1  = ["eedacede-cd7d-4f9c-99a1-6600da162870", "e4df2a16-54e3-4e8f-93b2-73a46502c6ed", "cc29ea15-946c-4749-855a-b7b3124e5aef",
+                                   "589b2a47-c92f-4c78-bfcd-221d1649e56c", "29b46aac-df65-402c-b1d7-f725f4e3fb10", "eb53a6d5-eef6-43ad-b196-16389cba3aba",
+                                   "21177a14-6b9b-404b-9148-46a51c91c53c", "2ba0bb80-408a-485a-826b-bba822cbf8da", "45e68350-cc9d-4bbc-a189-08393bcc5053"]
 
-spanish_gi_multi_options_ids_2  = []
-
-spanish_gi_multi_options_ids_3  = []
-
-spanish_gi_multi_options_ids_4  = []
-
-spanish_gi_multi_options_ids_5  = []
-
-spanish_gi_multi_options_ids_6  = []
+spanish_gi_multi_options_ids_2  = ["d0d62a44-b2eb-4bb3-90f5-612e7c4df894", "51551025-1e8f-4f49-b86f-c05f2672d91e", "1992c6b7-3468-46ef-942b-254654ecc240",
+                                   "3673fce0-5f5f-4588-ab45-ca79ff6ce24f", "b4b93acd-cd29-49cb-a921-67affe3b2060", "72c619ce-3121-4d8d-af06-020cfb3e2917"]
 
 
-# Applicant Survey multi select initial form field IDs
-spanish_app_survey_multi_select_id_1  = ""  # How do you currently earn money
-spanish_app_survey_multi_select_id_2  = ""  # How are your wages currently paid
-spanish_app_survey_multi_select_id_3  = ""  # What coalitions or causes do you actively participate in as a supporter or advocate
-spanish_app_survey_multi_select_id_4  = ""  # If yes, which of the following types of emergency financial assistance did you receive
-spanish_app_survey_multi_select_id_5  = ""  # How, if at all, was your employment impacted between March 2020 and February 2022
-spanish_app_survey_multi_select_id_6  = ""  # How, if at all, was your artistic practice impacted between March 2020 and February 2022
-spanish_app_survey_multi_select_id_7  = ""  # How, if at all, was your well-being impacted between March 2020 and February 2022
+spanish_gi_multi_options_ids_3  = ["d3d93d33-bcef-440d-8041-0ca95e95d6b0", "8fbbeee2-1995-4634-bb48-8493d9fa9652", "bb081832-bd85-43e8-8946-28fc90c29a83",
+                                   "ec3bc7b5-82d1-45f9-9db3-be5180f7c926", "7a6d4c0b-99a9-4dbc-a862-a1d8fb4943a8"]
 
-# Applicant Survey multi select option IDs
-spanish_app_survey_multi_options_ids_1  = []
+spanish_gi_multi_options_ids_4  = ["027645c1-d3f8-4d77-bbab-b337be3dc2b6", "442a6fe4-cc4b-4d60-94b3-76fc539996c3", "71da606b-2391-4742-a194-d5fc90edd9a9",
+                                   "5cdbcce3-d39b-4341-8260-0c8922c45abb", "0f66e65d-8f05-4c16-99f4-429890c354ac"]
 
-spanish_app_survey_multi_options_ids_2  = []
+spanish_gi_multi_options_ids_5  = ["ca5e6c4c-5054-4828-afe8-9cd2172faa03", "1c7b40b1-f0f1-4289-8be5-59a325e8bf20", "314e24dc-1965-4fd8-8cab-b4a038413345",
+                                   "822f82ed-cacf-4d4b-89dd-1d9a91f3ddbd", "9074bbce-9e8a-430a-b4bd-2af3ecbe93a2", "81408a59-fd28-440d-b9bc-51afb2149f59"]
 
-spanish_app_survey_multi_options_ids_3  = []
+spanish_gi_multi_options_ids_6  = ["366656f8-f6cc-4056-9710-49b02a33f210", "56f04616-e338-45f0-8da7-1a53c19479b1", "1cdeec82-2734-4e25-8731-494bffddcff2",
+                                   "c4442887-9e2f-4388-b024-1a7257d43f91", "b64a6f75-0cbd-494f-9117-2bb3174883f9", "400e01eb-d4a9-46d1-a539-5afb187292ea",
+                                   "ca2e11c2-f939-4948-ab21-12d045274c99", "2997a0d6-c1fd-4354-9aa2-0c26eb74839f", "cdffcdf1-9bf7-41c0-b65a-b27f2f38682d",
+                                   "7af8a583-41c6-4adb-b6c8-7ffd08d3bd50", "3ead409b-5738-404a-9292-a5c047084057", "9b497c9d-8215-4488-ad4d-a85310bdff59",
+                                   "cedc5560-06c2-4e6c-ab8d-42d0ce875ab6", "2fe8b967-3b6e-4505-aabb-af7e785ef901"]
 
-spanish_app_survey_multi_options_ids_4  = []
+# Spanish - Applicant Survey multi select initial form field IDs
+spanish_app_survey_multi_select_id_1  = "71c33f4c-866d-4fde-a314-88ee308b91ba"  # How do you currently earn money
+spanish_app_survey_multi_select_id_2  = "f7cb3d33-8d07-47f6-946d-8a81086e806c"  # How are your wages currently paid
+spanish_app_survey_multi_select_id_3  = "a78c20f3-c1d6-44cb-b589-d4cafb8d6b0a"  # What coalitions or causes do you actively participate in as a supporter or advocate
+spanish_app_survey_multi_select_id_4  = "b9823399-5f6b-44da-81ed-73573a69ea04"  # If yes, which of the following types of emergency financial assistance did you receive
+spanish_app_survey_multi_select_id_5  = "ef5957d3-5f88-492b-acab-9974807e7335"  # How, if at all, was your employment impacted between March 2020 and February 2022
+spanish_app_survey_multi_select_id_6  = "1c4d6760-b76f-4f42-bc57-4487339d8c5a"  # How, if at all, was your artistic practice impacted between March 2020 and February 2022
+spanish_app_survey_multi_select_id_7  = "47e375af-fb02-4391-b2ea-0483e46d15ed"  # How, if at all, was your well-being impacted between March 2020 and February 2022
 
-spanish_app_survey_multi_options_ids_5  = []
+# Spanish - Applicant Survey multi select option IDs
+spanish_app_survey_multi_options_ids_1  = ["bf538c96-e1e9-4cf3-a6f1-2894588cb27a", "eb851539-fa34-4ec5-a7d8-954624b9897a", "8eeb65f2-3279-41b7-b764-3f2c0b6b684f",
+                                           "3ac10b07-36bf-468b-889e-172eb2ead1d6", "562b2fd4-a776-4abb-a29c-66b9659ea182", "3e18c8c0-c9ed-45b4-89df-4c439a8b823a",
+                                           "b554a612-6617-4986-ad82-b8ce86df92fa"]
 
-spanish_app_survey_multi_options_ids_6  = []
+spanish_app_survey_multi_options_ids_2  = ["3cd5fc27-bb89-4d5a-b683-ceea03c570a8", "45bb87ce-018d-4577-a5fe-a7a5686f950e", "cc04ca9a-9401-4f71-a523-b3e80c025d95",
+                                           "4d4904fb-1711-401f-ab04-c55111c4706a", "39ef0ea0-a88a-48ed-b83b-604a7c27e804"]
 
-spanish_app_survey_multi_options_ids_7  = []
+spanish_app_survey_multi_options_ids_3  = ["8d5bfc05-1c5c-4beb-bab6-3c9f0b39cda6", "611b60ff-97ba-487d-b09b-fa8025b542a1", "cf1642f2-a07e-4f44-a03f-f34abed97d3b",
+                                           "77f1cc4c-b687-4d29-bb6d-fe3c74e50443", "3952ccf7-d4e2-4c02-b1ee-90f64d168cff", "d1b842b4-9a3e-4df9-b826-26abb9662fca",
+                                           "c0c0e708-fcb0-4307-8030-0d83f56f2b40", "33ab4aba-60da-4176-ac9a-ad5a9bc9db9b", "38bf92e7-5ca2-4bc1-a86d-e695ffb6ea49",
+                                           "6b704acb-1be5-44f3-a9ec-b7d385442ba1"]
+
+spanish_app_survey_multi_options_ids_4  = ["ef448ce0-022e-4f43-9d66-b95955598355", "c4ee20aa-7314-4a44-826c-8b19686cb122", "76f39ddc-f344-4832-9688-a03923e34cf8",
+                                           "9f5c1b17-27f6-411f-854b-0f44e238ba90", "d4bab49d-8b66-4276-b0a2-bc641d21f9b3", "9b31c71c-8fec-41a3-9d12-5a0e993585b6"]
+
+spanish_app_survey_multi_options_ids_5  = ["c9dc0e07-a262-4e69-b92f-b36b1e9d3f26", "ebd662ee-d276-48c3-83dc-a7be8a0e97f8", "7a94ce28-2f77-4500-86a6-9223233edb1e",
+                                           "21a70025-ee1a-46c3-b349-0c290dbcd510", "edaee07d-9b6e-4bc8-a4e9-515e14eae991", "677de1dd-8d67-423f-bf22-23ff40b90e39",
+                                           "d9326332-27e1-4d4f-b7c8-ba4cb1ea5140", "f27d33e0-bf7d-43c6-8e06-8848881202ed", "569018ee-761c-4735-9057-64685c8a22ad"]
+
+spanish_app_survey_multi_options_ids_6  = ["ab29b3a8-6ef2-4511-a216-ba767f872b6b", "4078b19f-a740-40ca-9282-d01633a1a67e", "e93699f5-dfa3-4122-9785-58a6442d3af3",
+                                           "018ae5ae-f94b-4469-b36a-6dd509c94b42", "c239953f-973d-47de-b813-8e06c1369c92", "9efd7ee1-64c3-4bae-90f6-808140979173",
+                                           "266ffb1e-3c3f-44b2-ab59-74ede2325964", "ef6230ae-b996-408e-beba-fbdcb2fcd7d0", "2936afb8-8834-4ab8-b5fa-6341b2499be5",
+                                           "8df521ab-94b6-48a7-8fd4-97790532f8ba", "3b22504d-bafe-41e9-a358-31351f1cc4a3", "b74845eb-62e0-4c04-9a09-a6b66e4beac6",
+                                           "9340c9d9-d948-40bd-aac3-230b8675a21a", "162f5356-3dba-4a2e-8717-1a1250632090"]
+
+spanish_app_survey_multi_options_ids_7  = ["8bfde3a8-7981-4444-9d3f-6b3bcdcb4745", "468ed8ee-4edf-4829-b804-8fe695d19b12", "3f5ce018-69b9-4b6a-8ba3-c47cf40a783e",
+                                           "4b453c1c-4f66-4f7d-8957-d81862382580", "4905b4b5-8e1f-459e-bbaf-6141433112b3", "6a079851-3fa0-416f-9467-2208c54099e1",
+                                           "003be263-d3bd-4e33-99e6-06accad73ab1", "c5959b72-75c8-40ee-8eda-c9e6626ad0ad", "9fc0a97c-327f-413a-9ce9-6f4a588e812f",
+                                           "23e8d59f-0aef-402b-9ffd-219a8e321111", "d98eb9e0-d338-4bb9-bb58-ae59495c61fb", "b23b4202-199e-4c32-a471-3841b2076651",
+                                           "767ea0f8-47ac-46e7-8782-a08233e8fd7c"]
 
 
 
