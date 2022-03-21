@@ -917,6 +917,133 @@ app_single_select_option_id_63  = "8cf0ba20-2701-48af-947a-7c41d1eca75b"  # Othe
 app_single_select_option_id_64  = "05c78a1a-3762-4b8b-9753-e6f6139567fc"  # My well-being was not impacted by the pandemic.
 
 
+#
+# Spanish From Version  Initial Form IDs
+#
+
+# Spanish - Ineligible Survey multi select initial form field IDs
+spanish_ineligible_survey_multi_select_id_1   = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_ineligible_survey_multi_select_id_2   = ""  # How do you currently earn money
+spanish_ineligible_survey_multi_select_id_3   = ""  # How are your wages currently paid
+spanish_ineligible_survey_multi_select_id_4   = ""  # What coalitions or causes do you actively participate in as a supporter or advocate
+spanish_ineligible_survey_multi_select_id_5   = ""  # If yes, which of the following types of emergency financial assistance did you receive
+spanish_ineligible_survey_multi_select_id_6   = ""  # How, if at all, was your employment impacted between March 2020 and February 2022
+spanish_ineligible_survey_multi_select_id_7   = ""  # How has your artistic practice been affected by the COVID19 pandemic
+spanish_ineligible_survey_multi_select_id_8   = ""  # How, if at all, was your well-being impacted between March 2020 and February 2022
+spanish_ineligible_survey_multi_select_id_9   = ""  # Which of the following best describes you
+spanish_ineligible_survey_multi_select_id_10  = ""  # What is your gender identity
+spanish_ineligible_survey_multi_select_id_11  = ""  # Do you regularly provide care – either on your own or with someone else – to any of the following people
+
+# Spanish - Ineligible Survey multi select option IDs
+spanish_ineligible_survey_multi_options_ids_1   = []
+
+spanish_ineligible_survey_multi_options_ids_2   = []
+
+spanish_ineligible_survey_multi_options_ids_3   = []
+
+spanish_ineligible_survey_multi_options_ids_4   = []
+
+spanish_ineligible_survey_multi_options_ids_5   = []
+
+spanish_ineligible_survey_multi_options_ids_6   = []
+
+spanish_ineligible_survey_multi_options_ids_7   = []
+
+spanish_ineligible_survey_multi_options_ids_8   = []
+
+spanish_ineligible_survey_multi_options_ids_9   = []
+
+spanish_ineligible_survey_multi_options_ids_10  = []
+
+spanish_ineligible_survey_multi_options_ids_11  = []
+
+
+# AEP multi select initial form field IDs
+spanish_aep_multi_select_id_1  = ""  # At what scale do your services or programs operate
+spanish_aep_multi_select_id_2  = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_aep_multi_select_id_3  = ""  # Which of the following best describes you
+spanish_aep_multi_select_id_4  = ""  # What is your gender identity
+spanish_aep_multi_select_id_5  = ""  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+spanish_aep_multi_select_id_6  = ""  # In what capacity has your organization worked with artists?
+spanish_aep_multi_select_id_7  = ""  # Which of the following communities does your organization explicitly serve
+spanish_aep_multi_select_id_8  = ""  # Which of the following did you receive
+spanish_aep_multi_select_id_9  = ""  # If yes, does it include the following
+
+# multi select option IDs
+
+# At what scale do your services or programs operate
+spanish_aep_multi_options_ids_1  = []
+
+# How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_aep_multi_options_ids_2  = []
+
+# Which of the following best describes you
+spanish_aep_multi_options_ids_3  = []
+
+# What is your gender identity
+spanish_aep_multi_options_ids_4  = []
+
+# Do you regularly provide care—either on your own or with someone else—to any of the following people
+spanish_aep_multi_options_ids_5  = []
+
+# In what capacity has your organization worked with artists
+spanish_aep_multi_options_ids_6  = []
+
+# Which of the following communities does your organization explicitly serve
+spanish_aep_multi_options_ids_7  = []
+
+# Which of the following did you receive
+spanish_aep_multi_options_ids_8  = []
+
+# If yes, does it include the following
+spanish_aep_multi_options_ids_9  = []
+
+
+# GI multi select initial form field IDs
+spanish_gi_multi_select_id_1  = ""  # Which of the following best describes you
+spanish_gi_multi_select_id_2  = ""  # What is your gender identity
+spanish_gi_multi_select_id_3  = ""  # Do you regularly provide care—either on your own or with someone else—to any of the following people
+spanish_gi_multi_select_id_4  = ""  # Please check all that apply regarding your financial safety net
+spanish_gi_multi_select_id_5  = ""  # How do you approach your practice as an artist, culture bearer, or culture maker
+spanish_gi_multi_select_id_6  = ""  # To the best of your knowledge, in which of the following are you currently enrolled
+
+# multi select option IDs
+spanish_gi_multi_options_ids_1  = []
+
+spanish_gi_multi_options_ids_2  = []
+
+spanish_gi_multi_options_ids_3  = []
+
+spanish_gi_multi_options_ids_4  = []
+
+spanish_gi_multi_options_ids_5  = []
+
+spanish_gi_multi_options_ids_6  = []
+
+
+# Applicant Survey multi select initial form field IDs
+spanish_app_survey_multi_select_id_1  = ""  # How do you currently earn money
+spanish_app_survey_multi_select_id_2  = ""  # How are your wages currently paid
+spanish_app_survey_multi_select_id_3  = ""  # What coalitions or causes do you actively participate in as a supporter or advocate
+spanish_app_survey_multi_select_id_4  = ""  # If yes, which of the following types of emergency financial assistance did you receive
+spanish_app_survey_multi_select_id_5  = ""  # How, if at all, was your employment impacted between March 2020 and February 2022
+spanish_app_survey_multi_select_id_6  = ""  # How, if at all, was your artistic practice impacted between March 2020 and February 2022
+spanish_app_survey_multi_select_id_7  = ""  # How, if at all, was your well-being impacted between March 2020 and February 2022
+
+# Applicant Survey multi select option IDs
+spanish_app_survey_multi_options_ids_1  = []
+
+spanish_app_survey_multi_options_ids_2  = []
+
+spanish_app_survey_multi_options_ids_3  = []
+
+spanish_app_survey_multi_options_ids_4  = []
+
+spanish_app_survey_multi_options_ids_5  = []
+
+spanish_app_survey_multi_options_ids_6  = []
+
+spanish_app_survey_multi_options_ids_7  = []
 
 
 
