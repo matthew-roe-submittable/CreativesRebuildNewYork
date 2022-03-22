@@ -1695,7 +1695,7 @@ class Submittable:
             ref_response_list = json_response["items"]
             # total_pages     = response.json()["totalPages"]
             # print("ref form total pages:", total_pages)
-            logger.info(f"sub page: {page}")
+            logger.info(f"ref page: {page}")
             for item in ref_response_list:
                 ref_responses.append(SubmittableResponseList(item))
         return ref_responses

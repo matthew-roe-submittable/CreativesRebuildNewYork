@@ -53,6 +53,39 @@ project_2_name_field_id      = "582e9043-8977-447b-a569-cbc2e5df12ed"
 project_2_dob_field_id       = "b5e07e17-8d0b-4705-9628-ba35de352804"
 project_2_zipcode_field_id   = "d533967d-d72b-4266-a502-577b6ae6db81"
 
+# Spanish AEP
+project_id_3                 = "4ed9f8aa-0ae0-41e2-8273-b9f2ca8b6277"  # Spanish AEP
+project_3_formId             = "261548ef-0c6d-4923-a5ef-94330f38c5ef"
+project_3_name_field_id      = "819a8612-50f6-4c5c-9018-c9c78e2bbbbb"
+project_3_dob_field_id       = "3de847d5-65ad-48c8-b383-46a980590a50"
+project_3_zipcode_field_id   = "dbedc0f1-6ad6-42d0-a2a4-27416c83faf6"
+
+# Spanish Collaboratives Artist Reference
+spanish_org_reference_form_id        = "3c055873-7d1c-484a-ac76-fa36851b1183"
+spanish_artist_reference_form_id     = "ead64d2b-1c55-4309-8c1c-ff2a059b3dd8"
+
+# Initial Field ID of the reference form - can have up to 9 additional artists
+spanish_reference_form_field_id_1    = "e605683e-1e36-4afc-80b0-4ed04fa1182a"
+spanish_reference_form_field_id_2    = "3d8a2e67-68e2-47c2-9625-f859377d067d"
+spanish_reference_form_field_id_3    = "e49bece9-ee68-45a3-b755-47e7c4621ac0"
+spanish_reference_form_field_id_4    = "4b226e41-a5b4-4345-9d8f-08e0d82e67ad"
+spanish_reference_form_field_id_5    = "abd4136b-5417-4e2a-a287-3b9fb5443521"
+spanish_reference_form_field_id_6    = "f98d2c52-1254-4805-8e2e-7302e90d5eb0"
+spanish_reference_form_field_id_7    = "043bb073-1341-40f2-a4c1-036b2da33d8b"
+spanish_reference_form_field_id_8    = "5547d788-929e-42cf-ba20-ced054b2650e"
+spanish_reference_form_field_id_9    = "af46238e-2182-4240-a232-7b884f1adf6c"
+
+spanish_reference_form_name_id       = "2434c406-1ea5-48e0-935a-51e65f7c179b"
+spanish_reference_form_dob_id        = "186190bc-113d-4490-a751-218314bdba29"
+spanish_reference_form_zipcode_id    = "0e846040-cf76-4609-a107-be4b911ab18e"
+
+# Spanish GI Project
+project_id_4                 = "a7bb7354-ad3f-4f3f-b80c-6f2b91e6b66a"  # Spanish Guaranteed Income for Artists 2022
+project_4_formId             = "e1f9bacd-558c-456a-ae19-195f80ce92bb"
+project_4_name_field_id      = "a0f1dbe5-5b21-4e75-92a6-779fa82b9fa1"
+project_4_dob_field_id       = "0afb92c1-b39f-4254-8b9a-a06422970138"
+project_4_zipcode_field_id   = "4d060802-23e9-44f4-b0ff-b68454797b07"
+
 
 # internal form
 internal_form_id            = "f2911a5d-1293-4f84-85b2-63ec0a1e6282"

@@ -29,6 +29,8 @@ class CreativesRebuildController:
         self.submittable  = Submittable()
         self.project_id_1 = config.project_id_1
         self.project_id_2 = config.project_id_2
+        self.project_id_3 = config.project_id_3
+        self.project_id_4 = config.project_id_4
         self.label_id_1   = config.dup_label_id
 
 
@@ -114,16 +116,18 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions()
+        # list_of_submissions = self.submittable.getListOfSubmissions()
         # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
+        # Spanish list of submissions
+        list_of_submissions = [23743726, 23743865, 23743761, 23743836]
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
-            # submission_id = sub_item
-            submission_id = sub_item.getSubmissionId()
-            project_id    = sub_item.getProjectId()
+            submission_id = sub_item
+            # submission_id = sub_item.getSubmissionId()
+            # project_id    = sub_item.getProjectId()
 
             '''
             # only used for re-runs 
@@ -141,7 +145,8 @@ class CreativesRebuildController:
 
 
             sub_response  = self.submittable.getSubmission(submission_id)
-            # project_id = sub_response.getProjectId()
+            project_id = sub_response.getProjectId()
+            print("project id", project_id)
 
             # check for Migrated label - skip submission if label is present
             check_labels  = sub_response.getLabels()
@@ -489,7 +494,7 @@ class CreativesRebuildController:
             single_select_options_250 = []
 
             # load database from project 1 (AEP)
-            if project_id == self.project_id_1:
+            if project_id == self.project_id_1 or project_id == self.project_id_3:
                 logger.info(f"project 1 - Submission {submission_id}")
                 ref_email = sub_response.getSubmitterEmail()
                 # print(f"ref email is: {ref_email}")
@@ -555,7 +560,7 @@ class CreativesRebuildController:
                         field_id = data.getFormFieldId()
                         # print(f"field_id: {field_id}")
 
-                        # Primary Artist UID | DOB-LastName-Zipcode
+                        # English (project-1) Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
                             primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         elif field_id == config.project_1_artist_dob:
@@ -564,10 +569,19 @@ class CreativesRebuildController:
                         elif field_id == config.project_1_artist_zipcode:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
+                        # Spanish (project-3) Primary Artist UID | DOB-LastName-Zipcode
+                        if field_id == config.project_3_name_field_id:
+                            primary_last_name = data.getFieldValue("SHORT_ANSWER")
+                        elif field_id == config.project_3_dob_field_id:
+                            date_string = data.getFieldValue("DATE")
+                            primary_dob = date_string[0:10]
+                        elif field_id == config.project_3_zipcode_field_id:
+                            primary_zip = data.getFieldValue("SHORT_ANSWER")
+
                         # local variable used to pull latest reference response data
                         date_1 = None
 
-                        # Reference from UIDs
+                        # English (project-1) Reference from UIDs
                         if field_id == config.reference_form_field_id_1:
                             for resp in reference_responses:
                                 # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
@@ -760,6 +774,205 @@ class CreativesRebuildController:
                                                 date_string = ref_data.getFieldValue("DATE")
                                                 collab_dob_9 = date_string[0:10]
                                             elif item_id == config.reference_form_zipcode_id:
+                                                collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
+                                        collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
+                                        collab_unique_id_9 = collab_unique_id_9.replace("-", "")
+                                        logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
+
+                        # Spanish (project-2) Reference from UIDs
+                        if field_id == config.spanish_reference_form_field_id_1:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_1 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 1: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_1 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_1 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_1 = str(collab_dob_1) + str(collab_last_name_1) + str(collab_zip_1)
+                                        collab_unique_id_1 = collab_unique_id_1.replace(" ", "")
+                                        collab_unique_id_1 = collab_unique_id_1.replace("-", "")
+                                        logger.info(f"collab_unique_id_1: {collab_unique_id_1}")
+
+                        elif field_id == config.spanish_reference_form_field_id_2:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_2 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 2: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_2 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_2 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_2 = str(collab_dob_2) + str(collab_last_name_2) + str(collab_zip_2)
+                                        collab_unique_id_2 = collab_unique_id_2.replace(" ", "")
+                                        collab_unique_id_2 = collab_unique_id_2.replace("-", "")
+                                        logger.info(f"collab_unique_id_2: {collab_unique_id_2}")
+
+                        elif field_id == config.spanish_reference_form_field_id_3:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_3 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 3: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_3 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_3 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_3 = str(collab_dob_3) + str(collab_last_name_3) + str(collab_zip_3)
+                                        collab_unique_id_3 = collab_unique_id_3.replace(" ", "")
+                                        collab_unique_id_3 = collab_unique_id_3.replace("-", "")
+                                        logger.info(f"collab_unique_id_3: {collab_unique_id_3}")
+
+                        elif field_id == config.spanish_reference_form_field_id_4:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 4: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_4 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 4: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_4 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_4 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_4 = str(collab_dob_4) + str(collab_last_name_4) + str(collab_zip_4)
+                                        collab_unique_id_4 = collab_unique_id_4.replace(" ", "")
+                                        collab_unique_id_4 = collab_unique_id_4.replace("-", "")
+                                        logger.info(f"collab_unique_id_4: {collab_unique_id_4}")
+
+                        elif field_id == config.spanish_reference_form_field_id_5:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 5: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_5 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 5: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_5 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_5 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_5 = str(collab_dob_5) + str(collab_last_name_5) + str(collab_zip_5)
+                                        collab_unique_id_5 = collab_unique_id_5.replace(" ", "")
+                                        collab_unique_id_5 = collab_unique_id_5.replace("-", "")
+                                        logger.info("collab_unique_id_5: {collab_unique_id_5}")
+
+                        elif field_id == config.spanish_reference_form_field_id_6:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 6: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_6 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 6: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_6 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_6 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_6 = str(collab_dob_6) + str(collab_last_name_6) + str(collab_zip_6)
+                                        collab_unique_id_6 = collab_unique_id_6.replace(" ", "")
+                                        collab_unique_id_6 = collab_unique_id_6.replace("-", "")
+                                        logger.info(f"collab_unique_id_6: {collab_unique_id_6}")
+
+                        elif field_id == config.spanish_reference_form_field_id_7:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 7: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_7 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 7: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_7 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_7 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_7 = str(collab_dob_7) + str(collab_last_name_7) + str(collab_zip_7)
+                                        collab_unique_id_7 = collab_unique_id_7.replace(" ", "")
+                                        collab_unique_id_7 = collab_unique_id_7.replace("-", "")
+                                        logger.info(f"collab_unique_id_7: {collab_unique_id_7}")
+
+                        elif field_id == config.spanish_reference_form_field_id_8:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 8: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_8 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 8: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_8 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                collab_zip_8 = ref_data.getFieldValue("SHORT_ANSWER")
+                                        collab_unique_id_8 = str(collab_dob_8) + str(collab_last_name_8) + str(collab_zip_8)
+                                        collab_unique_id_8 = collab_unique_id_8.replace(" ", "")
+                                        collab_unique_id_8 = collab_unique_id_8.replace("-", "")
+                                        logger.info(f"collab_unique_id_8: {collab_unique_id_8}")
+
+                        elif field_id == config.spanish_reference_form_field_id_9:
+                            for resp in reference_responses:
+                                # logger.info(f"ref response refEmail 9: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_9 and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            # logger.info(f"ref form data 9: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                collab_last_name_9 = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                collab_dob_9 = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
                                                 collab_zip_9 = ref_data.getFieldValue("SHORT_ANSWER")
                                         collab_unique_id_9 = str(collab_dob_9) + str(collab_last_name_9) + str(collab_zip_9)
                                         collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
@@ -2210,7 +2423,7 @@ class CreativesRebuildController:
                         logger.info(f"project 1 - failed to check unique id for submission: {submission_id}")
 
             # check project 2
-            elif project_id == self.project_id_2:
+            elif project_id == self.project_id_2 or project_id == self.project_id_4:
                 logger.info(f"project 2 - Submission {submission_id}")
                 # Skip submission if not in "new" or "in_progress" state
                 status = sub_response.getSubmissionStatus()
@@ -2235,13 +2448,22 @@ class CreativesRebuildController:
                         field_value = responses.getFieldResponse(field_id)
                         field_id    = field_value.getFormFieldId()
 
-                        # Primary Artist UID | DOB-LastName-Zipcode
+                        # English (project-1) Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_2_name_field_id:
                             primary_last_name = data.getFieldValue("SHORT_ANSWER")
                         elif field_id == config.project_2_dob_field_id:
                             date_string = data.getFieldValue("DATE")
                             primary_dob = date_string[0:10]
                         elif field_id == config.project_2_zipcode_field_id:
+                            primary_zip = data.getFieldValue("SHORT_ANSWER")
+
+                        # Spanish (project-4) Primary Artist UID | DOB-LastName-Zipcode
+                        if field_id == config.project_4_name_field_id:
+                            primary_last_name = data.getFieldValue("SHORT_ANSWER")
+                        elif field_id == config.project_4_dob_field_id:
+                            date_string = data.getFieldValue("DATE")
+                            primary_dob = date_string[0:10]
+                        elif field_id == config.project_4_zipcode_field_id:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
                         # map multi-select fields to internal form single select fields
