@@ -116,18 +116,18 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        # list_of_submissions = self.submittable.getListOfSubmissions()
+        list_of_submissions = self.submittable.getListOfSubmissions()
         # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
         # Spanish list of submissions
-        list_of_submissions = [23743726, 23743865, 23743761, 23743836]
+        # list_of_submissions = [23743726, 23743865, 23743761, 23743836]
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
-            submission_id = sub_item
-            # submission_id = sub_item.getSubmissionId()
-            # project_id    = sub_item.getProjectId()
+            # submission_id = sub_item
+            submission_id = sub_item.getSubmissionId()
+            project_id    = sub_item.getProjectId()
 
             '''
             # only used for re-runs 
@@ -145,7 +145,7 @@ class CreativesRebuildController:
 
 
             sub_response  = self.submittable.getSubmission(submission_id)
-            project_id = sub_response.getProjectId()
+            # project_id = sub_response.getProjectId()
             print("project id", project_id)
 
             # check for Migrated label - skip submission if label is present
