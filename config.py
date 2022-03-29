@@ -32,16 +32,16 @@ org_reference_form_id    = "8990f98a-7f90-49e8-819e-ef100781e11c"
 artist_reference_form_id = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
-reference_form_field_id_1    = "1ba4ed4d-b271-4409-b70a-76d151ce9b56"
-reference_form_field_id_2    = "b5baec8f-7ef1-41ce-bf3d-62524afc0546"
-reference_form_field_id_3    = "da35f4fc-3219-4731-91ed-3e5a46ddc4ef"
-reference_form_field_id_4    = "605e57c4-5488-4a75-a7ed-ad6399ee2085"
-reference_form_field_id_5    = "eed9b6d8-119d-41e2-8763-6054b56a145c"
-reference_form_field_id_6    = "99047e07-340b-4872-9f7e-3f9f08e29592"
-reference_form_field_id_7    = "68900200-361f-416c-8fb4-4a5de1a92f89"
-reference_form_field_id_8    = "53497706-6517-439c-83fd-430df1b8efac"
-reference_form_field_id_9    = "6290ab16-2344-4fcd-b794-bedc3b576903"
-reference_form_field_id_10   = "12b3eda5-25e6-45d8-bbee-4a8a37118ad9"
+# reference_form_field_id_1  = "1ba4ed4d-b271-4409-b70a-76d151ce9b56"  # org only
+reference_form_field_id_1    = "b5baec8f-7ef1-41ce-bf3d-62524afc0546"  # collab artist 2
+reference_form_field_id_2    = "da35f4fc-3219-4731-91ed-3e5a46ddc4ef"  # collab artist 3
+reference_form_field_id_3    = "605e57c4-5488-4a75-a7ed-ad6399ee2085"  # collab artist 4
+reference_form_field_id_4    = "eed9b6d8-119d-41e2-8763-6054b56a145c"  # collab artist 5
+reference_form_field_id_5    = "99047e07-340b-4872-9f7e-3f9f08e29592"  # collab artist 6
+reference_form_field_id_6    = "68900200-361f-416c-8fb4-4a5de1a92f89"  # collab artist 7
+reference_form_field_id_7    = "53497706-6517-439c-83fd-430df1b8efac"  # collab artist 8
+reference_form_field_id_8    = "6290ab16-2344-4fcd-b794-bedc3b576903"  # collab artist 9
+reference_form_field_id_9    = "12b3eda5-25e6-45d8-bbee-4a8a37118ad9"  # collab artist 10
 
 reference_form_name_id       = "2434c406-1ea5-48e0-935a-51e65f7c179b"
 reference_form_dob_id        = "186190bc-113d-4490-a751-218314bdba29"
@@ -66,16 +66,16 @@ spanish_org_reference_form_id        = "3c055873-7d1c-484a-ac76-fa36851b1183"
 spanish_artist_reference_form_id     = "ead64d2b-1c55-4309-8c1c-ff2a059b3dd8"
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
-spanish_reference_form_field_id_1     = "e605683e-1e36-4afc-80b0-4ed04fa1182a"
-spanish_reference_form_field_id_2     = "3d8a2e67-68e2-47c2-9625-f859377d067d"
-spanish_reference_form_field_id_3     = "e49bece9-ee68-45a3-b755-47e7c4621ac0"
-spanish_reference_form_field_id_4     = "4b226e41-a5b4-4345-9d8f-08e0d82e67ad"
-spanish_reference_form_field_id_5     = "abd4136b-5417-4e2a-a287-3b9fb5443521"
-spanish_reference_form_field_id_6     = "f98d2c52-1254-4805-8e2e-7302e90d5eb0"
-spanish_reference_form_field_id_7     = "043bb073-1341-40f2-a4c1-036b2da33d8b"
-spanish_reference_form_field_id_8     = "5547d788-929e-42cf-ba20-ced054b2650e"
-spanish_reference_form_field_id_9     = "af46238e-2182-4240-a232-7b884f1adf6c"
-spanish_reference_form_field_id_10    = "dc53b61f-1fe2-459b-a091-486ed8a20fcc"
+# spanish_reference_form_field_id_1   = "e605683e-1e36-4afc-80b0-4ed04fa1182a"  # org only
+spanish_reference_form_field_id_1     = "3d8a2e67-68e2-47c2-9625-f859377d067d"  # collab artist 2
+spanish_reference_form_field_id_2     = "e49bece9-ee68-45a3-b755-47e7c4621ac0"  # collab artist 3
+spanish_reference_form_field_id_3     = "4b226e41-a5b4-4345-9d8f-08e0d82e67ad"  # collab artist 4
+spanish_reference_form_field_id_4     = "abd4136b-5417-4e2a-a287-3b9fb5443521"  # collab artist 5
+spanish_reference_form_field_id_5     = "f98d2c52-1254-4805-8e2e-7302e90d5eb0"  # collab artist 6
+spanish_reference_form_field_id_6     = "043bb073-1341-40f2-a4c1-036b2da33d8b"  # collab artist 7
+spanish_reference_form_field_id_7     = "5547d788-929e-42cf-ba20-ced054b2650e"  # collab artist 8
+spanish_reference_form_field_id_8     = "af46238e-2182-4240-a232-7b884f1adf6c"  # collab artist 9
+spanish_reference_form_field_id_9     = "dc53b61f-1fe2-459b-a091-486ed8a20fcc"  # collab artist 10
 
 spanish_reference_form_name_id       = "2434c406-1ea5-48e0-935a-51e65f7c179b"
 spanish_reference_form_dob_id        = "186190bc-113d-4490-a751-218314bdba29"

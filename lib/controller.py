@@ -101,8 +101,6 @@ class CreativesRebuildController:
                     return item["submission_id"]
                 elif item["collab_unique_id_9"] == uid_to_check:
                     return item["submission_id"]
-                elif item["collab_unique_id_10"] == uid_to_check:
-                    return item["submission_id"]
         else:
             return None
 
@@ -118,18 +116,19 @@ class CreativesRebuildController:
 
         # build up submission id list
         # get all submission for project 1 & project 2 in "new" and "in_progress" states
-        list_of_submissions = self.submittable.getListOfSubmissions()
+        # list_of_submissions = self.submittable.getListOfSubmissions()
         # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
         # Spanish list of submissions
         # list_of_submissions = [23788978, 23232315, 23796961, 23796922]
+        list_of_submissions = [23748643]
 
         # get list of reference form responses
         reference_responses = self.submittable.getReferenceResponses()
 
         for sub_item in list_of_submissions:
-            # submission_id = sub_item
-            submission_id = sub_item.getSubmissionId()
-            project_id    = sub_item.getProjectId()
+            submission_id = sub_item
+            # submission_id = sub_item.getSubmissionId()
+            # project_id    = sub_item.getProjectId()
 
             '''
             # only used for re-runs 
@@ -151,7 +150,7 @@ class CreativesRebuildController:
                 logger.info(f"failed to get submission {submission_id}")
                 # go to next submission
                 continue
-            # project_id = sub_response.getProjectId()
+            project_id = sub_response.getProjectId()
             # print("project id", project_id)
 
             # check for Migrated label - skip submission if label is present
@@ -558,11 +557,6 @@ class CreativesRebuildController:
                     collab_zip_9       = None
                     collab_unique_id_9 = None
 
-                    collab_last_name_10 = None
-                    collab_dob_10       = None
-                    collab_zip_10       = None
-                    collab_unique_id_10 = None
-
                     # Pull the initial forms response data
                     field_data = response.getFieldData()
 
@@ -593,6 +587,7 @@ class CreativesRebuildController:
                         date_1 = None
 
                         # English (project-1) Reference from UIDs
+                        # reference_form_field_id_1 is the form filed ID for artist collaborator ID
                         if field_id == config.reference_form_field_id_1:
                             for resp in reference_responses:
                                 # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
@@ -790,28 +785,6 @@ class CreativesRebuildController:
                                         collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
                                         collab_unique_id_9 = collab_unique_id_9.replace("-", "")
                                         logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
-
-                        elif field_id == config.reference_form_field_id_10:
-                            for resp in reference_responses:
-                                # logger.info(f"ref response refEmail 10: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.reference_form_field_id_10 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
-                                        ref_field_data = resp.getFieldData()
-                                        for ref_data in ref_field_data:
-                                            # logger.info(f"ref form data 10: {ref_data}")
-                                            item_id = ref_data.getFormFieldId()
-                                            if item_id == config.reference_form_name_id:
-                                                collab_last_name_10 = ref_data.getFieldValue("SHORT_ANSWER")
-                                            elif item_id == config.reference_form_dob_id:
-                                                date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_10 = date_string[0:10]
-                                            elif item_id == config.reference_form_zipcode_id:
-                                                collab_zip_10 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_10 = str(collab_dob_10) + str(collab_last_name_10) + str(collab_zip_10)
-                                        collab_unique_id_10 = collab_unique_id_10.replace(" ", "")
-                                        collab_unique_id_10 = collab_unique_id_10.replace("-", "")
-                                        logger.info(f"collab_unique_id_10: {collab_unique_id_10}")
 
                         # Spanish (project-2) Reference from UIDs
                         if field_id == config.spanish_reference_form_field_id_1:
@@ -1011,28 +984,6 @@ class CreativesRebuildController:
                                         collab_unique_id_9 = collab_unique_id_9.replace(" ", "")
                                         collab_unique_id_9 = collab_unique_id_9.replace("-", "")
                                         logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
-
-                        elif field_id == config.spanish_reference_form_field_id_10:
-                            for resp in reference_responses:
-                                # logger.info(f"ref response refEmail 10: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                if resp.getFormFieldId() == config.spanish_reference_form_field_id_10 and ref_email == resp.getRefEmail():
-                                    if date_1 is None or date_1 < resp.getCreatedAt():
-                                        date_1 = resp.getCreatedAt()
-                                        ref_field_data = resp.getFieldData()
-                                        for ref_data in ref_field_data:
-                                            # logger.info(f"ref form data 10: {ref_data}")
-                                            item_id = ref_data.getFormFieldId()
-                                            if item_id == config.spanish_reference_form_name_id:
-                                                collab_last_name_10 = ref_data.getFieldValue("SHORT_ANSWER")
-                                            elif item_id == config.spanish_reference_form_dob_id:
-                                                date_string = ref_data.getFieldValue("DATE")
-                                                collab_dob_10 = date_string[0:10]
-                                            elif item_id == config.spanish_reference_form_zipcode_id:
-                                                collab_zip_10 = ref_data.getFieldValue("SHORT_ANSWER")
-                                        collab_unique_id_10 = str(collab_dob_10) + str(collab_last_name_10) + str(collab_zip_10)
-                                        collab_unique_id_10 = collab_unique_id_10.replace(" ", "")
-                                        collab_unique_id_10 = collab_unique_id_10.replace("-", "")
-                                        logger.info(f"collab_unique_id_10: {collab_unique_id_10}")
 
                         # map multi-select fields to internal form single select fields
                         #
@@ -2318,11 +2269,11 @@ class CreativesRebuildController:
                     logger.info(f"project 1 - primary_unique_id: {primary_unique_id} sub id: {submission_id}")
 
                     # check for duplicate collaborator ids internal to the submission
-                    id_list_check = [primary_unique_id, collab_unique_id_1,
+                    id_list_check = [primary_unique_id,  collab_unique_id_1,
                                      collab_unique_id_2, collab_unique_id_3,
                                      collab_unique_id_4, collab_unique_id_5,
                                      collab_unique_id_6, collab_unique_id_7,
-                                     collab_unique_id_8, collab_unique_id_9, collab_unique_id_10]
+                                     collab_unique_id_8, collab_unique_id_9]
 
                     # logger.info(f"id list: {id_list_check}")
 
@@ -2409,7 +2360,7 @@ class CreativesRebuildController:
                                single_select_options_245, single_select_options_246, single_select_options_247,   single_select_options_248,
                                single_select_options_249, single_select_options_250, collab_unique_id_1,          collab_unique_id_2,
                                collab_unique_id_3,        collab_unique_id_4,        collab_unique_id_5,          collab_unique_id_6,
-                               collab_unique_id_7,        collab_unique_id_8,        collab_unique_id_9,          collab_unique_id_10)
+                               collab_unique_id_7,        collab_unique_id_8,        collab_unique_id_9)
 
                     except:
                         logger.info(f"project 1 - failed to create internal form for submission {submission_id}")
@@ -2427,7 +2378,6 @@ class CreativesRebuildController:
                             uid_check_sub_id_8  = self.uid_chcek(collab_unique_id_7)
                             uid_check_sub_id_9  = self.uid_chcek(collab_unique_id_8)
                             uid_check_sub_id_10 = self.uid_chcek(collab_unique_id_9)
-                            uid_check_sub_id_11 = self.uid_chcek(collab_unique_id_10)
 
                             if uid_check_sub_id_1 is not None:
                                 logger.info(f"project 1 - dup found  sub id: {submission_id}")
@@ -2451,7 +2401,7 @@ class CreativesRebuildController:
                                 logger.info(f"project 1 - collab_unique_id_7 dup found sub id: {submission_id}")
                                 self.label_dups(submission_id, uid_check_sub_id_7)
                             elif uid_check_sub_id_8 is not None:
-                                logger.info(f"project 1 - collab_unique_id_7 dup found sub id: {submission_id}")
+                                logger.info(f"project 1 - collab_unique_id_8 dup found sub id: {submission_id}")
                                 self.label_dups(submission_id, uid_check_sub_id_8)
                             elif uid_check_sub_id_9 is not None:
                                 logger.info(f"project 1 - collab_unique_id_8 dup found sub id: {submission_id}")
@@ -2459,9 +2409,6 @@ class CreativesRebuildController:
                             elif uid_check_sub_id_10 is not None:
                                 logger.info(f"project 1 - collab_unique_id_9 dup found sub id: {submission_id}")
                                 self.label_dups(submission_id, uid_check_sub_id_10)
-                            elif uid_check_sub_id_11 is not None:
-                                logger.info(f"project 1 - collab_unique_id_10 dup found sub id: {submission_id}")
-                                self.label_dups(submission_id, uid_check_sub_id_11)
 
                             logger.info(f"project 1 - save to dict {primary_unique_id} sub id {submission_id}")
                             config.uid_data_struct.append({'submission_id':      submission_id,      'primary_unique_id':  primary_unique_id,
@@ -2469,7 +2416,7 @@ class CreativesRebuildController:
                                                            'collab_unique_id_3': collab_unique_id_3, 'collab_unique_id_4': collab_unique_id_4,
                                                            'collab_unique_id_5': collab_unique_id_5, 'collab_unique_id_6': collab_unique_id_6,
                                                            'collab_unique_id_7': collab_unique_id_7, 'collab_unique_id_8': collab_unique_id_8,
-                                                           'collab_unique_id_9': collab_unique_id_9, 'collab_unique_id_10': collab_unique_id_10})
+                                                           'collab_unique_id_9': collab_unique_id_9})
 
 
                             # go to next response
@@ -3895,7 +3842,7 @@ class CreativesRebuildController:
                                                            'collab_unique_id_3': None,     'collab_unique_id_4': None,
                                                            'collab_unique_id_5': None,     'collab_unique_id_6': None,
                                                            'collab_unique_id_7': None,     'collab_unique_id_8': None,
-                                                           'collab_unique_id_9': None,     'collab_unique_id_10': None})
+                                                           'collab_unique_id_9': None})
                             break
                         else:
                             # skip submission missing UID field(s)

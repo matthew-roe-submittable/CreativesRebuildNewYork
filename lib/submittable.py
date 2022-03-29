@@ -183,7 +183,7 @@ class Submittable:
                                    single_select_options_245, single_select_options_246, single_select_options_247,   single_select_options_248,
                                    single_select_options_249, single_select_options_250, collab_unique_id_1=None,     collab_unique_id_2=None,
                                    collab_unique_id_3=None,   collab_unique_id_4=None,   collab_unique_id_5=None,     collab_unique_id_6=None,
-                                   collab_unique_id_7=None,   collab_unique_id_8=None,   collab_unique_id_9=None,     collab_unique_id_10=None):
+                                   collab_unique_id_7=None,   collab_unique_id_8=None,   collab_unique_id_9=None):
         time.sleep(0.1)
         logger.info(f"create internal form {submission_id}")
         endpoint = f'https://submittable-api.submittable.com/beta/entries/internal'
@@ -239,11 +239,6 @@ class Submittable:
                            "fieldType": "short_answer",
                            "formFieldId": config.internal_form_field_id_10,
                            "value": collab_unique_id_9
-                       },
-                       {
-                           "fieldType": "short_answer",
-                           "formFieldId": config.internal_form_field_id_11,
-                           "value": collab_unique_id_10
                        },
                        {
                            "options": single_select_options_1,
@@ -1621,7 +1616,7 @@ class Submittable:
             logger.info(f"total pages:{total_pages}")
         for page in range(0, total_pages):
             # self.event.wait(0.1)
-            time.sleep(0.1)
+            # time.sleep(0.1)
             if page == total_pages:
                 break
             nextPage = page + 1
