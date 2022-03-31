@@ -1601,11 +1601,11 @@ class Submittable:
 
     @sleep_and_retry
     @limits(calls=10, period=1)
-    def getReferenceResponses(self):
+    def getReferenceResponses(self, ref_form_id):
         ref_responses = []
         page_size = 1
         # total_pages = 522
-        endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page=177&pageSize={page_size}'
+        endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page=117&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print(response.json())
@@ -1620,7 +1620,7 @@ class Submittable:
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{config.artist_reference_form_id}?page={nextPage}&pageSize={page_size}'
+            endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             # print("ref form resp", response.json())
@@ -2362,6 +2362,9 @@ class SubmittableFieldData:
             value = self.getValue()
         elif response_field_type == "SHORT_ANSWER":
             value = self.getValue()
+        elif response_field_type == "SINGLE_RESPONSE":
+            value = self.payload['options']
+            value = value[0]
         else:
             value = None
         # print("get field value", value)

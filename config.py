@@ -32,7 +32,7 @@ org_reference_form_id    = "8990f98a-7f90-49e8-819e-ef100781e11c"
 artist_reference_form_id = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
-# reference_form_field_id_1  = "1ba4ed4d-b271-4409-b70a-76d151ce9b56"  # org only
+org_reference_form_field_id  = "1ba4ed4d-b271-4409-b70a-76d151ce9b56"  # org only
 reference_form_field_id_1    = "b5baec8f-7ef1-41ce-bf3d-62524afc0546"  # collab artist 2
 reference_form_field_id_2    = "da35f4fc-3219-4731-91ed-3e5a46ddc4ef"  # collab artist 3
 reference_form_field_id_3    = "605e57c4-5488-4a75-a7ed-ad6399ee2085"  # collab artist 4
@@ -88,6 +88,15 @@ project_4_name_field_id      = "a0f1dbe5-5b21-4e75-92a6-779fa82b9fa1"
 project_4_dob_field_id       = "0afb92c1-b39f-4254-8b9a-a06422970138"
 project_4_zipcode_field_id   = "4d060802-23e9-44f4-b0ff-b68454797b07"
 
+# Org or Artist (English)
+org_or_artist_field_id       = "04a1f75a-31f5-4e3a-8f60-10a503c0939f"
+org_or_artist_field_option_1 = "e3327582-06b5-40e4-8684-4e484ba1e793"  # organization option
+org_or_artist_field_option_2 = "a36e0dc6-a3d4-451d-8f41-713def6da95f"  # artist option
+
+# Org or Artist (Spanish)
+spanish_org_or_artist_field_id       = "280a2f2b-77a6-4594-b1f5-81f0046213f2"
+spanish_org_or_artist_field_option_1 = "d24a4852-518e-462d-991b-cc8bb7117510"  # organization option
+spanish_org_or_artist_field_option_2 = "0ffe3184-c124-4ed0-9823-fee03dcc6ed5"  # artist option
 
 # internal form
 internal_form_id            = "f2911a5d-1293-4f84-85b2-63ec0a1e6282"
