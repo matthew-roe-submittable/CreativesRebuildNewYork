@@ -570,7 +570,9 @@ class CreativesRebuildController:
 
                         # local variable used to pull latest reference response data
                         date_1 = None
-                        
+                        # AEP Orginization ref forms
+
+                        '''
                         # check for org or artist
                         # if org create artist UID from required ref form
                         # English (project-1) Org Artist Reference from UID
@@ -625,6 +627,7 @@ class CreativesRebuildController:
                                             primary_unique_id = primary_unique_id.replace(" ", "")
                                             primary_unique_id = primary_unique_id.replace("-", "")
                                             logger.info(f"org primary UID: {primary_unique_id}")
+                        '''
 
                         # English (project-1) Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
