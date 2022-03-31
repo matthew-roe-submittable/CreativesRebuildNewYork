@@ -28,8 +28,8 @@ project_1_artist_zipcode    = "254429d2-640b-4c8b-9839-73c3e5ba12a7"
 project_1_artist_dob        = "a3c4efb3-c45b-4efc-bee5-6b5c94ed2592"
 
 # Collaboratives Artist Reference
-org_reference_form_id    = "8990f98a-7f90-49e8-819e-ef100781e11c"
-artist_reference_form_id = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"
+org_reference_form_id    = "8990f98a-7f90-49e8-819e-ef100781e11c"  # used in api cal to pull list of subs
+artist_reference_form_id = "a5a47e3e-1aae-4eee-808f-d580aa38fb21"  # used in api cal to pull list of subs
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
 org_reference_form_field_id  = "1ba4ed4d-b271-4409-b70a-76d151ce9b56"  # org only
@@ -43,6 +43,7 @@ reference_form_field_id_7    = "53497706-6517-439c-83fd-430df1b8efac"  # collab 
 reference_form_field_id_8    = "6290ab16-2344-4fcd-b794-bedc3b576903"  # collab artist 9
 reference_form_field_id_9    = "12b3eda5-25e6-45d8-bbee-4a8a37118ad9"  # collab artist 10
 
+# reference form field IDs for UID creation
 reference_form_name_id       = "2434c406-1ea5-48e0-935a-51e65f7c179b"
 reference_form_dob_id        = "186190bc-113d-4490-a751-218314bdba29"
 reference_form_zipcode_id    = "0e846040-cf76-4609-a107-be4b911ab18e"
@@ -61,12 +62,12 @@ project_3_name_field_id      = "819a8612-50f6-4c5c-9018-c9c78e2bbbbb"
 project_3_dob_field_id       = "3de847d5-65ad-48c8-b383-46a980590a50"
 project_3_zipcode_field_id   = "dbedc0f1-6ad6-42d0-a2a4-27416c83faf6"
 
-# Spanish Collaboratives Artist Reference
-spanish_org_reference_form_id        = "3c055873-7d1c-484a-ac76-fa36851b1183"
-spanish_artist_reference_form_id     = "ead64d2b-1c55-4309-8c1c-ff2a059b3dd8"
+# Spanish Collaboratives Artist Reference Form Field IDs
+spanish_org_collab_reference_form_id        = "3c055873-7d1c-484a-ac76-fa36851b1183" # not used
+spanish_artist_collab_reference_form_id     = "ead64d2b-1c55-4309-8c1c-ff2a059b3dd8"
 
 # Initial Field ID of the reference form - can have up to 9 additional artists
-# spanish_reference_form_field_id_1   = "e605683e-1e36-4afc-80b0-4ed04fa1182a"  # org only
+spanish_org_reference_form_field_id   = "e605683e-1e36-4afc-80b0-4ed04fa1182a"  # org only
 spanish_reference_form_field_id_1     = "3d8a2e67-68e2-47c2-9625-f859377d067d"  # collab artist 2
 spanish_reference_form_field_id_2     = "e49bece9-ee68-45a3-b755-47e7c4621ac0"  # collab artist 3
 spanish_reference_form_field_id_3     = "4b226e41-a5b4-4345-9d8f-08e0d82e67ad"  # collab artist 4

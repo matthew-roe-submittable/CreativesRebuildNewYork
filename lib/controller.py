@@ -120,7 +120,7 @@ class CreativesRebuildController:
         # list_of_submissions = [23232315, 23231955, 23231915, 23231871, 23231790, 23231747, 23231718, 23231708, 23231687, 23231587, 23231570, 23231567, 23231523, 23217200]
         # Spanish list of submissions
         # list_of_submissions = [23788978, 23232315, 23796961, 23796922]
-        list_of_submissions = [23797649, 23748643, 23780089, 23781859, 23793637, 23797672, 22637576, 23797048, 23797017, 23796980, 23796979]
+        list_of_submissions = [23846077, 23846108, 23797649, 23748643, 23780089, 23781859, 23793637, 23797672, 22637576, 23797048, 23797017, 23796980, 23796979]
 
         # get list of reference form responses
         artist_reference_responses = self.submittable.getReferenceResponses(config.artist_reference_form_id)
@@ -149,7 +149,7 @@ class CreativesRebuildController:
             try:
                 sub_response  = self.submittable.getSubmission(submission_id)
             except ValueError:
-                logger.info(f"failed to get submission {submission_id}")
+                logger.info(f"failed to get submission {submission_id} skip to next sub")
                 # go to next submission
                 continue
             project_id = sub_response.getProjectId()
@@ -163,12 +163,12 @@ class CreativesRebuildController:
                     set_break = True
             if set_break:
                 # skip submission
-                logger.info(f"migrated label found - skip {submission_id}")
+                logger.info(f"migrated label found - skip {submission_id} skip to next sub")
                 continue
 
-
-            # get submission form responses (initial)
+            # get initial form responses
             response_list = sub_response.getFormResponses()
+
             # print(f"response list length: {len(response_list)}")
 
             # for each submission clear the options list
@@ -503,7 +503,11 @@ class CreativesRebuildController:
 
             # check for project 1 and 3 (AEP)
             if project_id == self.project_id_1 or project_id == self.project_id_3:
-                logger.info(f"project 1 - Submission {submission_id}")
+                if project_id == self.project_id_1:
+                    logger.info(f"project 1 - Submission {submission_id}")
+                elif project_id == self.project_id_3:
+                    logger.info(f"project 3 - Submission {submission_id}")
+
                 ref_email = sub_response.getSubmitterEmail()
                 # print(f"ref email is: {ref_email}")
 
@@ -560,7 +564,7 @@ class CreativesRebuildController:
                     collab_zip_9       = None
                     collab_unique_id_9 = None
 
-                    # Pull the initial forms response data
+                    # Pull the initial form response data
                     field_data = response.getFieldData()
 
                     # Get the primary artist UID fields
@@ -570,64 +574,16 @@ class CreativesRebuildController:
 
                         # local variable used to pull latest reference response data
                         date_1 = None
-                        # AEP Orginization ref forms
 
-                        '''
-                        # check for org or artist
-                        # if org create artist UID from required ref form
-                        # English (project-1) Org Artist Reference from UID
-                        # org_reference_form_field_id is the form filed ID for required artist collaborator
+                        # check if its an Artist or Organization (brnching)
                         if field_id == config.org_or_artist_field_id:
                             artist_or_org = data.getFieldValue("SINGLE_RESPONSE")
-                            if artist_or_org == config.org_or_artist_field_option_2:
-                                logger.info(f"orginization {submission_id}")
-                                for resp in reference_responses:
-                                    # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                    # logger.info(f"ref field id: {resp.getFormFieldId()}, config ref field id: {config.org_reference_form_field_id }")
-                                    if resp.getFormFieldId() == config.org_reference_form_field_id and ref_email == resp.getRefEmail():
-                                        if date_1 is None or date_1 < resp.getCreatedAt():
-                                            date_1 = resp.getCreatedAt()
-                                            ref_field_data = resp.getFieldData()
-                                            for ref_data in ref_field_data:
-                                                logger.info(f"org ref form data: {ref_data}")
-                                                item_id = ref_data.getFormFieldId()
-                                                if item_id == config.reference_form_name_id:
-                                                    primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
-                                                elif item_id == config.reference_form_dob_id:
-                                                    date_string = ref_data.getFieldValue("DATE")
-                                                    primary_dob = date_string[0:10]
-                                                elif item_id == config.reference_form_zipcode_id:
-                                                    primary_zip = ref_data.getFieldValue("SHORT_ANSWER")
-                                            primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
-                                            primary_unique_id = primary_unique_id.replace(" ", "")
-                                            primary_unique_id = primary_unique_id.replace("-", "")
-                                            logger.info(f"org required artist primary UID: {primary_unique_id}")
-
-                        # Spanish
+                            if artist_or_org == config.spanish_org_or_artist_field_option_2:
+                                logger.info(f"orginization submission {submission_id}")
                         if field_id == config.spanish_org_or_artist_field_id:
                             artist_or_org = data.getFieldValue("SINGLE_RESPONSE")
                             if artist_or_org == config.spanish_org_or_artist_field_option_2:
-                                for resp in reference_responses:
-                                    # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
-                                    if resp.getFormFieldId() == config.spanish_org_reference_form_id and ref_email == resp.getRefEmail():
-                                        if date_1 is None or date_1 < resp.getCreatedAt():
-                                            date_1 = resp.getCreatedAt()
-                                            ref_field_data = resp.getFieldData()
-                                            for ref_data in ref_field_data:
-                                                logger.info(f"ref form data 1: {ref_data}")
-                                                item_id = ref_data.getFormFieldId()
-                                                if item_id == config.spanish_reference_form_name_id:
-                                                    primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
-                                                elif item_id == config.spanish_reference_form_dob_id:
-                                                    date_string = ref_data.getFieldValue("DATE")
-                                                    primary_dob = date_string[0:10]
-                                                elif item_id == config.spanish_reference_form_zipcode_id:
-                                                    primary_zip = ref_data.getFieldValue("SHORT_ANSWER")
-                                            primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
-                                            primary_unique_id = primary_unique_id.replace(" ", "")
-                                            primary_unique_id = primary_unique_id.replace("-", "")
-                                            logger.info(f"org primary UID: {primary_unique_id}")
-                        '''
+                                logger.info(f"spanish orginization submission {submission_id}")
 
                         # English (project-1) Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_1_artist_last_name:
@@ -647,11 +603,58 @@ class CreativesRebuildController:
                         elif field_id == config.project_3_zipcode_field_id:
                             primary_zip = data.getFieldValue("SHORT_ANSWER")
 
+                        # AEP Organization branch option
+                        if field_id == config.org_reference_form_field_id:
+                            for resp in reference_responses:
+                                logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref field id: {resp.getFormFieldId()}, config ref field id: {config.org_reference_form_field_id }")
+                                if resp.getFormFieldId() == config.org_reference_form_field_id and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"org ref form data: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.reference_form_name_id:
+                                                primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                primary_dob = date_string[0:10]
+                                            elif item_id == config.reference_form_zipcode_id:
+                                                primary_zip = ref_data.getFieldValue("SHORT_ANSWER")
+                                        primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+                                        primary_unique_id = primary_unique_id.replace(" ", "")
+                                        primary_unique_id = primary_unique_id.replace("-", "")
+                                        logger.info(f"orginiization required artist primary UID: {primary_unique_id}")
+
+                        # Spanish
+                        if field_id == config.spanish_artist_collab_reference_form_id:
+                            for resp in reference_responses:
+                                logger.info(f"spanish ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                if resp.getFormFieldId() == config.spanish_artist_collab_reference_form_id and ref_email == resp.getRefEmail():
+                                    if date_1 is None or date_1 < resp.getCreatedAt():
+                                        date_1 = resp.getCreatedAt()
+                                        ref_field_data = resp.getFieldData()
+                                        for ref_data in ref_field_data:
+                                            logger.info(f"spanish ref form data 1: {ref_data}")
+                                            item_id = ref_data.getFormFieldId()
+                                            if item_id == config.spanish_reference_form_name_id:
+                                                primary_last_name = ref_data.getFieldValue("SHORT_ANSWER")
+                                            elif item_id == config.spanish_reference_form_dob_id:
+                                                date_string = ref_data.getFieldValue("DATE")
+                                                primary_dob = date_string[0:10]
+                                            elif item_id == config.spanish_reference_form_zipcode_id:
+                                                primary_zip = ref_data.getFieldValue("SHORT_ANSWER")
+                                        primary_unique_id = str(primary_dob) + str(primary_last_name) + str(primary_zip)
+                                        primary_unique_id = primary_unique_id.replace(" ", "")
+                                        primary_unique_id = primary_unique_id.replace("-", "")
+                                        logger.info(f"spanish orginization primary UID: {primary_unique_id}")
+
                         # English (project-1) Reference from UIDs
-                        # reference_form_field_id_1 is the form filed ID for artist collaborator ID
                         if field_id == config.reference_form_field_id_1:
                             for resp in reference_responses:
-                                # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref field id: {resp.getFormFieldId()}, config ref field id: {config.org_reference_form_field_id }")
                                 if resp.getFormFieldId() == config.reference_form_field_id_1 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
@@ -673,13 +676,14 @@ class CreativesRebuildController:
 
                         elif field_id == config.reference_form_field_id_2:
                             for resp in reference_responses:
-                                # logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref response refEmail 2: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref field id: {resp.getFormFieldId()}, config ref field id: {config.org_reference_form_field_id }")
                                 if resp.getFormFieldId() == config.reference_form_field_id_2 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            # logger.info(f"ref form data 2: {ref_data}")
+                                            logger.info(f"ref form data 2: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_2 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -695,13 +699,13 @@ class CreativesRebuildController:
 
                         elif field_id == config.reference_form_field_id_3:
                             for resp in reference_responses:
-                                # logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
+                                logger.info(f"ref response refEmail 3: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 if resp.getFormFieldId() == config.reference_form_field_id_3 and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()
                                         ref_field_data = resp.getFieldData()
                                         for ref_data in ref_field_data:
-                                            # logger.info(f"ref form data 3: {ref_data}")
+                                            logger.info(f"ref form data 3: {ref_data}")
                                             item_id = ref_data.getFormFieldId()
                                             if item_id == config.reference_form_name_id:
                                                 collab_last_name_3 = ref_data.getFieldValue("SHORT_ANSWER")
@@ -847,7 +851,7 @@ class CreativesRebuildController:
                                         collab_unique_id_9 = collab_unique_id_9.replace("-", "")
                                         logger.info(f"collab_unique_id_9: {collab_unique_id_9}")
 
-                        # Spanish (project-2) Reference from UIDs
+                        # Spanish (project-1) Reference from UIDs
                         if field_id == config.spanish_reference_form_field_id_1:
                             for resp in reference_responses:
                                 # logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
@@ -2479,7 +2483,6 @@ class CreativesRebuildController:
                                                            'collab_unique_id_7': collab_unique_id_7, 'collab_unique_id_8': collab_unique_id_8,
                                                            'collab_unique_id_9': collab_unique_id_9})
 
-
                             # go to next response
                             break
                         else:
@@ -2494,7 +2497,10 @@ class CreativesRebuildController:
 
             # check project 2
             elif project_id == self.project_id_2 or project_id == self.project_id_4:
-                logger.info(f"project 2 - Submission {submission_id}")
+                if project_id == self.project_id_2:
+                    logger.info(f"project 2 - Submission {submission_id}")
+                elif project_id == self.project_id_4:
+                    logger.info(f"project 4 - Submission {submission_id}")
 
                 # get each submission form responses
                 for response in response_list:
@@ -2504,15 +2510,13 @@ class CreativesRebuildController:
                     primary_zip        = None
                     primary_unique_id  = None
 
-                    form_id    = response.getFormId()
-                    responses  = sub_response.getFormResponse(form_id)
-                    field_data = responses.getFieldData()
+                    # form_id    = response.getFormId()
+                    # responses  = sub_response.getFormResponse(form_id)
+                    field_data = response.getFieldData()
 
                     for data in field_data:
                         # logger.info(f"project 2 - data in field_data {data}")
                         field_id    = data.getFormFieldId()
-                        field_value = responses.getFieldResponse(field_id)
-                        field_id    = field_value.getFormFieldId()
 
                         # English GI (project-1) Primary Artist UID | DOB-LastName-Zipcode
                         if field_id == config.project_2_name_field_id:
@@ -3899,15 +3903,17 @@ class CreativesRebuildController:
                                                            'collab_unique_id_5': None,     'collab_unique_id_6': None,
                                                            'collab_unique_id_7': None,     'collab_unique_id_8': None,
                                                            'collab_unique_id_9': None})
+                            # go to next submission
                             break
                         else:
                             # skip submission missing UID field(s)
                             logger.info(f"project 2 - primary UID field Null: {primary_unique_id} for submission: {submission_id}")
-                            # go to next response
+                            # go to next submission
                             break
                     except:
                         # log the failure
                         logger.info(f"project 2 - failed to check unique id for submission: {primary_unique_id} for submission: {submission_id}")
+                        # go to next submission
                         break
 
         # log the completed list of UIDs
