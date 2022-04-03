@@ -123,6 +123,7 @@ class CreativesRebuildController:
         list_of_submissions = [23846077, 23846108, 23797649, 23748643, 23780089, 23781859, 23793637, 23797672, 22637576, 23797048, 23797017, 23796980, 23796979]
 
         # get list of reference form responses
+        # MATTS EDIT - changed getReferenceResponses to use beta endpoint, etc.
         artist_reference_responses = self.submittable.getReferenceResponses(config.artist_reference_form_id)
         org_reference_responses    = self.submittable.getReferenceResponses(config.org_reference_form_id)
         reference_responses        = org_reference_responses + artist_reference_responses
@@ -147,6 +148,7 @@ class CreativesRebuildController:
             '''
 
             try:
+                # MATTS EDIT - change to beta getSubmission, changed the getSubmission function/class/whatever
                 sub_response  = self.submittable.getSubmission(submission_id)
             except ValueError:
                 logger.info(f"failed to get submission {submission_id} skip to next sub")
@@ -167,7 +169,8 @@ class CreativesRebuildController:
                 continue
 
             # get initial form responses
-            response_list = sub_response.getFormResponses()
+            # MATTS EDIT - .getFormResponses() to .getFormEntries()
+            response_list = sub_response.getFormEntries()
 
             # print(f"response list length: {len(response_list)}")
 
@@ -508,8 +511,13 @@ class CreativesRebuildController:
                 elif project_id == self.project_id_3:
                     logger.info(f"project 3 - Submission {submission_id}")
 
-                ref_email = sub_response.getSubmitterEmail()
+                # MATTS EDIT - is this an incorrect setting of ref email to submitter email??
+                # ref_email = sub_response.getSubmitterEmail()
                 # print(f"ref email is: {ref_email}")
+                # MATTS EDIT - need to set a different variable per each specific reference field
+                # MATTS EDIT - ref_entry_id = field.referenceEntryId
+                # MATTS EDIT - which is utilizing a new key value pair included in the 'Get a Submission' call
+                # MATTS EDIT - in a PR monday 4/4/22 hopefully?
 
                 # go through initial form response list
                 for response in response_list:
@@ -608,6 +616,10 @@ class CreativesRebuildController:
                             for resp in reference_responses:
                                 logger.info(f"ref response refEmail 1: {resp.getRefEmail()}, ref_email: {ref_email}")
                                 logger.info(f"ref field id: {resp.getFormFieldId()}, config ref field id: {config.org_reference_form_field_id }")
+                                # MATTS EDIT - each of these comparisons need to be replaced, and changed from
+                                # MATTS EDIT - if resp.getFormFieldId() == config.org_reference_form_field_id and ref_email == resp.getRefEmail():
+                                # MATTS EDIT - to
+                                # MATTS EDIT - if resp.getFormFieldId() == config.org_reference_form_field_id and ref_email == resp.getRefEmail():
                                 if resp.getFormFieldId() == config.org_reference_form_field_id and ref_email == resp.getRefEmail():
                                     if date_1 is None or date_1 < resp.getCreatedAt():
                                         date_1 = resp.getCreatedAt()

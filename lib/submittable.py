@@ -18,6 +18,7 @@ class Submittable:
     def __init__(self):
         self.api_key = config.submittable_token
         self.baseURL = "https://svcs.submittable.com/v3"
+        self.betaURL = "https://submittable-api.submittable.com/docs/beta"
         self.event   = threading.Event()
 
     @sleep_and_retry
@@ -1514,8 +1515,10 @@ class Submittable:
     def getSubmission(self, submission_id):
         # self.event.wait(0.1)
         logger.info(f"get submission {submission_id}")
+        # MATTS EDITS - one of these time.sleep is either too long or uselessly short
         time.sleep(0.1)
-        endpoint = f'{self.baseURL}/submissions/{submission_id}'
+        # MATTS EDITS - baseURL to betaURL
+        endpoint = f'{self.betaURL}/submissions/{submission_id}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print("get sub", response.json())
@@ -1523,13 +1526,15 @@ class Submittable:
             if response.status_code == 429:
                 logger.info(f"get submission - api rate limit hit wait 15 mins")
                 # self.event.wait(900)
+                # MATTS EDITS - one of these time.sleep is either too long or uselessly short
                 time.sleep(900)
                 # return self.getSubmission(submission_id)
                 response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             else:
                 logger.info(f"get submission failed {response.status_code}. Response payload: {response.content}")
                 raise ValueError(f"get submission failed {response.status_code}. Response payload: {response.content}")
-        return SubmittableSubmission(response.json())
+        # MATTS EDITS - SubmittableSubmission to SubmittableBetaSubmission
+        return SubmittableBetaSubmission(response.json())
 
     # get an individual submission
     @sleep_and_retry
@@ -1605,7 +1610,8 @@ class Submittable:
         ref_responses = []
         page_size = 1
         # total_pages = 522
-        endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page=117&pageSize={page_size}'
+        # MATTS EDIT - changed to betaURL from baseURL
+        endpoint = f'{self.betaURL}/responses/forms/{ref_form_id}?page=117&pageSize={page_size}'
         headers = {'Content-type': 'application/json'}
         response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
         # print(response.json())
@@ -1620,7 +1626,8 @@ class Submittable:
             if page == total_pages:
                 break
             nextPage = page + 1
-            endpoint = f'{self.baseURL}/responses/forms/{ref_form_id}?page={nextPage}&pageSize={page_size}'
+            # MATTS EDIT - changed to betaURL from baseURL
+            endpoint = f'{self.betaURL}/responses/forms/{ref_form_id}?page={nextPage}&pageSize={page_size}'
             headers = {'Content-type': 'application/json'}
             response = requests.get(endpoint, auth=("", self.api_key), headers=headers)
             # print("ref form resp", response.json())
@@ -1634,7 +1641,8 @@ class Submittable:
             # print("ref form total pages:", total_pages)
             logger.info(f"ref page: {page}")
             for item in ref_response_list:
-                ref_responses.append(SubmittableResponseList(item))
+                # MATTS EDIT - SubmittableResponseList(item) to SubmittableBetaResponseEntry(item)
+                ref_responses.append(SubmittableBetaResponseEntry(item))
         return ref_responses
 
 
@@ -2235,6 +2243,10 @@ class SubmittableFieldData:
 
     def getRefEmail(self):
         return self.payload['refereeEmail']
+
+    def getRefEntryId(self):
+        # this needs updating to new beta sub endpoint actual key
+        return self.payload['referenceEntryId']
 
     def getFormFieldId(self):
         return self.payload["formFieldId"]
